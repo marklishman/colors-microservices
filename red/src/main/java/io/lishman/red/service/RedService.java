@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.Collections;
+import java.util.Arrays;
 
 @Service
 public class RedService {
@@ -25,8 +25,13 @@ public class RedService {
 
     public InstanceDetails getInstanceDetails() {
 
-        InstanceDetails instanceDetails = restTemplate.getForObject(
+        InstanceDetails greenInstanceDetails = restTemplate.getForObject(
                 "http://localhost:8082",
+                InstanceDetails.class
+        );
+
+        InstanceDetails orangeInstanceDetails = restTemplate.getForObject(
+                "http://localhost:8084",
                 InstanceDetails.class
         );
 
@@ -34,7 +39,7 @@ public class RedService {
                 name,
                 instance,
                 port,
-                Collections.singletonList(instanceDetails)
+                Arrays.asList(greenInstanceDetails, orangeInstanceDetails)
         );
     }
 }

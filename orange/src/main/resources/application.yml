@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: orange
+
+server:
+  port: 8084

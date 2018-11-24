@@ -13,6 +13,7 @@
         <module>blue</module>
         <module>green</module>
         <module>red</module>
+        <module>orange</module>
     </modules>
 
 </project>
