@@ -13,6 +13,8 @@
       green      red
                 /   \
            green     orange
+                        |
+                      pink
            
 
 # Instances
@@ -21,3 +23,4 @@
 * green: 4
 * red: 2
 * orange: 1
+* pink: 2

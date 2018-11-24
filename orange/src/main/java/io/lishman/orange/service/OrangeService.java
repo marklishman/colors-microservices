@@ -1,8 +1,10 @@
 package io.lishman.orange.service;
 
 import io.lishman.orange.model.InstanceDetails;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.Collections;
 
@@ -18,12 +20,25 @@ public class OrangeService {
     @Value("${server.port}")
     private int port;
 
+    private final RestTemplate restTemplate;
+
+    @Autowired
+    public OrangeService(RestTemplate restTemplate) {
+        this.restTemplate = restTemplate;
+    }
+
     public InstanceDetails getInstanceDetails() {
+
+        InstanceDetails pinkInstanceDetails = restTemplate.getForObject(
+                "http://pink-client",
+                InstanceDetails.class
+        );
+
         return new InstanceDetails(
                 name,
                 instance,
                 port,
-                Collections.emptyList()
+                Collections.singletonList(pinkInstanceDetails)
         );
     }
 }

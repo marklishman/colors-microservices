@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: pink
+
+server:
+  port: 8051

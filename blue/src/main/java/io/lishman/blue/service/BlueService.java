@@ -30,12 +30,12 @@ public class BlueService {
     public InstanceDetails getInstanceDetails() {
 
         InstanceDetails greenInstanceDetails = restTemplate.getForObject(
-                "http://green:8021",
+                "http://green",
                 InstanceDetails.class
         );
 
         InstanceDetails redInstanceDetails = restTemplate.getForObject(
-                "http://red:8031",
+                "http://red",
                 InstanceDetails.class
         );
 
