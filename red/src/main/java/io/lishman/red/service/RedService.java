@@ -26,12 +26,12 @@ public class RedService {
     public InstanceDetails getInstanceDetails() {
 
         InstanceDetails greenInstanceDetails = restTemplate.getForObject(
-                "http://localhost:8082",
+                "http://localhost:8020",
                 InstanceDetails.class
         );
 
         InstanceDetails orangeInstanceDetails = restTemplate.getForObject(
-                "http://localhost:8084",
+                "http://localhost:8040",
                 InstanceDetails.class
         );
 

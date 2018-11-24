@@ -20,19 +20,18 @@ public class BlueService {
     @Value("${server.port}")
     private int port;
 
-    // TODO Use WebClient
     @Autowired
     private RestTemplate restTemplate;
 
     public InstanceDetails getInstanceDetails() {
 
-        InstanceDetails blueInstanceDetails = restTemplate.getForObject(
-                "http://localhost:8082",
+        InstanceDetails greenInstanceDetails = restTemplate.getForObject(
+                "http://localhost:8020",
                 InstanceDetails.class
         );
 
         InstanceDetails redInstanceDetails = restTemplate.getForObject(
-                "http://localhost:8083",
+                "http://localhost:8030",
                 InstanceDetails.class
         );
 
@@ -40,6 +39,6 @@ public class BlueService {
                 name,
                 instance,
                 port,
-                Arrays.asList(blueInstanceDetails, redInstanceDetails) );
+                Arrays.asList(greenInstanceDetails, redInstanceDetails) );
     }
 }
