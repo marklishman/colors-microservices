@@ -1,18 +1,26 @@
 package io.lishman.blue.model;
 
+import java.util.List;
+
 public class InstanceDetails {
     private String name;
     private int instance;
     private int port;
+    private List<InstanceDetails> calls;
+
+    public InstanceDetails() {
+    }
 
     public InstanceDetails(
             String name,
             int instance,
-            int port
+            int port,
+            List<InstanceDetails> calls
     ) {
         this.name = name;
         this.instance = instance;
         this.port = port;
+        this.calls = calls;
     }
 
     public String getName() {
@@ -37,5 +45,13 @@ public class InstanceDetails {
 
     public void setPort(int port) {
         this.port = port;
+    }
+
+    public List<InstanceDetails> getCalls() {
+        return calls;
+    }
+
+    public void setCalls(List<InstanceDetails> calls) {
+        this.calls = calls;
     }
 }

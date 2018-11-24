@@ -4,6 +4,8 @@ import io.lishman.green.model.InstanceDetails;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
+
 @Service
 public class GreenService {
 
@@ -20,7 +22,8 @@ public class GreenService {
         return new InstanceDetails(
                 name,
                 instance,
-                port
+                port,
+                Collections.emptyList()
         );
     }
 }
