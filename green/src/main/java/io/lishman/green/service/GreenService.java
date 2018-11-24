@@ -12,7 +12,7 @@ public class GreenService {
     @Value("${spring.application.name}")
     private String name;
 
-    @Value("${app.instance.name:0}")
+    @Value("${app.instance:1}")
     private int instance;
 
     @Value("${server.port}")

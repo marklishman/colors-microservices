@@ -3,4 +3,4 @@ spring:
     name: red
 
 server:
-  port: 8083
+  port: 8031

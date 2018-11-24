@@ -3,4 +3,4 @@ spring:
     name: blue
 
 server:
-  port: 8010
+  port: 8011

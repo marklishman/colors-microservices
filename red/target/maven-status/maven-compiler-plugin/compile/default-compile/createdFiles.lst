@@ -1,3 +1,5 @@
-io/lishman/blue/controller/InstanceController.class
-io/lishman/blue/model/InstanceDetails.class
-io/lishman/blue/BlueApplication.class
+io/lishman/red/model/InstanceDetails.class
+io/lishman/red/service/RedService.class
+io/lishman/red/config/RestConfig.class
+io/lishman/red/controller/RedController.class
+io/lishman/red/RedApplication.class

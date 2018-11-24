@@ -14,7 +14,7 @@ public class BlueService {
     @Value("${spring.application.name}")
     private String name;
 
-    @Value("${app.instance.name:0}")
+    @Value("${app.instance:1}")
     private int instance;
 
     @Value("${server.port}")
@@ -26,12 +26,12 @@ public class BlueService {
     public InstanceDetails getInstanceDetails() {
 
         InstanceDetails greenInstanceDetails = restTemplate.getForObject(
-                "http://localhost:8020",
+                "http://green:8021",
                 InstanceDetails.class
         );
 
         InstanceDetails redInstanceDetails = restTemplate.getForObject(
-                "http://localhost:8030",
+                "http://red:8031",
                 InstanceDetails.class
         );
 

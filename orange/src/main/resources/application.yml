@@ -3,4 +3,4 @@ spring:
     name: orange
 
 server:
-  port: 8040
+  port: 8041

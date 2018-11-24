@@ -1,3 +1,5 @@
-/Users/marklishman/Lishman/ref/spring-cloud/microservices/colors/blue/src/main/java/io/lishman/blue/BlueApplication.java
-/Users/marklishman/Lishman/ref/spring-cloud/microservices/colors/blue/src/main/java/io/lishman/blue/controller/InstanceController.java
-/Users/marklishman/Lishman/ref/spring-cloud/microservices/colors/blue/src/main/java/io/lishman/blue/model/InstanceDetails.java
+/Users/marklishman/Lishman/ref/spring-cloud/microservices/colors/red/src/main/java/io/lishman/red/model/InstanceDetails.java
+/Users/marklishman/Lishman/ref/spring-cloud/microservices/colors/red/src/main/java/io/lishman/red/config/RestConfig.java
+/Users/marklishman/Lishman/ref/spring-cloud/microservices/colors/red/src/main/java/io/lishman/red/RedApplication.java
+/Users/marklishman/Lishman/ref/spring-cloud/microservices/colors/red/src/main/java/io/lishman/red/controller/RedController.java
+/Users/marklishman/Lishman/ref/spring-cloud/microservices/colors/red/src/main/java/io/lishman/red/service/RedService.java
