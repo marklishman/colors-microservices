@@ -4,7 +4,6 @@ import io.lishman.red.model.InstanceDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 
 import java.util.Arrays;
 
@@ -14,8 +13,8 @@ public class RedService {
     @Value("${spring.application.name}")
     private String name;
 
-    @Value("${app.instance:1}")
-    private int instance;
+    @Value("${app.instance:one}")
+    private String instance;
 
     @Value("${server.port}")
     private int port;

@@ -4,8 +4,6 @@
 * Spring Boot 2.0.6
 * Spring Cloud Finchley.SR2
 
-
-
 # Call Hierarchy
 
             blue
@@ -39,6 +37,8 @@
 
 ### orange
 
+* Manual lookup of pink service (without Eureka)
+
 ### pink
 
-* No service discovery
+* Not registered with Eureka

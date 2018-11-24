@@ -4,7 +4,7 @@ import java.util.List;
 
 public class InstanceDetails {
     private String name;
-    private int instance;
+    private String instance;
     private int port;
     private List<InstanceDetails> calls;
 
@@ -13,7 +13,7 @@ public class InstanceDetails {
 
     public InstanceDetails(
             String name,
-            int instance,
+            String instance,
             int port,
             List<InstanceDetails> calls
     ) {
@@ -31,11 +31,11 @@ public class InstanceDetails {
         this.name = name;
     }
 
-    public int getInstance() {
+    public String getInstance() {
         return instance;
     }
 
-    public void setInstance(int instance) {
+    public void setInstance(String instance) {
         this.instance = instance;
     }
 
