@@ -20,8 +20,12 @@ public class BlueService {
     @Value("${server.port}")
     private int port;
 
+    private final RestTemplate restTemplate;
+
     @Autowired
-    private RestTemplate restTemplate;
+    public BlueService(RestTemplate restTemplate) {
+        this.restTemplate = restTemplate;
+    }
 
     public InstanceDetails getInstanceDetails() {
 

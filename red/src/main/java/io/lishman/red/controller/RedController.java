@@ -9,8 +9,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class RedController {
 
+    private final RedService redService;
+
     @Autowired
-    private RedService redService;
+    public RedController(RedService redService) {
+        this.redService = redService;
+    }
 
     @GetMapping
     public InstanceDetails getCallDetails() {

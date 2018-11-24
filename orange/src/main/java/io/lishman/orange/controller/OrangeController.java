@@ -9,8 +9,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class OrangeController {
 
+    private final OrangeService orangeService;
+
     @Autowired
-    private OrangeService orangeService;
+    public OrangeController(OrangeService orangeService) {
+        this.orangeService = orangeService;
+    }
 
     @GetMapping
     public InstanceDetails getCallDetails() {
