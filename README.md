@@ -17,10 +17,28 @@
                       pink
            
 
-# Instances
+# Number of Instances
 
 * blue: 1
 * green: 4
 * red: 2
 * orange: 1
-* pink: 2 (no service discovery)
+* pink: 2
+
+# Instance Details
+
+### blue
+
+* Root
+
+### green
+
+### red
+
+* Feign client (no `RestTemplate`)
+
+### orange
+
+### pink
+
+* No service discovery

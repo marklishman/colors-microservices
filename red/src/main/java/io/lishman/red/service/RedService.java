@@ -20,24 +20,22 @@ public class RedService {
     @Value("${server.port}")
     private int port;
 
-    private final RestTemplate restTemplate;
+    private final GreenClient greenClient;
+    private final OrangeClient orangeClient;
 
     @Autowired
-    public RedService(RestTemplate restTemplate) {
-        this.restTemplate = restTemplate;
+    public RedService(
+            GreenClient greenClient,
+            OrangeClient orangeClient
+    ) {
+        this.greenClient = greenClient;
+        this.orangeClient = orangeClient;
     }
 
     public InstanceDetails getInstanceDetails() {
 
-        InstanceDetails greenInstanceDetails = restTemplate.getForObject(
-                "http://green:8021",
-                InstanceDetails.class
-        );
-
-        InstanceDetails orangeInstanceDetails = restTemplate.getForObject(
-                "http://orange:8041",
-                InstanceDetails.class
-        );
+        InstanceDetails greenInstanceDetails = greenClient.getDetails();
+        InstanceDetails orangeInstanceDetails = orangeClient.getDetails();
 
         return new InstanceDetails(
                 name,
