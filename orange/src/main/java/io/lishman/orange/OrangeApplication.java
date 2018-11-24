@@ -6,7 +6,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.ribbon.RibbonClient;
 
 @SpringBootApplication
-//@EnableEurekaClient
 @RibbonClient(name = "pink-client", configuration = RestConfig.class)
 public class OrangeApplication {
 
