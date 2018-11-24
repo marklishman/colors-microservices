@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: green
+
+server:
+  port: 8082
