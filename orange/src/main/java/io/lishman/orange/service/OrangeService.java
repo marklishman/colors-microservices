@@ -3,12 +3,14 @@ package io.lishman.orange.service;
 import io.lishman.orange.model.InstanceDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Collections;
 
 @Service
+@RefreshScope
 public class OrangeService {
 
     @Value("${spring.application.name}")
@@ -19,6 +21,9 @@ public class OrangeService {
 
     @Value("${server.port}")
     private int port;
+
+    @Value("${app.config:default orange config}")
+    private String config;
 
     private final RestTemplate restTemplate;
 
@@ -38,6 +43,7 @@ public class OrangeService {
                 name,
                 instance,
                 port,
+                config,
                 Collections.singletonList(pinkInstanceDetails)
         );
     }

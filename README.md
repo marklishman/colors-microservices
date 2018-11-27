@@ -25,11 +25,16 @@
 
 # Instance Details
 
+* Service discovery except pink
+* Remote config except pink
+
 ### blue
 
 * Root
 
 ### green
+
+* Instances 3 and 4 'dev' profile
 
 ### red
 
@@ -42,3 +47,4 @@
 ### pink
 
 * Not registered with Eureka
+* No remote config

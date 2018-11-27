@@ -12,3 +12,9 @@ ribbon:
 pink-client:
   ribbon:
     listOfServers: localhost:8051,localhost:8052
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh

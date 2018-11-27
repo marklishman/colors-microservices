@@ -3,12 +3,14 @@ package io.lishman.blue.service;
 import io.lishman.blue.model.InstanceDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Arrays;
 
 @Service
+@RefreshScope
 public class BlueService {
 
     @Value("${spring.application.name}")
@@ -19,6 +21,9 @@ public class BlueService {
 
     @Value("${server.port}")
     private int port;
+
+    @Value("${app.config:default blue config}")
+    private String config;
 
     private final RestTemplate restTemplate;
 
@@ -43,6 +48,7 @@ public class BlueService {
                 name,
                 instance,
                 port,
+                config,
                 Arrays.asList(greenInstanceDetails, redInstanceDetails) );
     }
 }

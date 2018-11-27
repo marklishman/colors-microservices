@@ -18,11 +18,15 @@ public class PinkService {
     @Value("${server.port}")
     private int port;
 
+    @Value("${app.config:default pink config}")
+    private String config;
+
     public InstanceDetails getInstanceDetails() {
         return new InstanceDetails(
                 name,
                 instance,
                 port,
+                config,
                 Collections.emptyList()
         );
     }

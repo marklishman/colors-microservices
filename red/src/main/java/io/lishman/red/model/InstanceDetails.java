@@ -6,6 +6,7 @@ public class InstanceDetails {
     private String name;
     private String instance;
     private int port;
+    private String config;
     private List<InstanceDetails> calls;
 
     public InstanceDetails() {
@@ -15,11 +16,13 @@ public class InstanceDetails {
             String name,
             String instance,
             int port,
+            String config,
             List<InstanceDetails> calls
     ) {
         this.name = name;
         this.instance = instance;
         this.port = port;
+        this.config = config;
         this.calls = calls;
     }
 
@@ -45,6 +48,14 @@ public class InstanceDetails {
 
     public void setPort(int port) {
         this.port = port;
+    }
+
+    public String getConfig() {
+        return config;
+    }
+
+    public void setConfig(String config) {
+        this.config = config;
     }
 
     public List<InstanceDetails> getCalls() {
