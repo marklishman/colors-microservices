@@ -49,6 +49,6 @@ public class BlueService {
                 instance,
                 port,
                 config,
-                Arrays.asList(greenInstanceDetails, redInstanceDetails) );
+                Arrays.asList(greenInstanceDetails, redInstanceDetails));
     }
 }

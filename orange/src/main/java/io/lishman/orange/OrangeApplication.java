@@ -9,7 +9,7 @@ import org.springframework.cloud.netflix.ribbon.RibbonClient;
 @RibbonClient(name = "pink-client", configuration = RestConfig.class)
 public class OrangeApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(OrangeApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(OrangeApplication.class, args);
+    }
 }

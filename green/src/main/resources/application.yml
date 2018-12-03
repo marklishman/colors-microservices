@@ -1,6 +1,11 @@
 spring:
   application:
     name: green
+  cloud:
+    stream:
+      bindings:
+        output:
+          destination: tasktopic
 
 server:
   port: 8021

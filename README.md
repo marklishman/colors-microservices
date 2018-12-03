@@ -38,11 +38,11 @@
 
 ### red
 
-* Feign client (no `RestTemplate`)
+* Feign client for geen and orange (no `RestTemplate`)
 
 ### orange
 
-* Manual lookup of pink service (without Eureka)
+* Manual lookup of pink service using config (without Eureka)
 
 ### pink
 
