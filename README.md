@@ -23,6 +23,14 @@
 * orange: 1
 * pink: 2
 
+# Startup
+
+* rabbitmq (docker)
+* eureka
+* config-server (optional)
+* task-launcher (optional)
+* colors
+
 # Instance Details
 
 * Service discovery except pink
@@ -31,6 +39,7 @@
 ### blue
 
 * Root
+* Config in `@Value`, `application.yml` and config server
 
 ### green
 

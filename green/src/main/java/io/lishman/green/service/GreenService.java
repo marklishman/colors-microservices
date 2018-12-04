@@ -33,7 +33,6 @@ public class GreenService {
     @Value("${app.task.launch.request:false}")
     private boolean taskLaunchRequest;
 
-
     private final Source source;
 
     public GreenService(Source source) {

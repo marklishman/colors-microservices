@@ -10,3 +10,6 @@ management:
     web:
       exposure:
         include: refresh
+
+app:
+  config: blue application.yml config
