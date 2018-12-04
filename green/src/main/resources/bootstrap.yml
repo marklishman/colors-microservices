@@ -5,5 +5,3 @@ spring:
   cloud:
     config:
       uri: http://localhost:8888 # default
-      username: config
-      password: secret

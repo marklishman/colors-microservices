@@ -48,11 +48,12 @@
 
 ### red
 
-* Feign client for geen and orange (no `RestTemplate`)
+* Feign client for green and orange (no `RestTemplate`)
+* Secure config from config server (cipher)
 
 ### orange
 
-* Manual lookup of pink service using config (without Eureka)
+* Manual lookup of 2 pink services using config (without Eureka)
 
 ### pink
 

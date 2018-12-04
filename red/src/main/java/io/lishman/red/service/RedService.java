@@ -24,6 +24,9 @@ public class RedService {
     @Value("${app.config:default red config}")
     private String config;
 
+    @Value("${app.secret:default red secret config}")
+    private String secretConfig;
+
     private final GreenClient greenClient;
     private final OrangeClient orangeClient;
 
@@ -45,7 +48,7 @@ public class RedService {
                 name,
                 instance,
                 port,
-                config,
+                config + ", " + secretConfig,
                 Arrays.asList(greenInstanceDetails, orangeInstanceDetails)
         );
     }
