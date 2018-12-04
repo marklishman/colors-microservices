@@ -1,7 +1,6 @@
 package io.lishman.green.service;
 
 import io.lishman.green.model.InstanceDetails;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.cloud.stream.annotation.EnableBinding;
@@ -31,6 +30,10 @@ public class GreenService {
     @Value("${app.config:default green config}")
     private String config;
 
+    @Value("${app.task.launch.request:false}")
+    private boolean taskLaunchRequest;
+
+
     private final Source source;
 
     public GreenService(Source source) {
@@ -47,6 +50,14 @@ public class GreenService {
                 Collections.emptyList()
         );
 
+        if (taskLaunchRequest) {
+            launchRequest(instanceDetails);
+        }
+
+        return instanceDetails;
+    }
+
+    private void launchRequest(InstanceDetails instanceDetails) {
         String url = "maven://io.lishman:task-one:jar:0.0.1-SNAPSHOT";
         List<String> params = Arrays.asList(
                 instanceDetails.getName(),
@@ -58,7 +69,5 @@ public class GreenService {
         TaskLaunchRequest request = new TaskLaunchRequest(url, params, null, null, "green");
         GenericMessage<TaskLaunchRequest> message = new GenericMessage<>(request);
         source.output().send(message);
-
-        return instanceDetails;
     }
 }

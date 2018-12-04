@@ -34,7 +34,8 @@
 
 ### green
 
-* Instances 3 and 4 'dev' profile
+* Instances 3 and 4 'dev' profile (for config)
+* Task launcher request (configurable)
 
 ### red
 
