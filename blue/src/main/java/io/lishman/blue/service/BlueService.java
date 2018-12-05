@@ -16,13 +16,13 @@ public class BlueService {
     @Value("${spring.application.name}")
     private String name;
 
-    @Value("${app.instance:one}")
+    @Value("${token.instance:one}")
     private String instance;
 
     @Value("${server.port}")
     private int port;
 
-    @Value("${app.config:default blue config}")
+    @Value("${token.config:default blue config}")
     private String config;
 
     private final RestTemplate restTemplate;

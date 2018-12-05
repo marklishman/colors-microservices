@@ -12,13 +12,13 @@ public class PinkService {
     @Value("${spring.application.name}")
     private String name;
 
-    @Value("${app.instance:one}")
+    @Value("${token.instance:one}")
     private String instance;
 
     @Value("${server.port}")
     private int port;
 
-    @Value("${app.config:default pink config}")
+    @Value("${token.config:default pink config}")
     private String config;
 
     public InstanceDetails getInstanceDetails() {

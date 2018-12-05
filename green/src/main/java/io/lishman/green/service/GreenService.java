@@ -21,16 +21,16 @@ public class GreenService {
     @Value("${spring.application.name}")
     private String name;
 
-    @Value("${app.instance:one}")
+    @Value("${token.instance:one}")
     private String instance;
 
     @Value("${server.port}")
     private int port;
 
-    @Value("${app.config:default green config}")
+    @Value("${token.config:default green config}")
     private String config;
 
-    @Value("${app.task.launch.request:false}")
+    @Value("${token.task.launch.request:false}")
     private boolean taskLaunchRequest;
 
     private final Source source;

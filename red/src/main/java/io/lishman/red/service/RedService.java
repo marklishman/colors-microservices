@@ -15,16 +15,16 @@ public class RedService {
     @Value("${spring.application.name}")
     private String name;
 
-    @Value("${app.instance:one}")
+    @Value("${token.instance:one}")
     private String instance;
 
     @Value("${server.port}")
     private int port;
 
-    @Value("${app.config:default red config}")
+    @Value("${token.config:default red config}")
     private String config;
 
-    @Value("${app.secret:default red secret config}")
+    @Value("${token.secret:default red secret config}")
     private String secretConfig;
 
     private final GreenClient greenClient;

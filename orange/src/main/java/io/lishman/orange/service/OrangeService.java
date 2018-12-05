@@ -16,13 +16,13 @@ public class OrangeService {
     @Value("${spring.application.name}")
     private String name;
 
-    @Value("${app.instance:one}")
+    @Value("${token.instance:one}")
     private String instance;
 
     @Value("${server.port}")
     private int port;
 
-    @Value("${app.config:default orange config}")
+    @Value("${token.config:default orange config}")
     private String config;
 
     private final RestTemplate restTemplate;
