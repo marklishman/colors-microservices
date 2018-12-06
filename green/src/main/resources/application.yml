@@ -1,11 +1,6 @@
 spring:
   application:
     name: green
-  cloud:
-    stream:
-      bindings:
-        output:
-          destination: tasktopic
   sleuth:
     sampler:
       probability: 1.0
@@ -18,8 +13,3 @@ management:
     web:
       exposure:
         include: refresh
-
-app:
-  task:
-    launch:
-      request: true
