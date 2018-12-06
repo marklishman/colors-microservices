@@ -18,7 +18,7 @@ public class PinkService {
     @Value("${server.port}")
     private int port;
 
-    @Value("${token.config:default pink config}")
+    @Value("${app.config:default pink config}")
     private String config;
 
     public InstanceDetails getInstanceDetails() {

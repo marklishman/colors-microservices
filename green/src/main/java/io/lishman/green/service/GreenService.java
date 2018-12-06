@@ -20,7 +20,7 @@ public class GreenService {
     @Value("${server.port}")
     private int port;
 
-    @Value("${token.config:default green config}")
+    @Value("${app.config:default green config}")
     private String config;
 
     public InstanceDetails getInstanceDetails() {

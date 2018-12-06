@@ -22,7 +22,7 @@ public class BlueService {
     @Value("${server.port}")
     private int port;
 
-    @Value("${token.config:default blue config}")
+    @Value("${app.config:default blue config}")
     private String config;
 
     private final RestTemplate restTemplate;
