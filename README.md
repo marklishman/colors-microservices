@@ -27,19 +27,19 @@
 
 * rabbitmq (docker)
 * eureka
+* zipkin
 * config-server (optional)
 * task-launcher (optional)
+* get OAuth2 token
 * colors
 
 # Instance Details
-
-* Service discovery except pink
-* Remote config except pink
 
 ### blue
 
 * Root
 * Config in `@Value`, `application.yml` and config server
+* Secure OAuth2 resource server
 
 ### green
 
@@ -50,6 +50,7 @@
 
 * Feign client for green and orange (no `RestTemplate`)
 * Secure config from config server (cipher)
+* Secure OAuth2 resource server
 
 ### orange
 

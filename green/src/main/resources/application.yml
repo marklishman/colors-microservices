@@ -6,6 +6,9 @@ spring:
       bindings:
         output:
           destination: tasktopic
+  sleuth:
+    sampler:
+      probability: 1.0
 
 server:
   port: 8021

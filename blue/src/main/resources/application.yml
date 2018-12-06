@@ -1,9 +1,19 @@
 spring:
   application:
     name: blue
+  sleuth:
+    sampler:
+      probability: 1.0
 
 server:
   port: 8011
+
+security:
+  oauth2:
+    resource:
+      user-info-uri: https://api.github.com/user
+    client:
+      clientId: blue
 
 management:
   endpoints:
@@ -13,3 +23,5 @@ management:
 
 app:
   config: blue application.yml config
+
+
