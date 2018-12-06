@@ -27,10 +27,10 @@ public class GreenService {
     @Value("${server.port}")
     private int port;
 
-    @Value("${token.config:default green config}")
+    @Value("${app.config:default green config}")
     private String config;
 
-    @Value("${token.task.launch.request:false}")
+    @Value("${app.task.launch.request:false}")
     private boolean taskLaunchRequest;
 
     private final Source source;

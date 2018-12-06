@@ -21,10 +21,10 @@ public class RedService {
     @Value("${server.port}")
     private int port;
 
-    @Value("${token.config:default red config}")
+    @Value("${app.config:default red config}")
     private String config;
 
-    @Value("${token.secret:default red secret config}")
+    @Value("${app.secret:default red secret config}")
     private String secretConfig;
 
     private final GreenClient greenClient;
