@@ -21,7 +21,7 @@ public class GreenService {
     @Value("${spring.application.name}")
     private String name;
 
-    @Value("${token.instance:one}")
+    @Value("${app.instance:one}")
     private String instance;
 
     @Value("${server.port}")

@@ -11,7 +11,6 @@ import org.springframework.web.client.RestTemplate;
 @Configuration
 public class RestConfig {
 
-    // NOTE: @LoadBalanced does not work with OAuth2RestTemplate
     @Bean
     @LoadBalanced
     public RestTemplate restTemplate(OAuth2ProtectedResourceDetails resource, OAuth2ClientContext context) {
