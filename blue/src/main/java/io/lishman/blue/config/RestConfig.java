@@ -6,13 +6,15 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.oauth2.client.OAuth2ClientContext;
 import org.springframework.security.oauth2.client.OAuth2RestTemplate;
 import org.springframework.security.oauth2.client.resource.OAuth2ProtectedResourceDetails;
+import org.springframework.web.client.RestTemplate;
 
 @Configuration
 public class RestConfig {
 
+    // NOTE: @LoadBalanced does not work with OAuth2RestTemplate
     @Bean
     @LoadBalanced
-    public OAuth2RestTemplate restTemplate(OAuth2ProtectedResourceDetails resource, OAuth2ClientContext context) {
+    public RestTemplate restTemplate(OAuth2ProtectedResourceDetails resource, OAuth2ClientContext context) {
         return new OAuth2RestTemplate(resource, context);
     }
 }
