@@ -22,7 +22,7 @@ public class OrangeService {
     @Value("${server.port}")
     private int port;
 
-    @Value("${token.config:default orange config}")
+    @Value("${app.config:default orange config}")
     private String config;
 
     private final RestTemplate restTemplate;
