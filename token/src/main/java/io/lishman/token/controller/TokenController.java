@@ -13,7 +13,7 @@ public class TokenController {
     @Autowired
     private OAuth2ClientContext oAuth2ClientContext;
 
-    @GetMapping
+    @GetMapping("/")
     public @ResponseBody String token() {
         OAuth2AccessToken oAuth2AccessToken = oAuth2ClientContext.getAccessToken();
         return oAuth2AccessToken.getValue();

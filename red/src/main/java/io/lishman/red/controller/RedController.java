@@ -16,7 +16,7 @@ public class RedController {
         this.redService = redService;
     }
 
-    @GetMapping
+    @GetMapping("/")
     public InstanceDetails getCallDetails() {
         return redService.getInstanceDetails();
     }

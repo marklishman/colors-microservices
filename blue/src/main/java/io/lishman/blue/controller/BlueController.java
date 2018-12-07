@@ -16,7 +16,7 @@ public class BlueController {
         this.blueService = blueService;
     }
 
-    @GetMapping
+    @GetMapping("/")
     public InstanceDetails getCallDetails() {
         return blueService.getInstanceDetails();
     }

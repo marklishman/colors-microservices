@@ -16,7 +16,7 @@ public class OrangeController {
         this.orangeService = orangeService;
     }
 
-    @GetMapping
+    @GetMapping("/")
     public InstanceDetails getCallDetails() {
         return orangeService.getInstanceDetails();
     }

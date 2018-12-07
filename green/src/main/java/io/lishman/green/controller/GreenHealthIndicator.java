@@ -1,4 +1,4 @@
-package io.lishman.green.config;
+package io.lishman.green.controller;
 
 import org.springframework.boot.actuate.health.Health;
 import org.springframework.boot.actuate.health.HealthIndicator;

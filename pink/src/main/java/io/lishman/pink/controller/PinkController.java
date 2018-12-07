@@ -16,7 +16,7 @@ public class PinkController {
         this.pinkService = pinkService;
     }
 
-    @GetMapping
+    @GetMapping("/")
     public InstanceDetails getCallDetails() {
         return pinkService.getInstanceDetails();
     }
