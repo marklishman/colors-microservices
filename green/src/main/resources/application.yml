@@ -1,12 +1,10 @@
 spring:
-  application:
-    name: green
   sleuth:
     sampler:
       probability: 1.0
 
 server:
-  port: 8021
+  port: 0 # random
 
 management:
   endpoints:

@@ -1,7 +1,14 @@
-encrypt:
-  key: my_secret_symmetric_encryption_key
-
 spring:
+  application:
+    name: green
   cloud:
     config:
       uri: http://localhost:8888 # default
+
+eureka:
+  client:
+    register-with-eureka: true # true
+    fetch-registry: false
+
+encrypt:
+  key: my_secret_symmetric_encryption_key

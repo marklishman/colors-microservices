@@ -1,12 +1,10 @@
 spring:
-  application:
-    name: orange
   sleuth:
     sampler:
       probability: 1.0
 
 server:
-  port: 8041
+  port: 0 # random
 
 ribbon:
   eureka:

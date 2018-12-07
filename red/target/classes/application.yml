@@ -1,19 +1,10 @@
 spring:
-  application:
-    name: red
   sleuth:
     sampler:
       probability: 1.0
 
 server:
-  port: 8031
-
-security:
-  oauth2:
-    resource:
-      user-info-uri: https://api.github.com/user
-    client:
-      clientId: red
+  port: 0 # random
 
 management:
   endpoints:
