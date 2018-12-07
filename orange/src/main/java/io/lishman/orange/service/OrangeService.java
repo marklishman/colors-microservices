@@ -1,5 +1,6 @@
 package io.lishman.orange.service;
 
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import io.lishman.orange.model.InstanceDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -32,6 +33,7 @@ public class OrangeService {
         this.restTemplate = restTemplate;
     }
 
+    @HystrixCommand(fallbackMethod = "getInstanceDetailsFallback")
     public InstanceDetails getInstanceDetails() {
 
         InstanceDetails pinkInstanceDetails = restTemplate.getForObject(
@@ -45,6 +47,16 @@ public class OrangeService {
                 port,
                 config,
                 Collections.singletonList(pinkInstanceDetails)
+        );
+    }
+
+    public InstanceDetails getInstanceDetailsFallback() {
+        return new InstanceDetails(
+                name,
+                instance,
+                port,
+                config,
+                Collections.EMPTY_LIST
         );
     }
 }
