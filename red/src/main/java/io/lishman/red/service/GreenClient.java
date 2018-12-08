@@ -18,14 +18,14 @@ public interface GreenClient {
 
     @Component
     static class GreenClientFallback implements GreenClient {
+
         @Override
         public InstanceDetails getDetails() {
-            // TODO check values
             return new InstanceDetails(
                     "green",
                     "unknown",
                     0,
-                    "config",
+                    "some cached config",
                     Collections.EMPTY_LIST
             );
         }

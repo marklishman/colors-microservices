@@ -15,7 +15,6 @@
         <module>red</module>
         <module>orange</module>
         <module>pink</module>
-        <module>token</module>
     </modules>
 
 </project>

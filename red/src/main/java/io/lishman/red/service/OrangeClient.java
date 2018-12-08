@@ -18,14 +18,14 @@ public interface OrangeClient {
 
     @Component
     static class OrangeClientFallback implements OrangeClient {
+
         @Override
         public InstanceDetails getDetails() {
-            // TODO check values
             return new InstanceDetails(
                     "orange",
                     "unknown",
                     0,
-                    "config",
+                    "some fallback config",
                     Collections.EMPTY_LIST
             );
         }

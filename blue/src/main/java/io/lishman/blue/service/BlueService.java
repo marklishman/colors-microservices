@@ -54,12 +54,11 @@ public class BlueService {
     }
 
     private InstanceDetails getGreenInstanceDetailsFallback() {
-        // TODO use default
         return new InstanceDetails(
-                name,
-                instance,
-                port,
-                config,
+                "green",
+                "unknown",
+                0,
+                "some cached config",
                 Collections.EMPTY_LIST
         );
     }

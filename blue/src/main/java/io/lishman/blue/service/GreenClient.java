@@ -27,12 +27,11 @@ public class GreenClient {
     }
 
     private InstanceDetails getGreenInstanceDetailsFallback() {
-        // TODO use cache
         return new InstanceDetails(
-          "green",
-          "unknown",
-          0,
-          "config",
+                "green",
+                "unknown",
+                0,
+                "some cached config",
                 Collections.EMPTY_LIST
         );
     }
