@@ -9,26 +9,26 @@ import org.springframework.web.client.RestTemplate;
 import java.util.Collections;
 
 @Component
-public class GreenClient {
+public class RedClient {
 
     private final RestTemplate restTemplate;
 
     @Autowired
-    public GreenClient(RestTemplate restTemplate) {
+    public RedClient(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
     }
 
-    @HystrixCommand(fallbackMethod = "getGreenInstanceDetailsFallback")
+    @HystrixCommand(fallbackMethod = "getRedInstanceDetailsFallback")
     InstanceDetails getInstanceDetails() {
         return restTemplate.getForObject(
-                "http://green",
+                "http://red",
                 InstanceDetails.class
         );
     }
 
-    private InstanceDetails getGreenInstanceDetailsFallback() {
+    private InstanceDetails getRedInstanceDetailsFallback() {
         return new InstanceDetails(
-                "green",
+                "red",
                 "unknown",
                 0,
                 "some cached config",
