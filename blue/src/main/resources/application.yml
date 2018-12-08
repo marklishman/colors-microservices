@@ -18,6 +18,6 @@ management:
         include: refresh,health
 
 app:
-  config: blue application.yml config
+  config: blue config from application.yml
 
 

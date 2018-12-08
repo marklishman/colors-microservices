@@ -9,7 +9,7 @@ server:
 eureka:
   client:
     healthcheck:
-      enabled: true
+      enabled: false
 
 ribbon:
   eureka:
@@ -26,3 +26,6 @@ management:
     web:
       exposure:
         include: refresh,health
+
+app:
+  config: orange config from application.yml
