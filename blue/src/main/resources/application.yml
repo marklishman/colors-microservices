@@ -9,7 +9,7 @@ server:
 eureka:
   client:
     healthcheck:
-      enabled: true
+      enabled: false
 
 management:
   endpoints:

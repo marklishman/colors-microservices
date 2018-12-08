@@ -9,7 +9,13 @@ server:
 eureka:
   client:
     healthcheck:
-      enabled: true
+      enabled: false
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh,health
 
 ribbon:
   eureka:
@@ -21,8 +27,5 @@ pink-client:
   ribbon:
     listOfServers: localhost:8051,localhost:8052
 
-management:
-  endpoints:
-    web:
-      exposure:
-        include: refresh,health
+app:
+  config: orange config from application.yml

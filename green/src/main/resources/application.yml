@@ -10,6 +10,9 @@ eureka:
   client:
     healthcheck:
       enabled: true
+  instance:
+    leaseRenewalIntervalInSeconds: 1
+    leaseExpirationDurationInSeconds: 2
 
 management:
   endpoints:
