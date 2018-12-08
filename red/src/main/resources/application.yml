@@ -11,6 +11,10 @@ eureka:
     healthcheck:
       enabled: true
 
+feign:
+  hystrix:
+    enabled:  true
+
 management:
   endpoints:
     web:

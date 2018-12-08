@@ -50,7 +50,7 @@ public class OrangeService {
         );
     }
 
-    public InstanceDetails getInstanceDetailsFallback() {
+    private InstanceDetails getInstanceDetailsFallback() {
         return new InstanceDetails(
                 name,
                 instance,
