@@ -23,30 +23,19 @@
 * orange: 1
 * pink: 2
 
-# Startup
-
-* rabbitmq (docker)
-* eureka
-* zipkin
-* config-server (optional)
-* task-launcher (optional)
-* get OAuth2 token
-* colors
-
 # Instance Details
 
 ### blue
 
 * Root
-* Config in `@Value`, `application.yml` and config server
 * Secure OAuth2 resource server
 
 ### green
 
+* Config in `@Value`, `application.yml` and config server
 * Instances 3 and 4 'dev' profile (for config)
-* Task launcher request (configurable)
-* Registry not fetched
 * `/health` instead of heartbeat for discovery
+* Registry not fetched (no services called)
 
 ### red
 
@@ -62,3 +51,14 @@
 
 * Not registered with Eureka
 * No remote config
+
+
+# Full Startup
+
+* rabbitmq
+* eureka
+* zipkin
+* config-server
+* task-launcher
+* (get OAuth2 token)
+* colors

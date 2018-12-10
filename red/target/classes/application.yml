@@ -9,14 +9,14 @@ server:
 eureka:
   client:
     healthcheck:
-      enabled: true
-
-feign:
-  hystrix:
-    enabled:  true
+      enabled: false
 
 management:
   endpoints:
     web:
       exposure:
         include: refresh,health
+
+feign:
+  hystrix:
+    enabled: true
