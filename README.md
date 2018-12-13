@@ -4,14 +4,14 @@
 * Spring Boot 2.0.6
 * Spring Cloud Finchley.SR2
 
-# Call Hierarchy
+# Call Tree
 
             blue
            /    \
       green      red
                 /   \
            green     orange
-                        |
+                       |
                       pink
            
 
@@ -28,7 +28,7 @@
 ### blue
 
 * Root
-* Secure OAuth2 resource server
+* Hystrix
 
 ### green
 
@@ -42,10 +42,12 @@
 * Feign client for green and orange (no `RestTemplate`)
 * Secure config from config server (cipher)
 * Secure OAuth2 resource server
+* Hystrix enabled automatically by Feign
 
 ### orange
 
 * Manual lookup of 2 pink services using config (without Eureka)
+* Hystrix
 
 ### pink
 
@@ -55,10 +57,7 @@
 
 # Full Startup
 
-* rabbitmq
 * eureka
 * zipkin
 * config-server
-* task-launcher
-* (get OAuth2 token)
 * colors
