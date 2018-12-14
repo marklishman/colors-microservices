@@ -6,12 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.Collections;
-
 @Component
 public class GreenClient {
 
     private final RestTemplate restTemplate;
+
+    private InstanceDetails greenInstanceDetails;
 
     @Autowired
     public GreenClient(RestTemplate restTemplate) {
@@ -20,19 +20,17 @@ public class GreenClient {
 
     @HystrixCommand(fallbackMethod = "getGreenInstanceDetailsFallback")
     InstanceDetails getInstanceDetails() {
-        return restTemplate.getForObject(
+        greenInstanceDetails = restTemplate.getForObject(
                 "http://green",
                 InstanceDetails.class
         );
+
+        return greenInstanceDetails;
     }
 
     private InstanceDetails getGreenInstanceDetailsFallback() {
-        return new InstanceDetails(
-                "green",
-                "unknown",
-                0,
-                "some cached config",
-                Collections.EMPTY_LIST
-        );
+        greenInstanceDetails.setInstance("unknown");
+        greenInstanceDetails.setPort(0);
+        return greenInstanceDetails;
     }
 }

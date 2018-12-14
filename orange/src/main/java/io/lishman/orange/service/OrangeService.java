@@ -26,7 +26,6 @@ public class OrangeService {
     @Value("${app.config:default orange config}")
     private String config;
 
-    private InstanceDetails pinkInstanceDetails = new InstanceDetails();
     private final RestTemplate restTemplate;
 
     @Autowired
@@ -37,7 +36,7 @@ public class OrangeService {
     @HystrixCommand(fallbackMethod = "getInstanceDetailsFallback")
     public InstanceDetails getInstanceDetails() {
 
-        pinkInstanceDetails = restTemplate.getForObject(
+        InstanceDetails pinkInstanceDetails = restTemplate.getForObject(
                 "http://pink-client",
                 InstanceDetails.class
         );
@@ -52,14 +51,12 @@ public class OrangeService {
     }
 
     private InstanceDetails getInstanceDetailsFallback() {
-        pinkInstanceDetails.setInstance("unknown");
-        pinkInstanceDetails.setPort(0);
         return new InstanceDetails(
                 name,
                 instance,
                 port,
                 config,
-                Collections.singletonList(pinkInstanceDetails)
+                Collections.emptyList()
         );
     }
 }
