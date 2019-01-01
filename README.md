@@ -23,7 +23,7 @@
 
 ### blue
 
-* Root service
+* Root application
 * Hystrix (cached fallback)
 
 ### green
@@ -31,7 +31,7 @@
 * Config in `@Value`, `application.yml` and config server
 * Instances 3 and 4 'dev' profile (for config)
 * `/health` instead of heartbeat for discovery
-* Registry not fetched (no services called)
+* Registry not fetched (no applications called)
 * Explicit `serviceUrl`
 
 ### red
@@ -43,7 +43,7 @@
 
 ### orange
 
-* Manual lookup of 2 pink services using config (without Eureka)
+* Manual lookup of 2 pink microservices using config (without Eureka)
 * Hystrix
 
 
@@ -86,7 +86,7 @@ public class Application {
 }
 ```
 
-Set the service name in `bootstrap.yml`
+Set the application name in `bootstrap.yml`
 
 ```yaml
 spring:
@@ -115,6 +115,15 @@ public class RestConfig {
         return new RestTemplateBuilder().build();
     }
 }
+```
+
+And include the application name in the `RestTemplate` URL
+
+```java
+return restTemplate.getForObject(
+        "http://application",
+        InstanceDetails.class
+);
 ```
 
 Or to access the registry programatically
