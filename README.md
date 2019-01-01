@@ -28,7 +28,7 @@
 ### blue
 
 * Root
-* Hystrix
+* Hystrix (cached fallback)
 
 ### green
 
@@ -36,18 +36,20 @@
 * Instances 3 and 4 'dev' profile (for config)
 * `/health` instead of heartbeat for discovery
 * Registry not fetched (no services called)
+* Explicit `serviceUrl`
 
 ### red
 
 * Feign client for green and orange (no `RestTemplate`)
 * Secure config from config server (cipher)
-* Secure OAuth2 resource server
 * Hystrix enabled automatically by Feign
+* Explicit `instanceId` (run config)
 
 ### orange
 
 * Manual lookup of 2 pink services using config (without Eureka)
 * Hystrix
+
 
 ### pink
 
@@ -57,7 +59,7 @@
 
 # Full Startup
 
+* config-server
 * eureka
 * zipkin
-* config-server
 * colors
