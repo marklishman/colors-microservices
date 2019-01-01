@@ -167,6 +167,19 @@ management:
         include: hystrix.stream
 ```
 
+Add the `@HystrixCommand` annotation and provide the fallback method.
+
+```java
+    @HystrixCommand(fallbackMethod = "getDataFallback")
+    MyData getData() {
+        ...
+    }
+
+    private MyData getDataFallback() {
+        return new MyData();
+    }
+```
+
 # Sleuth & Zipkin
 
 Include the `spring-cloud-starter-zipkin` dependency.
