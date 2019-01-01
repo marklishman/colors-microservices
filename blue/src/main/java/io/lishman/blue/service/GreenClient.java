@@ -29,6 +29,9 @@ public class GreenClient {
     }
 
     private InstanceDetails getGreenInstanceDetailsFallback() {
+        if (greenInstanceDetails == null) {
+            greenInstanceDetails = new InstanceDetails();
+        }
         greenInstanceDetails.setInstance("unknown");
         greenInstanceDetails.setPort(0);
         return greenInstanceDetails;

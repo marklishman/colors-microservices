@@ -71,6 +71,8 @@ Include the `spring-cloud-starter-netflix-eureka-client` dependency.
 </dependency>
 ```
 
+This will include the Ribbon dependency also.
+
 Add the `@EnableEurekaClient` annotation. 
 
 ```java
@@ -100,6 +102,36 @@ eureka:
     serviceUrl:
       defaultZone: http://localhost:8761/eureka/
 ```
+
+Add the `@LoadBalanced` annotation to the `RestTemplate` bean.
+
+```java
+@Configuration
+public class RestConfig {
+
+    @Bean
+    @LoadBalanced
+    public RestTemplate restTemplate() {
+        return new RestTemplateBuilder().build();
+    }
+}
+```
+
+Or to access the registry programatically
+
+```java
+@Autowired
+private DiscoveryClient discoveryClient;
+
+public List<String> getInstances() {
+    List<ServiceInstance> list = discoveryClient.getInstances("service");
+    ...
+}
+```
+
+From the documentation
+* [Get the next server from Eureka programmatically](https://cloud.spring.io/spring-cloud-static/spring-cloud-netflix/2.0.2.RELEASE/single/spring-cloud-netflix.html#_using_the_eurekaclient)
+* [Get a list of servers from Eureka programmatically](https://cloud.spring.io/spring-cloud-static/spring-cloud-netflix/2.0.2.RELEASE/single/spring-cloud-netflix.html#_alternatives_to_the_native_netflix_eurekaclient)
 
 # Hystrix
 
@@ -133,20 +165,6 @@ management:
     web:
       exposure:
         include: hystrix.stream
-```
-
-Add the `@LoadBalanced` annotation to the `RestTemplate` bean.
-
-```java
-@Configuration
-public class RestConfig {
-
-    @Bean
-    @LoadBalanced
-    public RestTemplate restTemplate() {
-        return new RestTemplateBuilder().build();
-    }
-}
 ```
 
 # Sleuth & Zipkin
