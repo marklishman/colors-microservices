@@ -53,7 +53,7 @@
 * No remote config
 
 
-# Running
+# Running the Application
 
 * config-server
 * eureka
