@@ -60,7 +60,7 @@
 * zipkin
 * colors
 
-# Eureka Client
+# Eureka & Ribbon
 
 Include the `spring-cloud-starter-netflix-eureka-client` dependency.
 
@@ -73,7 +73,7 @@ Include the `spring-cloud-starter-netflix-eureka-client` dependency.
 
 Add the `@EnableEurekaClient` annotation. 
 
-```typescript
+```java
 @SpringBootApplication
 @EnableEurekaClient
 public class Application {
@@ -84,7 +84,7 @@ public class Application {
 }
 ```
 
-bootstrap properties.
+Set the service name in `bootstrap.yml`
 
 ```yaml
 spring:
@@ -92,7 +92,7 @@ spring:
     name: service-name
 ```
 
-application properties.
+Set the location of the Eureka server in `application.yml`
 
 ```yaml
 eureka:
@@ -100,3 +100,119 @@ eureka:
     serviceUrl:
       defaultZone: http://localhost:8761/eureka/
 ```
+
+# Hystrix
+
+Include the `spring-cloud-starter-netflix-hystrix` dependency.
+
+```xml
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
+</dependency>
+```
+
+Add the `@EnableCircuitBreaker` annotation. 
+
+```java
+@SpringBootApplication
+@EnableCircuitBreaker
+public class Application {
+
+    public static void main(String[] args) {
+        SpringApplication.run(Application.class, args);
+    }
+}
+```
+
+Allow the hystrix data to be accessed by enabling the actuator endpoint in `application.yml`
+
+```yaml
+management:
+  endpoints:
+    web:
+      exposure:
+        include: hystrix.stream
+```
+
+Add the `@LoadBalanced` annotation to the `RestTemplate` bean.
+
+```java
+@Configuration
+public class RestConfig {
+
+    @Bean
+    @LoadBalanced
+    public RestTemplate restTemplate() {
+        return new RestTemplateBuilder().build();
+    }
+}
+```
+
+# Sleuth & Zipkin
+
+Include the `spring-cloud-starter-zipkin` dependency.
+
+```xml
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-zipkin</artifactId>
+</dependency>
+```
+
+Set the sample rate in `application.yml`
+
+```yaml
+spring:
+  sleuth:
+    sampler:
+      probability: 1.0
+```
+
+# Config
+
+Include the `spring-cloud-starter-config` dependency.
+
+```xml
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-config</artifactId>
+</dependency>
+```
+
+Set the location of the Config server and the symmetric encryption key in `bootstrap.yml`
+
+```yaml
+spring:
+  cloud:
+    config:
+      uri: http://localhost:8888 # default
+
+encrypt:
+  key: my_secret_symmetric_encryption_key
+```
+
+Allow config data to be refreshed by enabling the actuator endpoint in `application.yml`
+
+```yaml
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh
+```
+
+Add the `@RefreshScope` annotation to class which uses the config values.
+
+```java
+@Service
+@RefreshScope
+public class MyService {
+
+    @Value("${spring.application.name}")
+    private String name;
+```
+
+To refresh the config data do an HTTP Post to the `refresh` endpoint. For example
+
+    localhost:8021/actuator/refresh
