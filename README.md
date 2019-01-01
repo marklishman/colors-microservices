@@ -1,10 +1,6 @@
+# Instances
 
-# Dependencies
-
-* Spring Boot 2.0.6
-* Spring Cloud Finchley.SR2
-
-# Call Tree
+## Call Tree
 
             blue
            /    \
@@ -15,7 +11,7 @@
                       pink
            
 
-# Number of Instances
+## Number of Instances
 
 * blue: 1
 * green: 4
@@ -23,11 +19,11 @@
 * orange: 1
 * pink: 2
 
-# Instance Details
+## Features
 
 ### blue
 
-* Root
+* Root service
 * Hystrix (cached fallback)
 
 ### green
@@ -57,9 +53,50 @@
 * No remote config
 
 
-# Full Startup
+# Running
 
 * config-server
 * eureka
 * zipkin
 * colors
+
+# Eureka Client
+
+Include the `spring-cloud-starter-netflix-eureka-client` dependency.
+
+```xml
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+</dependency>
+```
+
+Add the `@EnableEurekaClient` annotation. 
+
+```typescript
+@SpringBootApplication
+@EnableEurekaClient
+public class Application {
+
+    public static void main(String[] args) {
+        SpringApplication.run(Application.class, args);
+    }
+}
+```
+
+bootstrap properties.
+
+```yaml
+spring:
+  application:
+    name: service-name
+```
+
+application properties.
+
+```yaml
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+```
