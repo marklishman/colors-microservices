@@ -24,15 +24,15 @@
 ### blue
 
 * Root application
-* Hystrix (cached fallback)
+* List of 'red' instances retrieved programmatically
+* Hystrix with cached fallback value
 
 ### green
 
-* Config in `@Value`, `application.yml` and config server
-* Instances 3 and 4 'dev' profile (for config)
 * `/health` instead of heartbeat for discovery
-* Registry not fetched (no applications called)
-* Explicit `serviceUrl`
+* Registry not fetched from Eureka (no downstream applications called)
+* Config values in `@Value`, `application.yml` and config server
+* Instances 3 and 4 'dev' profile (for config)
 
 ### red
 
@@ -91,7 +91,7 @@ Set the application name in `bootstrap.yml`
 ```yaml
 spring:
   application:
-    name: service-name
+    name: app-name
 ```
 
 Set the location of the Eureka server in `application.yml`
@@ -121,7 +121,7 @@ And include the application name in the `RestTemplate` URL
 
 ```java
 return restTemplate.getForObject(
-        "http://application",
+        "http://app-name",
         InstanceDetails.class
 );
 ```
@@ -141,6 +141,41 @@ public List<String> getInstances() {
 From the documentation
 * [Get the next server from Eureka programmatically](https://cloud.spring.io/spring-cloud-static/spring-cloud-netflix/2.0.2.RELEASE/single/spring-cloud-netflix.html#_using_the_eurekaclient)
 * [Get a list of servers from Eureka programmatically](https://cloud.spring.io/spring-cloud-static/spring-cloud-netflix/2.0.2.RELEASE/single/spring-cloud-netflix.html#_alternatives_to_the_native_netflix_eurekaclient)
+
+### Health
+
+To use the `/heath` endpoint rather than the heartbeat, first add a `HealthIndicator`
+
+```java
+@Component
+public class CustomHealthIndicator implements HealthIndicator {
+
+    @Override
+    public Health health() {
+        if (everythingOk) {
+            return Health.up().build();
+        }
+        return Health.down()
+                .withDetail("Error Code", 999)
+                .build();
+    }
+}
+```
+
+Expose the actuator `/health` endpoint and enable the health check in `application.yml`
+
+```yaml
+eureka:
+  client:
+    healthcheck:
+      enabled: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+```
 
 # Hystrix
 
@@ -226,7 +261,7 @@ Set the location of the Config server and the symmetric encryption key in `boots
 spring:
   cloud:
     config:
-      uri: http://localhost:8888 # default
+      uri: http://localhost:8888
 
 encrypt:
   key: my_secret_symmetric_encryption_key
