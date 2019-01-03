@@ -38,7 +38,7 @@
 
 * Explicit `instanceId` (run config)
 * Feign client for green and orange (no `RestTemplate`)
-* Hystrix enabled automatically by Feign
+* Hystrix support with Feign
 * Secure config from config server (cipher)
 
 ### orange
