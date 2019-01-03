@@ -177,6 +177,55 @@ management:
         include: health
 ```
 
+### Ribbon without Eureka
+
+To configure Ribbon without using the Eureka registry add these properties to application.yml
+
+```yaml
+ribbon:
+  eureka:
+    enabled: false
+
+client-config:
+  ribbon:
+    listOfServers: localhost:8051,localhost:8052
+``` 
+
+and include the `@RibbonClient` annotation
+
+```java
+@SpringBootApplication
+@RibbonClient(name = "client-config"
+public class Application {
+
+    public static void main(String[] args) {
+        SpringApplication.run(Application.class, args);
+    }
+}
+```
+
+use this name in the `RestTemplate`
+
+```java
+restTemplate.getForObject( "http://client-config", String.class );
+```
+
+To add extra configuration values such as `ILoadBalancer`, `ServerListFilter`, `IRule`
+
+    @RibbonClient(name = "client-config", configuration = RestConfig.class)
+
+
+```java
+@Configuration
+public class RibbonConfig {
+
+    @Bean
+    public IPing ribbonPing() {
+        return new PingUrl();
+    }
+}
+```
+
 # Hystrix
 
 Include the `spring-cloud-starter-netflix-hystrix` dependency.

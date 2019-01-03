@@ -14,5 +14,4 @@ public class RestConfig {
     public RestTemplate restTemplate() {
         return new RestTemplateBuilder().build();
     }
-
 }
