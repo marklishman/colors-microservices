@@ -36,15 +36,15 @@
 
 ### red
 
-* Feign client for green and orange (no `RestTemplate`)
-* Secure config from config server (cipher)
-* Hystrix enabled automatically by Feign
 * Explicit `instanceId` (run config)
+* Feign client for green and orange (no `RestTemplate`)
+* Hystrix enabled automatically by Feign
+* Secure config from config server (cipher)
 
 ### orange
 
 * Manual lookup of 2 pink microservices using config (without Eureka)
-* Hystrix
+* Hystrix with empty object
 
 
 ### pink
@@ -272,6 +272,81 @@ Add the `@HystrixCommand` annotation and provide the fallback method.
         return new MyData();
     }
 ```
+
+# Feign
+
+Include the `spring-cloud-starter-openfeign` dependency.
+
+```xml
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-openfeign</artifactId>
+</dependency>
+```
+
+Add the `@EnableFeignClients` annotation.
+
+```java
+@SpringBootApplication
+@EnableFeignClients
+public class Application {
+
+    public static void main(String[] args) {
+        SpringApplication.run(Application.class, args);
+    }
+}
+```
+
+To enable hystrix with feign include this property in `application.yml`
+
+```yaml
+feign:
+  hystrix:
+    enabled: true
+```
+
+Implement the Feign client using the `@FeignClient` annotation
+
+```java
+@FeignClient(value = "Orange")
+public interface OrangeClient {
+
+    @RequestMapping(method = RequestMethod.GET, value = "/")
+    InstanceDetails getDetails();
+}
+```
+
+and to include hystrix
+
+```java
+@FeignClient(value = "Orange", fallback = OrangeClientFallback.class)
+public interface OrangeClient {
+
+    @RequestMapping(method = RequestMethod.GET, value = "/")
+    InstanceDetails getDetails();
+
+    @Component
+    static class OrangeClientFallback implements OrangeClient {
+
+        @Override
+        public InstanceDetails getDetails() {
+            return new InstanceDetails(
+                    "orange",
+                    "unknown",
+                    0,
+                    "some fallback config",
+                    Collections.EMPTY_LIST
+            );
+        }
+    }
+
+}
+```
+
+Now we can just use the method like this
+
+    InstanceDetails orangeInstanceDetails = orangeClient.getDetails();
+
 
 # Sleuth & Zipkin
 
