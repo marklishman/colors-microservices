@@ -8,7 +8,7 @@ import org.springframework.cloud.netflix.ribbon.RibbonClient;
 
 @SpringBootApplication
 @EnableHystrix
-@RibbonClient(name = "pink-client", configuration = RestConfig.class)
+@RibbonClient(name = "pinkClient", configuration = RestConfig.class)
 public class OrangeApplication {
 
     public static void main(String[] args) {

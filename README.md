@@ -415,3 +415,17 @@ public class MyService {
 To refresh the config data do an HTTP Post to the `refresh` endpoint. For example
 
     localhost:8021/actuator/refresh
+    
+# Green
+
+Start container
+
+    docker run --name green -p 8021:8021 --link eureka --env EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka:8761/eureka lishmanio/green
+
+To add a line to /etc/hosts
+
+    --add-host eureka:172.19.0.2
+
+Open terminal
+    
+    docker exec -it green /bin/sh

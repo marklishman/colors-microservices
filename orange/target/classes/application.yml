@@ -23,7 +23,7 @@ ribbon:
 
 # ribbon disabled, config below used instead
 
-pink-client:
+pinkClient:
   ribbon:
     listOfServers: localhost:8051,localhost:8052
 

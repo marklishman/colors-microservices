@@ -37,7 +37,7 @@ public class OrangeService {
     public InstanceDetails getInstanceDetails() {
 
         InstanceDetails pinkInstanceDetails = restTemplate.getForObject(
-                "http://pink-client",
+                "http://pinkClient",
                 InstanceDetails.class
         );
 
