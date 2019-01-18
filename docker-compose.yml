@@ -1,17 +1,11 @@
 version: '3.7'
 
 services:
-  eureka:
-    image: lishmanio/eureka
-    ports:
-      - 8761:8761
 
   blue1:
     image: lishmanio/blue
     ports:
       - 8011:8011
-    depends_on:
-      - eureka
     environment:
       EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka:8761/eureka
 
@@ -19,8 +13,6 @@ services:
     image: lishmanio/green
     ports:
       - 8021:8021
-    depends_on:
-      - eureka
     environment:
       EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka:8761/eureka
 
@@ -28,51 +20,23 @@ services:
     image: lishmanio/green
     ports:
       - 8022:8022
-    depends_on:
-      - eureka
     environment:
       - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka:8761/eureka
       - SERVER_PORT=8022
       - APP_INSTANCE=two
 
-  green3:
-    image: lishmanio/green
-    ports:
-      - 8023:8023
-    depends_on:
-      - eureka
-    environment:
-      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka:8761/eureka
-      - SERVER_PORT=8023
-      - APP_INSTANCE=three
-
-  green4:
-    image: lishmanio/green
-    ports:
-      - 8024:8024
-    depends_on:
-      - eureka
-    environment:
-      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka:8761/eureka
-      - SERVER_PORT=8024
-      - APP_INSTANCE=four
-
   orange1:
     image: lishmanio/orange
     ports:
       - 8041:8041
-    depends_on:
-      - eureka
     environment:
       - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka:8761/eureka
       - PINKCLIENT_RIBBON_LISTOFSERVERS=pink1:8051,pink2:8052
-#
+
   pink1:
     image: lishmanio/pink
     ports:
       - 8051:8051
-    depends_on:
-      - eureka
     environment:
       EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka:8761/eureka
 
@@ -80,8 +44,6 @@ services:
     image: lishmanio/pink
     ports:
       - 8052:8052
-    depends_on:
-      - eureka
     environment:
       - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka:8761/eureka
       - SERVER_PORT=8052
@@ -91,8 +53,6 @@ services:
     image: lishmanio/red
     ports:
       - 8031:8031
-    depends_on:
-      - eureka
     environment:
       EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka:8761/eureka
 
@@ -100,8 +60,6 @@ services:
     image: lishmanio/red
     ports:
       - 8032:8032
-    depends_on:
-      - eureka
     environment:
       - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka:8761/eureka
       - SERVER_PORT=8033

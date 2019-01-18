@@ -1,0 +1,7 @@
+version: '3.7'
+
+services:
+  eureka:
+    image: lishmanio/eureka
+    ports:
+      - 8761:8761

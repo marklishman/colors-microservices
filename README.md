@@ -416,7 +416,7 @@ To refresh the config data do an HTTP Post to the `refresh` endpoint. For exampl
 
     localhost:8021/actuator/refresh
     
-# Green
+# Docker
 
 Start container
 
@@ -429,3 +429,19 @@ To add a line to /etc/hosts
 Open terminal
     
     docker exec -it green /bin/sh
+
+# Docker Compose
+
+Start / stop / view the servers
+
+    docker-compose -f docker-compose.servers.yml up -d
+    docker-compose -f docker-compose.servers.yml down
+    docker-compose -f docker-compose.servers.yml ps
+
+Start a single instance of each color microservice
+
+    docker-compose up -d
+
+Start additional color microservice instances
+
+    docker-compose -f docker-compose.multiple.yml up -d

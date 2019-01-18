@@ -1,0 +1,30 @@
+version: '3.7'
+
+services:
+
+  green2:
+    image: lishmanio/green
+    ports:
+      - 8022:8022
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka:8761/eureka
+      - SERVER_PORT=8022
+      - APP_INSTANCE=two
+
+  pink2:
+    image: lishmanio/pink
+    ports:
+      - 8052:8052
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka:8761/eureka
+      - SERVER_PORT=8052
+      - APP_INSTANCE=two
+
+  red2:
+    image: lishmanio/red
+    ports:
+      - 8032:8032
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka:8761/eureka
+      - SERVER_PORT=8033
+      - APP_INSTANCE=two
