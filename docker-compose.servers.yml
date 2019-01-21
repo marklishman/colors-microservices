@@ -17,5 +17,9 @@ services:
     ports:
       - 9411:9411
 
-# Hystrix
+  hystrix:
+    image: lishmanio/hystrix
+    ports:
+      - 8900:8900
+
 # Zuul (server?)
