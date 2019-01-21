@@ -4,6 +4,8 @@ spring:
   cloud:
     config:
       uri: http://localhost:8888 # default
+  zipkin:
+    base-url: http://localhost:9411 # default
 
 encrypt:
   key: my_secret_symmetric_encryption_key

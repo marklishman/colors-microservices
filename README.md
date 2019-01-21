@@ -14,7 +14,7 @@
 ## Number of Instances
 
 * blue: 1
-* green: 4
+* green: 2
 * red: 2
 * orange: 1
 * pink: 2
@@ -32,7 +32,7 @@
 * `/health` instead of heartbeat for discovery
 * Registry not fetched from Eureka (no downstream applications called)
 * Config values in `@Value`, `application.yml` and config server
-* Instances 3 and 4 'dev' profile (for config)
+* Instance 2 has 'dev' profile (for config)
 
 ### red
 

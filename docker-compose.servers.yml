@@ -11,3 +11,11 @@ services:
     image: lishmanio/config-server
     ports:
       - 8888:8888
+
+  zipkin:
+    image: lishmanio/zipkin
+    ports:
+      - 9411:9411
+
+# Hystrix
+# Zuul (server?)

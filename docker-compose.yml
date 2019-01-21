@@ -7,14 +7,18 @@ services:
     ports:
       - 8011:8011
     environment:
-      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka:8761/eureka
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka:8761/eureka
+      - SPRING_CLOUD_CONFIG_URI=http://config-server:8888
+      - SPRING_ZIPKIN_BASEURL=http://zipkin:9411
 
   green1:
     image: lishmanio/green
     ports:
       - 8021:8021
     environment:
-      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka:8761/eureka
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka:8761/eureka
+      - SPRING_CLOUD_CONFIG_URI=http://config-server:8888
+      - SPRING_ZIPKIN_BASEURL=http://zipkin:9411
 
   green2:
     image: lishmanio/green
@@ -22,6 +26,9 @@ services:
       - 8022:8022
     environment:
       - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka:8761/eureka
+      - SPRING_CLOUD_CONFIG_URI=http://config-server:8888
+      - SPRING_ZIPKIN_BASEURL=http://zipkin:9411
+      - SPRING_PROFILES_ACTIVE=dev
       - SERVER_PORT=8022
       - APP_INSTANCE=two
 
@@ -31,6 +38,8 @@ services:
       - 8041:8041
     environment:
       - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka:8761/eureka
+      - SPRING_CLOUD_CONFIG_URI=http://config-server:8888
+      - SPRING_ZIPKIN_BASEURL=http://zipkin:9411
       - PINKCLIENT_RIBBON_LISTOFSERVERS=pink1:8051,pink2:8052
 
   pink1:
@@ -38,7 +47,9 @@ services:
     ports:
       - 8051:8051
     environment:
-      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka:8761/eureka
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka:8761/eureka
+      - SPRING_CLOUD_CONFIG_URI=http://config-server:8888
+      - SPRING_ZIPKIN_BASEURL=http://zipkin:9411
 
   pink2:
     image: lishmanio/pink
@@ -46,6 +57,8 @@ services:
       - 8052:8052
     environment:
       - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka:8761/eureka
+      - SPRING_CLOUD_CONFIG_URI=http://config-server:8888
+      - SPRING_ZIPKIN_BASEURL=http://zipkin:9411
       - SERVER_PORT=8052
       - APP_INSTANCE=two
 
@@ -54,7 +67,9 @@ services:
     ports:
       - 8031:8031
     environment:
-      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka:8761/eureka
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka:8761/eureka
+      - SPRING_CLOUD_CONFIG_URI=http://config-server:8888
+      - SPRING_ZIPKIN_BASEURL=http://zipkin:9411
 
   red2:
     image: lishmanio/red
@@ -62,5 +77,7 @@ services:
       - 8032:8032
     environment:
       - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka:8761/eureka
+      - SPRING_CLOUD_CONFIG_URI=http://config-server:8888
+      - SPRING_ZIPKIN_BASEURL=http://zipkin:9411
       - SERVER_PORT=8033
       - APP_INSTANCE=two
