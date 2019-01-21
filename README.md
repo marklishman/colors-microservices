@@ -432,11 +432,15 @@ Open terminal
 
 # Docker Compose
 
-Start / stop / view the servers
+Start / stop the servers
 
     docker-compose -f docker-compose.servers.yml up -d
     docker-compose -f docker-compose.servers.yml down
+    
+Other commands
+
     docker-compose -f docker-compose.servers.yml ps
+    docker-compose -f docker-compose.servers.yml logs -f
 
 Start a single instance of each color microservice
 

@@ -1,7 +1,13 @@
 version: '3.7'
 
 services:
+
   eureka:
     image: lishmanio/eureka
     ports:
       - 8761:8761
+
+  config-server:
+    image: lishmanio/config-server
+    ports:
+      - 8888:8888
