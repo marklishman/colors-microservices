@@ -1,4 +1,14 @@
-# Instances
+
+# Color Microservices
+
+Microservice architecture with Spring Cloud.
+
+### Features
+* Service discovery
+* Client-side load balancing
+* Circuit breakers
+* Externalized configuration
+* Distributed tracing
 
 ## Call Tree
 
@@ -11,15 +21,14 @@
                       pink
            
 
-## Number of Instances
+## Instances
 
+### Number of Instances
 * blue: 1
 * green: 2
 * red: 2
 * orange: 1
 * pink: 2
-
-## Features
 
 ### blue
 
@@ -51,14 +60,6 @@
 
 * Not registered with Eureka
 * No remote config
-
-
-# Running the Application
-
-* config-server
-* eureka
-* zipkin
-* colors
 
 # Eureka & Ribbon
 
@@ -418,7 +419,7 @@ To refresh the config data do an HTTP Post to the `refresh` endpoint. For exampl
     
 # Docker
 
-Start container
+Start a single container
 
     docker run --name green -p 8021:8021 --link eureka --env EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka:8761/eureka lishmanio/green
 
@@ -442,10 +443,6 @@ Other commands
     docker-compose -f docker-compose.servers.yml ps
     docker-compose -f docker-compose.servers.yml logs -f
 
-Start a single instance of each color microservice
+Start the color microservices
 
     docker-compose up -d
-
-Start additional color microservice instances
-
-    docker-compose -f docker-compose.multiple.yml up -d
