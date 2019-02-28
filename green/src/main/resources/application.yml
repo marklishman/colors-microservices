@@ -24,3 +24,5 @@ management:
 
 app:
   config: green config from application.yml
+  logfile:
+    location: ${user.home}/lishman/ref/logs/filebeat

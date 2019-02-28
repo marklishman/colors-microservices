@@ -17,4 +17,6 @@ management:
       exposure:
         include: refresh,health,hystrix.stream
 
-
+app:
+  logfile:
+    location: ${user.home}/lishman/ref/logs/filebeat

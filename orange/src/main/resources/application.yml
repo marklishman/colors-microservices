@@ -29,3 +29,5 @@ pinkClient:
 
 app:
   config: orange config from application.yml
+  logfile:
+    location: ${user.home}/lishman/ref/logs/filebeat

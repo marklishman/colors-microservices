@@ -1,6 +1,8 @@
 package io.lishman.red.service;
 
 import io.lishman.red.model.InstanceDetails;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
@@ -11,6 +13,8 @@ import java.util.Arrays;
 @Service
 @RefreshScope
 public class RedService {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(RedService.class);
 
     @Value("${spring.application.name}")
     private String name;
@@ -44,12 +48,14 @@ public class RedService {
         InstanceDetails greenInstanceDetails = greenClient.getDetails();
         InstanceDetails orangeInstanceDetails = orangeClient.getDetails();
 
-        return new InstanceDetails(
+        InstanceDetails instanceDetails = new InstanceDetails(
                 name,
                 instance,
                 port,
                 config + ", " + secretConfig,
                 Arrays.asList(greenInstanceDetails, orangeInstanceDetails)
         );
+        LOGGER.info(instanceDetails.toString());
+        return instanceDetails;
     }
 }

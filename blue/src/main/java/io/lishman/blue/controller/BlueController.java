@@ -2,6 +2,8 @@ package io.lishman.blue.controller;
 
 import io.lishman.blue.model.InstanceDetails;
 import io.lishman.blue.service.BlueService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
@@ -15,6 +17,8 @@ import java.util.stream.Collectors;
 @RestController
 public class BlueController {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(BlueController.class);
+
     private final BlueService blueService;
 
     private final DiscoveryClient discoveryClient;
@@ -27,6 +31,7 @@ public class BlueController {
 
     @GetMapping("/")
     public InstanceDetails getCallDetails() {
+        LOGGER.info("Called Blue");
         return blueService.getInstanceDetails();
     }
 

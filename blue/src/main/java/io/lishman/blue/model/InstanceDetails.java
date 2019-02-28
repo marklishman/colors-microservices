@@ -65,4 +65,15 @@ public class InstanceDetails {
     public void setCalls(List<InstanceDetails> calls) {
         this.calls = calls;
     }
+
+    @Override
+    public String toString() {
+        return "InstanceDetails{" +
+                "name='" + name + '\'' +
+                ", instance='" + instance + '\'' +
+                ", port=" + port +
+                ", config='" + config + '\'' +
+                ", calls=" + calls +
+                '}';
+    }
 }

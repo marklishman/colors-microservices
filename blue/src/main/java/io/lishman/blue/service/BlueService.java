@@ -1,6 +1,8 @@
 package io.lishman.blue.service;
 
 import io.lishman.blue.model.InstanceDetails;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
@@ -11,6 +13,8 @@ import java.util.Arrays;
 @Service
 @RefreshScope
 public class BlueService {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(BlueService.class);
 
     @Value("${spring.application.name}")
     private String name;
@@ -38,11 +42,13 @@ public class BlueService {
         InstanceDetails greenInstanceDetails = greenClient.getInstanceDetails();
         InstanceDetails redInstanceDetails = redClient.getInstanceDetails();
 
-        return new InstanceDetails(
+        InstanceDetails instanceDetails = new InstanceDetails(
                 name,
                 instance,
                 port,
                 config,
                 Arrays.asList(greenInstanceDetails, redInstanceDetails));
+        LOGGER.info(instanceDetails.toString());
+        return instanceDetails;
     }
 }

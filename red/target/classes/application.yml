@@ -22,3 +22,7 @@ management:
 feign:
   hystrix:
     enabled: true
+
+app:
+  logfile:
+    location: ${user.home}/lishman/ref/logs/filebeat
