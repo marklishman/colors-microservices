@@ -12,7 +12,7 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQL9Dialect
-        default_schema: colors
+        default_schema: green
         jdbc:
           lob:
             non_contextual_creation: true

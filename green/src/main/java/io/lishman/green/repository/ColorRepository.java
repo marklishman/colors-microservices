@@ -21,14 +21,14 @@ public class ColorRepository {
                 .map(this::fromEntity);
     }
 
-    public Optional<GreenDetails> findByColor(final String color, final String instance) {
-        return colorJpaRepository.findByColorNameAndColorInstance(color, instance)
+    public Optional<GreenDetails> findByCorrelationId(final String uuid) {
+        return colorJpaRepository.findByCorrelationId(uuid)
                 .map(this::fromEntity);
     }
 
     public GreenDetails saveDetails(GreenDetails greenDetails) {
         final ColorEntity colorEntity = this.colorJpaRepository.save(
-                ColorEntity.newInstance(greenDetails)
+                ColorEntity.fromDetails(greenDetails)
         );
         return fromEntity(colorEntity);
     }
@@ -36,9 +36,8 @@ public class ColorRepository {
     private GreenDetails fromEntity(final ColorEntity colorEntity) {
         return GreenDetails.newInstance(
                 colorEntity.getId(),
+                colorEntity.getUuid(),
                 colorEntity.getCorrelationId(),
-                colorEntity.getColorName(),
-                colorEntity.getColorInstance(),
                 colorEntity.getDetails()
         );
     }

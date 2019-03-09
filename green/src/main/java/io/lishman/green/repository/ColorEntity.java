@@ -11,7 +11,7 @@ import javax.persistence.Table;
 import java.util.Objects;
 
 @Entity
-@Table(name="COLOR")
+@Table(name="DETAILS")
 class ColorEntity {
 
     // TODO Use UUID for Id
@@ -20,32 +20,28 @@ class ColorEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(columnDefinition = "serial")
     private Long id;
+    private String uuid;
     private String correlationId;
-    private String colorName;
-    private String colorInstance;
     private String details;
 
     public ColorEntity() {}
 
     public ColorEntity(final Long id,
+                       final String uuid,
                        final String correlationId,
-                       final String colorName,
-                       final String colorInstance,
                        final String details
     ) {
         this.id = id;
+        this.uuid = uuid;
         this.correlationId = correlationId;
-        this.colorName = colorName;
-        this.colorInstance = colorInstance;
         this.details = details;
     }
 
-    static ColorEntity newInstance(final GreenDetails greenDetails) {
+    static ColorEntity fromDetails(final GreenDetails greenDetails) {
         return new ColorEntity(
                 greenDetails.getId(),
+                greenDetails.getUuid(),
                 greenDetails.getCorrelationId(),
-                greenDetails.getColorName(),
-                greenDetails.getColorInstance(),
                 greenDetails.getDetails()
         );
     }
@@ -58,28 +54,20 @@ class ColorEntity {
         this.id = id;
     }
 
+    public String getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
+    }
+
     public String getCorrelationId() {
         return correlationId;
     }
 
     public void setCorrelationId(String correlationId) {
         this.correlationId = correlationId;
-    }
-
-    public String getColorName() {
-        return colorName;
-    }
-
-    public void setColorName(String colorName) {
-        this.colorName = colorName;
-    }
-
-    public String getColorInstance() {
-        return colorInstance;
-    }
-
-    public void setColorInstance(String colorInstance) {
-        this.colorInstance = colorInstance;
     }
 
     public String getDetails() {
@@ -107,9 +95,8 @@ class ColorEntity {
     public String toString() {
         return "ColorEntity{" +
                 "id='" + id + '\'' +
+                ", uuid='" + uuid + '\'' +
                 ", correlationId='" + correlationId + '\'' +
-                ", colorName='" + colorName + '\'' +
-                ", colorInstance='" + colorInstance + '\'' +
                 ", details='" + details + '\'' +
                 '}';
     }

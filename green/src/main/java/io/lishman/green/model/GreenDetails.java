@@ -7,56 +7,47 @@ import java.util.Objects;
 
 public final class GreenDetails {
     private final Long id;
+    private final String uuid;
     private final String correlationId;
-    private final String colorName;
-    private final String colorInstance;
     private final String details;
 
     private GreenDetails(final Long id,
+                         final String uuid,
                          final String correlationId,
-                         final String colorName,
-                         final String colorInstance,
                          final String details) {
         this.id = id;
+        this.uuid = uuid;
         this.correlationId = correlationId;
-        this.colorName = colorName;
-        this.colorInstance = colorInstance;
         this.details = details;
     }
 
     public static GreenDetails newInstance(final Long id,
+                                           final String uuid,
                                            final String correlationId,
-                                           final String colorName,
-                                           final String colorInstance,
                                            final String details) {
-        return new GreenDetails(id, correlationId, colorName, colorInstance, details);
+        return new GreenDetails(id, uuid, correlationId, details);
     }
 
     // Note that if the 'id' argument is omitted here then it is
     // set on the object if it is included in the json.
     @JsonCreator
     public static GreenDetails fromJson(@JsonProperty("id") final Long id,
+                                        @JsonProperty("uuid") final String uuid,
                                         @JsonProperty("correlationId") final String correlationId,
-                                        @JsonProperty("colorName") final String colorName,
-                                        @JsonProperty("colorInstance") final String colorInstance,
                                         @JsonProperty("details") final String details) {
-        return newInstance(null, correlationId, colorName, colorInstance, details);
+        return newInstance(null, uuid, correlationId, details);
     }
 
     public final Long getId() {
         return id;
     }
 
+    public final String getUuid() {
+        return uuid;
+    }
+
     public final String getCorrelationId() {
         return correlationId;
-    }
-
-    public final String getColorName() {
-        return colorName;
-    }
-
-    public final String getColorInstance() {
-        return colorInstance;
     }
 
     public final String getDetails() {
@@ -69,24 +60,22 @@ public final class GreenDetails {
         if (o == null || getClass() != o.getClass()) return false;
         GreenDetails that = (GreenDetails) o;
         return Objects.equals(id, that.id) &&
+                Objects.equals(uuid, that.uuid) &&
                 Objects.equals(correlationId, that.correlationId) &&
-                Objects.equals(colorName, that.colorName) &&
-                Objects.equals(colorInstance, that.colorInstance) &&
                 Objects.equals(details, that.details);
     }
 
     @Override
     public final int hashCode() {
-        return Objects.hash(id, correlationId, colorName, colorInstance, details);
+        return Objects.hash(id, uuid, correlationId, details);
     }
 
     @Override
     public final String toString() {
         return "GreenDetails{" +
                 "id='" + id + '\'' +
+                ", uuid='" + uuid + '\'' +
                 ", correlationId='" + correlationId + '\'' +
-                ", colorName='" + colorName + '\'' +
-                ", colorInstance='" + colorInstance + '\'' +
                 ", details='" + details + '\'' +
                 '}';
     }

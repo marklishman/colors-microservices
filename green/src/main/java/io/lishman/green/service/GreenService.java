@@ -16,6 +16,7 @@ import java.util.Collections;
 @RefreshScope
 public class GreenService {
 
+    public static final String GREEN = "green";
     private static final Logger LOGGER = LoggerFactory.getLogger(GreenService.class);
 
     @Value("${spring.application.name}")
@@ -37,13 +38,43 @@ public class GreenService {
         this.colorRepository = colorRepository;
     }
 
+    // CRUD
+
+    public GreenDetails getById(final Long id) {
+        return colorRepository.findById(id)
+                .orElseThrow();
+    }
+
+    public GreenDetails saveDetails(final GreenDetails greenDetails) {
+        return this.colorRepository.saveDetails(greenDetails);
+    }
+
+    // Projection
+
     public InstanceDetails getInstanceDetails(final Long id) {
 
         // TODO exception handling
         final GreenDetails greenDetails = colorRepository.findById(id)
                 .orElseThrow();
 
-        final InstanceDetails instanceDetails = new InstanceDetails(
+        return getInstanceDetails(greenDetails);
+    }
+
+    // Search
+
+    public InstanceDetails getInstanceDetailsForCorrelationId(final String correlationId) {
+
+        // TODO exception handling
+        final GreenDetails greenDetails = colorRepository.findByCorrelationId(correlationId)
+                .orElseThrow();
+
+        return getInstanceDetails(greenDetails);
+    }
+
+    // private
+
+    private InstanceDetails getInstanceDetails(GreenDetails greenDetails) {
+        InstanceDetails instanceDetails = new InstanceDetails(
                 name,
                 instance,
                 port,
@@ -55,7 +86,4 @@ public class GreenService {
         return instanceDetails;
     }
 
-    public GreenDetails saveDetails(final GreenDetails greenDetails) {
-        return this.colorRepository.saveDetails(greenDetails);
-    }
 }

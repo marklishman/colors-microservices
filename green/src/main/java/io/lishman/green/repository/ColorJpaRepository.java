@@ -6,8 +6,6 @@ import java.util.Optional;
 
 interface ColorJpaRepository extends JpaRepository<ColorEntity, Long> {
 
-    Optional<ColorEntity> findByColorNameAndColorInstance(
-            final String colorName, final String colorInstance
-    );
+    Optional<ColorEntity> findByCorrelationId(final String uuid);
 
 }

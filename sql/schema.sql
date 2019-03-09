@@ -1,12 +1,10 @@
-CREATE SCHEMA IF NOT EXISTS colors;
+CREATE SCHEMA IF NOT EXISTS green;
 
-DROP TABLE IF EXISTS color;
+DROP TABLE IF EXISTS details;
 
-CREATE TABLE color (
+CREATE TABLE details (
   id                serial primary key,
-  correlation_id    varchar(100) not null,
-  color_name        varchar(100) not null,
-  color_instance    varchar(100) not null,
-  details           varchar(1000) not null,
-  unique (correlation_id, color_name, color_instance)
+  uuid              varchar(100) not null unique,
+  correlation_id    varchar(100) not null unique,
+  details           varchar(1000) not null
 );
