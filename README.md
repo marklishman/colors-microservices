@@ -61,6 +61,12 @@ Microservice architecture with Spring Cloud.
 * Not registered with Eureka
 * No remote config
 
+# Database
+
+Include
+
+    -Dspring.datasource.password=secret
+
 # Eureka & Ribbon
 
 Include the `spring-cloud-starter-netflix-eureka-client` dependency.

@@ -3,6 +3,20 @@ spring:
     sampler:
       probability: 1.0
 
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQL9Dialect
+        default_schema: colors
+        jdbc:
+          lob:
+            non_contextual_creation: true
+
 server:
   port: 8021
 
