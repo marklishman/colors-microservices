@@ -37,10 +37,10 @@ public class GreenService {
         this.colorRepository = colorRepository;
     }
 
-    public InstanceDetails getInstanceDetails() {
+    public InstanceDetails getInstanceDetails(final Long id) {
 
         // TODO exception handling
-        final GreenDetails greenDetails = colorRepository.findByColorName("green")
+        final GreenDetails greenDetails = colorRepository.findById(id)
                 .orElseThrow();
 
         final InstanceDetails instanceDetails = new InstanceDetails(
@@ -53,5 +53,9 @@ public class GreenService {
         );
         LOGGER.info(instanceDetails.toString());
         return instanceDetails;
+    }
+
+    public GreenDetails saveDetails(final GreenDetails greenDetails) {
+        return this.colorRepository.saveDetails(greenDetails);
     }
 }

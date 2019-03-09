@@ -4,8 +4,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
 
-interface ColorJpaRepository extends JpaRepository<ColorEntity, String> {
+interface ColorJpaRepository extends JpaRepository<ColorEntity, Long> {
 
-    Optional<ColorEntity> findByColorName(final String colorName);
+    Optional<ColorEntity> findByColorNameAndColorInstance(
+            final String colorName, final String colorInstance
+    );
 
 }

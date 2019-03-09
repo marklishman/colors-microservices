@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,15 +28,16 @@ public class GreenController {
         this.greenService = greenService;
     }
 
-    @GetMapping
-    public InstanceDetails getCallDetails() {
-        LOGGER.info("Called Green");
-        return greenService.getInstanceDetails();
+    @GetMapping("/{id}")
+    public InstanceDetails getInstanceDetails(@PathVariable final Long id) {
+        LOGGER.info("Get instance details for Green id {}", id);
+        return greenService.getInstanceDetails(id);
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public GreenDetails createDetails(@RequestBody final GreenDetails greenDetails) {
-        return greenDetails;
+    public GreenDetails createDetails(@PathVariable("instnce") final String instance,
+                                      @RequestBody final GreenDetails greenDetails) {
+        return greenService.saveDetails(greenDetails);
     }
 }

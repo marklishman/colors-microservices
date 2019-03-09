@@ -43,16 +43,6 @@ public final class GreenDetails {
         return newInstance(null, correlationId, colorName, colorInstance, details);
     }
 
-//    public static GreenDetails fromEntity(final ColorEntity colorEntity) {
-//        return new GreenDetails(
-//                colorEntity.getId(),
-//                colorEntity.getCorrelationId(),
-//                colorEntity.getColorName(),
-//                colorEntity.getColorInstance(),
-//                colorEntity.getDetails()
-//        );
-//    }
-
     public final Long getId() {
         return id;
     }
