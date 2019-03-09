@@ -1,6 +1,7 @@
 package io.lishman.green.service;
 
 import io.lishman.green.entity.ColorEntity;
+import io.lishman.green.model.GreenDetails;
 import io.lishman.green.model.InstanceDetails;
 import io.lishman.green.repository.ColorRepository;
 import org.slf4j.Logger;
@@ -33,22 +34,22 @@ public class GreenService {
     private final ColorRepository colorRepository;
 
     @Autowired
-    public GreenService(ColorRepository colorRepository) {
+    public GreenService(final ColorRepository colorRepository) {
         this.colorRepository = colorRepository;
     }
 
     public InstanceDetails getInstanceDetails() {
 
-        final String colorName = colorRepository.findByColorName("green")
-                .map(ColorEntity::getDetails)
-                .orElse("");
+        // TODO exception handling
+        final ColorEntity colorEntity = colorRepository.findByColorName("green")
+                .orElseThrow();
 
         final InstanceDetails instanceDetails = new InstanceDetails(
                 name,
                 instance,
                 port,
                 config,
-                colorName,
+                GreenDetails.fromEntity(colorEntity),
                 Collections.emptyList()
         );
         LOGGER.info(instanceDetails.toString());

@@ -3,33 +3,33 @@ package io.lishman.green.entity;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.util.Objects;
 
 @Entity
 @Table(name="COLOR")
 public class ColorEntity {
 
     @Id
-    private String id;
-    private String colorId;
+    private Long id;
+    private String correlationId;
     private String colorName;
+    private String colorInstance;
     private String details;
 
-    public ColorEntity() { }
-
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public String getColorId() {
-        return colorId;
+    public String getCorrelationId() {
+        return correlationId;
     }
 
-    public void setColorId(String colorId) {
-        this.colorId = colorId;
+    public void setCorrelationId(String correlationId) {
+        this.correlationId = correlationId;
     }
 
     public String getColorName() {
@@ -40,6 +40,14 @@ public class ColorEntity {
         this.colorName = colorName;
     }
 
+    public String getColorInstance() {
+        return colorInstance;
+    }
+
+    public void setColorInstance(String colorInstance) {
+        this.colorInstance = colorInstance;
+    }
+
     public String getDetails() {
         return details;
     }
@@ -48,13 +56,26 @@ public class ColorEntity {
         this.details = details;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ColorEntity that = (ColorEntity) o;
+        return Objects.equals(id, that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
 
     @Override
     public String toString() {
         return "ColorEntity{" +
                 "id='" + id + '\'' +
-                ", colorId='" + colorId + '\'' +
+                ", correlationId='" + correlationId + '\'' +
                 ", colorName='" + colorName + '\'' +
+                ", colorInstance='" + colorInstance + '\'' +
                 ", details='" + details + '\'' +
                 '}';
     }

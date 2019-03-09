@@ -9,7 +9,7 @@ public class InstanceDetails {
     private String instance;
     private int port;
     private String config;
-    private String database;
+    private GreenDetails details;
     private List<InstanceDetails> calls;
 
     public InstanceDetails() {
@@ -20,14 +20,14 @@ public class InstanceDetails {
             final String instance,
             final int port,
             final String config,
-            final String database,
+            final GreenDetails details,
             final List<InstanceDetails> calls
     ) {
         this.name = name;
         this.instance = instance;
         this.port = port;
         this.config = config;
-        this.database = database;
+        this.details = details;
         this.calls = calls;
     }
 
@@ -63,12 +63,12 @@ public class InstanceDetails {
         this.config = config;
     }
 
-    public String getDatabase() {
-        return database;
+    public GreenDetails getDetails() {
+        return details;
     }
 
-    public void setDatabase(String database) {
-        this.database = database;
+    public void setDetails(GreenDetails details) {
+        this.details = details;
     }
 
     public List<InstanceDetails> getCalls() {

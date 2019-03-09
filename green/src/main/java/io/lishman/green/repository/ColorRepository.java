@@ -8,4 +8,6 @@ import java.util.Optional;
 public interface ColorRepository extends JpaRepository<ColorEntity, String> {
 
     Optional<ColorEntity> findByColorName(final String colorName);
+
+
 }
