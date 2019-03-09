@@ -1,19 +1,16 @@
 package io.lishman.green.model;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
-// TODO immutable value object
-
-public class InstanceDetails {
-    private String name;
-    private String instance;
-    private int port;
-    private String config;
-    private GreenDetails details;
-    private List<InstanceDetails> calls;
-
-    public InstanceDetails() {
-    }
+public final class InstanceDetails {
+    private final String name;
+    private final String instance;
+    private final int port;
+    private final String config;
+    private final GreenDetails details;
+    private final List<InstanceDetails> calls;
 
     public InstanceDetails(
             final String name,
@@ -31,52 +28,46 @@ public class InstanceDetails {
         this.calls = calls;
     }
 
-    public String getName() {
+    public final String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getInstance() {
+    public final String getInstance() {
         return instance;
     }
 
-    public void setInstance(String instance) {
-        this.instance = instance;
-    }
-
-    public int getPort() {
+    public final int getPort() {
         return port;
     }
 
-    public void setPort(int port) {
-        this.port = port;
-    }
-
-    public String getConfig() {
+    public final String getConfig() {
         return config;
     }
 
-    public void setConfig(String config) {
-        this.config = config;
-    }
-
-    public GreenDetails getDetails() {
+    public final GreenDetails getDetails() {
         return details;
     }
 
-    public void setDetails(GreenDetails details) {
-        this.details = details;
+    public final List<InstanceDetails> getCalls() {
+        return Collections.unmodifiableList(calls);
     }
 
-    public List<InstanceDetails> getCalls() {
-        return calls;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        InstanceDetails that = (InstanceDetails) o;
+        return port == that.port &&
+                Objects.equals(name, that.name) &&
+                Objects.equals(instance, that.instance) &&
+                Objects.equals(config, that.config) &&
+                Objects.equals(details, that.details) &&
+                Objects.equals(calls, that.calls);
     }
 
-    public void setCalls(List<InstanceDetails> calls) {
-        this.calls = calls;
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, instance, port, config, details, calls);
     }
 
     @Override
@@ -86,6 +77,7 @@ public class InstanceDetails {
                 ", instance='" + instance + '\'' +
                 ", port=" + port +
                 ", config='" + config + '\'' +
+                ", details=" + details +
                 ", calls=" + calls +
                 '}';
     }

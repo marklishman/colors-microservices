@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -31,16 +32,25 @@ public class GreenController {
     // CRUD
 
     @GetMapping("/{id}")
-    public GreenDetails getGreenDetails(@PathVariable final Long id) {
+    public GreenDetails getGreenDetails(@PathVariable("id") final Long id) {
         LOGGER.info("Get instance details for Green id {}", id);
         return greenService.getById(id);
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public GreenDetails createDetails(@PathVariable("instnce") final String instance,
-                                      @RequestBody final GreenDetails greenDetails) {
-        return greenService.saveDetails(greenDetails);
+    public GreenDetails createDetails(@RequestBody final GreenDetails greenDetails) {
+        // TODO logging
+        return greenService.createDetails(greenDetails);
+    }
+
+    @PutMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public GreenDetails updateDetails(
+            @PathVariable("id") final Long id,
+            @RequestBody final GreenDetails greenDetails) {
+        // TODO logging
+        return greenService.updateDetails(id, greenDetails);
     }
 
     // Projection

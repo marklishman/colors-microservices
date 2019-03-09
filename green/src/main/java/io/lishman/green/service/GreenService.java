@@ -45,8 +45,13 @@ public class GreenService {
                 .orElseThrow();
     }
 
-    public GreenDetails saveDetails(final GreenDetails greenDetails) {
+    public GreenDetails createDetails(final GreenDetails greenDetails) {
         return this.colorRepository.saveDetails(greenDetails);
+    }
+
+    public GreenDetails updateDetails(final Long id, final GreenDetails greenDetails) {
+        final GreenDetails greenDetailsWithId = greenDetails.cloneWithNewId(id);
+        return this.colorRepository.saveDetails(greenDetailsWithId);
     }
 
     // Projection

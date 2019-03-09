@@ -11,6 +11,8 @@ public final class GreenDetails {
     private final String correlationId;
     private final String details;
 
+    // Factory methods
+
     private GreenDetails(final Long id,
                          final String uuid,
                          final String correlationId,
@@ -37,6 +39,12 @@ public final class GreenDetails {
                                         @JsonProperty("details") final String details) {
         return newInstance(null, uuid, correlationId, details);
     }
+
+    public GreenDetails cloneWithNewId(final Long id) {
+        return GreenDetails.newInstance(id, uuid, correlationId, details);
+    }
+
+    // getters
 
     public final Long getId() {
         return id;

@@ -14,8 +14,6 @@ import java.util.Objects;
 @Table(name="DETAILS")
 class ColorEntity {
 
-    // TODO Use UUID for Id
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(columnDefinition = "serial")
