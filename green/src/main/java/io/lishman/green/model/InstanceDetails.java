@@ -2,7 +2,6 @@ package io.lishman.green.model;
 
 import java.util.List;
 
-
 // TODO immutable value object
 
 public class InstanceDetails {
