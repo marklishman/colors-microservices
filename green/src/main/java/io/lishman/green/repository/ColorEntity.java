@@ -24,10 +24,10 @@ class ColorEntity {
 
     public ColorEntity() {}
 
-    public ColorEntity(final Long id,
-                       final String uuid,
-                       final String correlationId,
-                       final String details
+    private ColorEntity(final Long id,
+                        final String uuid,
+                        final String correlationId,
+                        final String details
     ) {
         this.id = id;
         this.uuid = uuid;
@@ -44,36 +44,20 @@ class ColorEntity {
         );
     }
 
-    public Long getId() {
+    Long getId() {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getUuid() {
+    String getUuid() {
         return uuid;
     }
 
-    public void setUuid(String uuid) {
-        this.uuid = uuid;
-    }
-
-    public String getCorrelationId() {
+    String getCorrelationId() {
         return correlationId;
     }
 
-    public void setCorrelationId(String correlationId) {
-        this.correlationId = correlationId;
-    }
-
-    public String getDetails() {
+    String getDetails() {
         return details;
-    }
-
-    public void setDetails(String details) {
-        this.details = details;
     }
 
     @Override
