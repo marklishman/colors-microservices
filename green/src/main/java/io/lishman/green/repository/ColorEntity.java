@@ -1,4 +1,4 @@
-package io.lishman.green.entity;
+package io.lishman.green.repository;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -7,7 +7,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name="COLOR")
-public class ColorEntity {
+class ColorEntity {
 
     @Id
     private Long id;

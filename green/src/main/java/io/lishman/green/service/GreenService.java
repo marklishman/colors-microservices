@@ -1,6 +1,5 @@
 package io.lishman.green.service;
 
-import io.lishman.green.entity.ColorEntity;
 import io.lishman.green.model.GreenDetails;
 import io.lishman.green.model.InstanceDetails;
 import io.lishman.green.repository.ColorRepository;
@@ -41,7 +40,7 @@ public class GreenService {
     public InstanceDetails getInstanceDetails() {
 
         // TODO exception handling
-        final ColorEntity colorEntity = colorRepository.findByColorName("green")
+        final GreenDetails greenDetails = colorRepository.findByColorName("green")
                 .orElseThrow();
 
         final InstanceDetails instanceDetails = new InstanceDetails(
@@ -49,7 +48,7 @@ public class GreenService {
                 instance,
                 port,
                 config,
-                GreenDetails.fromEntity(colorEntity),
+                greenDetails,
                 Collections.emptyList()
         );
         LOGGER.info(instanceDetails.toString());

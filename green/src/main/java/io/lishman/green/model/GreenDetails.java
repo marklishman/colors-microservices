@@ -2,7 +2,6 @@ package io.lishman.green.model;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.lishman.green.entity.ColorEntity;
 
 import java.util.Objects;
 
@@ -25,6 +24,14 @@ public final class GreenDetails {
         this.details = details;
     }
 
+    public static GreenDetails newInstance(final Long id,
+                                           final String correlationId,
+                                           final String colorName,
+                                           final String colorInstance,
+                                           final String details) {
+        return new GreenDetails(id, correlationId, colorName, colorInstance, details);
+    }
+
     // Note that if the 'id' argument is omitted here then it is
     // set on the object if it is included in the json.
     @JsonCreator
@@ -33,18 +40,18 @@ public final class GreenDetails {
                                         @JsonProperty("colorName") final String colorName,
                                         @JsonProperty("colorInstance") final String colorInstance,
                                         @JsonProperty("details") final String details) {
-        return new GreenDetails(null, correlationId, colorName, colorInstance, details);
+        return newInstance(null, correlationId, colorName, colorInstance, details);
     }
 
-    public static GreenDetails fromEntity(final ColorEntity colorEntity) {
-        return new GreenDetails(
-                colorEntity.getId(),
-                colorEntity.getCorrelationId(),
-                colorEntity.getColorName(),
-                colorEntity.getColorInstance(),
-                colorEntity.getDetails()
-        );
-    }
+//    public static GreenDetails fromEntity(final ColorEntity colorEntity) {
+//        return new GreenDetails(
+//                colorEntity.getId(),
+//                colorEntity.getCorrelationId(),
+//                colorEntity.getColorName(),
+//                colorEntity.getColorInstance(),
+//                colorEntity.getDetails()
+//        );
+//    }
 
     public final Long getId() {
         return id;
