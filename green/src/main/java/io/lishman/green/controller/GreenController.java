@@ -64,8 +64,8 @@ public class GreenController {
     // Search
 
     @GetMapping(value = "/search/findByCorrelationId", params = "correlationId")
-    public InstanceDetails findByCorrelationId(@RequestParam("correlationId") final String correlationId) {
+    public GreenDetails findByCorrelationId(@RequestParam("correlationId") final String correlationId) {
         LOGGER.info("Get instance details for Green correlation id {}", correlationId);
-        return greenService.getInstanceDetailsForCorrelationId(correlationId);
+        return greenService.getDetailsForCorrelationId(correlationId);
     }
 }

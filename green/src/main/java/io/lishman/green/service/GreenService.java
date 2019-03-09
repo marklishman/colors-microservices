@@ -67,13 +67,11 @@ public class GreenService {
 
     // Search
 
-    public InstanceDetails getInstanceDetailsForCorrelationId(final String correlationId) {
+    public GreenDetails getDetailsForCorrelationId(final String correlationId) {
 
         // TODO exception handling
-        final GreenDetails greenDetails = colorRepository.findByCorrelationId(correlationId)
+        return colorRepository.findByCorrelationId(correlationId)
                 .orElseThrow();
-
-        return getInstanceDetails(greenDetails);
     }
 
     // private
