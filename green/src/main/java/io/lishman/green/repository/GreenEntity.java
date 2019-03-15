@@ -12,7 +12,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name="DETAILS")
-class ColorEntity {
+class GreenEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,9 +22,10 @@ class ColorEntity {
     private String correlationId;
     private String details;
 
-    public ColorEntity() {}
+    public GreenEntity() {
+    }
 
-    private ColorEntity(final Long id,
+    private GreenEntity(final Long id,
                         final String uuid,
                         final String correlationId,
                         final String details
@@ -35,8 +36,8 @@ class ColorEntity {
         this.details = details;
     }
 
-    static ColorEntity fromDetails(final GreenDetails greenDetails) {
-        return new ColorEntity(
+    static GreenEntity fromDetails(final GreenDetails greenDetails) {
+        return new GreenEntity(
                 greenDetails.getId(),
                 greenDetails.getUuid(),
                 greenDetails.getCorrelationId(),
@@ -64,7 +65,7 @@ class ColorEntity {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        ColorEntity that = (ColorEntity) o;
+        GreenEntity that = (GreenEntity) o;
         return Objects.equals(id, that.id);
     }
 
@@ -75,7 +76,7 @@ class ColorEntity {
 
     @Override
     public String toString() {
-        return "ColorEntity{" +
+        return "GreenEntity{" +
                 "id='" + id + '\'' +
                 ", uuid='" + uuid + '\'' +
                 ", correlationId='" + correlationId + '\'' +

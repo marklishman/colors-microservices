@@ -11,6 +11,8 @@ public final class GreenDetails {
     private final String correlationId;
     private final String details;
 
+    // TODO combine with Entity
+
     // Factory methods
 
     private GreenDetails(final Long id,

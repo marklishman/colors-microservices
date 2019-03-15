@@ -2,7 +2,7 @@ package io.lishman.green.service;
 
 import io.lishman.green.model.GreenDetails;
 import io.lishman.green.model.InstanceDetails;
-import io.lishman.green.repository.ColorRepository;
+import io.lishman.green.repository.GreenRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,27 +30,27 @@ public class GreenService {
     @Value("${app.config:default green config}")
     private String config;
 
-    private final ColorRepository colorRepository;
+    private final GreenRepository greenRepository;
 
     @Autowired
-    public GreenService(final ColorRepository colorRepository) {
-        this.colorRepository = colorRepository;
+    public GreenService(final GreenRepository greenRepository) {
+        this.greenRepository = greenRepository;
     }
 
     // CRUD
 
     public GreenDetails getById(final Long id) {
-        return colorRepository.findById(id)
+        return greenRepository.findById(id)
                 .orElseThrow();
     }
 
     public GreenDetails createDetails(final GreenDetails greenDetails) {
-        return this.colorRepository.saveDetails(greenDetails);
+        return this.greenRepository.saveDetails(greenDetails);
     }
 
     public GreenDetails updateDetails(final Long id, final GreenDetails greenDetails) {
         final GreenDetails greenDetailsWithId = greenDetails.cloneWithNewId(id);
-        return this.colorRepository.saveDetails(greenDetailsWithId);
+        return this.greenRepository.saveDetails(greenDetailsWithId);
     }
 
     // Projection
@@ -58,7 +58,7 @@ public class GreenService {
     public InstanceDetails getInstanceDetails(final Long id) {
 
         // TODO exception handling
-        final GreenDetails greenDetails = colorRepository.findById(id)
+        final GreenDetails greenDetails = greenRepository.findById(id)
                 .orElseThrow();
 
         InstanceDetails instanceDetails = new InstanceDetails(
@@ -78,7 +78,7 @@ public class GreenService {
     public GreenDetails getDetailsForCorrelationId(final String correlationId) {
 
         // TODO exception handling
-        return colorRepository.findByCorrelationId(correlationId)
+        return greenRepository.findByCorrelationId(correlationId)
                 .orElseThrow();
     }
 
