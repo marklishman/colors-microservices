@@ -9,7 +9,7 @@ public final class InstanceDetails {
     private final String instance;
     private final int port;
     private final String config;
-    private final GreenDetails details;
+    private final Group details;
     private final List<InstanceDetails> calls;
 
     public InstanceDetails(
@@ -17,7 +17,7 @@ public final class InstanceDetails {
             final String instance,
             final int port,
             final String config,
-            final GreenDetails details,
+            final Group details,
             final List<InstanceDetails> calls
     ) {
         this.name = name;
@@ -44,7 +44,7 @@ public final class InstanceDetails {
         return config;
     }
 
-    public final GreenDetails getDetails() {
+    public final Group getDetails() {
         return details;
     }
 
