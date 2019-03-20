@@ -1,4 +1,14 @@
-CREATE SCHEMA IF NOT EXISTS green;
+
+/* ------------------------------------------
+
+
+    Change schema name below
+
+
+ --------------------------------------------*/
+
+-- CREATE SCHEMA IF NOT EXISTS schema_name;
+
 
 DROP TABLE IF EXISTS "data";
 DROP TABLE IF EXISTS "item";

@@ -19,6 +19,7 @@
         <module>red</module>
         <module>orange</module>
         <module>pink</module>
+        <module>purple</module>
     </modules>
 
 </project>
