@@ -1,5 +1,7 @@
 package io.lishman.purple.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,9 +9,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.LocalDateTime;
+import java.util.Objects;
 
 @Entity
 @Table(name="data")
@@ -23,9 +27,13 @@ public class Data {
     @Column(name = "dat_value")
     private BigDecimal value;
 
-    // TODO Automatically populate created date
     @Column(name = "dat_created_at")
-    private Date createdAt;
+    private LocalDateTime createdAt;
+
+    @JsonBackReference
+    @ManyToOne
+    @JoinColumn(name = "itm_id")
+    private Item item;
 
     @ManyToOne
     @JoinColumn(name = "cat_id")
@@ -34,7 +42,10 @@ public class Data {
     public Data() {
     }
 
-    // TODO constructor
+    @PrePersist
+    public void prePersist() {
+        createdAt = LocalDateTime.now();
+    }
 
     public Long getId() {
         return id;
@@ -44,13 +55,37 @@ public class Data {
         return value;
     }
 
-    public Date getCreatedAt() {
+    public LocalDateTime getCreatedAt() {
         return createdAt;
+    }
+
+    public Item getItem() {
+        return item;
     }
 
     public Category getCategory() {
         return category;
     }
 
-    // TODO equals, hashcode, toString
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Data data = (Data) o;
+        return Objects.equals(id, data.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
+
+    @Override
+    public String toString() {
+        return "Data{" +
+                "id=" + id +
+                ", value=" + value +
+                ", createdAt=" + createdAt +
+                '}';
+    }
 }

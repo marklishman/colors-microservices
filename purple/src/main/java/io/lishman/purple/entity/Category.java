@@ -23,20 +23,7 @@ public class Category {
     @Column(name = "cat_desc")
     private String description;
 
-//    @OneToMany
-//    @JoinColumn(name = "cat_id")
-//    private Set<Data> items;
-
     public Category() {
-    }
-
-    private Category(final Long id,
-                     final String name,
-                     final String description
-    ) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
     }
 
     public Long getId() {
@@ -66,7 +53,7 @@ public class Category {
 
     @Override
     public String toString() {
-        return "Group{" +
+        return "Category{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +

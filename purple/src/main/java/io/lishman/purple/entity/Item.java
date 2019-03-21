@@ -1,14 +1,19 @@
 package io.lishman.purple.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.Set;
 
@@ -36,29 +41,25 @@ public class Item {
     @Column(name = "itm_status")
     private Integer status;
 
-    // TODO Automatically populate created date
     @Column(name = "itm_created_at")
-    private Date createdAt;
+    private LocalDateTime createdAt;
 
+    @JsonBackReference
+    @ManyToOne
+    @JoinColumn(name = "grp_id")
+    private Group group;
+
+    @JsonManagedReference
     @OneToMany
     @JoinColumn(name = "itm_id")
-    private Set<Data> items;
+    private Set<Data> data;
 
     public Item() {
     }
 
-    private Item(final String uuid,
-                 final String name,
-                 final String description,
-                 final String correlationId,
-                 final Integer status,
-                 final Date createdAt) {
-        this.uuid = uuid;
-        this.name = name;
-        this.description = description;
-        this.correlationId = correlationId;
-        this.status = status;
-        this.createdAt = createdAt;
+    @PrePersist
+    public void prePersist() {
+        createdAt = LocalDateTime.now();
     }
 
     public Long getId() {
@@ -85,12 +86,16 @@ public class Item {
         return status;
     }
 
-    public Date getCreatedAt() {
+    public LocalDateTime getCreatedAt() {
         return createdAt;
     }
 
-    public Set<Data> getItems() {
-        return items;
+    public Group getGroup() {
+        return group;
+    }
+
+    public Set<Data> getData() {
+        return data;
     }
 
     @Override

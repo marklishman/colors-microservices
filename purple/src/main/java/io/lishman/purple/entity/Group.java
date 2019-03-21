@@ -1,11 +1,12 @@
 package io.lishman.purple.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.util.Objects;
@@ -26,20 +27,11 @@ public class Group {
     @Column(name = "grp_desc")
     private String description;
 
-    @OneToMany
-    @JoinColumn(name = "grp_id")
+    @JsonManagedReference
+    @OneToMany(mappedBy = "group")
     private Set<Item> items;
 
     public Group() {
-    }
-
-    private Group(final Long id,
-                  final String name,
-                  final String description
-    ) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
     }
 
     public Long getId() {
