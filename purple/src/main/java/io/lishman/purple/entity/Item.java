@@ -5,9 +5,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.util.Date;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name="item")
@@ -36,6 +39,10 @@ public class Item {
     // TODO Automatically populate created date
     @Column(name = "itm_created_at")
     private Date createdAt;
+
+    @OneToMany
+    @JoinColumn(name = "itm_id")
+    private Set<Data> items;
 
     public Item() {
     }
@@ -80,6 +87,10 @@ public class Item {
 
     public Date getCreatedAt() {
         return createdAt;
+    }
+
+    public Set<Data> getItems() {
+        return items;
     }
 
     @Override
