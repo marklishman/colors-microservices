@@ -5,8 +5,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name="group")
@@ -22,6 +25,10 @@ public class Group {
 
     @Column(name = "grp_desc")
     private String description;
+
+    @OneToMany
+    @JoinColumn(name = "grp_id")
+    private Set<Item> items;
 
     public Group() {
     }
@@ -45,6 +52,10 @@ public class Group {
 
     public String getDescription() {
         return description;
+    }
+
+    public Set<Item> getItems() {
+        return items;
     }
 
     @Override
