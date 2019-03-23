@@ -311,8 +311,8 @@ PUT replaces the entire resource so all values mist be specified.
     Content-Type:application/json
     body: 
     {
-        "name": "Group Five updated",
-        "description": "New group five description"
+        "name": "Group Four updated",
+        "description": "New group four description"
     }
     
 or
