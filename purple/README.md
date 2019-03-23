@@ -380,6 +380,15 @@ Note the change to the owning group.
 
     URL: http://localhost:8061/purple/groups/4
     Type: DELETE
+    
+# Projections
+
+
+
+
+
+
+
 
 # Search
 

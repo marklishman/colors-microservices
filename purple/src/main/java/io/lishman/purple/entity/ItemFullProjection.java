@@ -3,6 +3,7 @@ package io.lishman.purple.entity;
 import org.springframework.data.rest.core.config.Projection;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 @Projection(name = "full", types = { Item.class })
@@ -14,4 +15,6 @@ public interface ItemFullProjection {
     String getCorrelationId();
     Integer getStatus();
     LocalDateTime getCreatedAt();
+    List<DataFullProjection> getData();
+
 }
