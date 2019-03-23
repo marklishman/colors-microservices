@@ -10,5 +10,5 @@ public interface DataFullProjection {
     String getId();
     BigDecimal getValue();
     LocalDateTime getCreatedAt();
-    CategoryDetailsProjection getCategory();
+    CategoryNameProjection getCategory();
 }

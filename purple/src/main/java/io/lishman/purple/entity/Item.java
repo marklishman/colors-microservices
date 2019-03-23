@@ -13,6 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
@@ -112,6 +113,12 @@ public class Item {
 
     public LocalDateTime getCreatedAt() {
         return createdAt;
+    }
+
+    public BigDecimal getTotal() {
+        return this.data.stream()
+                .map(Data::getValue)
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 
     public Group getGroup() {

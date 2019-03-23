@@ -16,5 +16,4 @@ public interface ItemFullProjection {
     Integer getStatus();
     LocalDateTime getCreatedAt();
     List<DataFullProjection> getData();
-
 }

@@ -383,11 +383,152 @@ Note the change to the owning group.
     
 # Projections
 
+Projections alter the view of the returned data.
 
+### Subset
 
+This projection returns the item name and description
 
+~~~java
+@Projection(name = "name", types = { Item.class })
+public interface ItemNameProjection {
+    String getName();
+    String getDescription();
+}
+~~~
 
+    http://localhost:8061/purple/items/1?projection=name
+    
+returns a subset of the `item` resource
 
+~~~json
+{
+    "name": "Item One",
+    "description": "Item one description",
+    "_links": {
+        "self": {
+            "href": "http://localhost:8061/purple/items/1"
+        },
+        "item": {
+            "href": "http://localhost:8061/purple/items/1{?projection}",
+            "templated": true
+        },
+        "group": {
+            "href": "http://localhost:8061/purple/items/1/group"
+        }
+    }
+}
+~~~
+
+### Combinations
+
+~~~java
+@Projection(name = "name", types = { Category.class })
+public interface CategoryNameProjection {
+
+    @Value("#{target.name} - #{target.description}")
+    String getDetails();
+}
+~~~
+
+    http://localhost:8061/purple/categories/1?projection=name
+    
+~~~json
+{
+    "details": "Category One - Category one description",
+    "_links": {
+        "self": {
+            "href": "http://localhost:8061/purple/categories/1"
+        },
+        "category": {
+            "href": "http://localhost:8061/purple/categories/1{?projection}",
+            "templated": true
+        }
+    }
+}
+~~~
+
+### Superset
+
+~~~java
+@Projection(name = "full", types = { Item.class })
+public interface ItemFullProjection {
+    String getId();
+    UUID getUuid();
+    String getName();
+    String getDescription();
+    String getCorrelationId();
+    Integer getStatus();
+    LocalDateTime getCreatedAt();
+    List<DataFullProjection> getData();
+}
+~~~
+
+and
+
+~~~java
+@Projection(name = "full", types = { Data.class })
+public interface DataFullProjection {
+    String getId();
+    BigDecimal getValue();
+    LocalDateTime getCreatedAt();
+    CategoryNameProjection getCategory();
+}
+~~~
+
+    http://localhost:8061/purple/items/4?projection=full
+
+~~~json
+{
+    "name": "Item four name",
+    "id": "4",
+    "status": 3,
+    "data": [
+        {
+            "value": 11.49,
+            "id": "15",
+            "createdAt": "2019-03-23T13:44:03.260411",
+            "category": {
+                "details": "Category Three - Category three description",
+                "_links": {
+                    "self": {
+                        "href": "http://localhost:8061/purple/categories/3{?projection}",
+                        "templated": true
+                    }
+                }
+            }
+        },
+        {
+            "value": 45.76,
+            "id": "16",
+            "createdAt": "2019-03-23T13:44:03.289638",
+            "category": null
+        }
+    ],
+    "uuid": "8574a479-b583-4db4-9c03-bfd0ddc7a069",
+    "correlationId": "128a7512-0b92-4f49-8f61-15dabbd757b8",
+    "createdAt": "2019-03-23T13:44:02.627358",
+    "description": "New Item four description",
+    "_links": {
+        "self": {
+            "href": "http://localhost:8061/purple/items/4"
+        },
+        "item": {
+            "href": "http://localhost:8061/purple/items/4{?projection}",
+            "templated": true
+        },
+        "group": {
+            "href": "http://localhost:8061/purple/items/4/group"
+        }
+    }
+}
+~~~
+
+Note that the category projection is used to include categories which would normally be excluded
+because they are a managed resource.
+
+Also, `id` fields are omitted by default. However, we have chosen to include them here by
+explicitly specifying them in the projection. 
 
 
 # Search
@@ -411,27 +552,266 @@ When we use the `/search` path
 
     http://localhost:8061/purple/items/search
     
-we get a list of the query methods.
+we get a list of the query methods on the resource repository.
 
-    {
-        "_links": {
-            "findByCorrelationId": {
-                "href": "http://localhost:8061/purple/items/search/findByCorrelationId{?correlationId,page,size,sort}",
-                "templated": true
-            },
-            "findByUuid": {
-                "href": "http://localhost:8061/purple/items/search/findByUuid{?uuid}",
-                "templated": true
-            },
-            "findByGroupName": {
-                "href": "http://localhost:8061/purple/items/search/findByGroupName{?name,page,size,sort}",
-                "templated": true
-            },
-            "self": {
-                "href": "http://localhost:8061/purple/items/search"
-            }
+~~~json
+{
+    "_links": {
+        "findByGroupNameIgnoreCase": {
+            "href": "http://localhost:8061/purple/items/search/findByGroupName{?groupName,page,size,sort,projection}",
+            "templated": true
+        },
+        "findByCorrelationId": {
+            "href": "http://localhost:8061/purple/items/search/findByCorrelationId{?correlationId,projection}",
+            "templated": true
+        },
+        "findByUuid": {
+            "href": "http://localhost:8061/purple/items/search/findByUuid{?id,projection}",
+            "templated": true
+        },
+        "self": {
+            "href": "http://localhost:8061/purple/items/search"
         }
     }
+}
+~~~
+
+    http://localhost:8061/purple/items/search/findByGroupName?groupName=Group One
+    
+~~~json
+{
+    "_embedded": {
+        "countries": [
+            {
+                "code": "AE",
+                "name": "United Arab Emirates",
+                "_links": {
+                    "self": {
+                        "href": "http://localhost:8061/purple/countries/231"
+                    },
+                    "country": {
+                        "href": "http://localhost:8061/purple/countries/231"
+                    }
+                }
+            },
+            {
+                "code": "GB",
+                "name": "United Kingdom",
+                "_links": {
+                    "self": {
+                        "href": "http://localhost:8061/purple/countries/232"
+                    },
+                    "country": {
+                        "href": "http://localhost:8061/purple/countries/232"
+                    }
+                }
+            },
+            {
+                "code": "US",
+                "name": "United States",
+                "_links": {
+                    "self": {
+                        "href": "http://localhost:8061/purple/countries/233"
+                    },
+                    "country": {
+                        "href": "http://localhost:8061/purple/countries/233"
+                    }
+                }
+            },
+            {
+                "code": "UM",
+                "name": "United States Minor Outlying Islands",
+                "_links": {
+                    "self": {
+                        "href": "http://localhost:8061/purple/countries/234"
+                    },
+                    "country": {
+                        "href": "http://localhost:8061/purple/countries/234"
+                    }
+                }
+            }
+        ]
+    },
+    "_links": {
+        "self": {
+            "href": "http://localhost:8061/purple/countries/search/findByName?nameContains=united"
+        }
+    }
+}
+~~~
 
 # Paging and Sorting
 
+~~~java
+@RepositoryRestResource
+public interface CountryRepository extends PagingAndSortingRepository<Country, Long> {
+
+    @RestResource(path = "findByName")
+    List<Country> findByNameContainingIgnoreCase(final String nameContains);
+}
+
+~~~
+
+    http://localhost:8061/purple/countries?page=5&size=3&sort=code,desc
+    
+~~~json
+{
+    "_embedded": {
+        "countries": [
+            {
+                "code": "US",
+                "name": "United States",
+                "_links": {
+                    "self": {
+                        "href": "http://localhost:8061/purple/countries/233"
+                    },
+                    "country": {
+                        "href": "http://localhost:8061/purple/countries/233"
+                    }
+                }
+            },
+            {
+                "code": "UM",
+                "name": "United States Minor Outlying Islands",
+                "_links": {
+                    "self": {
+                        "href": "http://localhost:8061/purple/countries/234"
+                    },
+                    "country": {
+                        "href": "http://localhost:8061/purple/countries/234"
+                    }
+                }
+            },
+            {
+                "code": "UG",
+                "name": "Uganda",
+                "_links": {
+                    "self": {
+                        "href": "http://localhost:8061/purple/countries/229"
+                    },
+                    "country": {
+                        "href": "http://localhost:8061/purple/countries/229"
+                    }
+                }
+            }
+        ]
+    },
+    "_links": {
+        "first": {
+            "href": "http://localhost:8061/purple/countries?page=0&size=3&sort=code,desc"
+        },
+        "prev": {
+            "href": "http://localhost:8061/purple/countries?page=4&size=3&sort=code,desc"
+        },
+        "self": {
+            "href": "http://localhost:8061/purple/countries"
+        },
+        "next": {
+            "href": "http://localhost:8061/purple/countries?page=6&size=3&sort=code,desc"
+        },
+        "last": {
+            "href": "http://localhost:8061/purple/countries?page=81&size=3&sort=code,desc"
+        },
+        "profile": {
+            "href": "http://localhost:8061/purple/profile/countries"
+        },
+        "search": {
+            "href": "http://localhost:8061/purple/countries/search"
+        }
+    },
+    "page": {
+        "size": 3,
+        "totalElements": 245,
+        "totalPages": 82,
+        "number": 5
+    }
+}
+~~~
+
+Note the next and previous page links.
+
+
+Paging can be included on some query methods and not others.
+
+~~~java
+@RepositoryRestResource(excerptProjection = ItemNameProjection.class)
+public interface ItemRepository extends CrudRepository<Item, Long> {
+
+    Optional<Item> findByUuid(final UUID id);
+
+    List<Item> findByCorrelationId(final UUID correlationId);
+
+    @RestResource(path = "findByGroupName")
+    List<Item> findByGroupNameContainingIgnoreCase(final String groupName, final Pageable pageable);
+}
+~~~
+
+
+And putting it all together
+
+    http://localhost:8061/purple/items/search/findByGroupName?groupName=gro&page=1&size=3&sort=name,desc&projection=totals
+
+~~~json
+{
+    "_embedded": {
+        "items": [
+            {
+                "name": "Item Seven",
+                "description": "Item seven description",
+                "total": 32.45,
+                "_links": {
+                    "self": {
+                        "href": "http://localhost:8061/purple/items/7"
+                    },
+                    "item": {
+                        "href": "http://localhost:8061/purple/items/7{?projection}",
+                        "templated": true
+                    },
+                    "group": {
+                        "href": "http://localhost:8061/purple/items/7/group"
+                    }
+                }
+            },
+            {
+                "name": "Item One",
+                "description": "Item one description",
+                "total": 319.99,
+                "_links": {
+                    "self": {
+                        "href": "http://localhost:8061/purple/items/1"
+                    },
+                    "item": {
+                        "href": "http://localhost:8061/purple/items/1{?projection}",
+                        "templated": true
+                    },
+                    "group": {
+                        "href": "http://localhost:8061/purple/items/1/group"
+                    }
+                }
+            },
+            {
+                "name": "Item Nine",
+                "description": "Item nine description",
+                "total": 57.25,
+                "_links": {
+                    "self": {
+                        "href": "http://localhost:8061/purple/items/10"
+                    },
+                    "item": {
+                        "href": "http://localhost:8061/purple/items/10{?projection}",
+                        "templated": true
+                    },
+                    "group": {
+                        "href": "http://localhost:8061/purple/items/10/group"
+                    }
+                }
+            }
+        ]
+    },
+    "_links": {
+        "self": {
+            "href": "http://localhost:8061/purple/items/search/findByGroupName?groupName=gro&page=1&size=3&sort=name,desc&projection=totals"
+        }
+    }
+}
+~~~
