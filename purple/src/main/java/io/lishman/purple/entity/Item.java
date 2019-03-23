@@ -49,7 +49,7 @@ public class Item {
     @JoinColumn(name = "grp_id")
     private Group group;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "itm_id")
     private List<Data> data;
 

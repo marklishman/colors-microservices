@@ -42,6 +42,15 @@ public interface CountryRepository extends PagingAndSortingRepository<Country, L
 }
 ~~~
 
+~~~java
+@RepositoryRestResource
+public interface CategoryRepository extends CrudRepository<Category, Long> {
+
+    Optional<Category> findByName(final String name);
+
+}
+~~~
+
 
 # Resource Discoverability
 
