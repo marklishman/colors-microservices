@@ -5,53 +5,44 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.util.Objects;
-import java.util.Set;
 
 @Entity
-@Table(name="group")
-public class Group {
+@Table(name="country")
+public class Country {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "grp_id", columnDefinition = "serial")
+    @Column(name = "cty_id", columnDefinition = "serial")
     private Long id;
 
-    @Column(name = "grp_name")
+    @Column(name = "cty_code")
+    private String code;
+
+    @Column(name = "cty_name")
     private String name;
 
-    @Column(name = "grp_desc")
-    private String description;
-
-    @OneToMany(mappedBy = "group")
-    private Set<Item> items;
-
-    public Group() {
+    public Country() {
     }
 
     public Long getId() {
         return id;
     }
 
+    public String getCode() {
+        return code;
+    }
+
     public String getName() {
         return name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public Set<Item> getItems() {
-        return items;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Group that = (Group) o;
+        Country that = (Country) o;
         return Objects.equals(id, that.id);
     }
 
@@ -62,10 +53,10 @@ public class Group {
 
     @Override
     public String toString() {
-        return "Group{" +
+        return "Country{" +
                 "id=" + id +
+                ", code='" + code + '\'' +
                 ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
                 '}';
     }
 }

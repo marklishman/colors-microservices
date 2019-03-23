@@ -1,7 +1,6 @@
 package io.lishman.purple.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -49,7 +48,6 @@ public class Item {
     @JoinColumn(name = "grp_id")
     private Group group;
 
-    @JsonManagedReference
     @OneToMany
     @JoinColumn(name = "itm_id")
     private Set<Data> data;
