@@ -19,22 +19,24 @@
 
     http://localhost:8061/purple
 
-    {
-        "_links": {
-            "items": {
-                "href": "http://localhost:8061/purple/items"
-            },
-            "groups": {
-                "href": "http://localhost:8061/purple/groups"
-            },
-            "countries": {
-                "href": "http://localhost:8061/purple/countries"
-            },
-            "profile": {
-                "href": "http://localhost:8061/purple/profile"
-            }
+~~~json
+{
+    "_links": {
+        "items": {
+            "href": "http://localhost:8061/purple/items"
+        },
+        "groups": {
+            "href": "http://localhost:8061/purple/groups"
+        },
+        "countries": {
+            "href": "http://localhost:8061/purple/countries"
+        },
+        "profile": {
+            "href": "http://localhost:8061/purple/profile"
         }
     }
+}
+~~~
 
 ## Collection Resources
 
@@ -109,21 +111,9 @@
         }
     }
 
+## Object Graph
 
-    http://localhost:8061/purple/groups/1
-    
-    {
-        "name": "Group One",
-        "description": "Group one description",
-        "_links": {
-            "self": {
-                "href": "http://localhost:8061/purple/groups/1"
-            },
-            "group": {
-                "href": "http://localhost:8061/purple/groups/1"
-            },
-            "items": {
-                "href": "http://localhost:8061/purple/groups/1/items"
-            }
-        }
-    }
+Note that the result above is limited to the `group` resource only.
+
+> Spring Data REST tries very hard to render your object graph correctly. It tries to serialize 
+unmanaged beans as normal POJOs, and it tries to create links to managed beans where necessary.
