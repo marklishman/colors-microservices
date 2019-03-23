@@ -19,7 +19,7 @@
 
     http://localhost:8061/purple
     
-produces
+<br/>
    
     {
         "_links": {
@@ -42,7 +42,7 @@ produces
 
     http://localhost:8061/purple/groups
     
-produces
+<br/>
 
     {
         "_embedded": {
@@ -95,9 +95,30 @@ produces
 
 ## Item Resources
 
+    http://localhost:8061/purple/groups/3
+    
+<br/>
+
+    {
+        "name": "Group Three",
+        "description": "Group three description",
+        "_links": {
+            "self": {
+                "href": "http://localhost:8061/purple/groups/3"
+            },
+            "group": {
+                "href": "http://localhost:8061/purple/groups/3"
+            },
+            "items": {
+                "href": "http://localhost:8061/purple/groups/3/items"
+            }
+        }
+    }
+
+
     http://localhost:8061/purple/groups/1
     
-produces
+<br/>
 
     {
         "name": "Group One",
