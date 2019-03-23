@@ -62,14 +62,16 @@ public interface CountryRepository extends PagingAndSortingRepository<CountryEnt
 ~~~json
 {
     "_links": {
+        "items": {
+            "href": "http://localhost:8061/purple/items{?projection}",
+            "templated": true
+        },
         "categories": {
-            "href": "http://localhost:8061/purple/categories"
+            "href": "http://localhost:8061/purple/categories{?projection}",
+            "templated": true
         },
         "groups": {
             "href": "http://localhost:8061/purple/groups"
-        },
-        "items": {
-            "href": "http://localhost:8061/purple/items"
         },
         "countries": {
             "href": "http://localhost:8061/purple/countries{?page,size,sort}",
@@ -97,11 +99,12 @@ public interface CountryRepository extends PagingAndSortingRepository<CountryEnt
                     "self": {
                         "href": "http://localhost:8061/purple/groups/1"
                     },
-                    "group": {
+                    "groupEntity": {
                         "href": "http://localhost:8061/purple/groups/1"
                     },
                     "items": {
-                        "href": "http://localhost:8061/purple/groups/1/items"
+                        "href": "http://localhost:8061/purple/groups/1/items{?projection}",
+                        "templated": true
                     }
                 }
             },
@@ -112,11 +115,12 @@ public interface CountryRepository extends PagingAndSortingRepository<CountryEnt
                     "self": {
                         "href": "http://localhost:8061/purple/groups/2"
                     },
-                    "group": {
+                    "groupEntity": {
                         "href": "http://localhost:8061/purple/groups/2"
                     },
                     "items": {
-                        "href": "http://localhost:8061/purple/groups/2/items"
+                        "href": "http://localhost:8061/purple/groups/2/items{?projection}",
+                        "templated": true
                     }
                 }
             }
@@ -148,11 +152,12 @@ public interface CountryRepository extends PagingAndSortingRepository<CountryEnt
         "self": {
             "href": "http://localhost:8061/purple/groups/3"
         },
-        "group": {
+        "groupEntity": {
             "href": "http://localhost:8061/purple/groups/3"
         },
         "items": {
-            "href": "http://localhost:8061/purple/groups/3/items"
+            "href": "http://localhost:8061/purple/groups/3/items{?projection}",
+            "templated": true
         }
     }
 }
@@ -163,51 +168,54 @@ public interface CountryRepository extends PagingAndSortingRepository<CountryEnt
 Note that the result above is limited to the `groups` resource only.<br/>
 However, the `items` resource includes `data` resource as well.
 
-    http://localhost:8061/purple/items/3
+    http://localhost:8061/purple/items/7
 
 ~~~json
 {
-    "uuid": "85bf245e-a941-4a18-8d4b-15c3d0aebd23",
-    "name": "Item Three",
-    "description": "Item three description",
+    "uuid": "fb8d5122-dfcd-4509-a99e-222e862a1658",
+    "name": "Item Seven",
+    "description": "Item seven description",
     "correlationId": "e4b4a967-3758-4479-9a26-7ed5608f978a",
-    "status": 1,
-    "createdAt": "2019-03-23T12:36:19.31113",
+    "status": 3,
+    "createdAt": "2019-03-23T13:44:02.729391",
     "data": [
         {
-            "value": 9.86,
-            "createdAt": "2019-03-23T12:36:19.927159",
-            "_links": {
-                "item": {
-                    "href": "http://localhost:8061/purple/items/3"
-                },
+            "value": 32.45,
+            "createdAt": "2019-03-23T13:44:03.436905",
+            "_embedded": {
                 "category": {
-                    "href": "http://localhost:8061/purple/categories/1"
+                    "details": "Category Three - Category three description",
+                    "_links": {
+                        "self": {
+                            "href": "http://localhost:8061/purple/categories/3{?projection}",
+                            "templated": true
+                        }
+                    }
                 }
-            }
-        },
-        {
-            "value": 19.98,
-            "createdAt": "2019-03-23T12:36:19.886639",
+            },
             "_links": {
                 "item": {
-                    "href": "http://localhost:8061/purple/items/3"
+                    "href": "http://localhost:8061/purple/items/7{?projection}",
+                    "templated": true
                 },
                 "category": {
-                    "href": "http://localhost:8061/purple/categories/6"
+                    "href": "http://localhost:8061/purple/categories/3{?projection}",
+                    "templated": true
                 }
             }
         }
     ],
+    "total": 32.45,
     "_links": {
         "self": {
-            "href": "http://localhost:8061/purple/items/3"
+            "href": "http://localhost:8061/purple/items/7"
         },
-        "item": {
-            "href": "http://localhost:8061/purple/items/3"
+        "itemEntity": {
+            "href": "http://localhost:8061/purple/items/7{?projection}",
+            "templated": true
         },
         "group": {
-            "href": "http://localhost:8061/purple/items/3/group"
+            "href": "http://localhost:8061/purple/items/7/group"
         }
     }
 }
@@ -227,41 +235,57 @@ for each of the associations the item resource has.
     
 ~~~json
 {
-    "uuid": "4b30d7c8-2f17-49da-bff9-3a04364c5a08",
-    "name": "Item Four",
-    "description": "Item four description",
+    "uuid": "8574a479-b583-4db4-9c03-bfd0ddc7a069",
+    "name": "Item four name",
+    "description": "New Item four description",
     "correlationId": "128a7512-0b92-4f49-8f61-15dabbd757b8",
     "status": 3,
     "createdAt": "2019-03-23T13:44:02.627358",
     "data": [
         {
-            "value": 111.43,
+            "value": 11.49,
             "createdAt": "2019-03-23T13:44:03.260411",
+            "_embedded": {
+                "category": {
+                    "details": "Category Three - Category three description",
+                    "_links": {
+                        "self": {
+                            "href": "http://localhost:8061/purple/categories/3{?projection}",
+                            "templated": true
+                        }
+                    }
+                }
+            },
             "_links": {
                 "item": {
-                    "href": "http://localhost:8061/purple/items/4"
+                    "href": "http://localhost:8061/purple/items/4{?projection}",
+                    "templated": true
                 },
                 "category": {
-                    "href": "http://localhost:8061/purple/categories/3"
+                    "href": "http://localhost:8061/purple/categories/3{?projection}",
+                    "templated": true
                 }
             }
         },
         {
-            "value": 7.43,
+            "value": 45.76,
             "createdAt": "2019-03-23T13:44:03.289638",
             "_links": {
                 "item": {
-                    "href": "http://localhost:8061/purple/items/4"
+                    "href": "http://localhost:8061/purple/items/4{?projection}",
+                    "templated": true
                 }
             }
         }
     ],
+    "total": 57.25,
     "_links": {
         "self": {
             "href": "http://localhost:8061/purple/items/4"
         },
-        "item": {
-            "href": "http://localhost:8061/purple/items/4"
+        "itemEntity": {
+            "href": "http://localhost:8061/purple/items/4{?projection}",
+            "templated": true
         },
         "group": {
             "href": "http://localhost:8061/purple/items/4/group"
@@ -324,14 +348,18 @@ public interface CategoryNameProjection {
     
 ~~~json
 {
-    "details": "Category One - Category one description",
+    "name": "Item One",
+    "description": "Item one description",
     "_links": {
         "self": {
-            "href": "http://localhost:8061/purple/categories/1"
+            "href": "http://localhost:8061/purple/items/1"
         },
-        "category": {
-            "href": "http://localhost:8061/purple/categories/1{?projection}",
+        "itemEntity": {
+            "href": "http://localhost:8061/purple/items/1{?projection}",
             "templated": true
+        },
+        "group": {
+            "href": "http://localhost:8061/purple/items/1/group"
         }
     }
 }
