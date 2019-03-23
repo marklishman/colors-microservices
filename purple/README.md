@@ -75,8 +75,7 @@
                         "href": "http://localhost:8061/purple/groups/2/items"
                     }
                 }
-            },
-            ...
+            }
         ]
     },
     "_links": {
@@ -156,8 +155,7 @@ However, the `items` resource includes `data` and `category`.
                     "href": "http://localhost:8061/purple/items/3"
                 }
             }
-        },
-        ...
+        }
     ],
     "_links": {
         "self": {
@@ -172,6 +170,8 @@ However, the `items` resource includes `data` and `category`.
     }
 }
 ~~~
+
+From the Spring Data REST documentation.
 
 > Spring Data REST tries very hard to render your object graph correctly. It tries to serialize 
 unmanaged beans as normal POJOs, and it tries to create links to managed beans where necessary.
