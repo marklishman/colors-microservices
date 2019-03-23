@@ -144,7 +144,7 @@ public interface CountryRepository extends PagingAndSortingRepository<Country, L
 
 # Object Graph
 
-Note that the result above is limited to the `groups` resource only. 
+Note that the result above is limited to the `groups` resource only.<br/>
 However, the `items` resource includes `data` and `category`.
 
     http://localhost:8061/purple/items/3
