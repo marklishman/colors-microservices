@@ -291,7 +291,7 @@ Use the resource URL to specify a parent entity.
 
 ## Update (PUT)
 
-PUT replaces the entire resource.
+PUT replaces the entire resource so all values mist be specified.
 
     URL: http://localhost:8061/purple/groups/4
     Type: PUT
@@ -304,15 +304,41 @@ PUT replaces the entire resource.
     
 or
     
-    URL: http://localhost:8061/purple/items/18
+    URL: http://localhost:8061/purple/items/8
     Type: PUT
     Content-Type:application/json
     body: 
     {
-        "group": "http://localhost:8061/purple/groups/7",
+        "group": "http://localhost:8061/purple/groups/8",
         "uuid": "9f84fa9a-4b9c-46f8-9098-4603efe7ccbc",
-        "name": "Item Nine updated",
-        "description": "Item nine description updated",
+        "name": "Item Eight updated",
+        "description": "Item eight description updated",
         "correlationId": "128a7512-0b92-4f49-8f61-15dabbd757b8",
         "status": 5
     }
+
+## Update (PATCH)
+
+PATCH is similar to PUT but partially updates the resources state.
+
+    URL: http://localhost:8061/purple/groups/4
+    Type: PATCH
+    Content-Type:application/json
+    body: 
+    {
+        "description": "Group four updated"
+    }
+    
+or
+
+    URL: http://localhost:8061/purple/items/8
+    Type: PATCH
+    Content-Type:application/json
+    body: 
+    {
+        "group": "http://localhost:8061/purple/groups/3",
+        "description": "Item eight description updated",
+        "status": 6
+    }
+
+Note that the owning group was changed here.
