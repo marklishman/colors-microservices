@@ -452,6 +452,15 @@ explicitly specifying them in the projection.
 An excerpt is a projection that is automatically applied to a resource collection.
 
 ~~~java
+@Projection(name = "name", types = { CategoryEntity.class })
+public interface CategoryNameProjection {
+
+    @Value("#{target.name} - #{target.description}")
+    String getDetails();
+}
+~~~
+
+~~~java
 @RepositoryRestResource(path = "categories", collectionResourceRel = "categories", excerptProjection = CategoryNameProjection.class)
 public interface CategoryRepository extends CrudRepository<CategoryEntity, Long> {
 
