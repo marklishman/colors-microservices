@@ -13,6 +13,36 @@
 
 ---
 
+# Repositories
+
+~~~java
+@RepositoryRestResource
+public interface GroupRepository extends CrudRepository<Group, Long> {
+
+    Optional<Group> findByName(final String name);
+
+}
+~~~
+
+~~~java
+@RepositoryRestResource
+public interface ItemRepository extends CrudRepository<Item, Long> {
+
+    Optional<Item> findByUuid(final String uuid);
+
+    List<Item> findByCorrelationId(final String correlationId, final Pageable pageable);
+
+    List<Item> findByGroupName(final String name, final Pageable pageable);
+}
+~~~
+
+~~~java
+@RepositoryRestResource
+public interface CountryRepository extends PagingAndSortingRepository<Country, Long> {
+}
+~~~
+
+
 # Resource Discoverability
 
     http://localhost:8061/purple
@@ -112,7 +142,7 @@
 }
 ~~~
 
-## Object Graph
+# Object Graph
 
 Note that the result above is limited to the `groups` resource only. 
 However, the `items` resource includes `data` and `category`.
