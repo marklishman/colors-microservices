@@ -229,28 +229,23 @@ for each of the associations the item resource has.
     "description": "Item four description",
     "correlationId": "128a7512-0b92-4f49-8f61-15dabbd757b8",
     "status": 3,
-    "createdAt": "2019-03-20T19:45:37.486368",
+    "createdAt": "2019-03-23T13:44:02.627358",
     "data": [
         {
             "value": 111.43,
-            "createdAt": "2019-03-20T19:45:38.337754",
-            "category": {
-                "name": "Category Three",
-                "description": "Category three description"
-            },
+            "createdAt": "2019-03-23T13:44:03.260411",
             "_links": {
                 "item": {
                     "href": "http://localhost:8061/purple/items/4"
+                },
+                "category": {
+                    "href": "http://localhost:8061/purple/categories/3"
                 }
             }
         },
         {
             "value": 7.43,
-            "createdAt": "2019-03-20T19:45:38.37919",
-            "category": {
-                "name": "Category Four",
-                "description": "Category four description"
-            },
+            "createdAt": "2019-03-23T13:44:03.289638",
             "_links": {
                 "item": {
                     "href": "http://localhost:8061/purple/items/4"
@@ -283,19 +278,28 @@ for each of the associations the item resource has.
         "description": "Group six description"
     }
 
-Use the resource URL to specify a parent entity.
+Use the resource URL in the JSON to specify the `groups` and `categories` parent entities.
 
     URL: http://localhost:8061/purple/items
     Type: POST
     Content-Type:application/json
     body: 
     {
-        "group": "http://localhost:8061/purple/groups/8",
+        "group": "http://localhost:8061/purple/groups/4",
         "uuid": "9f84fa9a-4b9c-46f8-9098-4603efe7ccbc",
         "name": "Item Nine",
         "description": "Item nine description",
         "correlationId": "128a7512-0b92-4f49-8f61-15dabbd757b8",
-        "status": 3
+        "status": 3,
+        "data": [
+            {
+                "value": 11.49
+            },
+            {
+                "category": "http://localhost:8061/purple/categories/1",
+                "value": 45.76
+            }
+        ]
     }
 
 # Update (PUT)
