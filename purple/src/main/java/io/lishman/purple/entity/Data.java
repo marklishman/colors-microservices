@@ -27,7 +27,7 @@ public class Data {
     @Column(name = "dat_value")
     private BigDecimal value;
 
-    @Column(name = "dat_created_at")
+    @Column(name = "dat_created_at", updatable = false)
     private LocalDateTime createdAt;
 
     @JsonBackReference

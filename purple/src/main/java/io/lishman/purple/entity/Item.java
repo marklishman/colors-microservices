@@ -40,7 +40,7 @@ public class Item {
     @Column(name = "itm_status")
     private Integer status;
 
-    @Column(name = "itm_created_at")
+    @Column(name = "itm_created_at", updatable = false)
     private LocalDateTime createdAt;
 
     @JsonBackReference

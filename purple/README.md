@@ -260,3 +260,46 @@ for each of the associations the item resource has.
     }
 }
 ~~~
+
+# Updates
+
+## Create (POST)
+
+    URL: http://localhost:8061/purple/groups
+    Method: POST
+    Content-Type:application/json
+    Body:
+    {
+        "name": "Group Six",
+        "description": "Group six description"
+    }
+
+To specify a parent entity use the resource URL
+
+    URL: http://localhost:8061/purple/items
+    Type: POST
+    Content-Type:application/json
+    body: 
+    {
+        "group": "http://localhost:8061/purple/groups/8",
+        "uuid": "9f84fa9a-4b9c-46f8-9098-4603efe7ccbc",
+        "name": "Item Nine",
+        "description": "Item nine description",
+        "correlationId": "128a7512-0b92-4f49-8f61-15dabbd757b8",
+        "status": 3
+    }
+
+## Update (PUT)
+
+    URL: http://localhost:8061/purple/items/18
+    Type: PUT
+    Content-Type:application/json
+    body: 
+    {
+        "group": "http://localhost:8061/purple/groups/7",
+        "uuid": "9f84fa9a-4b9c-46f8-9098-4603efe7ccbc",
+        "name": "Item Nine updated",
+        "description": "Item nine description updated",
+        "correlationId": "128a7512-0b92-4f49-8f61-15dabbd757b8",
+        "status": 5
+    }
