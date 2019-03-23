@@ -18,9 +18,7 @@
 ## Resource Discoverability
 
     http://localhost:8061/purple
-    
-<br/>
-   
+
     {
         "_links": {
             "items": {
@@ -41,8 +39,6 @@
 ## Collection Resources
 
     http://localhost:8061/purple/groups
-    
-<br/>
 
     {
         "_embedded": {
@@ -97,8 +93,6 @@
 
     http://localhost:8061/purple/groups/3
     
-<br/>
-
     {
         "name": "Group Three",
         "description": "Group three description",
@@ -118,8 +112,6 @@
 
     http://localhost:8061/purple/groups/1
     
-<br/>
-
     {
         "name": "Group One",
         "description": "Group one description",
