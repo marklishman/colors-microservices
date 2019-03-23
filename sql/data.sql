@@ -60,7 +60,7 @@ INSERT INTO "data" (itm_id, cat_id, dat_value, dat_created_at)
 VALUES( (SELECT itm_id FROM "item" WHERE itm_name = 'Item Two'), (SELECT cat_id FROM "category" WHERE cat_name = 'Category Six'), 44.76, now());
 
 INSERT INTO "data" (itm_id, cat_id, dat_value, dat_created_at)
-VALUES( (SELECT itm_id FROM "item" WHERE itm_name = 'Item Two'), (SELECT cat_id FROM "category" WHERE cat_name = 'Category One'), 83.65, now());
+VALUES( (SELECT itm_id FROM "item" WHERE itm_name = 'Item Two'), null, 83.65, now());
 
 INSERT INTO "data" (itm_id, cat_id, dat_value, dat_created_at)
 VALUES( (SELECT itm_id FROM "item" WHERE itm_name = 'Item Two'), (SELECT cat_id FROM "category" WHERE cat_name = 'Category Two'), 62.78, now());
@@ -72,7 +72,7 @@ INSERT INTO "data" (itm_id, cat_id, dat_value, dat_created_at)
 VALUES( (SELECT itm_id FROM "item" WHERE itm_name = 'Item Two'), (SELECT cat_id FROM "category" WHERE cat_name = 'Category Four'), 76/04, now());
 
 INSERT INTO "data" (itm_id, cat_id, dat_value, dat_created_at)
-VALUES( (SELECT itm_id FROM "item" WHERE itm_name = 'Item Two'), (SELECT cat_id FROM "category" WHERE cat_name = 'Category Five'), 27.65, now());
+VALUES( (SELECT itm_id FROM "item" WHERE itm_name = 'Item Two'), null, 27.65, now());
 
 INSERT INTO "data" (itm_id, cat_id, dat_value, dat_created_at)
 VALUES( (SELECT itm_id FROM "item" WHERE itm_name = 'Item Three'), (SELECT cat_id FROM "category" WHERE cat_name = 'Category Six'), 19.98, now());
@@ -87,7 +87,7 @@ INSERT INTO "data" (itm_id, cat_id, dat_value, dat_created_at)
 VALUES( (SELECT itm_id FROM "item" WHERE itm_name = 'Item Four'), (SELECT cat_id FROM "category" WHERE cat_name = 'Category Three'), 111.43, now());
 
 INSERT INTO "data" (itm_id, cat_id, dat_value, dat_created_at)
-VALUES( (SELECT itm_id FROM "item" WHERE itm_name = 'Item Four'), (SELECT cat_id FROM "category" WHERE cat_name = 'Category Four'), 7.43, now());
+VALUES( (SELECT itm_id FROM "item" WHERE itm_name = 'Item Four'), null, 7.43, now());
 
 INSERT INTO "data" (itm_id, cat_id, dat_value, dat_created_at)
 VALUES( (SELECT itm_id FROM "item" WHERE itm_name = 'Item Five'), (SELECT cat_id FROM "category" WHERE cat_name = 'Category Five'), 77.03, now());
@@ -99,7 +99,7 @@ INSERT INTO "data" (itm_id, cat_id, dat_value, dat_created_at)
 VALUES( (SELECT itm_id FROM "item" WHERE itm_name = 'Item Six'), (SELECT cat_id FROM "category" WHERE cat_name = 'Category One'), 45.32, now());
 
 INSERT INTO "data" (itm_id, cat_id, dat_value, dat_created_at)
-VALUES( (SELECT itm_id FROM "item" WHERE itm_name = 'Item Six'), (SELECT cat_id FROM "category" WHERE cat_name = 'Category Two'), 78.98, now());
+VALUES( (SELECT itm_id FROM "item" WHERE itm_name = 'Item Six'), null, 78.98, now());
 
 INSERT INTO "data" (itm_id, cat_id, dat_value, dat_created_at)
 VALUES( (SELECT itm_id FROM "item" WHERE itm_name = 'Item Seven'), (SELECT cat_id FROM "category" WHERE cat_name = 'Category Three'), 32.45, now());

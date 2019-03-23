@@ -158,7 +158,7 @@ public interface CategoryRepository extends CrudRepository<Category, Long> {
 # Object Graph
 
 Note that the result above is limited to the `groups` resource only.<br/>
-However, the `items` resource includes `data` and `category`.
+However, the `items` resource includes `data` resource as well.
 
     http://localhost:8061/purple/items/3
 
@@ -169,31 +169,29 @@ However, the `items` resource includes `data` and `category`.
     "description": "Item three description",
     "correlationId": "e4b4a967-3758-4479-9a26-7ed5608f978a",
     "status": 1,
-    "createdAt": "2019-03-20T19:45:37.444026",
+    "createdAt": "2019-03-23T12:36:19.31113",
     "data": [
         {
-            "value": 19.98,
-            "createdAt": "2019-03-20T19:45:38.199292",
-            "category": {
-                "name": "Category Six",
-                "description": "Category six description"
-            },
+            "value": 9.86,
+            "createdAt": "2019-03-23T12:36:19.927159",
             "_links": {
                 "item": {
                     "href": "http://localhost:8061/purple/items/3"
+                },
+                "category": {
+                    "href": "http://localhost:8061/purple/categories/1"
                 }
             }
         },
         {
-            "value": 9.86,
-            "createdAt": "2019-03-20T19:45:38.236705",
-            "category": {
-                "name": "Category One",
-                "description": "Category one description"
-            },
+            "value": 19.98,
+            "createdAt": "2019-03-23T12:36:19.886639",
             "_links": {
                 "item": {
                     "href": "http://localhost:8061/purple/items/3"
+                },
+                "category": {
+                    "href": "http://localhost:8061/purple/categories/6"
                 }
             }
         }
