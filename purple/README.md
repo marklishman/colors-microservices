@@ -306,7 +306,7 @@ Note the resource URL in the JSON to specify the `group` and `category` parent e
 
 # Update (PUT)
 
-PUT replaces the entire resource so all values mist be specified.
+PUT replaces the entire resource so all values must be specified.
 
     URL: http://localhost:8061/purple/groups/4
     Type: PUT
@@ -341,7 +341,8 @@ or
         ]
     }
     
-Note I couldn't alter the _number_ of items in the `data` array with this command. 
+Note I couldn't alter the _number_ of items in the `data` array with this command
+(ie adding or removing items). 
 I suspect this is a JPA issue rather than a Spring Data REST issue. 
 
 
