@@ -10,7 +10,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name="category")
-public class Category {
+public class CategoryEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,7 +23,7 @@ public class Category {
     @Column(name = "cat_desc")
     private String description;
 
-    public Category() {
+    public CategoryEntity() {
     }
 
     public Long getId() {
@@ -54,7 +54,7 @@ public class Category {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Category that = (Category) o;
+        CategoryEntity that = (CategoryEntity) o;
         return Objects.equals(id, that.id);
     }
 

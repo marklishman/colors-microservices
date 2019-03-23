@@ -21,7 +21,7 @@ import java.util.UUID;
 
 @Entity
 @Table(name="item")
-public class Item {
+public class ItemEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -49,13 +49,13 @@ public class Item {
     @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "grp_id")
-    private Group group;
+    private GroupEntity group;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "itm_id")
-    private List<Data> data;
+    private List<DataEntity> data;
 
-    public Item() {
+    public ItemEntity() {
     }
 
     @PrePersist
@@ -117,23 +117,23 @@ public class Item {
 
     public BigDecimal getTotal() {
         return this.data.stream()
-                .map(Data::getValue)
+                .map(DataEntity::getValue)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 
-    public Group getGroup() {
+    public GroupEntity getGroup() {
         return group;
     }
 
-    public void setGroup(Group group) {
+    public void setGroup(GroupEntity group) {
         this.group = group;
     }
 
-    public List<Data> getData() {
+    public List<DataEntity> getData() {
         return data;
     }
 
-    public void setData(List<Data> data) {
+    public void setData(List<DataEntity> data) {
         data.forEach(d -> d.setItem(this));
         this.data = data;
     }
@@ -142,7 +142,7 @@ public class Item {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Item item = (Item) o;
+        ItemEntity item = (ItemEntity) o;
         return Objects.equals(id, item.id);
     }
 

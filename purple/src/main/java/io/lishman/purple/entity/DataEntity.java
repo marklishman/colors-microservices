@@ -17,7 +17,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name="data")
-public class Data {
+public class DataEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,13 +33,13 @@ public class Data {
     @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "itm_id")
-    private Item item;
+    private ItemEntity item;
 
     @ManyToOne
     @JoinColumn(name = "cat_id")
-    private Category category;
+    private CategoryEntity category;
 
-    public Data() {
+    public DataEntity() {
     }
 
     @PrePersist
@@ -71,19 +71,19 @@ public class Data {
         this.createdAt = createdAt;
     }
 
-    public Item getItem() {
+    public ItemEntity getItem() {
         return item;
     }
 
-    public void setItem(Item item) {
+    public void setItem(ItemEntity item) {
         this.item = item;
     }
 
-    public Category getCategory() {
+    public CategoryEntity getCategory() {
         return category;
     }
 
-    public void setCategory(Category category) {
+    public void setCategory(CategoryEntity category) {
         this.category = category;
     }
 
@@ -91,7 +91,7 @@ public class Data {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Data data = (Data) o;
+        DataEntity data = (DataEntity) o;
         return Objects.equals(id, data.id);
     }
 

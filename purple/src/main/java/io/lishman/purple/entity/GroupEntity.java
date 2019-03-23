@@ -12,7 +12,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name="group")
-public class Group {
+public class GroupEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,9 +26,9 @@ public class Group {
     private String description;
 
     @OneToMany(mappedBy = "group")
-    private List<Item> items;
+    private List<ItemEntity> items;
 
-    public Group() {
+    public GroupEntity() {
     }
 
     public Long getId() {
@@ -55,11 +55,11 @@ public class Group {
         this.description = description;
     }
 
-    public List<Item> getItems() {
+    public List<ItemEntity> getItems() {
         return items;
     }
 
-    public void setItems(List<Item> items) {
+    public void setItems(List<ItemEntity> items) {
         this.items = items;
     }
 
@@ -67,7 +67,7 @@ public class Group {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Group that = (Group) o;
+        GroupEntity that = (GroupEntity) o;
         return Objects.equals(id, that.id);
     }
 

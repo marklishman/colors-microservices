@@ -5,7 +5,7 @@ import org.springframework.data.rest.core.config.Projection;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-@Projection(name = "full", types = { Data.class })
+@Projection(name = "full", types = { DataEntity.class })
 public interface DataFullProjection {
     String getId();
     BigDecimal getValue();

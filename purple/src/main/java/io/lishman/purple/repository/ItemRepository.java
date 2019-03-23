@@ -1,7 +1,6 @@
 package io.lishman.purple.repository;
 
-import io.lishman.purple.entity.Item;
-import io.lishman.purple.entity.ItemNameProjection;
+import io.lishman.purple.entity.ItemEntity;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
@@ -11,13 +10,13 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-@RepositoryRestResource(excerptProjection = ItemNameProjection.class)
-public interface ItemRepository extends CrudRepository<Item, Long> {
+@RepositoryRestResource(path = "items", collectionResourceRel = "items")
+public interface ItemRepository extends CrudRepository<ItemEntity, Long> {
 
-    Optional<Item> findByUuid(final UUID id);
+    Optional<ItemEntity> findByUuid(final UUID id);
 
-    List<Item> findByCorrelationId(final UUID correlationId);
+    List<ItemEntity> findByCorrelationId(final UUID correlationId);
 
     @RestResource(path = "findByGroupName")
-    List<Item> findByGroupNameContainingIgnoreCase(final String groupNameContains, final Pageable pageable);
+    List<ItemEntity> findByGroupNameContainingIgnoreCase(final String groupNameContains, final Pageable pageable);
 }

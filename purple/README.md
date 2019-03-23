@@ -419,6 +419,66 @@ excluded because it is a managed resource.
 Also, `id` fields are omitted by default. However, we have chosen to include them here by
 explicitly specifying them in the projection. 
 
+# Excerpts
+
+An excerpt is a projection that is automatically applied to a resource collection.
+
+~~~java
+@RepositoryRestResource(path = "categories", collectionResourceRel = "categories", excerptProjection = CategoryNameProjection.class)
+public interface CategoryRepository extends CrudRepository<CategoryEntity, Long> {
+
+    Optional<CategoryEntity> findByName(final String name);
+
+}
+~~~
+
+    http://localhost:8061/purple/categories
+    
+Projection is automatically applied
+
+~~~json
+{
+    "_embedded": {
+        "categories": [
+            {
+                "details": "Category One - Category one description",
+                "_links": {
+                    "self": {
+                        "href": "http://localhost:8061/purple/categories/1"
+                    },
+                    "categoryEntity": {
+                        "href": "http://localhost:8061/purple/categories/1{?projection}",
+                        "templated": true
+                    }
+                }
+            },
+            {
+                "details": "Category Two - Category two description",
+                "_links": {
+                    "self": {
+                        "href": "http://localhost:8061/purple/categories/2"
+                    },
+                    "categoryEntity": {
+                        "href": "http://localhost:8061/purple/categories/2{?projection}",
+                        "templated": true
+                    }
+                }
+            }
+        ]
+    },
+    "_links": {
+        "self": {
+            "href": "http://localhost:8061/purple/categories"
+        },
+        "profile": {
+            "href": "http://localhost:8061/purple/profile/categories"
+        },
+        "search": {
+            "href": "http://localhost:8061/purple/categories/search"
+        }
+    }
+}
+~~~
 
 # Search
 

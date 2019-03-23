@@ -1,14 +1,14 @@
 package io.lishman.purple.repository;
 
-import io.lishman.purple.entity.Group;
+import io.lishman.purple.entity.GroupEntity;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 import java.util.Optional;
 
-@RepositoryRestResource
-public interface GroupRepository extends CrudRepository<Group, Long> {
+@RepositoryRestResource(path = "groups", collectionResourceRel = "groups")
+public interface GroupRepository extends CrudRepository<GroupEntity, Long> {
 
-    Optional<Group> findByName(final String name);
+    Optional<GroupEntity> findByName(final String name);
 
 }

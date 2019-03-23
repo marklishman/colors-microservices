@@ -10,7 +10,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name="country")
-public class Country {
+public class CountryEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,7 +23,7 @@ public class Country {
     @Column(name = "cty_name")
     private String name;
 
-    public Country() {
+    public CountryEntity() {
     }
 
     public Long getId() {
@@ -42,7 +42,7 @@ public class Country {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Country that = (Country) o;
+        CountryEntity that = (CountryEntity) o;
         return Objects.equals(id, that.id);
     }
 

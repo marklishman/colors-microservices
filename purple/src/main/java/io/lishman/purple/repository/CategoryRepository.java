@@ -1,14 +1,15 @@
 package io.lishman.purple.repository;
 
-import io.lishman.purple.entity.Category;
+import io.lishman.purple.entity.CategoryEntity;
+import io.lishman.purple.entity.CategoryNameProjection;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 import java.util.Optional;
 
-@RepositoryRestResource
-public interface CategoryRepository extends CrudRepository<Category, Long> {
+@RepositoryRestResource(path = "categories", collectionResourceRel = "categories", excerptProjection = CategoryNameProjection.class)
+public interface CategoryRepository extends CrudRepository<CategoryEntity, Long> {
 
-    Optional<Category> findByName(final String name);
+    Optional<CategoryEntity> findByName(final String name);
 
 }
