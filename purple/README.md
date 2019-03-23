@@ -59,14 +59,18 @@ public interface CategoryRepository extends CrudRepository<Category, Long> {
 ~~~json
 {
     "_links": {
-        "items": {
-            "href": "http://localhost:8061/purple/items"
+        "categories": {
+            "href": "http://localhost:8061/purple/categories"
         },
         "groups": {
             "href": "http://localhost:8061/purple/groups"
         },
+        "items": {
+            "href": "http://localhost:8061/purple/items"
+        },
         "countries": {
-            "href": "http://localhost:8061/purple/countries"
+            "href": "http://localhost:8061/purple/countries{?page,size,sort}",
+            "templated": true
         },
         "profile": {
             "href": "http://localhost:8061/purple/profile"
