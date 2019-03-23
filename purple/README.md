@@ -9,7 +9,7 @@
 
 # Schema
 
-<img src="database-schema.png"/>
+<img src="database-schema.png" width="250" height="250/>
 
 ---
 
