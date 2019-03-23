@@ -204,7 +204,7 @@ From the Spring Data REST documentation.
 > Spring Data REST tries very hard to render your object graph correctly. It tries to serialize 
 unmanaged beans as normal POJOs, and it tries to create links to managed beans where necessary.
 
-# Association Resource
+# Sub-Resources
 
 > Spring Data REST exposes sub-resources of every item resource 
 for each of the associations the item resource has.
@@ -261,9 +261,7 @@ for each of the associations the item resource has.
 }
 ~~~
 
-# Updates
-
-## Create (POST)
+# Create (POST)
 
     URL: http://localhost:8061/purple/groups
     Method: POST
@@ -289,7 +287,7 @@ Use the resource URL to specify a parent entity.
         "status": 3
     }
 
-## Update (PUT)
+# Update (PUT)
 
 PUT replaces the entire resource so all values mist be specified.
 
@@ -309,15 +307,26 @@ or
     Content-Type:application/json
     body: 
     {
-        "group": "http://localhost:8061/purple/groups/8",
-        "uuid": "9f84fa9a-4b9c-46f8-9098-4603efe7ccbc",
-        "name": "Item Eight updated",
-        "description": "Item eight description updated",
+        "group": "http://localhost:8061/purple/groups/4",
+        "uuid": "8574a479-b583-4db4-9c03-bfd0ddc7a069",
+        "name": "New Item one",
+        "description": "New Item one description",
         "correlationId": "128a7512-0b92-4f49-8f61-15dabbd757b8",
-        "status": 5
+        "status": 3,
+        "data": [
+            {
+                "value": 11.49
+            },
+            {
+                "value": 45.76
+            }
+        ]
     }
+    
+Note the creation of the `data` sub-resource.
 
-## Update (PATCH)
+
+# Update (PATCH)
 
 PATCH is similar to PUT but partially updates the resources state.
 
@@ -341,4 +350,10 @@ or
         "status": 6
     }
 
-Note that the owning group was changed here.
+Note the change to the owning group.
+
+# Delete (DELETE)
+
+
+    URL: http://localhost:8061/purple/groups/4
+    Type: DELETE

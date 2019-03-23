@@ -7,8 +7,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
 @Entity
 @Table(name="group")
@@ -26,7 +26,7 @@ public class Group {
     private String description;
 
     @OneToMany(mappedBy = "group")
-    private Set<Item> items;
+    private List<Item> items;
 
     public Group() {
     }
@@ -55,11 +55,11 @@ public class Group {
         this.description = description;
     }
 
-    public Set<Item> getItems() {
+    public List<Item> getItems() {
         return items;
     }
 
-    public void setItems(Set<Item> items) {
+    public void setItems(List<Item> items) {
         this.items = items;
     }
 

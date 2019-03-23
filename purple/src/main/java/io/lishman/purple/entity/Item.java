@@ -14,8 +14,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
 @Entity
 @Table(name="item")
@@ -51,7 +51,7 @@ public class Item {
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "itm_id")
-    private Set<Data> data;
+    private List<Data> data;
 
     public Item() {
     }
@@ -65,24 +65,48 @@ public class Item {
         return id;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getUuid() {
         return uuid;
+    }
+
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
     }
 
     public String getName() {
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public String getDescription() {
         return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getCorrelationId() {
         return correlationId;
     }
 
+    public void setCorrelationId(String correlationId) {
+        this.correlationId = correlationId;
+    }
+
     public Integer getStatus() {
         return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 
     public LocalDateTime getCreatedAt() {
@@ -93,8 +117,17 @@ public class Item {
         return group;
     }
 
-    public Set<Data> getData() {
+    public void setGroup(Group group) {
+        this.group = group;
+    }
+
+    public List<Data> getData() {
         return data;
+    }
+
+    public void setData(List<Data> data) {
+        data.forEach(d -> d.setItem(this));
+        this.data = data;
     }
 
     @Override
