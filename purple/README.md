@@ -25,7 +25,7 @@ public interface GroupRepository extends CrudRepository<Group, Long> {
 ~~~
 
 ~~~java
-@RepositoryRestResource
+@RepositoryRestResource(excerptProjection = ItemNameProjection.class)
 public interface ItemRepository extends CrudRepository<Item, Long> {
 
     Optional<Item> findByUuid(final UUID id);
@@ -33,7 +33,7 @@ public interface ItemRepository extends CrudRepository<Item, Long> {
     List<Item> findByCorrelationId(final UUID correlationId);
 
     @RestResource(path = "findByGroupName")
-    List<Item> findByGroupNameIgnoreCase(final String groupName, final Pageable pageable);
+    List<Item> findByGroupNameContainingIgnoreCase(final String groupNameContains, final Pageable pageable);
 }
 ~~~
 
@@ -269,117 +269,6 @@ for each of the associations the item resource has.
     }
 }
 ~~~
-
-# Create (POST)
-
-    URL: http://localhost:8061/purple/groups
-    Method: POST
-    Content-Type: application/json
-    Body:
-    {
-        "name": "Group Six",
-        "description": "Group six description"
-    }
-
-or
-
-    URL: http://localhost:8061/purple/items
-    Type: POST
-    Content-Type:application/json
-    body: 
-    {
-        "group": "http://localhost:8061/purple/groups/4",
-        "uuid": "9f84fa9a-4b9c-46f8-9098-4603efe7ccbc",
-        "name": "Item Nine",
-        "description": "Item nine description",
-        "correlationId": "128a7512-0b92-4f49-8f61-15dabbd757b8",
-        "status": 3,
-        "data": [
-            {
-                "value": 11.49
-            },
-            {
-                "category": "http://localhost:8061/purple/categories/1",
-                "value": 45.76
-            }
-        ]
-    }
-    
-Note the resource URL in the JSON to specify the `group` and `category` parent entities.
-
-# Update (PUT)
-
-PUT replaces the entire resource so all values must be specified.
-
-    URL: http://localhost:8061/purple/groups/4
-    Type: PUT
-    Content-Type: application/json
-    body: 
-    {
-        "name": "Group Four updated",
-        "description": "New group four description"
-    }
-    
-or
-    
-    URL: http://localhost:8061/purple/items/4
-    Type: PUT
-    Content-Type:application/json
-    body: 
-    {
-        "group": "http://localhost:8061/purple/groups/4",
-        "uuid": "8574a479-b583-4db4-9c03-bfd0ddc7a069",
-        "name": "Item four name",
-        "description": "New Item four description",
-        "correlationId": "128a7512-0b92-4f49-8f61-15dabbd757b8",
-        "status": 3,
-        "data": [
-            {
-                "category": "http://localhost:8061/purple/categories/3",
-                "value": 11.49
-            },
-            {
-                "value": 45.76
-            }
-        ]
-    }
-    
-Note I couldn't alter the _number_ of items in the `data` array with this command
-(ie adding or removing items). 
-I suspect this is a JPA issue rather than a Spring Data REST issue. 
-
-
-# Update (PATCH)
-
-PATCH is similar to PUT but partially updates the resources state.
-
-    URL: http://localhost:8061/purple/groups/4
-    Type: PATCH
-    Content-Type: application/json
-    body: 
-    {
-        "description": "Group four updated again"
-    }
-    
-or
-
-    URL: http://localhost:8061/purple/items/8
-    Type: PATCH
-    Content-Type:application/json
-    body: 
-    {
-        "group": "http://localhost:8061/purple/groups/3",
-        "description": "Item eight description updated",
-        "status": 6
-    }
-
-Note the change to the owning group.
-
-# Delete (DELETE)
-
-
-    URL: http://localhost:8061/purple/groups/4
-    Type: DELETE
     
 # Projections
 
@@ -420,7 +309,7 @@ returns a subset of the `item` resource
 }
 ~~~
 
-### Combinations
+### Using SpEL
 
 ~~~java
 @Projection(name = "name", types = { Category.class })
@@ -524,8 +413,8 @@ public interface DataFullProjection {
 }
 ~~~
 
-Note that the category projection is used to include categories which would normally be excluded
-because they are a managed resource.
+Note that the `CategoryNameProjection` is used to include category details. Category is usually
+excluded because it is a managed resource.
 
 Also, `id` fields are omitted by default. However, we have chosen to include them here by
 explicitly specifying them in the projection. 
@@ -536,7 +425,7 @@ explicitly specifying them in the projection.
 The `ItemRepository` looks like this.
 
 ~~~java
-@RepositoryRestResource
+@RepositoryRestResource(excerptProjection = ItemNameProjection.class)
 public interface ItemRepository extends CrudRepository<Item, Long> {
 
     Optional<Item> findByUuid(final UUID id);
@@ -544,7 +433,7 @@ public interface ItemRepository extends CrudRepository<Item, Long> {
     List<Item> findByCorrelationId(final UUID correlationId);
 
     @RestResource(path = "findByGroupName")
-    List<Item> findByGroupNameIgnoreCase(final String groupName, final Pageable pageable);
+    List<Item> findByGroupNameContainingIgnoreCase(final String groupNameContains, final Pageable pageable);
 }
 ~~~
 
@@ -557,16 +446,16 @@ we get a list of the query methods on the resource repository.
 ~~~json
 {
     "_links": {
-        "findByGroupNameIgnoreCase": {
-            "href": "http://localhost:8061/purple/items/search/findByGroupName{?groupName,page,size,sort,projection}",
+        "findByUuid": {
+            "href": "http://localhost:8061/purple/items/search/findByUuid{?id,projection}",
             "templated": true
         },
         "findByCorrelationId": {
             "href": "http://localhost:8061/purple/items/search/findByCorrelationId{?correlationId,projection}",
             "templated": true
         },
-        "findByUuid": {
-            "href": "http://localhost:8061/purple/items/search/findByUuid{?id,projection}",
+        "findByGroupNameContainingIgnoreCase": {
+            "href": "http://localhost:8061/purple/items/search/findByGroupName{?groupNameContains,page,size,sort,projection}",
             "templated": true
         },
         "self": {
@@ -576,57 +465,25 @@ we get a list of the query methods on the resource repository.
 }
 ~~~
 
-    http://localhost:8061/purple/items/search/findByGroupName?groupName=Group One
+    http://localhost:8061/purple/items/search/findByGroupName?groupNameContains=three
     
 ~~~json
 {
     "_embedded": {
-        "countries": [
+        "items": [
             {
-                "code": "AE",
-                "name": "United Arab Emirates",
+                "name": "Item Seven",
+                "description": "Item seven description",
                 "_links": {
                     "self": {
-                        "href": "http://localhost:8061/purple/countries/231"
+                        "href": "http://localhost:8061/purple/items/7"
                     },
-                    "country": {
-                        "href": "http://localhost:8061/purple/countries/231"
-                    }
-                }
-            },
-            {
-                "code": "GB",
-                "name": "United Kingdom",
-                "_links": {
-                    "self": {
-                        "href": "http://localhost:8061/purple/countries/232"
+                    "item": {
+                        "href": "http://localhost:8061/purple/items/7{?projection}",
+                        "templated": true
                     },
-                    "country": {
-                        "href": "http://localhost:8061/purple/countries/232"
-                    }
-                }
-            },
-            {
-                "code": "US",
-                "name": "United States",
-                "_links": {
-                    "self": {
-                        "href": "http://localhost:8061/purple/countries/233"
-                    },
-                    "country": {
-                        "href": "http://localhost:8061/purple/countries/233"
-                    }
-                }
-            },
-            {
-                "code": "UM",
-                "name": "United States Minor Outlying Islands",
-                "_links": {
-                    "self": {
-                        "href": "http://localhost:8061/purple/countries/234"
-                    },
-                    "country": {
-                        "href": "http://localhost:8061/purple/countries/234"
+                    "group": {
+                        "href": "http://localhost:8061/purple/items/7/group"
                     }
                 }
             }
@@ -634,7 +491,7 @@ we get a list of the query methods on the resource repository.
     },
     "_links": {
         "self": {
-            "href": "http://localhost:8061/purple/countries/search/findByName?nameContains=united"
+            "href": "http://localhost:8061/purple/items/search/findByGroupName?groupName=three"
         }
     }
 }
@@ -749,7 +606,7 @@ public interface ItemRepository extends CrudRepository<Item, Long> {
 
 And putting it all together
 
-    http://localhost:8061/purple/items/search/findByGroupName?groupName=gro&page=1&size=3&sort=name,desc&projection=totals
+    http://localhost:8061/purple/items/search/findByGroupName?groupNameContains=gro&page=1&size=3&sort=name,desc&projection=totals
 
 ~~~json
 {
@@ -815,3 +672,114 @@ And putting it all together
     }
 }
 ~~~
+
+# Create (POST)
+
+    URL: http://localhost:8061/purple/groups
+    Method: POST
+    Content-Type: application/json
+    Body:
+    {
+        "name": "Group Six",
+        "description": "Group six description"
+    }
+
+or
+
+    URL: http://localhost:8061/purple/items
+    Type: POST
+    Content-Type:application/json
+    body: 
+    {
+        "group": "http://localhost:8061/purple/groups/4",
+        "uuid": "9f84fa9a-4b9c-46f8-9098-4603efe7ccbc",
+        "name": "Item Nine",
+        "description": "Item nine description",
+        "correlationId": "128a7512-0b92-4f49-8f61-15dabbd757b8",
+        "status": 3,
+        "data": [
+            {
+                "value": 11.49
+            },
+            {
+                "category": "http://localhost:8061/purple/categories/1",
+                "value": 45.76
+            }
+        ]
+    }
+    
+Note the resource URL in the JSON to specify the `group` and `category` parent entities.
+
+# Update (PUT)
+
+PUT replaces the entire resource so all values must be specified.
+
+    URL: http://localhost:8061/purple/groups/4
+    Type: PUT
+    Content-Type: application/json
+    body: 
+    {
+        "name": "Group Four updated",
+        "description": "New group four description"
+    }
+    
+or
+    
+    URL: http://localhost:8061/purple/items/4
+    Type: PUT
+    Content-Type:application/json
+    body: 
+    {
+        "group": "http://localhost:8061/purple/groups/4",
+        "uuid": "8574a479-b583-4db4-9c03-bfd0ddc7a069",
+        "name": "Item four name",
+        "description": "New Item four description",
+        "correlationId": "128a7512-0b92-4f49-8f61-15dabbd757b8",
+        "status": 3,
+        "data": [
+            {
+                "category": "http://localhost:8061/purple/categories/3",
+                "value": 11.49
+            },
+            {
+                "value": 45.76
+            }
+        ]
+    }
+    
+Note I couldn't alter the _number_ of items in the `data` array with this command
+(ie adding or removing items). 
+I suspect this is a JPA issue rather than a Spring Data REST issue. 
+
+
+# Update (PATCH)
+
+PATCH is similar to PUT but partially updates the resources state.
+
+    URL: http://localhost:8061/purple/groups/4
+    Type: PATCH
+    Content-Type: application/json
+    body: 
+    {
+        "description": "Group four updated again"
+    }
+    
+or
+
+    URL: http://localhost:8061/purple/items/8
+    Type: PATCH
+    Content-Type:application/json
+    body: 
+    {
+        "group": "http://localhost:8061/purple/groups/3",
+        "description": "Item eight description updated",
+        "status": 6
+    }
+
+Note the change to the owning group.
+
+# Delete (DELETE)
+
+
+    URL: http://localhost:8061/purple/groups/4
+    Type: DELETE

@@ -19,5 +19,5 @@ public interface ItemRepository extends CrudRepository<Item, Long> {
     List<Item> findByCorrelationId(final UUID correlationId);
 
     @RestResource(path = "findByGroupName")
-    List<Item> findByGroupNameContainingIgnoreCase(final String groupName, final Pageable pageable);
+    List<Item> findByGroupNameContainingIgnoreCase(final String groupNameContains, final Pageable pageable);
 }
