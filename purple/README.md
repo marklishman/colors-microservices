@@ -278,7 +278,7 @@ for each of the associations the item resource has.
         "description": "Group six description"
     }
 
-Use the resource URL in the JSON to specify the `group` and `category` parent entities.
+or
 
     URL: http://localhost:8061/purple/items
     Type: POST
@@ -301,6 +301,8 @@ Use the resource URL in the JSON to specify the `group` and `category` parent en
             }
         ]
     }
+    
+Note the resource URL in the JSON to specify the `group` and `category` parent entities.
 
 # Update (PUT)
 
