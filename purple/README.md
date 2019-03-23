@@ -9,7 +9,7 @@
 
 # Schema
 
-![Database schema](database-schema.png)
+<img src="database-schema.png"/>
 
 ---
 
