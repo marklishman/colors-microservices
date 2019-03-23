@@ -338,7 +338,8 @@ or
         ]
     }
     
-Note the creation of the `data` sub-resource.
+Note I couldn't alter the _number_ of items in the `data` array with this command. 
+I suspect this is a JPA issue rather than a Spring Data REST issue. 
 
 
 # Update (PATCH)
@@ -350,7 +351,7 @@ PATCH is similar to PUT but partially updates the resources state.
     Content-Type:application/json
     body: 
     {
-        "description": "Group four updated"
+        "description": "Group four updated again"
     }
     
 or
