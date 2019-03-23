@@ -274,7 +274,7 @@ for each of the associations the item resource has.
         "description": "Group six description"
     }
 
-To specify a parent entity use the resource URL
+Use the resource URL to specify a parent entity.
 
     URL: http://localhost:8061/purple/items
     Type: POST
@@ -291,6 +291,19 @@ To specify a parent entity use the resource URL
 
 ## Update (PUT)
 
+PUT replaces the entire resource.
+
+    URL: http://localhost:8061/purple/groups/4
+    Type: PUT
+    Content-Type:application/json
+    body: 
+    {
+        "name": "Group Five updated",
+        "description": "New group five description"
+    }
+    
+or
+    
     URL: http://localhost:8061/purple/items/18
     Type: PUT
     Content-Type:application/json

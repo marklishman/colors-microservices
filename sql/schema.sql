@@ -48,7 +48,7 @@ CREATE TABLE "data"
 (
   dat_id             SERIAL PRIMARY KEY,
   itm_id             INTEGER       NOT NULL REFERENCES "item",
-  cat_id             INTEGER       NOT NULL REFERENCES "category",
+  cat_id             INTEGER       REFERENCES "category",
   dat_value          NUMERIC       NOT NULL,
   dat_created_at     TIMESTAMP     NOT NULL
 );

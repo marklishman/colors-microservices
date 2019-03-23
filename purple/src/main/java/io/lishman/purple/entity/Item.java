@@ -2,6 +2,7 @@ package io.lishman.purple.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -48,7 +49,7 @@ public class Item {
     @JoinColumn(name = "grp_id")
     private Group group;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "itm_id")
     private Set<Data> data;
 
