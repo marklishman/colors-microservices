@@ -271,7 +271,7 @@ for each of the associations the item resource has.
 
     URL: http://localhost:8061/purple/groups
     Method: POST
-    Content-Type:application/json
+    Content-Type: application/json
     Body:
     {
         "name": "Group Six",
@@ -308,7 +308,7 @@ PUT replaces the entire resource so all values mist be specified.
 
     URL: http://localhost:8061/purple/groups/4
     Type: PUT
-    Content-Type:application/json
+    Content-Type: application/json
     body: 
     {
         "name": "Group Four updated",
@@ -349,7 +349,7 @@ PATCH is similar to PUT but partially updates the resources state.
 
     URL: http://localhost:8061/purple/groups/4
     Type: PATCH
-    Content-Type:application/json
+    Content-Type: application/json
     body: 
     {
         "description": "Group four updated again"
