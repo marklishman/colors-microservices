@@ -16,42 +16,42 @@
 # Repositories
 
 ~~~java
-@RepositoryRestResource
-public interface GroupRepository extends CrudRepository<Group, Long> {
+@RepositoryRestResource(path = "groups", collectionResourceRel = "groups")
+public interface GroupRepository extends CrudRepository<GroupEntity, Long> {
 
-    Optional<Group> findByName(final String name);
+    Optional<GroupEntity> findByName(final String name);
 
 }
 ~~~
 
 ~~~java
-@RepositoryRestResource(excerptProjection = ItemNameProjection.class)
-public interface ItemRepository extends CrudRepository<Item, Long> {
+@RepositoryRestResource(path = "items", collectionResourceRel = "items")
+public interface ItemRepository extends CrudRepository<ItemEntity, Long> {
 
-    Optional<Item> findByUuid(final UUID id);
+    Optional<ItemEntity> findByUuid(final UUID id);
 
-    List<Item> findByCorrelationId(final UUID correlationId);
+    List<ItemEntity> findByCorrelationId(final UUID correlationId);
 
     @RestResource(path = "findByGroupName")
-    List<Item> findByGroupNameContainingIgnoreCase(final String groupNameContains, final Pageable pageable);
+    List<ItemEntity> findByGroupNameContainingIgnoreCase(final String groupNameContains, final Pageable pageable);
 }
 ~~~
 
 ~~~java
-@RepositoryRestResource
-public interface CategoryRepository extends CrudRepository<Category, Long> {
+@RepositoryRestResource(path = "categories", collectionResourceRel = "categories", excerptProjection = CategoryNameProjection.class)
+public interface CategoryRepository extends CrudRepository<CategoryEntity, Long> {
 
-    Optional<Category> findByName(final String name);
+    Optional<CategoryEntity> findByName(final String name);
 
 }
 ~~~
 
 ~~~java
-@RepositoryRestResource
-public interface CountryRepository extends PagingAndSortingRepository<Country, Long> {
+@RepositoryRestResource(path = "countries", collectionResourceRel = "countries")
+public interface CountryRepository extends PagingAndSortingRepository<CountryEntity, Long> {
 
     @RestResource(path = "findByName")
-    List<Country> findByNameContainingIgnoreCase(final String nameContains);
+    List<CountryEntity> findByNameContainingIgnoreCase(final String nameContains);
 }
 ~~~
 
