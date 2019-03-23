@@ -317,19 +317,20 @@ PUT replaces the entire resource so all values mist be specified.
     
 or
     
-    URL: http://localhost:8061/purple/items/8
+    URL: http://localhost:8061/purple/items/4
     Type: PUT
     Content-Type:application/json
     body: 
     {
         "group": "http://localhost:8061/purple/groups/4",
         "uuid": "8574a479-b583-4db4-9c03-bfd0ddc7a069",
-        "name": "New Item one",
-        "description": "New Item one description",
+        "name": "Item four name",
+        "description": "New Item four description",
         "correlationId": "128a7512-0b92-4f49-8f61-15dabbd757b8",
         "status": 3,
         "data": [
             {
+                "category": "http://localhost:8061/purple/categories/3",
                 "value": 11.49
             },
             {
