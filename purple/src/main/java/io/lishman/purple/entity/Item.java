@@ -16,6 +16,7 @@ import javax.persistence.Table;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
+import java.util.UUID;
 
 @Entity
 @Table(name="item")
@@ -27,7 +28,7 @@ public class Item {
     private Long id;
 
     @Column(name = "itm_uuid")
-    private String uuid;
+    private UUID uuid;
 
     @Column(name = "itm_name")
     private String name;
@@ -36,7 +37,7 @@ public class Item {
     private String description;
 
     @Column(name = "itm_correlation_id")
-    private String correlationId;
+    private UUID correlationId;
 
     @Column(name = "itm_status")
     private Integer status;
@@ -69,11 +70,11 @@ public class Item {
         this.id = id;
     }
 
-    public String getUuid() {
+    public UUID getUuid() {
         return uuid;
     }
 
-    public void setUuid(String uuid) {
+    public void setUuid(UUID uuid) {
         this.uuid = uuid;
     }
 
@@ -93,11 +94,11 @@ public class Item {
         this.description = description;
     }
 
-    public String getCorrelationId() {
+    public UUID getCorrelationId() {
         return correlationId;
     }
 
-    public void setCorrelationId(String correlationId) {
+    public void setCorrelationId(UUID correlationId) {
         this.correlationId = correlationId;
     }
 

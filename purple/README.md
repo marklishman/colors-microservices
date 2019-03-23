@@ -28,17 +28,12 @@ public interface GroupRepository extends CrudRepository<Group, Long> {
 @RepositoryRestResource
 public interface ItemRepository extends CrudRepository<Item, Long> {
 
-    Optional<Item> findByUuid(final String uuid);
+    Optional<Item> findByUuid(final UUID id);
 
-    List<Item> findByCorrelationId(final String correlationId, final Pageable pageable);
+    List<Item> findByCorrelationId(final UUID correlationId);
 
-    List<Item> findByGroupName(final String name, final Pageable pageable);
-}
-~~~
-
-~~~java
-@RepositoryRestResource
-public interface CountryRepository extends PagingAndSortingRepository<Country, Long> {
+    @RestResource(path = "findByGroupName")
+    List<Item> findByGroupNameIgnoreCase(final String groupName, final Pageable pageable);
 }
 ~~~
 
@@ -51,6 +46,14 @@ public interface CategoryRepository extends CrudRepository<Category, Long> {
 }
 ~~~
 
+~~~java
+@RepositoryRestResource
+public interface CountryRepository extends PagingAndSortingRepository<Country, Long> {
+
+    @RestResource(path = "findByName")
+    List<Country> findByNameContainingIgnoreCase(final String nameContains);
+}
+~~~
 
 # Resource Discoverability
 
@@ -377,3 +380,49 @@ Note the change to the owning group.
 
     URL: http://localhost:8061/purple/groups/4
     Type: DELETE
+
+# Search
+
+The `ItemRepository` looks like this.
+
+~~~java
+@RepositoryRestResource
+public interface ItemRepository extends CrudRepository<Item, Long> {
+
+    Optional<Item> findByUuid(final UUID id);
+
+    List<Item> findByCorrelationId(final UUID correlationId);
+
+    @RestResource(path = "findByGroupName")
+    List<Item> findByGroupNameIgnoreCase(final String groupName, final Pageable pageable);
+}
+~~~
+
+When we use the `/search` path
+
+    http://localhost:8061/purple/items/search
+    
+we get a list of the query methods.
+
+    {
+        "_links": {
+            "findByCorrelationId": {
+                "href": "http://localhost:8061/purple/items/search/findByCorrelationId{?correlationId,page,size,sort}",
+                "templated": true
+            },
+            "findByUuid": {
+                "href": "http://localhost:8061/purple/items/search/findByUuid{?uuid}",
+                "templated": true
+            },
+            "findByGroupName": {
+                "href": "http://localhost:8061/purple/items/search/findByGroupName{?name,page,size,sort}",
+                "templated": true
+            },
+            "self": {
+                "href": "http://localhost:8061/purple/items/search"
+            }
+        }
+    }
+
+# Paging and Sorting
+
