@@ -877,10 +877,45 @@ Note the change to the owning group.
 
 # Delete (DELETE)
 
-
     URL: http://localhost:8061/purple/groups/4
     Type: DELETE
 
+# Create Association
+
+We have a many to many relationship between country and person.
+
+~~~java
+@Entity
+@Table(name="person")
+public class PersonEntity {
+
+    @ManyToMany
+    @JoinTable(
+            name = "visitor",
+            joinColumns = @JoinColumn(name = "psn_id"),
+            inverseJoinColumns = @JoinColumn(name = "cty_id"))
+    private List<CountryEntity> countries;
+~~~
+
+~~~java
+@Entity
+@Table(name="country")
+public class CountryEntity {
+
+    @ManyToMany(mappedBy = "countries")
+    private List<PersonEntity> people;
+~~~
+
+We can link countries to people like this
+
+    URL: http://localhost:8061/purple/people/1/countries
+    Content-Type: text/uri-list
+    body:
+    http://localhost:8061/purple/countries/20
+    http://localhost:8061/purple/countries/24
+    http://localhost:8061/purple/countries/30
+
+Note this works with other association types too (eg one to one, one to many etc)
 
 ---
 
