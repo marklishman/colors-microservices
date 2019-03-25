@@ -1,10 +1,29 @@
+DROP TABLE IF EXISTS "visitors";
 DROP TABLE IF EXISTS "country";
+DROP TABLE IF EXISTS "person";
 
 CREATE TABLE country (
   cty_id   SERIAL PRIMARY KEY,
   cty_code VARCHAR(2) UNIQUE,
   cty_name VARCHAR(200) UNIQUE
 );
+
+
+CREATE TABLE person (
+  psn_id   SERIAL PRIMARY KEY,
+  psn_name VARCHAR(200) UNIQUE
+);
+
+CREATE TABLE visitor (
+  vst_id   SERIAL PRIMARY KEY,
+  psn_id   INTEGER NOT NULL,
+  cty_id   INTEGER NOT NULL
+);
+
+INSERT INTO person (psn_name) VALUES ('Bob Jones');
+INSERT INTO person (psn_name) VALUES ('Sarah Jones');
+INSERT INTO person (psn_name) VALUES ('Roger Smith');
+INSERT INTO person (psn_name) VALUES ('Sally Smith');
 
 INSERT INTO country (cty_name, cty_code) VALUES ('Afghanistan', 'AF');
 INSERT INTO country (cty_name, cty_code) VALUES ('Ã…land Islands', 'AX');

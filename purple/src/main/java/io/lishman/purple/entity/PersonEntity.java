@@ -5,30 +5,33 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import java.util.List;
 import java.util.Objects;
 
 @Entity
-@Table(name="country")
-public class CountryEntity {
+@Table(name="person")
+public class PersonEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "cty_id", columnDefinition = "serial")
+    @Column(name = "psn_id", columnDefinition = "serial")
     private Long id;
 
-    @Column(name = "cty_code")
-    private String code;
-
-    @Column(name = "cty_name")
+    @Column(name = "psn_name")
     private String name;
 
-    @ManyToMany(mappedBy = "countries")
-    private List<PersonEntity> people;
+    @ManyToMany
+    @JoinTable(
+            name = "visitor",
+            joinColumns = @JoinColumn(name = "psn_id"),
+            inverseJoinColumns = @JoinColumn(name = "cty_id"))
+    private List<CountryEntity> countries;
 
-    public CountryEntity() {
+    public PersonEntity() {
     }
 
     public Long getId() {
@@ -39,14 +42,6 @@ public class CountryEntity {
         this.id = id;
     }
 
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
     public String getName() {
         return name;
     }
@@ -55,19 +50,19 @@ public class CountryEntity {
         this.name = name;
     }
 
-    public List<PersonEntity> getPeople() {
-        return people;
+    public List<CountryEntity> getCountries() {
+        return countries;
     }
 
-    public void setPeople(List<PersonEntity> people) {
-        this.people = people;
+    public void setCountries(List<CountryEntity> countries) {
+        this.countries = countries;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        CountryEntity that = (CountryEntity) o;
+        PersonEntity that = (PersonEntity) o;
         return Objects.equals(id, that.id);
     }
 
@@ -78,9 +73,8 @@ public class CountryEntity {
 
     @Override
     public String toString() {
-        return "Country{" +
+        return "Person{" +
                 "id=" + id +
-                ", code='" + code + '\'' +
                 ", name='" + name + '\'' +
                 '}';
     }
