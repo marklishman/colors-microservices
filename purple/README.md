@@ -917,6 +917,38 @@ We can link countries to people like this
 
 Note this works with other association types too (eg one to one, one to many etc)
 
+# Events
+
+The following events are available
+
+* `BeforeCreateEvent`
+* `AfterCreateEvent`
+* `BeforeSaveEvent`
+* `AfterSaveEvent`
+* `BeforeLinkSaveEvent`
+* `AfterLinkSaveEvent`
+* `BeforeDeleteEvent`
+* `AfterDeleteEvent`
+
+Events are registered as follows.
+
+~~~java
+@Component
+@RepositoryEventHandler(PersonEntity.class)
+public class PersonEntityEventHandler {
+
+    @HandleBeforeCreate
+    public void handleBeforeCreate(PersonEntity p) {
+        System.out.println(p);
+    }
+
+    @HandleAfterCreate
+    public void handleAfterCreate(PersonEntity p) {
+        System.out.println(p);
+    }
+}
+~~~
+
 ---
 
 # HAL Browser
