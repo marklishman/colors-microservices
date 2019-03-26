@@ -1,7 +1,7 @@
 package io.lishman.purple.repository;
 
 import io.lishman.purple.entity.CategoryEntity;
-import io.lishman.purple.entity.CategoryNameProjection;
+import io.lishman.purple.entity.projection.CategoryNameProjection;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 

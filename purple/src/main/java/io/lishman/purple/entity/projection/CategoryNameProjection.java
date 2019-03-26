@@ -1,5 +1,6 @@
-package io.lishman.purple.entity;
+package io.lishman.purple.entity.projection;
 
+import io.lishman.purple.entity.CategoryEntity;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.rest.core.config.Projection;
 
