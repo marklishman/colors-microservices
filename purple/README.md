@@ -104,23 +104,28 @@ public interface PersonRepository extends JpaRepository<PersonEntity, Long> {
 ~~~json
 {
     "_links": {
-        "items": {
-            "href": "http://localhost:8061/purple/items{?projection}",
-            "templated": true
-        },
-        "categories": {
-            "href": "http://localhost:8061/purple/categories{?projection}",
+        "countries": {
+            "href": "http://localhost:8061/purple/api/countries{?page,size,sort}",
             "templated": true
         },
         "groups": {
-            "href": "http://localhost:8061/purple/groups"
+            "href": "http://localhost:8061/purple/api/groups{?page,size,sort}",
+            "templated": true
         },
-        "countries": {
-            "href": "http://localhost:8061/purple/countries{?page,size,sort}",
+        "people": {
+            "href": "http://localhost:8061/purple/api/people{?page,size,sort}",
+            "templated": true
+        },
+        "items": {
+            "href": "http://localhost:8061/purple/api/items{?page,size,sort,projection}",
+            "templated": true
+        },
+        "categories": {
+            "href": "http://localhost:8061/purple/api/categories{?projection}",
             "templated": true
         },
         "profile": {
-            "href": "http://localhost:8061/purple/profile"
+            "href": "http://localhost:8061/purple/api/profile"
         }
     }
 }
@@ -128,7 +133,7 @@ public interface PersonRepository extends JpaRepository<PersonEntity, Long> {
 
 # Collection Resources
 
-    http://localhost:8061/purple/groups
+    http://localhost:8061/purple/api/groups
 
 ~~~json
 {
@@ -139,13 +144,13 @@ public interface PersonRepository extends JpaRepository<PersonEntity, Long> {
                 "description": "Group one description",
                 "_links": {
                     "self": {
-                        "href": "http://localhost:8061/purple/groups/1"
+                        "href": "http://localhost:8061/purple/api/groups/1"
                     },
                     "groupEntity": {
-                        "href": "http://localhost:8061/purple/groups/1"
+                        "href": "http://localhost:8061/purple/api/groups/1"
                     },
                     "items": {
-                        "href": "http://localhost:8061/purple/groups/1/items{?projection}",
+                        "href": "http://localhost:8061/purple/api/groups/1/items{?projection}",
                         "templated": true
                     }
                 }
@@ -155,13 +160,13 @@ public interface PersonRepository extends JpaRepository<PersonEntity, Long> {
                 "description": "Group two description",
                 "_links": {
                     "self": {
-                        "href": "http://localhost:8061/purple/groups/2"
+                        "href": "http://localhost:8061/purple/api/groups/2"
                     },
                     "groupEntity": {
-                        "href": "http://localhost:8061/purple/groups/2"
+                        "href": "http://localhost:8061/purple/api/groups/2"
                     },
                     "items": {
-                        "href": "http://localhost:8061/purple/groups/2/items{?projection}",
+                        "href": "http://localhost:8061/purple/api/groups/2/items{?projection}",
                         "templated": true
                     }
                 }
@@ -170,21 +175,28 @@ public interface PersonRepository extends JpaRepository<PersonEntity, Long> {
     },
     "_links": {
         "self": {
-            "href": "http://localhost:8061/purple/groups"
+            "href": "http://localhost:8061/purple/api/groups{?page,size,sort}",
+            "templated": true
         },
         "profile": {
-            "href": "http://localhost:8061/purple/profile/groups"
+            "href": "http://localhost:8061/purple/api/profile/groups"
         },
         "search": {
-            "href": "http://localhost:8061/purple/groups/search"
+            "href": "http://localhost:8061/purple/api/groups/search"
         }
+    },
+    "page": {
+        "size": 20,
+        "totalElements": 4,
+        "totalPages": 1,
+        "number": 0
     }
 }
 ~~~
 
 # Item Resources
 
-    http://localhost:8061/purple/groups/3
+    http://localhost:8061/purple/api/groups/3
 
 ~~~json    
 {
@@ -192,13 +204,13 @@ public interface PersonRepository extends JpaRepository<PersonEntity, Long> {
     "description": "Group three description",
     "_links": {
         "self": {
-            "href": "http://localhost:8061/purple/groups/3"
+            "href": "http://localhost:8061/purple/api/groups/3"
         },
         "groupEntity": {
-            "href": "http://localhost:8061/purple/groups/3"
+            "href": "http://localhost:8061/purple/api/groups/3"
         },
         "items": {
-            "href": "http://localhost:8061/purple/groups/3/items{?projection}",
+            "href": "http://localhost:8061/purple/api/groups/3/items{?projection}",
             "templated": true
         }
     }
@@ -210,7 +222,7 @@ public interface PersonRepository extends JpaRepository<PersonEntity, Long> {
 Note that the result above is limited to the `groups` resource only.<br/>
 However, the `items` resource includes `data` resource as well.
 
-    http://localhost:8061/purple/items/7
+    http://localhost:8061/purple/api/items/7
 
 ~~~json
 {
@@ -219,29 +231,29 @@ However, the `items` resource includes `data` resource as well.
     "description": "Item seven description",
     "correlationId": "e4b4a967-3758-4479-9a26-7ed5608f978a",
     "status": 3,
-    "createdAt": "2019-03-23T13:44:02.729391",
+    "createdAt": "2019-03-28T19:59:46.470675",
     "data": [
         {
             "value": 32.45,
-            "createdAt": "2019-03-23T13:44:03.436905",
+            "createdAt": "2019-03-28T19:59:46.898805",
             "_embedded": {
                 "category": {
                     "details": "Category Three - Category three description",
                     "_links": {
                         "self": {
-                            "href": "http://localhost:8061/purple/categories/3{?projection}",
+                            "href": "http://localhost:8061/purple/api/categories/3{?projection}",
                             "templated": true
                         }
                     }
                 }
             },
             "_links": {
-                "item": {
-                    "href": "http://localhost:8061/purple/items/7{?projection}",
+                "category": {
+                    "href": "http://localhost:8061/purple/api/categories/3{?projection}",
                     "templated": true
                 },
-                "category": {
-                    "href": "http://localhost:8061/purple/categories/3{?projection}",
+                "item": {
+                    "href": "http://localhost:8061/purple/api/items/7{?projection}",
                     "templated": true
                 }
             }
@@ -250,14 +262,14 @@ However, the `items` resource includes `data` resource as well.
     "total": 32.45,
     "_links": {
         "self": {
-            "href": "http://localhost:8061/purple/items/7"
+            "href": "http://localhost:8061/purple/api/items/7"
         },
         "itemEntity": {
-            "href": "http://localhost:8061/purple/items/7{?projection}",
+            "href": "http://localhost:8061/purple/api/items/7{?projection}",
             "templated": true
         },
         "group": {
-            "href": "http://localhost:8061/purple/items/7/group"
+            "href": "http://localhost:8061/purple/api/items/7/group"
         }
     }
 }
@@ -273,64 +285,64 @@ unmanaged beans as normal POJOs, and it tries to create links to managed beans w
 > Spring Data REST exposes sub-resources of every item resource 
 for each of the associations the item resource has.
 
-    http://localhost:8061/purple/groups/2/items/4
+    http://localhost:8061/purple/api/groups/2/items/4
     
 ~~~json
 {
-    "uuid": "8574a479-b583-4db4-9c03-bfd0ddc7a069",
-    "name": "Item four name",
-    "description": "New Item four description",
+    "uuid": "4b30d7c8-2f17-49da-bff9-3a04364c5a08",
+    "name": "Item Four",
+    "description": "Item four description",
     "correlationId": "128a7512-0b92-4f49-8f61-15dabbd757b8",
     "status": 3,
-    "createdAt": "2019-03-23T13:44:02.627358",
+    "createdAt": "2019-03-28T19:59:46.39203",
     "data": [
         {
-            "value": 11.49,
-            "createdAt": "2019-03-23T13:44:03.260411",
+            "value": 111.43,
+            "createdAt": "2019-03-28T19:59:46.793971",
             "_embedded": {
                 "category": {
                     "details": "Category Three - Category three description",
                     "_links": {
                         "self": {
-                            "href": "http://localhost:8061/purple/categories/3{?projection}",
+                            "href": "http://localhost:8061/purple/api/categories/3{?projection}",
                             "templated": true
                         }
                     }
                 }
             },
             "_links": {
-                "item": {
-                    "href": "http://localhost:8061/purple/items/4{?projection}",
+                "category": {
+                    "href": "http://localhost:8061/purple/api/categories/3{?projection}",
                     "templated": true
                 },
-                "category": {
-                    "href": "http://localhost:8061/purple/categories/3{?projection}",
+                "item": {
+                    "href": "http://localhost:8061/purple/api/items/4{?projection}",
                     "templated": true
                 }
             }
         },
         {
-            "value": 45.76,
-            "createdAt": "2019-03-23T13:44:03.289638",
+            "value": 7.43,
+            "createdAt": "2019-03-28T19:59:46.812306",
             "_links": {
                 "item": {
-                    "href": "http://localhost:8061/purple/items/4{?projection}",
+                    "href": "http://localhost:8061/purple/api/items/4{?projection}",
                     "templated": true
                 }
             }
         }
     ],
-    "total": 57.25,
+    "total": 118.86,
     "_links": {
         "self": {
-            "href": "http://localhost:8061/purple/items/4"
+            "href": "http://localhost:8061/purple/api/items/4"
         },
         "itemEntity": {
-            "href": "http://localhost:8061/purple/items/4{?projection}",
+            "href": "http://localhost:8061/purple/api/items/4{?projection}",
             "templated": true
         },
         "group": {
-            "href": "http://localhost:8061/purple/items/4/group"
+            "href": "http://localhost:8061/purple/api/items/4/group"
         }
     }
 }
@@ -378,15 +390,14 @@ returns a subset of the `item` resource
 ### Using SpEL
 
 ~~~java
-@Projection(name = "name", types = { Category.class })
-public interface CategoryNameProjection {
-
-    @Value("#{target.name} - #{target.description}")
-    String getDetails();
+@Projection(name = "name", types = { ItemEntity.class })
+public interface ItemNameProjection {
+    String getName();
+    String getDescription();
 }
 ~~~
 
-    http://localhost:8061/purple/categories/1?projection=name
+    http://localhost:8061/purple/api/items/1?projection=name
     
 ~~~json
 {
@@ -394,14 +405,14 @@ public interface CategoryNameProjection {
     "description": "Item one description",
     "_links": {
         "self": {
-            "href": "http://localhost:8061/purple/items/1"
+            "href": "http://localhost:8061/purple/api/items/1"
         },
         "itemEntity": {
-            "href": "http://localhost:8061/purple/items/1{?projection}",
+            "href": "http://localhost:8061/purple/api/items/1{?projection}",
             "templated": true
         },
         "group": {
-            "href": "http://localhost:8061/purple/items/1/group"
+            "href": "http://localhost:8061/purple/api/items/1/group"
         }
     }
 }
