@@ -85,17 +85,6 @@ public interface PersonRepository extends JpaRepository<PersonEntity, Long> {
 ~~~
 
 
-~~~java
-@RepositoryRestResource(path = "people", collectionResourceRel = "people")
-public interface PersonRepository extends JpaRepository<PersonEntity, Long> {
-
-    @RestResource(path = "findByName")
-    List<PersonEntity> findByNameContainingIgnoreCase(final String nameContains);
-
-}
-~~~
-
-
 # Resource Discoverability
 
     http://localhost:8061/purple/api
