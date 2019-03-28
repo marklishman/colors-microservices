@@ -15,6 +15,8 @@
 
 # Repositories
 
+## Group
+
 ~~~java
 @RepositoryRestResource(path = "groups", collectionResourceRel = "groups")
 public interface GroupRepository extends JpaRepository<GroupEntity, Long> {
@@ -23,6 +25,8 @@ public interface GroupRepository extends JpaRepository<GroupEntity, Long> {
     
 }
 ~~~
+
+## Item
 
 ~~~java
 @RepositoryRestResource(path = "items", collectionResourceRel = "items")
@@ -38,6 +42,8 @@ public interface ItemRepository extends JpaRepository<ItemEntity, Long> {
 }
 ~~~
 
+## Category
+
 ~~~java
 @RepositoryRestResource(path = "categories", collectionResourceRel = "categories", excerptProjection = CategoryNameProjection.class)
 public interface CategoryRepository extends Repository<CategoryEntity, Long> {
@@ -50,6 +56,8 @@ public interface CategoryRepository extends Repository<CategoryEntity, Long> {
 
 }
 ~~~
+
+## Country
 
 ~~~java
 @RepositoryRestResource(path = "countries", collectionResourceRel = "countries")
@@ -64,6 +72,8 @@ public interface CountryRepository extends JpaRepository<CountryEntity, Long> {
 }
 ~~~
 
+## Person
+
 ~~~java
 @RepositoryRestResource(path = "people", collectionResourceRel = "people")
 public interface PersonRepository extends JpaRepository<PersonEntity, Long> {
@@ -71,6 +81,17 @@ public interface PersonRepository extends JpaRepository<PersonEntity, Long> {
     @RestResource(path = "findByName")
     List<PersonEntity> findByNameContainingIgnoreCase(final String nameContains);
     
+}
+~~~
+
+
+~~~java
+@RepositoryRestResource(path = "people", collectionResourceRel = "people")
+public interface PersonRepository extends JpaRepository<PersonEntity, Long> {
+
+    @RestResource(path = "findByName")
+    List<PersonEntity> findByNameContainingIgnoreCase(final String nameContains);
+
 }
 ~~~
 
