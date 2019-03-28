@@ -1,3 +1,8 @@
+server:
+  port: 8021
+  servlet:
+    context-path: /green
+
 spring:
   sleuth:
     sampler:
@@ -17,11 +22,9 @@ spring:
           lob:
             non_contextual_creation: true
 
-server:
-  port: 8021
-
 eureka:
   client:
+    enabled: true
     healthcheck:
       enabled: true
     serviceUrl:

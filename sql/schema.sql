@@ -71,6 +71,6 @@ CREATE TABLE person (
 
 CREATE TABLE visitor (
   vst_id   SERIAL PRIMARY KEY,
-  psn_id   INTEGER NOT NULL,
-  cty_id   INTEGER NOT NULL
+  psn_id   INTEGER NOT NULL REFERENCES person,
+  cty_id   INTEGER NOT NULL REFERENCES country
 );
