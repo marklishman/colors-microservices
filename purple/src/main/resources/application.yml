@@ -1,7 +1,12 @@
+server:
+  port: 8061
+  servlet:
+    context-path: /purple
+
 spring:
   data:
     rest:
-      basePath: /purple
+      basePath: /api
   sleuth:
     sampler:
       probability: 1.0
@@ -19,9 +24,6 @@ spring:
         jdbc:
           lob:
             non_contextual_creation: true
-
-server:
-  port: 8061
 
 eureka:
   client:
