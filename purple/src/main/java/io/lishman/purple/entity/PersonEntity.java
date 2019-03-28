@@ -24,6 +24,9 @@ public class PersonEntity {
     @Column(name = "psn_name")
     private String name;
 
+    @Column(name = "psn_age")
+    private Integer age;
+
     @ManyToMany
     @JoinTable(
             name = "visitor",
@@ -40,6 +43,10 @@ public class PersonEntity {
 
     public String getName() {
         return name;
+    }
+
+    public Integer getAge() {
+        return age;
     }
 
     public List<CountryEntity> getCountries() {
