@@ -63,12 +63,24 @@ public interface CategoryRepository extends Repository<CategoryEntity, Long> {
 @RepositoryRestResource(path = "countries", collectionResourceRel = "countries")
 public interface CountryRepository extends JpaRepository<CountryEntity, Long> {
 
+    @RestResource(path = "findByName")
+    List<CountryEntity> findByNameContainingIgnoreCase(final String nameContains);
+
     @RestResource(exported = false)
     Optional<CountryEntity> findByCode(final String code);
 
-    @RestResource(path = "findByName")
-    List<CountryEntity> findByNameContainingIgnoreCase(final String nameContains);
-    
+    @RestResource(exported = false)
+    @Override
+    void deleteById(Long id);
+
+    @RestResource(exported = false)
+    @Override
+    void delete(CountryEntity countryEntity);
+
+    @RestResource(exported = false)
+    @Override
+    void deleteAll(Iterable<? extends CountryEntity> var1);
+
 }
 ~~~
 
