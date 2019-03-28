@@ -364,41 +364,10 @@ public interface ItemNameProjection {
 }
 ~~~
 
-    http://localhost:8061/purple/items/1?projection=name
+    http://localhost:8061/purple/api/items/1?projection=name
     
 returns a subset of the `item` resource
 
-~~~json
-{
-    "name": "Item One",
-    "description": "Item one description",
-    "_links": {
-        "self": {
-            "href": "http://localhost:8061/purple/items/1"
-        },
-        "item": {
-            "href": "http://localhost:8061/purple/items/1{?projection}",
-            "templated": true
-        },
-        "group": {
-            "href": "http://localhost:8061/purple/items/1/group"
-        }
-    }
-}
-~~~
-
-### Using SpEL
-
-~~~java
-@Projection(name = "name", types = { ItemEntity.class })
-public interface ItemNameProjection {
-    String getName();
-    String getDescription();
-}
-~~~
-
-    http://localhost:8061/purple/api/items/1?projection=name
-    
 ~~~json
 {
     "name": "Item One",
@@ -418,10 +387,38 @@ public interface ItemNameProjection {
 }
 ~~~
 
+### Using SpEL
+
+~~~java
+@Projection(name = "name", types = { CategoryEntity.class })
+public interface CategoryNameProjection {
+
+    @Value("#{target.name} - #{target.description}")
+    String getDetails();
+}
+~~~
+
+    http://localhost:8061/purple/api/categories/1?projection=name
+    
+~~~json
+{
+    "details": "Category One - Category one description",
+    "_links": {
+        "self": {
+            "href": "http://localhost:8061/purple/api/categories/1"
+        },
+        "categoryEntity": {
+            "href": "http://localhost:8061/purple/api/categories/1{?projection}",
+            "templated": true
+        }
+    }
+}
+~~~
+
 ### Superset
 
 ~~~java
-@Projection(name = "full", types = { Item.class })
+@Projection(name = "full", types = { ItemEntity.class })
 public interface ItemFullProjection {
     String getId();
     UUID getUuid();
@@ -437,7 +434,7 @@ public interface ItemFullProjection {
 and
 
 ~~~java
-@Projection(name = "full", types = { Data.class })
+@Projection(name = "full", types = { DataEntity.class })
 public interface DataFullProjection {
     String getId();
     BigDecimal getValue();
@@ -446,49 +443,49 @@ public interface DataFullProjection {
 }
 ~~~
 
-    http://localhost:8061/purple/items/4?projection=full
+    http://localhost:8061/purple/api/items/4?projection=full
 
 ~~~json
 {
-    "name": "Item four name",
+    "name": "Item Four",
     "id": "4",
-    "status": 3,
     "data": [
         {
-            "value": 11.49,
+            "value": 111.43,
             "id": "15",
-            "createdAt": "2019-03-23T13:44:03.260411",
+            "createdAt": "2019-03-28T19:59:46.793971",
             "category": {
                 "details": "Category Three - Category three description",
                 "_links": {
                     "self": {
-                        "href": "http://localhost:8061/purple/categories/3{?projection}",
+                        "href": "http://localhost:8061/purple/api/categories/3{?projection}",
                         "templated": true
                     }
                 }
             }
         },
         {
-            "value": 45.76,
+            "value": 7.43,
             "id": "16",
-            "createdAt": "2019-03-23T13:44:03.289638",
+            "createdAt": "2019-03-28T19:59:46.812306",
             "category": null
         }
     ],
-    "uuid": "8574a479-b583-4db4-9c03-bfd0ddc7a069",
+    "description": "Item four description",
+    "uuid": "4b30d7c8-2f17-49da-bff9-3a04364c5a08",
     "correlationId": "128a7512-0b92-4f49-8f61-15dabbd757b8",
-    "createdAt": "2019-03-23T13:44:02.627358",
-    "description": "New Item four description",
+    "status": 3,
+    "createdAt": "2019-03-28T19:59:46.39203",
     "_links": {
         "self": {
-            "href": "http://localhost:8061/purple/items/4"
+            "href": "http://localhost:8061/purple/api/items/4"
         },
-        "item": {
-            "href": "http://localhost:8061/purple/items/4{?projection}",
+        "itemEntity": {
+            "href": "http://localhost:8061/purple/api/items/4{?projection}",
             "templated": true
         },
         "group": {
-            "href": "http://localhost:8061/purple/items/4/group"
+            "href": "http://localhost:8061/purple/api/items/4/group"
         }
     }
 }
@@ -515,14 +512,18 @@ public interface CategoryNameProjection {
 
 ~~~java
 @RepositoryRestResource(path = "categories", collectionResourceRel = "categories", excerptProjection = CategoryNameProjection.class)
-public interface CategoryRepository extends CrudRepository<CategoryEntity, Long> {
+public interface CategoryRepository extends Repository<CategoryEntity, Long> {
+
+    Optional<CategoryEntity> findById(final Long id);
+
+    List<CategoryEntity> findAll();
 
     Optional<CategoryEntity> findByName(final String name);
 
 }
 ~~~
 
-    http://localhost:8061/purple/categories
+    http://localhost:8061/purple/api/categories
     
 Projection is automatically applied
 
@@ -534,22 +535,22 @@ Projection is automatically applied
                 "details": "Category One - Category one description",
                 "_links": {
                     "self": {
-                        "href": "http://localhost:8061/purple/categories/1"
+                        "href": "http://localhost:8061/purple/api/categories/1"
                     },
                     "categoryEntity": {
-                        "href": "http://localhost:8061/purple/categories/1{?projection}",
+                        "href": "http://localhost:8061/purple/api/categories/1{?projection}",
                         "templated": true
                     }
                 }
             },
             {
-                "details": "Category Two - Category two description",
+                "details": "Category Three - Category three description",
                 "_links": {
                     "self": {
-                        "href": "http://localhost:8061/purple/categories/2"
+                        "href": "http://localhost:8061/purple/api/categories/3"
                     },
                     "categoryEntity": {
-                        "href": "http://localhost:8061/purple/categories/2{?projection}",
+                        "href": "http://localhost:8061/purple/api/categories/3{?projection}",
                         "templated": true
                     }
                 }
@@ -558,13 +559,13 @@ Projection is automatically applied
     },
     "_links": {
         "self": {
-            "href": "http://localhost:8061/purple/categories"
+            "href": "http://localhost:8061/purple/api/categories"
         },
         "profile": {
-            "href": "http://localhost:8061/purple/profile/categories"
+            "href": "http://localhost:8061/purple/api/profile/categories"
         },
         "search": {
-            "href": "http://localhost:8061/purple/categories/search"
+            "href": "http://localhost:8061/purple/api/categories/search"
         }
     }
 }
@@ -575,21 +576,22 @@ Projection is automatically applied
 The `ItemRepository` looks like this.
 
 ~~~java
-@RepositoryRestResource(excerptProjection = ItemNameProjection.class)
-public interface ItemRepository extends CrudRepository<Item, Long> {
+@RepositoryRestResource(path = "items", collectionResourceRel = "items")
+public interface ItemRepository extends JpaRepository<ItemEntity, Long> {
 
-    Optional<Item> findByUuid(final UUID id);
+    Optional<ItemEntity> findByUuid(final UUID id);
 
-    List<Item> findByCorrelationId(final UUID correlationId);
+    List<ItemEntity> findByCorrelationId(final UUID correlationId);
 
     @RestResource(path = "findByGroupName")
-    List<Item> findByGroupNameContainingIgnoreCase(final String groupNameContains, final Pageable pageable);
+    List<ItemEntity> findByGroupNameContainingIgnoreCase(final String groupNameContains, final Pageable pageable);
+
 }
 ~~~
 
 When we use the `/search` path
 
-    http://localhost:8061/purple/items/search
+    http://localhost:8061/purple/api/items/search
     
 we get a list of the query methods on the resource repository.
 
@@ -597,43 +599,75 @@ we get a list of the query methods on the resource repository.
 {
     "_links": {
         "findByUuid": {
-            "href": "http://localhost:8061/purple/items/search/findByUuid{?id,projection}",
+            "href": "http://localhost:8061/purple/api/items/search/findByUuid{?id,projection}",
             "templated": true
         },
         "findByCorrelationId": {
-            "href": "http://localhost:8061/purple/items/search/findByCorrelationId{?correlationId,projection}",
+            "href": "http://localhost:8061/purple/api/items/search/findByCorrelationId{?correlationId,projection}",
             "templated": true
         },
         "findByGroupNameContainingIgnoreCase": {
-            "href": "http://localhost:8061/purple/items/search/findByGroupName{?groupNameContains,page,size,sort,projection}",
+            "href": "http://localhost:8061/purple/api/items/search/findByGroupName{?groupNameContains,page,size,sort,projection}",
             "templated": true
         },
         "self": {
-            "href": "http://localhost:8061/purple/items/search"
+            "href": "http://localhost:8061/purple/api/items/search"
         }
     }
 }
 ~~~
 
-    http://localhost:8061/purple/items/search/findByGroupName?groupNameContains=three
+    http://localhost:8061/purple/api/items/search/findByGroupName?groupNameContains=three
     
 ~~~json
 {
     "_embedded": {
         "items": [
             {
+                "uuid": "fb8d5122-dfcd-4509-a99e-222e862a1658",
                 "name": "Item Seven",
                 "description": "Item seven description",
+                "correlationId": "e4b4a967-3758-4479-9a26-7ed5608f978a",
+                "status": 3,
+                "createdAt": "2019-03-28T19:59:46.470675",
+                "data": [
+                    {
+                        "value": 32.45,
+                        "createdAt": "2019-03-28T19:59:46.898805",
+                        "_embedded": {
+                            "category": {
+                                "details": "Category Three - Category three description",
+                                "_links": {
+                                    "self": {
+                                        "href": "http://localhost:8061/purple/api/categories/3{?projection}",
+                                        "templated": true
+                                    }
+                                }
+                            }
+                        },
+                        "_links": {
+                            "category": {
+                                "href": "http://localhost:8061/purple/api/categories/3{?projection}",
+                                "templated": true
+                            },
+                            "item": {
+                                "href": "http://localhost:8061/purple/api/items/7{?projection}",
+                                "templated": true
+                            }
+                        }
+                    }
+                ],
+                "total": 32.45,
                 "_links": {
                     "self": {
-                        "href": "http://localhost:8061/purple/items/7"
+                        "href": "http://localhost:8061/purple/api/items/7"
                     },
-                    "item": {
-                        "href": "http://localhost:8061/purple/items/7{?projection}",
+                    "itemEntity": {
+                        "href": "http://localhost:8061/purple/api/items/7{?projection}",
                         "templated": true
                     },
                     "group": {
-                        "href": "http://localhost:8061/purple/items/7/group"
+                        "href": "http://localhost:8061/purple/api/items/7/group"
                     }
                 }
             }
@@ -641,7 +675,7 @@ we get a list of the query methods on the resource repository.
     },
     "_links": {
         "self": {
-            "href": "http://localhost:8061/purple/items/search/findByGroupName?groupName=three"
+            "href": "http://localhost:8061/purple/api/items/search/findByGroupName?groupNameContains=three"
         }
     }
 }
@@ -650,16 +684,31 @@ we get a list of the query methods on the resource repository.
 # Paging and Sorting
 
 ~~~java
-@RepositoryRestResource
-public interface CountryRepository extends PagingAndSortingRepository<Country, Long> {
+@RepositoryRestResource(path = "countries", collectionResourceRel = "countries")
+public interface CountryRepository extends JpaRepository<CountryEntity, Long> {
+
+    @RestResource(exported = false)
+    Optional<CountryEntity> findByCode(final String code);
 
     @RestResource(path = "findByName")
-    List<Country> findByNameContainingIgnoreCase(final String nameContains);
-}
+    List<CountryEntity> findByNameContainingIgnoreCase(final String nameContains);
 
+    @RestResource(exported = false)
+    @Override
+    void deleteById(Long id);
+
+    @RestResource(exported = false)
+    @Override
+    void delete(CountryEntity countryEntity);
+
+    @RestResource(exported = false)
+    @Override
+    void deleteAll(Iterable<? extends CountryEntity> var1);
+
+}
 ~~~
 
-    http://localhost:8061/purple/countries?page=5&size=3&sort=code,desc
+    http://localhost:8061/purple/api/countries?page=5&size=3&sort=code,desc
     
 ~~~json
 {
@@ -670,10 +719,13 @@ public interface CountryRepository extends PagingAndSortingRepository<Country, L
                 "name": "United States",
                 "_links": {
                     "self": {
-                        "href": "http://localhost:8061/purple/countries/233"
+                        "href": "http://localhost:8061/purple/api/countries/233"
                     },
-                    "country": {
-                        "href": "http://localhost:8061/purple/countries/233"
+                    "countryEntity": {
+                        "href": "http://localhost:8061/purple/api/countries/233"
+                    },
+                    "people": {
+                        "href": "http://localhost:8061/purple/api/countries/233/people"
                     }
                 }
             },
@@ -682,10 +734,13 @@ public interface CountryRepository extends PagingAndSortingRepository<Country, L
                 "name": "United States Minor Outlying Islands",
                 "_links": {
                     "self": {
-                        "href": "http://localhost:8061/purple/countries/234"
+                        "href": "http://localhost:8061/purple/api/countries/234"
                     },
-                    "country": {
-                        "href": "http://localhost:8061/purple/countries/234"
+                    "countryEntity": {
+                        "href": "http://localhost:8061/purple/api/countries/234"
+                    },
+                    "people": {
+                        "href": "http://localhost:8061/purple/api/countries/234/people"
                     }
                 }
             },
@@ -694,10 +749,13 @@ public interface CountryRepository extends PagingAndSortingRepository<Country, L
                 "name": "Uganda",
                 "_links": {
                     "self": {
-                        "href": "http://localhost:8061/purple/countries/229"
+                        "href": "http://localhost:8061/purple/api/countries/229"
                     },
-                    "country": {
-                        "href": "http://localhost:8061/purple/countries/229"
+                    "countryEntity": {
+                        "href": "http://localhost:8061/purple/api/countries/229"
+                    },
+                    "people": {
+                        "href": "http://localhost:8061/purple/api/countries/229/people"
                     }
                 }
             }
@@ -705,25 +763,25 @@ public interface CountryRepository extends PagingAndSortingRepository<Country, L
     },
     "_links": {
         "first": {
-            "href": "http://localhost:8061/purple/countries?page=0&size=3&sort=code,desc"
+            "href": "http://localhost:8061/purple/api/countries?page=0&size=3&sort=code,desc"
         },
         "prev": {
-            "href": "http://localhost:8061/purple/countries?page=4&size=3&sort=code,desc"
+            "href": "http://localhost:8061/purple/api/countries?page=4&size=3&sort=code,desc"
         },
         "self": {
-            "href": "http://localhost:8061/purple/countries"
+            "href": "http://localhost:8061/purple/api/countries"
         },
         "next": {
-            "href": "http://localhost:8061/purple/countries?page=6&size=3&sort=code,desc"
+            "href": "http://localhost:8061/purple/api/countries?page=6&size=3&sort=code,desc"
         },
         "last": {
-            "href": "http://localhost:8061/purple/countries?page=81&size=3&sort=code,desc"
+            "href": "http://localhost:8061/purple/api/countries?page=81&size=3&sort=code,desc"
         },
         "profile": {
-            "href": "http://localhost:8061/purple/profile/countries"
+            "href": "http://localhost:8061/purple/api/profile/countries"
         },
         "search": {
-            "href": "http://localhost:8061/purple/countries/search"
+            "href": "http://localhost:8061/purple/api/countries/search"
         }
     },
     "page": {
@@ -741,22 +799,23 @@ Note the next and previous page links.
 Paging can be included on some query methods and not others.
 
 ~~~java
-@RepositoryRestResource(excerptProjection = ItemNameProjection.class)
-public interface ItemRepository extends CrudRepository<Item, Long> {
+@RepositoryRestResource(path = "items", collectionResourceRel = "items")
+public interface ItemRepository extends JpaRepository<ItemEntity, Long> {
 
-    Optional<Item> findByUuid(final UUID id);
+    Optional<ItemEntity> findByUuid(final UUID id);
 
-    List<Item> findByCorrelationId(final UUID correlationId);
+    List<ItemEntity> findByCorrelationId(final UUID correlationId);
 
     @RestResource(path = "findByGroupName")
-    List<Item> findByGroupNameContainingIgnoreCase(final String groupName, final Pageable pageable);
+    List<ItemEntity> findByGroupNameContainingIgnoreCase(final String groupNameContains, final Pageable pageable);
+
 }
 ~~~
 
 
 And putting it all together
 
-    http://localhost:8061/purple/items/search/findByGroupName?groupNameContains=gro&page=1&size=3&sort=name,desc&projection=totals
+    http://localhost:8061/purple/api/items/search/findByGroupName?groupNameContains=gro&page=1&size=3&sort=name,desc&projection=totals
 
 ~~~json
 {
@@ -768,14 +827,14 @@ And putting it all together
                 "total": 32.45,
                 "_links": {
                     "self": {
-                        "href": "http://localhost:8061/purple/items/7"
+                        "href": "http://localhost:8061/purple/api/items/7"
                     },
-                    "item": {
-                        "href": "http://localhost:8061/purple/items/7{?projection}",
+                    "itemEntity": {
+                        "href": "http://localhost:8061/purple/api/items/7{?projection}",
                         "templated": true
                     },
                     "group": {
-                        "href": "http://localhost:8061/purple/items/7/group"
+                        "href": "http://localhost:8061/purple/api/items/7/group"
                     }
                 }
             },
@@ -785,31 +844,31 @@ And putting it all together
                 "total": 319.99,
                 "_links": {
                     "self": {
-                        "href": "http://localhost:8061/purple/items/1"
+                        "href": "http://localhost:8061/purple/api/items/1"
                     },
-                    "item": {
-                        "href": "http://localhost:8061/purple/items/1{?projection}",
+                    "itemEntity": {
+                        "href": "http://localhost:8061/purple/api/items/1{?projection}",
                         "templated": true
                     },
                     "group": {
-                        "href": "http://localhost:8061/purple/items/1/group"
+                        "href": "http://localhost:8061/purple/api/items/1/group"
                     }
                 }
             },
             {
-                "name": "Item Nine",
-                "description": "Item nine description",
-                "total": 57.25,
+                "name": "Item Four",
+                "description": "Item four description",
+                "total": 118.86,
                 "_links": {
                     "self": {
-                        "href": "http://localhost:8061/purple/items/10"
+                        "href": "http://localhost:8061/purple/api/items/4"
                     },
-                    "item": {
-                        "href": "http://localhost:8061/purple/items/10{?projection}",
+                    "itemEntity": {
+                        "href": "http://localhost:8061/purple/api/items/4{?projection}",
                         "templated": true
                     },
                     "group": {
-                        "href": "http://localhost:8061/purple/items/10/group"
+                        "href": "http://localhost:8061/purple/api/items/4/group"
                     }
                 }
             }
@@ -817,7 +876,7 @@ And putting it all together
     },
     "_links": {
         "self": {
-            "href": "http://localhost:8061/purple/items/search/findByGroupName?groupName=gro&page=1&size=3&sort=name,desc&projection=totals"
+            "href": "http://localhost:8061/purple/api/items/search/findByGroupName?groupNameContains=gro&page=1&size=3&sort=name,desc&projection=totals"
         }
     }
 }
@@ -825,7 +884,7 @@ And putting it all together
 
 # Create (POST)
 
-    URL: http://localhost:8061/purple/groups
+    URL: http://localhost:8061/purple/api/groups
     Method: POST
     Content-Type: application/json
     Body:
@@ -837,11 +896,11 @@ And putting it all together
 or
 
     URL: http://localhost:8061/purple/items
-    Type: POST
+    Method: POST
     Content-Type:application/json
     body: 
     {
-        "group": "http://localhost:8061/purple/groups/4",
+        "group": "http://localhost:8061/purple/api/groups/4",
         "uuid": "9f84fa9a-4b9c-46f8-9098-4603efe7ccbc",
         "name": "Item Nine",
         "description": "Item nine description",
@@ -864,8 +923,8 @@ Note the resource URL in the JSON to specify the `group` and `category` parent e
 
 PUT replaces the entire resource so all values must be specified.
 
-    URL: http://localhost:8061/purple/groups/4
-    Type: PUT
+    URL: http://localhost:8061/purple/api/groups/4
+    Method: PUT
     Content-Type: application/json
     body: 
     {
@@ -875,8 +934,8 @@ PUT replaces the entire resource so all values must be specified.
     
 or
     
-    URL: http://localhost:8061/purple/items/4
-    Type: PUT
+    URL: http://localhost:8061/purple/api/items/4
+    Method: PUT
     Content-Type:application/json
     body: 
     {
@@ -906,8 +965,8 @@ I suspect this is a JPA issue rather than a Spring Data REST issue.
 
 PATCH is similar to PUT but partially updates the resources state.
 
-    URL: http://localhost:8061/purple/groups/4
-    Type: PATCH
+    URL: http://localhost:8061/purple/api/groups/4
+    Method: PATCH
     Content-Type: application/json
     body: 
     {
@@ -916,8 +975,8 @@ PATCH is similar to PUT but partially updates the resources state.
     
 or
 
-    URL: http://localhost:8061/purple/items/8
-    Type: PATCH
+    URL: http://localhost:8061/purple/api/items/8
+    Method: PATCH
     Content-Type:application/json
     body: 
     {
@@ -930,8 +989,8 @@ Note the change to the owning group.
 
 # Delete (DELETE)
 
-    URL: http://localhost:8061/purple/groups/4
-    Type: DELETE
+    URL: http://localhost:8061/purple/api/groups/5
+    Method: DELETE
 
 # Create Association
 
@@ -962,6 +1021,7 @@ public class CountryEntity {
 We can link countries to people like this
 
     URL: http://localhost:8061/purple/people/1/countries
+    Method: POST
     Content-Type: text/uri-list
     body:
     http://localhost:8061/purple/countries/20
@@ -987,17 +1047,27 @@ Events are registered as follows.
 
 ~~~java
 @Component
-@RepositoryEventHandler(PersonEntity.class)
-public class PersonEntityEventHandler {
+@RepositoryEventHandler(ItemEntity.class)
+public class ItemEntityEventHandler {
 
     @HandleBeforeCreate
-    public void handleBeforeCreate(PersonEntity p) {
-        System.out.println(p);
+    public void handleBeforeCreate(ItemEntity itemEntity) {
+        System.out.println(itemEntity);
     }
 
     @HandleAfterCreate
-    public void handleAfterCreate(PersonEntity p) {
-        System.out.println(p);
+    public void handleAfterCreate(ItemEntity itemEntity) {
+        System.out.println(itemEntity);
+    }
+
+    @HandleBeforeSave
+    public void handleBeforeSave(ItemEntity itemEntity) {
+        System.out.println(itemEntity);
+    }
+
+    @HandleAfterSave
+    public void handleAfterSave(ItemEntity itemEntity) {
+        System.out.println(itemEntity);
     }
 }
 ~~~
@@ -1042,20 +1112,15 @@ public class CountryController {
 }
 ~~~
 
-    http://localhost:8061/purple/api/countries/KH/visitors
+    http://localhost:8061/purple/api/countries/BB/visitors
     
 ~~~json
 {
     "_embedded": {
         "people": [
             {
-                "name": "Bob Jones"
-            },
-            {
-                "name": "Sarah Jones"
-            },
-            {
-                "name": "Roger Smith"
+                "name": "Bob Jones",
+                "age": 31
             }
         ]
     },
@@ -1065,7 +1130,7 @@ public class CountryController {
             "templated": true
         },
         "country": {
-            "href": "http://localhost:8061/purple/api/countries/36"
+            "href": "http://localhost:8061/purple/api/countries/20"
         }
     }
 }
@@ -1132,7 +1197,7 @@ public class StatisticsResource {
             },
             {
                 "name": "person",
-                "count": 12
+                "count": 4
             }
         ]
     },
@@ -1151,12 +1216,12 @@ This extends to request handling, message converters, exception handling, and ot
 
 ~~~java
 @RestController
-public class VersonController {
+public class VersionController {
 
     @GetMapping("/version")
     public ResponseEntity<?> stats()  {
         final Resource<String> version = new Resource<>("1.2.3");
-        version.add(linkTo(methodOn(VersonController.class).stats()).withSelfRel());
+        version.add(linkTo(methodOn(VersionController.class).stats()).withSelfRel());
         return ResponseEntity.ok(version);
     }
 }
@@ -1181,4 +1246,4 @@ Note: no `/api`
 
 # HAL Browser
 
-http://localhost:8061/purple
+http://localhost:8061/purple/api

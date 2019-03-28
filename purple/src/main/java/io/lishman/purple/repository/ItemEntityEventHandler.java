@@ -1,4 +1,4 @@
-package io.lishman.purple.config;
+package io.lishman.purple.repository;
 
 import io.lishman.purple.entity.ItemEntity;
 import org.springframework.data.rest.core.annotation.HandleAfterCreate;
