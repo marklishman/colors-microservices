@@ -19,4 +19,5 @@ public interface ItemRepository extends JpaRepository<ItemEntity, Long> {
 
     @RestResource(path = "findByGroupName")
     List<ItemEntity> findByGroupNameContainingIgnoreCase(final String groupNameContains, final Pageable pageable);
+
 }

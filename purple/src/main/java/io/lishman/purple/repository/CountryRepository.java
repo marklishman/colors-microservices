@@ -16,4 +16,5 @@ public interface CountryRepository extends JpaRepository<CountryEntity, Long> {
 
     @RestResource(path = "findByName")
     List<CountryEntity> findByNameContainingIgnoreCase(final String nameContains);
+
 }

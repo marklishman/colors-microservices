@@ -12,4 +12,5 @@ public interface PersonRepository extends JpaRepository<PersonEntity, Long> {
 
     @RestResource(path = "findByName")
     List<PersonEntity> findByNameContainingIgnoreCase(final String nameContains);
+
 }

@@ -9,7 +9,7 @@
 
 # Schema
 
-<img src="database-schema.png" width="600" height="800"/>
+<img src="database-schema.png" width="700" height="800"/>
 
 ---
 
@@ -17,16 +17,16 @@
 
 ~~~java
 @RepositoryRestResource(path = "groups", collectionResourceRel = "groups")
-public interface GroupRepository extends CrudRepository<GroupEntity, Long> {
-
+public interface GroupRepository extends JpaRepository<GroupEntity, Long> {
+    
     Optional<GroupEntity> findByName(final String name);
-
+    
 }
 ~~~
 
 ~~~java
 @RepositoryRestResource(path = "items", collectionResourceRel = "items")
-public interface ItemRepository extends CrudRepository<ItemEntity, Long> {
+public interface ItemRepository extends JpaRepository<ItemEntity, Long> {
 
     Optional<ItemEntity> findByUuid(final UUID id);
 
@@ -34,12 +34,17 @@ public interface ItemRepository extends CrudRepository<ItemEntity, Long> {
 
     @RestResource(path = "findByGroupName")
     List<ItemEntity> findByGroupNameContainingIgnoreCase(final String groupNameContains, final Pageable pageable);
+    
 }
 ~~~
 
 ~~~java
 @RepositoryRestResource(path = "categories", collectionResourceRel = "categories", excerptProjection = CategoryNameProjection.class)
-public interface CategoryRepository extends CrudRepository<CategoryEntity, Long> {
+public interface CategoryRepository extends Repository<CategoryEntity, Long> {
+
+    Optional<CategoryEntity> findById(final Long id);
+
+    List<CategoryEntity> findAll();
 
     Optional<CategoryEntity> findByName(final String name);
 
@@ -48,12 +53,27 @@ public interface CategoryRepository extends CrudRepository<CategoryEntity, Long>
 
 ~~~java
 @RepositoryRestResource(path = "countries", collectionResourceRel = "countries")
-public interface CountryRepository extends PagingAndSortingRepository<CountryEntity, Long> {
+public interface CountryRepository extends JpaRepository<CountryEntity, Long> {
+
+    @RestResource(exported = false)
+    Optional<CountryEntity> findByCode(final String code);
 
     @RestResource(path = "findByName")
     List<CountryEntity> findByNameContainingIgnoreCase(final String nameContains);
+    
 }
 ~~~
+
+~~~java
+@RepositoryRestResource(path = "people", collectionResourceRel = "people")
+public interface PersonRepository extends JpaRepository<PersonEntity, Long> {
+
+    @RestResource(path = "findByName")
+    List<PersonEntity> findByNameContainingIgnoreCase(final String nameContains);
+    
+}
+~~~
+
 
 # Resource Discoverability
 
