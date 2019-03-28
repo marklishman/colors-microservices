@@ -67,48 +67,24 @@ public class ItemEntity {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public UUID getUuid() {
         return uuid;
-    }
-
-    public void setUuid(UUID uuid) {
-        this.uuid = uuid;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getDescription() {
         return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public UUID getCorrelationId() {
         return correlationId;
     }
 
-    public void setCorrelationId(UUID correlationId) {
-        this.correlationId = correlationId;
-    }
-
     public Integer getStatus() {
         return status;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
     }
 
     public LocalDateTime getCreatedAt() {
@@ -123,10 +99,6 @@ public class ItemEntity {
 
     public GroupEntity getGroup() {
         return group;
-    }
-
-    public void setGroup(GroupEntity group) {
-        this.group = group;
     }
 
     public List<DataEntity> getData() {

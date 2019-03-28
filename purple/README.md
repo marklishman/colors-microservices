@@ -57,7 +57,7 @@ public interface CountryRepository extends PagingAndSortingRepository<CountryEnt
 
 # Resource Discoverability
 
-    http://localhost:8061/purple
+    http://localhost:8061/purple/api
 
 ~~~json
 {
@@ -948,6 +948,47 @@ public class PersonEntityEventHandler {
     }
 }
 ~~~
+
+# Custom Handler
+
+`@RepositoryRestController` is used to override _Spring Data REST managed resources_.
+In fact, it makes sure the URI refers to a repository.
+
+~~~java
+@RepositoryRestController
+public class CountryController {
+
+    private final CountryRepository countryRepository;
+    private final EntityLinks entityLinks;
+
+    @Autowired
+    public CountryController(final CountryRepository countryRepository, final EntityLinks entityLinks) {
+        this.countryRepository = countryRepository;
+        this.entityLinks = entityLinks;
+    }
+
+    @GetMapping("countries/{code}/visitors")
+    public ResponseEntity<?> visitors(@PathVariable("code") final String code)  {
+
+        final Optional<CountryEntity> country = countryRepository.findByCode(code);
+        if (country.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+
+        final List<Resource> visitors = country.get()
+                .getPeople()
+                .stream()
+                .map(Resource::new)
+                .collect(Collectors.toList());
+
+        final Resources<Resource> resources = new Resources<>(visitors);
+        resources.add(linkTo(methodOn(CountryController.class).visitors(null)).withSelfRel());
+        resources.add(entityLinks.linkToSingleResource(CountryEntity.class, country.get().getId()).withRel("country"));
+        return ResponseEntity.ok(resources);
+    }
+}
+~~~
+
 
 ---
 

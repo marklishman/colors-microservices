@@ -51,40 +51,24 @@ public class DataEntity {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public BigDecimal getValue() {
         return value;
-    }
-
-    public void setValue(BigDecimal value) {
-        this.value = value;
     }
 
     public LocalDateTime getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
-
     public ItemEntity getItem() {
         return item;
-    }
-
-    public void setItem(ItemEntity item) {
-        this.item = item;
     }
 
     public CategoryEntity getCategory() {
         return category;
     }
 
-    public void setCategory(CategoryEntity category) {
-        this.category = category;
+    public void setItem(ItemEntity item) {
+        this.item = item;
     }
 
     @Override

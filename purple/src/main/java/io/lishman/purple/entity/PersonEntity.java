@@ -38,24 +38,12 @@ public class PersonEntity {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public List<CountryEntity> getCountries() {
         return countries;
-    }
-
-    public void setCountries(List<CountryEntity> countries) {
-        this.countries = countries;
     }
 
     @Override
