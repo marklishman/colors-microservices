@@ -14,6 +14,9 @@ DROP TABLE IF EXISTS "data";
 DROP TABLE IF EXISTS "item";
 DROP TABLE IF EXISTS "category";
 DROP TABLE IF EXISTS "group";
+DROP TABLE IF EXISTS "visitor";
+DROP TABLE IF EXISTS "country";
+DROP TABLE IF EXISTS "person";
 
 CREATE TABLE "group"
 (
@@ -51,4 +54,23 @@ CREATE TABLE "data"
   cat_id             INTEGER       REFERENCES "category",
   dat_value          NUMERIC       NOT NULL,
   dat_created_at     TIMESTAMP     NOT NULL
+);
+
+CREATE TABLE country (
+  cty_id   SERIAL PRIMARY KEY,
+  cty_code VARCHAR(2) UNIQUE,
+  cty_name VARCHAR(200) UNIQUE
+);
+
+
+CREATE TABLE person (
+  psn_id   SERIAL PRIMARY KEY,
+  psn_name VARCHAR(200) UNIQUE,
+  psn_age  INTEGER NOT NULL
+);
+
+CREATE TABLE visitor (
+  vst_id   SERIAL PRIMARY KEY,
+  psn_id   INTEGER NOT NULL,
+  cty_id   INTEGER NOT NULL
 );
