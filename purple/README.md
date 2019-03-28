@@ -949,7 +949,7 @@ public class PersonEntityEventHandler {
 }
 ~~~
 
-# Custom Handler
+# `@RepositoryRestController`
 
 `@RepositoryRestController` is used to override _Spring Data REST managed resources_.
 In fact, it makes sure the URI refers to a repository.
@@ -987,6 +987,55 @@ public class CountryController {
         return ResponseEntity.ok(resources);
     }
 }
+~~~
+
+# `@BasePathAwareController`
+
+To build custom operations underneath `basePath`, such as Spring MVC views, resources, and others, use `@BasePathAwareController`.
+
+~~~java
+@BasePathAwareController
+public class StatisticsController {
+
+    private final CountryRepository countryRepository;
+    private final PersonRepository personRepository;
+    private final EntityLinks entityLinks;
+
+    @Autowired
+    public StatisticsController(final CountryRepository countryRepository,
+                                final PersonRepository personRepository,
+                                final EntityLinks entityLinks) {
+        this.countryRepository = countryRepository;
+        this.personRepository = personRepository;
+        this.entityLinks = entityLinks;
+    }
+
+    @GetMapping("/stats")
+    public ResponseEntity<?> stats()  {
+
+        final int countryCount = countryRepository.findAll().size();
+        final int personCount = personRepository.findAll().size();
+
+        final StatisticsResource countryStatistics = new StatisticsResource("country", countryCount);
+        final StatisticsResource personStatistics = new StatisticsResource("person", personCount);
+
+        final Resources<Resource<StatisticsResource>> resources = new Resources<>(
+                List.of(
+                        new Resource<>(countryStatistics),
+                        new Resource<>(personStatistics)
+                )
+        );
+        resources.add(linkTo(methodOn(StatisticsController.class).stats()).withSelfRel());
+        return ResponseEntity.ok(resources);
+    }
+}
+~~~
+
+This introduces `StatisticsResource`. We can name the resource like this
+
+~~~java
+@Relation(value = "statistics", collectionRelation = "statistics")
+public class StatisticsResource {
 ~~~
 
 

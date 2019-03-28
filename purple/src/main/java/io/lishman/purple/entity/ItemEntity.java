@@ -1,6 +1,7 @@
 package io.lishman.purple.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import org.springframework.data.rest.core.annotation.RestResource;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -79,6 +80,7 @@ public class ItemEntity {
         return description;
     }
 
+    @RestResource(exported = false)
     public UUID getCorrelationId() {
         return correlationId;
     }
