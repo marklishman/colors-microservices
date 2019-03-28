@@ -989,6 +989,35 @@ public class CountryController {
 }
 ~~~
 
+    http://localhost:8061/purple/api/countries/KH/visitors
+    
+~~~json
+{
+    "_embedded": {
+        "people": [
+            {
+                "name": "Bob Jones"
+            },
+            {
+                "name": "Sarah Jones"
+            },
+            {
+                "name": "Roger Smith"
+            }
+        ]
+    },
+    "_links": {
+        "self": {
+            "href": "http://localhost:8061/purplecountries/{code}/visitors",
+            "templated": true
+        },
+        "country": {
+            "href": "http://localhost:8061/purple/api/countries/36"
+        }
+    }
+}
+~~~
+
 # `@BasePathAwareController`
 
 To build custom operations underneath `basePath`, such as Spring MVC views, resources, and others, use `@BasePathAwareController`.
@@ -1038,6 +1067,62 @@ This introduces `StatisticsResource`. We can name the resource like this
 public class StatisticsResource {
 ~~~
 
+    http://localhost:8061/purple/api/stats
+
+~~~json
+{
+    "_embedded": {
+        "statistics": [
+            {
+                "name": "country",
+                "count": 245
+            },
+            {
+                "name": "person",
+                "count": 12
+            }
+        ]
+    },
+    "_links": {
+        "self": {
+            "href": "http://localhost:8061/purple/stats"
+        }
+    }
+}
+~~~
+
+# `@RestController`
+
+Use `@Controller` or `@RestController` for code that is totally outside the scope of Spring Data REST. 
+This extends to request handling, message converters, exception handling, and other uses.
+
+~~~java
+@RestController
+public class VersonController {
+
+    @GetMapping("/version")
+    public ResponseEntity<?> stats()  {
+        final Resource<String> version = new Resource<>("1.2.3");
+        version.add(linkTo(methodOn(VersonController.class).stats()).withSelfRel());
+        return ResponseEntity.ok(version);
+    }
+}
+~~~
+
+    http://localhost:8061/purple/version
+    
+Note: no `/api`
+
+~~~json
+{
+    "content": "1.2.3",
+    "_links": {
+        "self": {
+            "href": "http://localhost:8061/purple/version"
+        }
+    }
+}
+~~~
 
 ---
 
