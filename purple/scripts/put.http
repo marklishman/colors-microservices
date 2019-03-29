@@ -1,0 +1,43 @@
+
+# -----------------------------------------------------------------------------
+# PUT
+
+PUT http://localhost:8061/purple/api/groups/4
+Content-Type: application/json
+
+{
+  "name": "Group Four updated",
+  "description": "New group four description"
+}
+
+###
+
+
+
+# -----------------------------------------------------------------------------
+# PUT
+
+PUT http://localhost:8061/purple/api/items/4
+Content-Type:application/json
+
+{
+    "group": "http://localhost:8061/purple/groups/4",
+    "uuid": "8574a479-b583-4db4-9c03-bfd0ddc7a069",
+    "name": "Item four name",
+    "description": "New Item four description",
+    "correlationId": "128a7512-0b92-4f49-8f61-15dabbd757b8",
+    "status": 3,
+    "data": [
+        {
+            "category": "http://localhost:8061/purple/categories/3",
+            "value": 11.49
+        },
+        {
+            "value": 45.76
+        }
+    ]
+}
+
+###
+
+

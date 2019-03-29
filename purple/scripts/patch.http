@@ -1,0 +1,29 @@
+
+# -----------------------------------------------------------------------------
+# PATCH
+
+PATCH http://localhost:8061/purple/api/groups/4
+Content-Type: application/json
+
+{
+  "description": "Group four updated again"
+}
+
+###
+
+
+
+# -----------------------------------------------------------------------------
+# PATCH
+
+PATCH http://localhost:8061/purple/api/items/8
+Content-Type: application/json
+
+{
+  "group": "http://localhost:8061/purple/groups/4",
+  "description": "Item eight description updated",
+  "status": 6
+}
+
+###
+

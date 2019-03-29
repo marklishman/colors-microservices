@@ -1,0 +1,12 @@
+
+# -----------------------------------------------------------------------------
+# Link countires & people
+
+POST http://localhost:8061/purple/api/people/1/countries
+Content-Type: text/uri-list
+
+http://localhost:8061/purple/countries/20
+http://localhost:8061/purple/countries/24
+http://localhost:8061/purple/countries/30
+
+###

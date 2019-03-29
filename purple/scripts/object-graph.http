@@ -1,0 +1,8 @@
+
+# -----------------------------------------------------------------------------
+# item with data
+
+GET http://localhost:8061/purple/api/items/7
+Content-Type: application/json
+
+###

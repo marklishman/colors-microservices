@@ -25,8 +25,6 @@ eureka:
     enabled: false
 ~~~
 
-
-
 ---
 
 # Schema
@@ -917,7 +915,7 @@ And putting it all together
 
 or
 
-    URL: http://localhost:8061/purple/items
+    URL: http://localhost:8061/purple/api/items
     Method: POST
     Content-Type:application/json
     body: 
@@ -1042,7 +1040,7 @@ public class CountryEntity {
 
 We can link countries to people like this
 
-    URL: http://localhost:8061/purple/people/1/countries
+    URL: http://localhost:8061/purple/api/people/1/countries
     Method: POST
     Content-Type: text/uri-list
     body:

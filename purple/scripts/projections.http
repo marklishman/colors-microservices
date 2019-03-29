@@ -1,0 +1,38 @@
+
+# -----------------------------------------------------------------------------
+# subset
+
+GET http://localhost:8061/purple/api/items/1?projection=name
+Content-Type: application/json
+
+###
+
+
+
+# -----------------------------------------------------------------------------
+# SpEL
+
+GET http://localhost:8061/purple/api/categories/1?projection=name
+Content-Type: application/json
+
+###
+
+
+
+# -----------------------------------------------------------------------------
+# Superset
+
+GET http://localhost:8061/purple/api/items/4?projection=full
+Content-Type: application/json
+
+###
+
+
+
+# -----------------------------------------------------------------------------
+# Excerpt
+
+GET http://localhost:8061/purple/api/categories
+Content-Type: application/json
+
+###

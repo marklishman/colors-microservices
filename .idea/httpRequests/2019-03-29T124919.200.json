@@ -1,0 +1,8 @@
+{
+  "content": "1.2.3",
+  "_links": {
+    "self": {
+      "href": "http://localhost:8061/purple/version"
+    }
+  }
+}

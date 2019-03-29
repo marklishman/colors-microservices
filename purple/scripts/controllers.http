@@ -1,0 +1,25 @@
+
+# -----------------------------------------------------------------------------
+# @RepositoryRestController
+
+GET http://localhost:8061/purple/api/countries/BB/visitors
+
+###
+
+
+
+# -----------------------------------------------------------------------------
+# @BasePathAwareController
+
+GET http://localhost:8061/purple/api/stats
+
+###
+
+
+
+# -----------------------------------------------------------------------------
+# @RestController
+
+GET http://localhost:8061/purple/version
+
+###

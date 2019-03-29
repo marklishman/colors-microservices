@@ -1,0 +1,8 @@
+
+# -----------------------------------------------------------------------------
+# group with item sub-resource
+
+GET http://localhost:8061/purple/api/groups/2/items/4
+Content-Type: application/json
+
+###

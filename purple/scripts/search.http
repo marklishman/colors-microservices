@@ -1,0 +1,18 @@
+
+# -----------------------------------------------------------------------------
+# search
+
+GET http://localhost:8061/purple/api/items/search
+Content-Type: application/json
+
+###
+
+
+
+# -----------------------------------------------------------------------------
+# example
+
+GET http://localhost:8061/purple/api/items/search/findByGroupName?groupNameContains=three
+Content-Type: application/json
+
+###

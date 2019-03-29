@@ -1,0 +1,19 @@
+
+# -----------------------------------------------------------------------------
+# groups collection
+
+GET http://localhost:8061/purple/api/groups
+Content-Type: application/json
+
+###
+
+
+
+# -----------------------------------------------------------------------------
+# groups item
+
+GET http://localhost:8061/purple/api/groups/3
+Content-Type: application/json
+
+###
+
