@@ -32,7 +32,7 @@ eureka:
 
 ### HTTP Scripts
 
-Script file to run the requests below can be found in the `/scripts` directory.
+Script files to run the requests below can be found in the `/scripts` directory.
 
 ---
 
@@ -47,11 +47,11 @@ Script file to run the requests below can be found in the `/scripts` directory.
 ## Group
 
 ~~~java
-@RepositoryRestResource(path = "groups", collectionResourceRel = "groups")
+@RepositoryRestResource(path = "groups", collectionResourceRel = "groups", excerptProjection = GroupNameProjection.class)
 public interface GroupRepository extends JpaRepository<GroupEntity, Long> {
-    
+
     Optional<GroupEntity> findByName(final String name);
-    
+
 }
 ~~~
 
@@ -74,7 +74,7 @@ public interface ItemRepository extends JpaRepository<ItemEntity, Long> {
 ## Category
 
 ~~~java
-@RepositoryRestResource(path = "categories", collectionResourceRel = "categories", excerptProjection = CategoryNameProjection.class)
+@RepositoryRestResource(path = "categories", collectionResourceRel = "categories")
 public interface CategoryRepository extends Repository<CategoryEntity, Long> {
 
     Optional<CategoryEntity> findById(final Long id);
@@ -132,117 +132,113 @@ public interface PersonRepository extends JpaRepository<PersonEntity, Long> {
 
 ~~~json
 {
-    "_links": {
-        "countries": {
-            "href": "http://localhost:8061/purple/api/countries{?page,size,sort}",
-            "templated": true
-        },
-        "groups": {
-            "href": "http://localhost:8061/purple/api/groups{?page,size,sort}",
-            "templated": true
-        },
-        "people": {
-            "href": "http://localhost:8061/purple/api/people{?page,size,sort}",
-            "templated": true
-        },
-        "items": {
-            "href": "http://localhost:8061/purple/api/items{?page,size,sort,projection}",
-            "templated": true
-        },
-        "categories": {
-            "href": "http://localhost:8061/purple/api/categories{?projection}",
-            "templated": true
-        },
-        "profile": {
-            "href": "http://localhost:8061/purple/api/profile"
-        }
+  "_links": {
+    "countries": {
+      "href": "http://localhost:8061/purple/api/countries{?page,size,sort}",
+      "templated": true
+    },
+    "groups": {
+      "href": "http://localhost:8061/purple/api/groups{?page,size,sort}",
+      "templated": true
+    },
+    "people": {
+      "href": "http://localhost:8061/purple/api/people{?page,size,sort}",
+      "templated": true
+    },
+    "items": {
+      "href": "http://localhost:8061/purple/api/items{?page,size,sort,projection}",
+      "templated": true
+    },
+    "categories": {
+      "href": "http://localhost:8061/purple/api/categories{?projection}",
+      "templated": true
+    },
+    "profile": {
+      "href": "http://localhost:8061/purple/api/profile"
     }
+  }
 }
 ~~~
 
 # Collection Resources
 
-    http://localhost:8061/purple/api/groups
+    http://localhost:8061/purple/api/categories
 
 ~~~json
 {
-    "_embedded": {
-        "groups": [
-            {
-                "name": "Group One",
-                "description": "Group one description",
-                "_links": {
-                    "self": {
-                        "href": "http://localhost:8061/purple/api/groups/1"
-                    },
-                    "groupEntity": {
-                        "href": "http://localhost:8061/purple/api/groups/1"
-                    },
-                    "items": {
-                        "href": "http://localhost:8061/purple/api/groups/1/items{?projection}",
-                        "templated": true
-                    }
-                }
-            },
-            {
-                "name": "Group Two",
-                "description": "Group two description",
-                "_links": {
-                    "self": {
-                        "href": "http://localhost:8061/purple/api/groups/2"
-                    },
-                    "groupEntity": {
-                        "href": "http://localhost:8061/purple/api/groups/2"
-                    },
-                    "items": {
-                        "href": "http://localhost:8061/purple/api/groups/2/items{?projection}",
-                        "templated": true
-                    }
-                }
-            }
-        ]
-    },
-    "_links": {
-        "self": {
-            "href": "http://localhost:8061/purple/api/groups{?page,size,sort}",
+  "_embedded": {
+    "categories": [
+      {
+        "name": "Category One",
+        "description": "Category one description",
+        "_links": {
+          "self": {
+            "href": "http://localhost:8061/purple/api/categories/1"
+          },
+          "categoryEntity": {
+            "href": "http://localhost:8061/purple/api/categories/1{?projection}",
             "templated": true
-        },
-        "profile": {
-            "href": "http://localhost:8061/purple/api/profile/groups"
-        },
-        "search": {
-            "href": "http://localhost:8061/purple/api/groups/search"
+          }
         }
+      },
+      {
+        "name": "Category Two",
+        "description": "Category two description",
+        "_links": {
+          "self": {
+            "href": "http://localhost:8061/purple/api/categories/2"
+          },
+          "categoryEntity": {
+            "href": "http://localhost:8061/purple/api/categories/2{?projection}",
+            "templated": true
+          }
+        }
+      },
+      {
+        "name": "Category Six",
+        "description": "Category six description",
+        "_links": {
+          "self": {
+            "href": "http://localhost:8061/purple/api/categories/6"
+          },
+          "categoryEntity": {
+            "href": "http://localhost:8061/purple/api/categories/6{?projection}",
+            "templated": true
+          }
+        }
+      }
+    ]
+  },
+  "_links": {
+    "self": {
+      "href": "http://localhost:8061/purple/api/categories"
     },
-    "page": {
-        "size": 20,
-        "totalElements": 4,
-        "totalPages": 1,
-        "number": 0
+    "profile": {
+      "href": "http://localhost:8061/purple/api/profile/categories"
+    },
+    "search": {
+      "href": "http://localhost:8061/purple/api/categories/search"
     }
-}
-~~~
+  }
+}~~~
 
 # Item Resources
 
-    http://localhost:8061/purple/api/groups/3
+    http://localhost:8061/purple/api/categories/3
 
 ~~~json    
 {
-    "name": "Group Three",
-    "description": "Group three description",
-    "_links": {
-        "self": {
-            "href": "http://localhost:8061/purple/api/groups/3"
-        },
-        "groupEntity": {
-            "href": "http://localhost:8061/purple/api/groups/3"
-        },
-        "items": {
-            "href": "http://localhost:8061/purple/api/groups/3/items{?projection}",
-            "templated": true
-        }
+  "name": "Category Three",
+  "description": "Category three description",
+  "_links": {
+    "self": {
+      "href": "http://localhost:8061/purple/api/categories/3"
+    },
+    "categoryEntity": {
+      "href": "http://localhost:8061/purple/api/categories/3{?projection}",
+      "templated": true
     }
+  }
 }
 ~~~
 

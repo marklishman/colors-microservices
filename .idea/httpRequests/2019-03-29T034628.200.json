@@ -1,0 +1,13 @@
+{
+  "name": "Category Three",
+  "description": "Category three description",
+  "_links": {
+    "self": {
+      "href": "http://localhost:8061/purple/api/categories/3"
+    },
+    "categoryEntity": {
+      "href": "http://localhost:8061/purple/api/categories/3{?projection}",
+      "templated": true
+    }
+  }
+}
