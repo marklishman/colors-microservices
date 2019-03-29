@@ -1244,6 +1244,92 @@ Note: no `/api`
 
 ---
 
+# Access
+
+## Detection
+
+Use the `Annotation` detection strategy.
+
+~~~java
+@Component
+public class RestApiConfiguration implements RepositoryRestConfigurer {
+
+    @Override
+    public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config) {
+        config.setRepositoryDetectionStrategy(RepositoryDetectionStrategy.RepositoryDetectionStrategies.ANNOTATED);
+    }
+
+}
+~~~
+
+
+~~~java
+@RepositoryRestResource(path = "people", collectionResourceRel = "people")
+public interface PersonRepository extends JpaRepository<PersonEntity, Long> {
+~~~
+
+## Repository Methods
+
+Only include the methods to be exposed.
+Extending `CrudRepository` or `JpaRepository` allows POST, PUT, DELETE etc
+
+`CategoryRepository` extends `Repository` so only the methods defined on this class are exposed.
+
+~~~java
+@RepositoryRestResource(path = "categories", collectionResourceRel = "categories", excerptProjection = CategoryNameProjection.class)
+public interface CategoryRepository extends Repository<CategoryEntity, Long> {
+
+    Optional<CategoryEntity> findById(final Long id);
+
+    List<CategoryEntity> findAll();
+
+    Optional<CategoryEntity> findByName(final String name);
+
+}
+~~~
+
+## `@RestResource`
+
+Alternatively, use `@RestResource(exported = false)` to exclude the method.
+
+~~~java
+@RepositoryRestResource(path = "countries", collectionResourceRel = "countries")
+public interface CountryRepository extends JpaRepository<CountryEntity, Long> {
+
+    @RestResource(exported = false)
+    Optional<CountryEntity> findByCode(final String code);
+
+    @RestResource(path = "findByName")
+    List<CountryEntity> findByNameContainingIgnoreCase(final String nameContains);
+
+    @RestResource(exported = false)
+    @Override
+    void deleteById(Long id);
+
+    @RestResource(exported = false)
+    @Override
+    void delete(CountryEntity countryEntity);
+
+    @RestResource(exported = false)
+    @Override
+    void deleteAll(Iterable<? extends CountryEntity> var1);
+
+}
+~~~
+
+## Spring Security
+
+Use Spring Security to protect endpoints.
+
+~~~java
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @Override
+    void deleteById(Long id);
+~~~
+
+
+---
+
 # HAL Browser
 
 http://localhost:8061/purple/api
