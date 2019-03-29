@@ -248,42 +248,52 @@ public interface PersonRepository extends JpaRepository<PersonEntity, Long> {
 Note that the result above is limited to the `groups` resource only.<br/>
 However, the `items` resource includes `data` resource as well.
 
-    http://localhost:8061/purple/api/items/7
+    http://localhost:8061/purple/api/items/4
 
 ~~~json
 {
-  "uuid": "fb8d5122-dfcd-4509-a99e-222e862a1658",
-  "name": "Item Seven",
-  "description": "Item seven description",
-  "correlationId": "e4b4a967-3758-4479-9a26-7ed5608f978a",
+  "uuid": "8574a479-b583-4db4-9c03-bfd0ddc7a069",
+  "name": "Item four name",
+  "description": "New Item four description",
+  "correlationId": "128a7512-0b92-4f49-8f61-15dabbd757b8",
   "status": 3,
-  "createdAt": "2019-03-29T12:39:51.110422",
+  "createdAt": "2019-03-29T12:39:50.978056",
   "data": [
     {
-      "value": 32.45,
-      "createdAt": "2019-03-29T12:39:52.039571",
+      "value": 11.49,
+      "createdAt": "2019-03-29T12:39:51.810117",
       "_links": {
         "category": {
           "href": "http://localhost:8061/purple/api/categories/3{?projection}",
           "templated": true
         },
         "item": {
-          "href": "http://localhost:8061/purple/api/items/7{?projection}",
+          "href": "http://localhost:8061/purple/api/items/4{?projection}",
+          "templated": true
+        }
+      }
+    },
+    {
+      "value": 45.76,
+      "createdAt": "2019-03-29T12:39:51.84181",
+      "_links": {
+        "item": {
+          "href": "http://localhost:8061/purple/api/items/4{?projection}",
           "templated": true
         }
       }
     }
   ],
-  "total": 32.45,
+  "total": 57.25,
   "_embedded": {
     "group": {
-      "details": "Group Three (Group three description)",
+      "details": "Group Two (Group two description)",
       "_links": {
         "self": {
-          "href": "http://localhost:8061/purple/api/groups/3"
+          "href": "http://localhost:8061/purple/api/groups/2"
         },
         "items": {
-          "href": "http://localhost:8061/purple/api/groups/3/items{?projection}",
+          "href": "http://localhost:8061/purple/api/groups/2/items{?projection}",
           "templated": true
         }
       }
@@ -291,14 +301,14 @@ However, the `items` resource includes `data` resource as well.
   },
   "_links": {
     "self": {
-      "href": "http://localhost:8061/purple/api/items/7"
+      "href": "http://localhost:8061/purple/api/items/4"
     },
     "itemEntity": {
-      "href": "http://localhost:8061/purple/api/items/7{?projection}",
+      "href": "http://localhost:8061/purple/api/items/4{?projection}",
       "templated": true
     },
     "group": {
-      "href": "http://localhost:8061/purple/api/items/7/group"
+      "href": "http://localhost:8061/purple/api/items/4/group"
     }
   }
 }
