@@ -301,7 +301,8 @@ However, the `items` resource includes `data` resource as well.
       "href": "http://localhost:8061/purple/api/items/7/group"
     }
   }
-}~~~
+}
+~~~
 
 From the Spring Data REST documentation.
 
