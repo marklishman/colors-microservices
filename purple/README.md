@@ -220,7 +220,8 @@ public interface PersonRepository extends JpaRepository<PersonEntity, Long> {
       "href": "http://localhost:8061/purple/api/categories/search"
     }
   }
-}~~~
+}
+~~~
 
 # Item Resources
 
