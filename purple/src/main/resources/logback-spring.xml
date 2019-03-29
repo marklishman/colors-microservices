@@ -31,9 +31,9 @@
                         defaultValue="logs/filebeat"/>
 
         <appender name="ESTACK" class="ch.qos.logback.core.rolling.RollingFileAppender">
-            <file>${logfileLocation}/green.log</file>
+            <file>${logfileLocation}/purple.log</file>
             <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-                <fileNamePattern>${logfileLocation}/green.%d{yyyy-MM-dd}.log</fileNamePattern>
+                <fileNamePattern>${logfileLocation}/purple.%d{yyyy-MM-dd}.log</fileNamePattern>
                 <maxHistory>7</maxHistory>
             </rollingPolicy>
             <encoder class="net.logstash.logback.encoder.LogstashEncoder"/>

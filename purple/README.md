@@ -19,6 +19,15 @@
 
 To enable or disable the Eureka client change this property in `application.yml`
 
+### Elastic Stack
+
+* Use `estack` profile
+* Start filebeats
+
+### HTTP Scripts
+
+Script file to run the requests below can be found in the `/scripts` directory.
+
 ~~~yaml
 eureka:
   client:
