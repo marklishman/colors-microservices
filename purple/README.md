@@ -9,7 +9,7 @@
 
 # Getting Started
 
-### Database
+### Postgres
 * Create a schema called `purple`
 * Run the `sql/schema.sql` script in this schema.
 * Run the `sql/data.sql` script in this schema.
