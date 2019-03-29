@@ -10,10 +10,10 @@
 # Getting Started
 
 ### Postgres
+* `docker start ref-db`
 * Create a schema called `purple`
 * Run the `sql/schema.sql` script in this schema.
 * Run the `sql/data.sql` script in this schema.
-* `docker start ref-db`
 
 ### Eureka
 
