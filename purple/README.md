@@ -252,54 +252,56 @@ However, the `items` resource includes `data` resource as well.
 
 ~~~json
 {
-    "uuid": "fb8d5122-dfcd-4509-a99e-222e862a1658",
-    "name": "Item Seven",
-    "description": "Item seven description",
-    "correlationId": "e4b4a967-3758-4479-9a26-7ed5608f978a",
-    "status": 3,
-    "createdAt": "2019-03-28T19:59:46.470675",
-    "data": [
-        {
-            "value": 32.45,
-            "createdAt": "2019-03-28T19:59:46.898805",
-            "_embedded": {
-                "category": {
-                    "details": "Category Three - Category three description",
-                    "_links": {
-                        "self": {
-                            "href": "http://localhost:8061/purple/api/categories/3{?projection}",
-                            "templated": true
-                        }
-                    }
-                }
-            },
-            "_links": {
-                "category": {
-                    "href": "http://localhost:8061/purple/api/categories/3{?projection}",
-                    "templated": true
-                },
-                "item": {
-                    "href": "http://localhost:8061/purple/api/items/7{?projection}",
-                    "templated": true
-                }
-            }
-        }
-    ],
-    "total": 32.45,
-    "_links": {
-        "self": {
-            "href": "http://localhost:8061/purple/api/items/7"
+  "uuid": "fb8d5122-dfcd-4509-a99e-222e862a1658",
+  "name": "Item Seven",
+  "description": "Item seven description",
+  "correlationId": "e4b4a967-3758-4479-9a26-7ed5608f978a",
+  "status": 3,
+  "createdAt": "2019-03-29T12:39:51.110422",
+  "data": [
+    {
+      "value": 32.45,
+      "createdAt": "2019-03-29T12:39:52.039571",
+      "_links": {
+        "category": {
+          "href": "http://localhost:8061/purple/api/categories/3{?projection}",
+          "templated": true
         },
-        "itemEntity": {
-            "href": "http://localhost:8061/purple/api/items/7{?projection}",
-            "templated": true
-        },
-        "group": {
-            "href": "http://localhost:8061/purple/api/items/7/group"
+        "item": {
+          "href": "http://localhost:8061/purple/api/items/7{?projection}",
+          "templated": true
         }
+      }
     }
-}
-~~~
+  ],
+  "total": 32.45,
+  "_embedded": {
+    "group": {
+      "details": "Group Three (Group three description)",
+      "_links": {
+        "self": {
+          "href": "http://localhost:8061/purple/api/groups/3"
+        },
+        "items": {
+          "href": "http://localhost:8061/purple/api/groups/3/items{?projection}",
+          "templated": true
+        }
+      }
+    }
+  },
+  "_links": {
+    "self": {
+      "href": "http://localhost:8061/purple/api/items/7"
+    },
+    "itemEntity": {
+      "href": "http://localhost:8061/purple/api/items/7{?projection}",
+      "templated": true
+    },
+    "group": {
+      "href": "http://localhost:8061/purple/api/items/7/group"
+    }
+  }
+}~~~
 
 From the Spring Data REST documentation.
 

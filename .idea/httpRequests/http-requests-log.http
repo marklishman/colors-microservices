@@ -1,3 +1,10 @@
+GET http://localhost:8061/purple/api/items/7
+Content-Type: application/json
+
+<> 2019-03-29T034818.200.json
+
+###
+
 GET http://localhost:8061/purple/api/categories/3
 Content-Type: application/json
 
@@ -421,31 +428,6 @@ Content-Type: application/json
 }
 
 <> 2019-03-29T123107.404.json
-
-###
-
-POST http://localhost:8061/purple/items
-Content-Type: application/json
-
-{
-    "group": "http://localhost:8061/purple/api/groups/4",
-    "uuid": "9f84fa9a-4b9c-46f8-9098-4603efe7ccbc",
-    "name": "Item Nine",
-    "description": "Item nine description",
-    "correlationId": "128a7512-0b92-4f49-8f61-15dabbd757b8",
-    "status": 3,
-    "data": [
-        {
-            "value": 11.49
-        },
-        {
-            "category": "http://localhost:8061/purple/categories/1",
-            "value": 45.76
-        }
-    ]
-}
-
-<> 2019-03-29T123053.404.json
 
 ###
 
