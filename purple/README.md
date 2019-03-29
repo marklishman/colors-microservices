@@ -7,6 +7,28 @@
 
 ---
 
+# Getting Started
+
+### Database
+* Create a schema called `purple`
+* Run the `sql/schema.sql` script in this schema.
+* Run the `sql/data.sql` script in this schema.
+* `docker start ref-db`
+
+### Eureka
+
+To enable or disable the Eureka client change this property in `application.yml`
+
+~~~yaml
+eureka:
+  client:
+    enabled: false
+~~~
+
+
+
+---
+
 # Schema
 
 <img src="database-schema.png" width="700" height="800"/>
@@ -1315,6 +1337,21 @@ public interface CountryRepository extends JpaRepository<CountryEntity, Long> {
     void deleteAll(Iterable<? extends CountryEntity> var1);
 
 }
+~~~
+
+Note that `@RestResource(exported = false)` can be used on a repository class, a repository method
+or an entity method.
+
+~~~java
+
+@Entity
+@Table(name="item")
+public class ItemEntity {
+    
+    @RestResource(exported = false)
+    public UUID getCorrelationId() {
+        return correlationId;
+    }
 ~~~
 
 ## Spring Security
