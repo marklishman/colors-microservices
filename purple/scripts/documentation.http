@@ -1,0 +1,18 @@
+
+# -----------------------------------------------------------------------------
+# ALPS
+
+GET http://localhost:8061/purple/api/profile/people
+Content-Type: application/json
+
+###
+
+
+# -----------------------------------------------------------------------------
+# JSON SChema
+
+GET http://localhost:8061/purple/api/profile/people
+Content-Type: application/json
+Accept:application/schema+json
+
+###

@@ -1370,9 +1370,17 @@ public class RestApiConfiguration implements RepositoryRestConfigurer {
 }
 ~~~
 
+This requires the `@RepositoryRestResource`
 
 ~~~java
-@RepositoryRestResource(path = "people", collectionResourceRel = "people")
+@RepositoryRestResource (
+        path = "people",
+        collectionResourceRel = "people",
+        collectionResourceDescription = @Description("A collection of people"),
+        itemResourceRel = "person",
+        itemResourceDescription = @Description("A single person"),
+        excerptProjection = PersonNameProjection.class
+)
 public interface PersonRepository extends JpaRepository<PersonEntity, Long> {
 ~~~
 
@@ -1384,7 +1392,13 @@ Extending `CrudRepository` or `JpaRepository` allows POST, PUT, DELETE etc
 `CategoryRepository` extends `Repository` so only the methods defined on this class are exposed.
 
 ~~~java
-@RepositoryRestResource(path = "categories", collectionResourceRel = "categories", excerptProjection = CategoryNameProjection.class)
+@RepositoryRestResource (
+        path = "categories",
+        collectionResourceRel = "categories",
+        collectionResourceDescription = @Description("A collection of categories"),
+        itemResourceRel = "category",
+        itemResourceDescription = @Description("A single category")
+)
 public interface CategoryRepository extends Repository<CategoryEntity, Long> {
 
     Optional<CategoryEntity> findById(final Long id);
@@ -1401,7 +1415,13 @@ public interface CategoryRepository extends Repository<CategoryEntity, Long> {
 Alternatively, use `@RestResource(exported = false)` to exclude the method.
 
 ~~~java
-@RepositoryRestResource(path = "countries", collectionResourceRel = "countries")
+@RepositoryRestResource (
+        path = "countries",
+        collectionResourceRel = "countries",
+        collectionResourceDescription = @Description("A collection of countries"),
+        itemResourceRel = "country",
+        itemResourceDescription = @Description("A single country")
+)
 public interface CountryRepository extends JpaRepository<CountryEntity, Long> {
 
     @RestResource(exported = false)
@@ -1450,9 +1470,267 @@ Use Spring Security to protect endpoints.
     void deleteById(Long id);
 ~~~
 
-
 ---
 
 # HAL Browser
 
 http://localhost:8061/purple/api
+
+# ALPS
+
+    http://localhost:8061/purple/api/profile/people
+
+~~~json
+{
+  "alps": {
+    "version": "1.0",
+    "descriptor": [
+      {
+        "id": "person-representation",
+        "href": "http://localhost:8061/purple/api/profile/people",
+        "doc": {
+          "format": "TEXT",
+          "value": "A single person"
+        },
+        "descriptor": [
+          {
+            "name": "firstName",
+            "type": "SEMANTIC"
+          },
+          {
+            "name": "lastName",
+            "type": "SEMANTIC"
+          },
+          {
+            "name": "age",
+            "type": "SEMANTIC"
+          },
+          {
+            "name": "countries",
+            "type": "SAFE",
+            "rt": "http://localhost:8061/purple/api/profile/countries#country-representation"
+          }
+        ]
+      },
+      {
+        "id": "get-people",
+        "name": "people",
+        "type": "SAFE",
+        "doc": {
+          "format": "TEXT",
+          "value": "A collection of people"
+        },
+        "descriptor": [
+          {
+            "name": "page",
+            "type": "SEMANTIC",
+            "doc": {
+              "format": "TEXT",
+              "value": "The page to return."
+            }
+          },
+          {
+            "name": "size",
+            "type": "SEMANTIC",
+            "doc": {
+              "format": "TEXT",
+              "value": "The size of the page to return."
+            }
+          },
+          {
+            "name": "sort",
+            "type": "SEMANTIC",
+            "doc": {
+              "format": "TEXT",
+              "value": "The sorting criteria to use to calculate the content of the page."
+            }
+          },
+          {
+            "name": "projection",
+            "type": "SEMANTIC",
+            "doc": {
+              "format": "TEXT",
+              "value": "The projection that shall be applied when rendering the response. Acceptable values available in nested descriptors."
+            },
+            "descriptor": [
+              {
+                "name": "name",
+                "type": "SEMANTIC",
+                "descriptor": [
+                  {
+                    "name": "fullName",
+                    "type": "SEMANTIC"
+                  }
+                ]
+              },
+              {
+                "name": "personNameProjection",
+                "type": "SEMANTIC",
+                "descriptor": [
+                  {
+                    "name": "fullName",
+                    "type": "SEMANTIC"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "rt": "#person-representation"
+      },
+      {
+        "id": "create-people",
+        "name": "people",
+        "type": "UNSAFE",
+        "doc": {
+          "format": "TEXT",
+          "value": "A collection of people"
+        },
+        "rt": "#person-representation"
+      },
+      {
+        "id": "delete-person",
+        "name": "person",
+        "type": "IDEMPOTENT",
+        "doc": {
+          "format": "TEXT",
+          "value": "A single person"
+        },
+        "rt": "#person-representation"
+      },
+      {
+        "id": "get-person",
+        "name": "person",
+        "type": "SAFE",
+        "doc": {
+          "format": "TEXT",
+          "value": "A single person"
+        },
+        "descriptor": [
+          {
+            "name": "projection",
+            "type": "SEMANTIC",
+            "doc": {
+              "format": "TEXT",
+              "value": "The projection that shall be applied when rendering the response. Acceptable values available in nested descriptors."
+            },
+            "descriptor": [
+              {
+                "name": "name",
+                "type": "SEMANTIC",
+                "descriptor": [
+                  {
+                    "name": "fullName",
+                    "type": "SEMANTIC"
+                  }
+                ]
+              },
+              {
+                "name": "personNameProjection",
+                "type": "SEMANTIC",
+                "descriptor": [
+                  {
+                    "name": "fullName",
+                    "type": "SEMANTIC"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "rt": "#person-representation"
+      },
+      {
+        "id": "update-person",
+        "name": "person",
+        "type": "IDEMPOTENT",
+        "doc": {
+          "format": "TEXT",
+          "value": "A single person"
+        },
+        "rt": "#person-representation"
+      },
+      {
+        "id": "patch-person",
+        "name": "person",
+        "type": "UNSAFE",
+        "doc": {
+          "format": "TEXT",
+          "value": "A single person"
+        },
+        "rt": "#person-representation"
+      },
+      {
+        "name": "findByLastNameContainingIgnoreCase",
+        "type": "SAFE",
+        "descriptor": [
+          {
+            "name": "nameContains",
+            "type": "SEMANTIC"
+          }
+        ]
+      }
+    ]
+  }
+}
+~~~
+
+Note the descriptions are picked up from `@RepositoryRestResource`.
+
+~~~java
+@RepositoryRestResource (
+        path = "people",
+        collectionResourceRel = "people",
+        collectionResourceDescription = @Description("A collection of people"),
+        itemResourceRel = "person",
+        itemResourceDescription = @Description("A single person"),
+        excerptProjection = PersonNameProjection.class
+)
+~~~
+
+Descriptions can be picked up from `rest-messages.properties` too.
+
+~~~properties
+rest.description.countryEntity=Lots of countries
+rest.description.countryEntity.code=The country code
+rest.description.countryEntity.name=The name of the country
+~~~
+
+
+# JSON Schema
+
+Use `Accept:application/schema+json` to get JSON Schema format
+
+    http://localhost:8061/purple/api/profile/people
+
+~~~json
+{
+  "title": "Person entity",
+  "properties": {
+    "firstName": {
+      "title": "First name",
+      "readOnly": false,
+      "type": "string"
+    },
+    "lastName": {
+      "title": "Last name",
+      "readOnly": false,
+      "type": "string"
+    },
+    "countries": {
+      "title": "Countries",
+      "readOnly": false,
+      "type": "string",
+      "format": "uri"
+    },
+    "age": {
+      "title": "Age",
+      "readOnly": false,
+      "type": "integer"
+    }
+  },
+  "definitions": {},
+  "type": "object",
+  "$schema": "http://json-schema.org/draft-04/schema#"
+}
+~~~

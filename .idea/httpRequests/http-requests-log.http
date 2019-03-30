@@ -1,3 +1,72 @@
+GET http://localhost:8061/purple/api/profile/people
+Content-Type: application/json
+Accept: application/schema+json
+
+<> 2019-03-30T112323.200.json
+
+###
+
+GET http://localhost:8061/purple/api/profile/people
+Content-Type: application/json
+
+<> 2019-03-30T112315.200.json
+
+###
+
+GET http://localhost:8061/purple/api/profile/people
+Content-Type: application/json
+
+<> 2019-03-30T112047.200.json
+
+###
+
+GET http://localhost:8061/purple/api/profile/person
+Content-Type: application/json
+
+<> 2019-03-30T112039.500.json
+
+###
+
+GET http://localhost:8061/purple/api/profile/countries
+Content-Type: application/json
+
+<> 2019-03-30T111952.200.json
+
+###
+
+GET http://localhost:8061/purple/api/profile
+Content-Type: application/json
+
+{
+  "description": "Group four updated again"
+}
+
+<> 2019-03-30T111926.200.json
+
+###
+
+PATCH http://localhost:8061/purple/api
+Content-Type: application/json
+
+{
+  "description": "Group four updated again"
+}
+
+<> 2019-03-30T111910.405.json
+
+###
+
+PATCH http://localhost:8061/purple/api/profile
+Content-Type: application/json
+
+{
+  "description": "Group four updated again"
+}
+
+<> 2019-03-30T111853.405.json
+
+###
+
 GET http://localhost:8061/purple/version
 
 <> 2019-03-30T110807.200.json
@@ -324,71 +393,6 @@ GET http://localhost:8061/purple/api/items/4
 Content-Type: application/json
 
 <> 2019-03-30T092244.200.json
-
-###
-
-GET http://localhost:8061/purple/api/groups/3
-Content-Type: application/json
-
-<> 2019-03-30T092012.200.json
-
-###
-
-GET http://localhost:8061/purple/api/groups
-Content-Type: application/json
-
-<> 2019-03-30T091904.200.json
-
-###
-
-GET http://localhost:8061/purple/api
-Content-Type: application/json
-
-<> 2019-03-30T091714.200.json
-
-###
-
-POST http://localhost:8061/purple/api/people
-Content-Type: application/json
-
-{
-  "name": "Group Six",
-  "description": "Group six description"
-}
-
-<> 2019-03-30T085432.409.json
-
-###
-
-POST http://localhost:8061/purple/api/person
-Content-Type: application/json
-
-{
-  "name": "Group Six",
-  "description": "Group six description"
-}
-
-<> 2019-03-30T085411.404.json
-
-###
-
-GET http://localhost:8061/purple/api/groups/2/items/4
-
-<> 2019-03-30T084401.200.json
-
-###
-
-GET http://localhost:8061/purple/api/groups/3
-Content-Type: application/json
-
-<> 2019-03-30T084013.200.json
-
-###
-
-GET http://localhost:8061/purple/api/groups
-Content-Type: application/json
-
-<> 2019-03-30T083929.200.json
 
 ###
 
