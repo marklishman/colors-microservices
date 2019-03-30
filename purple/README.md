@@ -921,6 +921,7 @@ And putting it all together.
 * sorting
 * projection
 
+
     http://localhost:8061/purple/api/items/search/findByGroupName?groupNameContains=gro&page=1&size=3&sort=name,desc&projection=totals
 
 ~~~json
