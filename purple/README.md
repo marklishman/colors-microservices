@@ -798,6 +798,8 @@ public interface CountryRepository extends JpaRepository<CountryEntity, Long> {
 }
 ~~~
 
+Note that `JpaRepository` extends `PagingAndSortingRepository`
+
     http://localhost:8061/purple/api/countries?page=5&size=3&sort=code,desc
     
 ~~~json
