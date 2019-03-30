@@ -768,7 +768,13 @@ we get a list of the query methods on the resource repository.
 # Paging and Sorting
 
 ~~~java
-@RepositoryRestResource(path = "countries", collectionResourceRel = "countries")
+@RepositoryRestResource (
+        path = "countries",
+        collectionResourceRel = "countries",
+        collectionResourceDescription = @Description("A collection of countries"),
+        itemResourceRel = "country",
+        itemResourceDescription = @Description("A single country")
+)
 public interface CountryRepository extends JpaRepository<CountryEntity, Long> {
 
     @RestResource(exported = false)
@@ -796,84 +802,87 @@ public interface CountryRepository extends JpaRepository<CountryEntity, Long> {
     
 ~~~json
 {
-    "_embedded": {
-        "countries": [
-            {
-                "code": "US",
-                "name": "United States",
-                "_links": {
-                    "self": {
-                        "href": "http://localhost:8061/purple/api/countries/233"
-                    },
-                    "countryEntity": {
-                        "href": "http://localhost:8061/purple/api/countries/233"
-                    },
-                    "people": {
-                        "href": "http://localhost:8061/purple/api/countries/233/people"
-                    }
-                }
-            },
-            {
-                "code": "UM",
-                "name": "United States Minor Outlying Islands",
-                "_links": {
-                    "self": {
-                        "href": "http://localhost:8061/purple/api/countries/234"
-                    },
-                    "countryEntity": {
-                        "href": "http://localhost:8061/purple/api/countries/234"
-                    },
-                    "people": {
-                        "href": "http://localhost:8061/purple/api/countries/234/people"
-                    }
-                }
-            },
-            {
-                "code": "UG",
-                "name": "Uganda",
-                "_links": {
-                    "self": {
-                        "href": "http://localhost:8061/purple/api/countries/229"
-                    },
-                    "countryEntity": {
-                        "href": "http://localhost:8061/purple/api/countries/229"
-                    },
-                    "people": {
-                        "href": "http://localhost:8061/purple/api/countries/229/people"
-                    }
-                }
-            }
-        ]
-    },
-    "_links": {
-        "first": {
-            "href": "http://localhost:8061/purple/api/countries?page=0&size=3&sort=code,desc"
-        },
-        "prev": {
-            "href": "http://localhost:8061/purple/api/countries?page=4&size=3&sort=code,desc"
-        },
-        "self": {
-            "href": "http://localhost:8061/purple/api/countries"
-        },
-        "next": {
-            "href": "http://localhost:8061/purple/api/countries?page=6&size=3&sort=code,desc"
-        },
-        "last": {
-            "href": "http://localhost:8061/purple/api/countries?page=81&size=3&sort=code,desc"
-        },
-        "profile": {
-            "href": "http://localhost:8061/purple/api/profile/countries"
-        },
-        "search": {
-            "href": "http://localhost:8061/purple/api/countries/search"
+  "_embedded": {
+    "countries": [
+      {
+        "code": "US",
+        "name": "United States",
+        "_links": {
+          "self": {
+            "href": "http://localhost:8061/purple/api/countries/233"
+          },
+          "country": {
+            "href": "http://localhost:8061/purple/api/countries/233"
+          },
+          "people": {
+            "href": "http://localhost:8061/purple/api/countries/233/people{?projection}",
+            "templated": true
+          }
         }
+      },
+      {
+        "code": "UM",
+        "name": "United States Minor Outlying Islands",
+        "_links": {
+          "self": {
+            "href": "http://localhost:8061/purple/api/countries/234"
+          },
+          "country": {
+            "href": "http://localhost:8061/purple/api/countries/234"
+          },
+          "people": {
+            "href": "http://localhost:8061/purple/api/countries/234/people{?projection}",
+            "templated": true
+          }
+        }
+      },
+      {
+        "code": "UG",
+        "name": "Uganda",
+        "_links": {
+          "self": {
+            "href": "http://localhost:8061/purple/api/countries/229"
+          },
+          "country": {
+            "href": "http://localhost:8061/purple/api/countries/229"
+          },
+          "people": {
+            "href": "http://localhost:8061/purple/api/countries/229/people{?projection}",
+            "templated": true
+          }
+        }
+      }
+    ]
+  },
+  "_links": {
+    "first": {
+      "href": "http://localhost:8061/purple/api/countries?page=0&size=3&sort=code,desc"
     },
-    "page": {
-        "size": 3,
-        "totalElements": 245,
-        "totalPages": 82,
-        "number": 5
+    "prev": {
+      "href": "http://localhost:8061/purple/api/countries?page=4&size=3&sort=code,desc"
+    },
+    "self": {
+      "href": "http://localhost:8061/purple/api/countries"
+    },
+    "next": {
+      "href": "http://localhost:8061/purple/api/countries?page=6&size=3&sort=code,desc"
+    },
+    "last": {
+      "href": "http://localhost:8061/purple/api/countries?page=81&size=3&sort=code,desc"
+    },
+    "profile": {
+      "href": "http://localhost:8061/purple/api/profile/countries"
+    },
+    "search": {
+      "href": "http://localhost:8061/purple/api/countries/search"
     }
+  },
+  "page": {
+    "size": 3,
+    "totalElements": 245,
+    "totalPages": 82,
+    "number": 5
+  }
 }
 ~~~
 

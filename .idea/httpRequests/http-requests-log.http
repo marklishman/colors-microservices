@@ -1,3 +1,10 @@
+GET http://localhost:8061/purple/api/countries?page=5&size=3&sort=code,desc
+Content-Type: application/json
+
+<> 2019-03-30T095405.200.json
+
+###
+
 GET http://localhost:8061/purple/api/items/7/group
 
 <> 2019-03-30T095218.200.json
@@ -314,13 +321,6 @@ GET http://localhost:8061/purple/api/countries
 Content-Type: application/json
 
 <> 2019-03-30T073826.200.json
-
-###
-
-GET http://localhost:8061/purple/api/groups
-Content-Type: application/json
-
-<> 2019-03-30T073725.200.json
 
 ###
 
