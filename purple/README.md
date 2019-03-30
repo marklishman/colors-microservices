@@ -22,7 +22,7 @@ To enable or disable the Eureka client change this property in `application.yml`
 ~~~yaml
 eureka:
   client:
-    enabled: false
+    enabled: true
 ~~~
 
 ### Elastic Stack

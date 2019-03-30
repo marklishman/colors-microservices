@@ -1,4 +1,4 @@
-package io.lishman.green.repository;
+package io.lishman.green.repo;
 
 import io.lishman.green.model.Group;
 

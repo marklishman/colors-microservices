@@ -1,7 +1,7 @@
 package io.lishman.green.service;
 
 import io.lishman.green.model.Group;
-import io.lishman.green.repository.GroupRepository;
+import io.lishman.green.repo.GroupRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
