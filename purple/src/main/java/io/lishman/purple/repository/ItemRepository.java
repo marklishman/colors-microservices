@@ -24,7 +24,7 @@ public interface ItemRepository extends JpaRepository<ItemEntity, Long> {
 
     List<ItemEntity> findByCorrelationId(final UUID correlationId);
 
-    @RestResource(path = "findByGroupName")
+    @RestResource(path = "findByGroupName", rel = "findByGroupName")
     List<ItemEntity> findByGroupNameContainingIgnoreCase(final String groupNameContains, final Pageable pageable);
 
 }

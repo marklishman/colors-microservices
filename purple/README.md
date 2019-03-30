@@ -77,7 +77,7 @@ public interface ItemRepository extends JpaRepository<ItemEntity, Long> {
 
     List<ItemEntity> findByCorrelationId(final UUID correlationId);
 
-    @RestResource(path = "findByGroupName")
+    @RestResource(path = "findByGroupName", rel = "findByGroupName")
     List<ItemEntity> findByGroupNameContainingIgnoreCase(final String groupNameContains, final Pageable pageable);
 
 }
@@ -665,14 +665,20 @@ Projection is automatically applied
 The `ItemRepository` looks like this.
 
 ~~~java
-@RepositoryRestResource(path = "items", collectionResourceRel = "items")
+@RepositoryRestResource (
+        path = "items",
+        collectionResourceRel = "items",
+        collectionResourceDescription = @Description("A collection of items"),
+        itemResourceRel = "item",
+        itemResourceDescription = @Description("A single item")
+)
 public interface ItemRepository extends JpaRepository<ItemEntity, Long> {
 
     Optional<ItemEntity> findByUuid(final UUID id);
 
     List<ItemEntity> findByCorrelationId(final UUID correlationId);
 
-    @RestResource(path = "findByGroupName")
+    @RestResource(path = "findByGroupName", rel = "findByGroupName")
     List<ItemEntity> findByGroupNameContainingIgnoreCase(final String groupNameContains, final Pageable pageable);
 
 }
@@ -686,23 +692,23 @@ we get a list of the query methods on the resource repository.
 
 ~~~json
 {
-    "_links": {
-        "findByUuid": {
-            "href": "http://localhost:8061/purple/api/items/search/findByUuid{?id,projection}",
-            "templated": true
-        },
-        "findByCorrelationId": {
-            "href": "http://localhost:8061/purple/api/items/search/findByCorrelationId{?correlationId,projection}",
-            "templated": true
-        },
-        "findByGroupNameContainingIgnoreCase": {
-            "href": "http://localhost:8061/purple/api/items/search/findByGroupName{?groupNameContains,page,size,sort,projection}",
-            "templated": true
-        },
-        "self": {
-            "href": "http://localhost:8061/purple/api/items/search"
-        }
+  "_links": {
+    "findByGroupName": {
+      "href": "http://localhost:8061/purple/api/items/search/findByGroupName{?groupNameContains,page,size,sort,projection}",
+      "templated": true
+    },
+    "findByCorrelationId": {
+      "href": "http://localhost:8061/purple/api/items/search/findByCorrelationId{?correlationId,projection}",
+      "templated": true
+    },
+    "findByUuid": {
+      "href": "http://localhost:8061/purple/api/items/search/findByUuid{?id,projection}",
+      "templated": true
+    },
+    "self": {
+      "href": "http://localhost:8061/purple/api/items/search"
     }
+  }
 }
 ~~~
 
@@ -710,63 +716,52 @@ we get a list of the query methods on the resource repository.
     
 ~~~json
 {
-    "_embedded": {
-        "items": [
-            {
-                "uuid": "fb8d5122-dfcd-4509-a99e-222e862a1658",
-                "name": "Item Seven",
-                "description": "Item seven description",
-                "correlationId": "e4b4a967-3758-4479-9a26-7ed5608f978a",
-                "status": 3,
-                "createdAt": "2019-03-28T19:59:46.470675",
-                "data": [
-                    {
-                        "value": 32.45,
-                        "createdAt": "2019-03-28T19:59:46.898805",
-                        "_embedded": {
-                            "category": {
-                                "details": "Category Three - Category three description",
-                                "_links": {
-                                    "self": {
-                                        "href": "http://localhost:8061/purple/api/categories/3{?projection}",
-                                        "templated": true
-                                    }
-                                }
-                            }
-                        },
-                        "_links": {
-                            "category": {
-                                "href": "http://localhost:8061/purple/api/categories/3{?projection}",
-                                "templated": true
-                            },
-                            "item": {
-                                "href": "http://localhost:8061/purple/api/items/7{?projection}",
-                                "templated": true
-                            }
-                        }
-                    }
-                ],
-                "total": 32.45,
-                "_links": {
-                    "self": {
-                        "href": "http://localhost:8061/purple/api/items/7"
-                    },
-                    "itemEntity": {
-                        "href": "http://localhost:8061/purple/api/items/7{?projection}",
-                        "templated": true
-                    },
-                    "group": {
-                        "href": "http://localhost:8061/purple/api/items/7/group"
-                    }
-                }
+  "_embedded": {
+    "items": [
+      {
+        "uuid": "fb8d5122-dfcd-4509-a99e-222e862a1658",
+        "name": "Item Seven",
+        "description": "Item seven description",
+        "correlationId": "e4b4a967-3758-4479-9a26-7ed5608f978a",
+        "status": 3,
+        "createdAt": "2019-03-29T16:00:26.745543",
+        "data": [
+          {
+            "value": 32.45,
+            "createdAt": "2019-03-29T16:00:27.303717",
+            "_links": {
+              "item": {
+                "href": "http://localhost:8061/purple/api/items/7{?projection}",
+                "templated": true
+              },
+              "category": {
+                "href": "http://localhost:8061/purple/api/categories/3{?projection}",
+                "templated": true
+              }
             }
-        ]
-    },
-    "_links": {
-        "self": {
-            "href": "http://localhost:8061/purple/api/items/search/findByGroupName?groupNameContains=three"
+          }
+        ],
+        "total": 32.45,
+        "_links": {
+          "self": {
+            "href": "http://localhost:8061/purple/api/items/7"
+          },
+          "item": {
+            "href": "http://localhost:8061/purple/api/items/7{?projection}",
+            "templated": true
+          },
+          "group": {
+            "href": "http://localhost:8061/purple/api/items/7/group"
+          }
         }
+      }
+    ]
+  },
+  "_links": {
+    "self": {
+      "href": "http://localhost:8061/purple/api/items/search/findByGroupName?groupNameContains=three"
     }
+  }
 }
 ~~~
 
@@ -888,14 +883,20 @@ Note the next and previous page links.
 Paging can be included on some query methods and not others.
 
 ~~~java
-@RepositoryRestResource(path = "items", collectionResourceRel = "items")
+@RepositoryRestResource (
+        path = "items",
+        collectionResourceRel = "items",
+        collectionResourceDescription = @Description("A collection of items"),
+        itemResourceRel = "item",
+        itemResourceDescription = @Description("A single item")
+)
 public interface ItemRepository extends JpaRepository<ItemEntity, Long> {
 
     Optional<ItemEntity> findByUuid(final UUID id);
 
     List<ItemEntity> findByCorrelationId(final UUID correlationId);
 
-    @RestResource(path = "findByGroupName")
+    @RestResource(path = "findByGroupName", rel = "findByGroupName")
     List<ItemEntity> findByGroupNameContainingIgnoreCase(final String groupNameContains, final Pageable pageable);
 
 }

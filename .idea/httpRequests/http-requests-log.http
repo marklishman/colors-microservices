@@ -1,3 +1,30 @@
+GET http://localhost:8061/purple/api/items/7/group
+
+<> 2019-03-30T095218.200.json
+
+###
+
+GET http://localhost:8061/purple/api/items/search/findByGroupName?groupNameContains=three
+Content-Type: application/json
+
+<> 2019-03-30T095049.200.json
+
+###
+
+GET http://localhost:8061/purple/api/items/search
+Content-Type: application/json
+
+<> 2019-03-30T094848.200.json
+
+###
+
+GET http://localhost:8061/purple/api/items/search
+Content-Type: application/json
+
+<> 2019-03-30T094625.200.json
+
+###
+
 GET http://localhost:8061/purple/api/people
 Content-Type: application/json
 
@@ -294,34 +321,6 @@ GET http://localhost:8061/purple/api/groups
 Content-Type: application/json
 
 <> 2019-03-30T073725.200.json
-
-###
-
-GET http://localhost:8061/purple/api/categories/3
-Content-Type: application/json
-
-<> 2019-03-30T073713.200.json
-
-###
-
-GET http://localhost:8061/purple/api/categories
-Content-Type: application/json
-
-<> 2019-03-30T073540.200.json
-
-###
-
-GET http://localhost:8061/purple/api/people
-Content-Type: application/json
-
-<> 2019-03-30T073341.200.json
-
-###
-
-GET http://localhost:8061/purple/api/people
-Content-Type: application/json
-
-<> 2019-03-30T073249.200.json
 
 ###
 
