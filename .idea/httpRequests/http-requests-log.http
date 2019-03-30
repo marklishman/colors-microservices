@@ -1,3 +1,27 @@
+POST http://localhost:8061/purple/api/people
+Content-Type: application/json
+
+{
+  "name": "Group Six",
+  "description": "Group six description"
+}
+
+<> 2019-03-30T085432.409.json
+
+###
+
+POST http://localhost:8061/purple/api/person
+Content-Type: application/json
+
+{
+  "name": "Group Six",
+  "description": "Group six description"
+}
+
+<> 2019-03-30T085411.404.json
+
+###
+
 GET http://localhost:8061/purple/api/groups/2/items/4
 
 <> 2019-03-30T084401.200.json
@@ -298,20 +322,6 @@ GET http://localhost:8061/purple/api/categories/3
 Content-Type: application/json
 
 <> 2019-03-29T034416.200.json
-
-###
-
-GET http://localhost:8061/purple/api/categories
-Content-Type: application/json
-
-<> 2019-03-29T034402.200.json
-
-###
-
-GET http://localhost:8061/purple/api/groups
-Content-Type: application/json
-
-<> 2019-03-29T034344.200.json
 
 ###
 

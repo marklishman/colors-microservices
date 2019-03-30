@@ -47,7 +47,13 @@ Script files to run the requests below can be found in the `/scripts` directory.
 ## Group
 
 ~~~java
-@RepositoryRestResource(path = "groups", collectionResourceRel = "groups", excerptProjection = GroupNameProjection.class)
+@RepositoryRestResource (
+        path = "groups",
+        collectionResourceRel = "groups",
+        collectionResourceDescription = @Description("A collection of groups"),
+        itemResourceRel = "group",
+        itemResourceDescription = @Description("A single group")
+)
 public interface GroupRepository extends JpaRepository<GroupEntity, Long> {
 
     Optional<GroupEntity> findByName(final String name);
@@ -58,7 +64,13 @@ public interface GroupRepository extends JpaRepository<GroupEntity, Long> {
 ## Item
 
 ~~~java
-@RepositoryRestResource(path = "items", collectionResourceRel = "items")
+@RepositoryRestResource (
+        path = "items",
+        collectionResourceRel = "items",
+        collectionResourceDescription = @Description("A collection of items"),
+        itemResourceRel = "item",
+        itemResourceDescription = @Description("A single item")
+)
 public interface ItemRepository extends JpaRepository<ItemEntity, Long> {
 
     Optional<ItemEntity> findByUuid(final UUID id);
@@ -67,14 +79,20 @@ public interface ItemRepository extends JpaRepository<ItemEntity, Long> {
 
     @RestResource(path = "findByGroupName")
     List<ItemEntity> findByGroupNameContainingIgnoreCase(final String groupNameContains, final Pageable pageable);
-    
+
 }
 ~~~
 
 ## Category
 
 ~~~java
-@RepositoryRestResource(path = "categories", collectionResourceRel = "categories")
+@RepositoryRestResource (
+        path = "categories",
+        collectionResourceRel = "categories",
+        collectionResourceDescription = @Description("A collection of categories"),
+        itemResourceRel = "category",
+        itemResourceDescription = @Description("A single category")
+)
 public interface CategoryRepository extends Repository<CategoryEntity, Long> {
 
     Optional<CategoryEntity> findById(final Long id);
@@ -89,14 +107,20 @@ public interface CategoryRepository extends Repository<CategoryEntity, Long> {
 ## Country
 
 ~~~java
-@RepositoryRestResource(path = "countries", collectionResourceRel = "countries")
+@RepositoryRestResource (
+        path = "countries",
+        collectionResourceRel = "countries",
+        collectionResourceDescription = @Description("A collection of countries"),
+        itemResourceRel = "country",
+        itemResourceDescription = @Description("A single country")
+)
 public interface CountryRepository extends JpaRepository<CountryEntity, Long> {
-
-    @RestResource(path = "findByName")
-    List<CountryEntity> findByNameContainingIgnoreCase(final String nameContains);
 
     @RestResource(exported = false)
     Optional<CountryEntity> findByCode(final String code);
+
+    @RestResource(path = "findByName")
+    List<CountryEntity> findByNameContainingIgnoreCase(final String nameContains);
 
     @RestResource(exported = false)
     @Override
@@ -116,12 +140,19 @@ public interface CountryRepository extends JpaRepository<CountryEntity, Long> {
 ## Person
 
 ~~~java
-@RepositoryRestResource(path = "people", collectionResourceRel = "people")
+@RepositoryRestResource (
+        path = "people",
+        collectionResourceRel = "people",
+        collectionResourceDescription = @Description("A collection of people"),
+        itemResourceRel = "person",
+        itemResourceDescription = @Description("A single person"),
+        excerptProjection = PersonNameProjection.class
+)
 public interface PersonRepository extends JpaRepository<PersonEntity, Long> {
 
-    @RestResource(path = "findByName")
-    List<PersonEntity> findByNameContainingIgnoreCase(final String nameContains);
-    
+    @RestResource(path = "findByLastName")
+    List<PersonEntity> findByLastNameContainingIgnoreCase(final String nameContains);
+
 }
 ~~~
 

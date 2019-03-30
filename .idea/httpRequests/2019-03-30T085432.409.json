@@ -1,0 +1,10 @@
+{
+  "cause": {
+    "cause": {
+      "cause": null,
+      "message": "ERROR: null value in column \"psn_age\" violates not-null constraint\n  Detail: Failing row contains (5, null, null, null)."
+    },
+    "message": "could not execute statement"
+  },
+  "message": "could not execute statement; SQL [n/a]; constraint [psn_age]; nested exception is org.hibernate.exception.ConstraintViolationException: could not execute statement"
+}
