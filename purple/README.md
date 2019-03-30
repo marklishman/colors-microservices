@@ -1113,7 +1113,7 @@ public class PersonEntity {
 
 ~~~java
 @Entity
-@Table(name="country")
+@Table(name = "country")
 public class CountryEntity {
 
     @ManyToMany(mappedBy = "countries")
@@ -1122,10 +1122,9 @@ public class CountryEntity {
 
 We can link countries to people like this
 
-    URL: http://localhost:8061/purple/api/people/1/countries
-    Method: POST
+    POST http://localhost:8061/purple/api/people/2/countries
     Content-Type: text/uri-list
-    body:
+    
     http://localhost:8061/purple/countries/20
     http://localhost:8061/purple/countries/24
     http://localhost:8061/purple/countries/30
@@ -1177,7 +1176,7 @@ public class ItemEntityEventHandler {
 # `@RepositoryRestController`
 
 `@RepositoryRestController` is used to override _Spring Data REST managed resources_.
-In fact, it makes sure the URI refers to a repository.
+In fact, Spring makes sure the URI refers to a repository.
 
 ~~~java
 @RepositoryRestController
@@ -1218,23 +1217,29 @@ public class CountryController {
     
 ~~~json
 {
-    "_embedded": {
-        "people": [
-            {
-                "name": "Bob Jones",
-                "age": 31
-            }
-        ]
+  "_embedded": {
+    "people": [
+      {
+        "firstName": "Bob",
+        "lastName": "Jones",
+        "age": 31
+      },
+      {
+        "firstName": "Sarah",
+        "lastName": "Jones",
+        "age": 27
+      }
+    ]
+  },
+  "_links": {
+    "self": {
+      "href": "http://localhost:8061/purplecountries/{code}/visitors",
+      "templated": true
     },
-    "_links": {
-        "self": {
-            "href": "http://localhost:8061/purplecountries/{code}/visitors",
-            "templated": true
-        },
-        "country": {
-            "href": "http://localhost:8061/purple/api/countries/20"
-        }
+    "country": {
+      "href": "http://localhost:8061/purple/api/countries/20"
     }
+  }
 }
 ~~~
 
@@ -1278,6 +1283,7 @@ public class StatisticsController {
         return ResponseEntity.ok(resources);
     }
 }
+
 ~~~
 
 This introduces `StatisticsResource`. We can name the resource like this
@@ -1291,23 +1297,23 @@ public class StatisticsResource {
 
 ~~~json
 {
-    "_embedded": {
-        "statistics": [
-            {
-                "name": "country",
-                "count": 245
-            },
-            {
-                "name": "person",
-                "count": 4
-            }
-        ]
-    },
-    "_links": {
-        "self": {
-            "href": "http://localhost:8061/purple/stats"
-        }
+  "_embedded": {
+    "statistics": [
+      {
+        "name": "country",
+        "count": 245
+      },
+      {
+        "name": "person",
+        "count": 4
+      }
+    ]
+  },
+  "_links": {
+    "self": {
+      "href": "http://localhost:8061/purple/stats"
     }
+  }
 }
 ~~~
 
@@ -1335,12 +1341,12 @@ Note: no `/api`
 
 ~~~json
 {
-    "content": "1.2.3",
-    "_links": {
-        "self": {
-            "href": "http://localhost:8061/purple/version"
-        }
+  "content": "1.2.3",
+  "_links": {
+    "self": {
+      "href": "http://localhost:8061/purple/version"
     }
+  }
 }
 ~~~
 

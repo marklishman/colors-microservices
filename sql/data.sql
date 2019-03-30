@@ -368,3 +368,4 @@ INSERT INTO country (cty_name, cty_code) VALUES ('Zambia', 'ZM');
 INSERT INTO country (cty_name, cty_code) VALUES ('Zimbabwe', 'ZW');
 
 INSERT INTO visitor (psn_id, cty_id) VALUES (1, 20)
+INSERT INTO visitor (psn_id, cty_id) VALUES (1, 22)

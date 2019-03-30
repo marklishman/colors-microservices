@@ -2,7 +2,7 @@
 # -----------------------------------------------------------------------------
 # Link countires & people
 
-POST http://localhost:8061/purple/api/people/1/countries
+POST http://localhost:8061/purple/api/people/2/countries
 Content-Type: text/uri-list
 
 http://localhost:8061/purple/countries/20
