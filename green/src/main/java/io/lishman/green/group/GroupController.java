@@ -1,10 +1,10 @@
-package io.lishman.green.controller;
+package io.lishman.green.group;
 
-import io.lishman.green.model.Group;
-import io.lishman.green.service.GroupService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.Resource;
+import org.springframework.hateoas.Resources;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
-@RequestMapping("/group")
+@RequestMapping("/groups")
 public class GroupController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(GroupController.class);
@@ -27,19 +29,25 @@ public class GroupController {
         this.groupService = groupService;
     }
 
-    // CRUD
+    @GetMapping()
+    public Resources<?> getGroups() {
+        LOGGER.info("Get all groups");
+        final List<Group> groups = groupService.getAllGroups();
+        return GroupResources.fromGroups(groups);
+    }
 
     @GetMapping("/{id}")
-    public Group getGroup(@PathVariable("id") final Long id) {
-        LOGGER.info("Get instance details for Green id {}", id);
-        return groupService.getById(id);
+    public Resource<?> getGroup(@PathVariable("id") final Long id) {
+        LOGGER.info("Get group for id {}", id);
+        final var group = groupService.getById(id);
+        return GroupResource.fromGroup(group);
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Group createGroup(@RequestBody final Group group) {
         // TODO logging
-        return groupService.createDetails(group);
+        return groupService.createGroup(group);
     }
 
     @PutMapping("/{id}")
@@ -48,24 +56,6 @@ public class GroupController {
             @PathVariable("id") final Long id,
             @RequestBody final Group group) {
         // TODO logging
-        return groupService.updateDetails(id, group);
+        return groupService.updateGroup(id, group);
     }
-
-    // TODO commented out code
-
-    // Projection
-
-//    @GetMapping(value = "/{id}", params = "projection=instance")
-//    public InstanceDetails getInstanceDetails(@PathVariable("id") final Long id) {
-//        LOGGER.info("Get instance details for Green id {}", id);
-//        return groupService.getInstanceDetails(id);
-//    }
-
-    // Search
-
-//    @GetMapping(value = "/search/findByCorrelationId", params = "correlationId")
-//    public GreenDetails findByCorrelationId(@RequestParam("correlationId") final String correlationId) {
-//        LOGGER.info("Get instance details for Green correlation id {}", correlationId);
-//        return groupService.getDetailsForCorrelationId(correlationId);
-//    }
 }

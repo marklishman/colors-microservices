@@ -1,6 +1,5 @@
-package io.lishman.green.repository;
+package io.lishman.green.category;
 
-import io.lishman.green.entity.CategoryEntity;
 import org.springframework.data.repository.Repository;
 
 import java.util.List;

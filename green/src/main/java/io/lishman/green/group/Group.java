@@ -1,7 +1,4 @@
-package io.lishman.green.model;
-
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
+package io.lishman.green.group;
 
 import java.util.Objects;
 
@@ -19,22 +16,21 @@ public final class Group {
         this.description = description;
     }
 
-    public static Group newInstance(final Long id,
-                                    final String name,
-                                    final String description) {
+    static Group newInstance(final Long id,
+                             final String name,
+                             final String description) {
         return new Group(id, name, description);
     }
 
-    // Note that if the 'id' argument is omitted here then it is
-    // set on the object if it is included in the json.
-    @JsonCreator
-    public static Group fromJson(@JsonProperty("id") final Long id,
-                                 @JsonProperty("name") final String name,
-                                 @JsonProperty("description") final String description) {
-        return newInstance(null, name, description);
+    static Group fromGroupEntity(GroupEntity groupEntity) {
+        return Group.newInstance(
+                groupEntity.getId(),
+                groupEntity.getName(),
+                groupEntity.getDescription()
+        );
     }
 
-    public Group cloneWithNewId(final Long id) {
+    Group cloneWithNewId(final Long id) {
         return Group.newInstance(id, name, description);
     }
 
@@ -46,7 +42,7 @@ public final class Group {
         return name;
     }
 
-    public String getDescription() {
+    String getDescription() {
         return description;
     }
 

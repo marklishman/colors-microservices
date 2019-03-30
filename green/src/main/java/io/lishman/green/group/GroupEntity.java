@@ -1,18 +1,20 @@
-package io.lishman.green.repo;
+package io.lishman.green.group;
 
-import io.lishman.green.model.Group;
+import io.lishman.green.item.ItemEntity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
 @Table(name="group")
-class GroupEntity {
+public class GroupEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,6 +26,9 @@ class GroupEntity {
 
     @Column(name = "grp_desc")
     private String description;
+
+    @OneToMany(mappedBy = "group")
+    private List<ItemEntity> items;
 
     public GroupEntity() {
     }
@@ -57,6 +62,10 @@ class GroupEntity {
         return description;
     }
 
+    public List<ItemEntity> getItems() {
+        return items;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -72,7 +81,7 @@ class GroupEntity {
 
     @Override
     public String toString() {
-        return "GroupEntity{" +
+        return "Group{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +

@@ -1,57 +1,48 @@
-package io.lishman.green.entity;
+package io.lishman.green.category;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-import java.util.List;
 import java.util.Objects;
 
 @Entity
-@Table(name = "country")
-public class CountryEntity {
+@Table(name="category")
+public class CategoryEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "cty_id", columnDefinition = "serial")
+    @Column(name = "cat_id", columnDefinition = "serial")
     private Long id;
 
-    @Column(name = "cty_code")
-    private String code;
-
-    @Column(name = "cty_name")
+    @Column(name = "cat_name")
     private String name;
 
-    @ManyToMany(mappedBy = "countries")
-    private List<PersonEntity> people;
+    @Column(name = "cat_desc")
+    private String description;
 
-    public CountryEntity() {
+    public CategoryEntity() {
     }
 
     public Long getId() {
         return id;
     }
 
-    public String getCode() {
-        return code;
-    }
-
     public String getName() {
         return name;
     }
 
-    public List<PersonEntity> getPeople() {
-        return people;
+    public String getDescription() {
+        return description;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        CountryEntity that = (CountryEntity) o;
+        CategoryEntity that = (CategoryEntity) o;
         return Objects.equals(id, that.id);
     }
 
@@ -62,10 +53,10 @@ public class CountryEntity {
 
     @Override
     public String toString() {
-        return "Country{" +
+        return "Category{" +
                 "id=" + id +
-                ", code='" + code + '\'' +
                 ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
                 '}';
     }
 }

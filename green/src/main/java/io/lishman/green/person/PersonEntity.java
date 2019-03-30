@@ -1,4 +1,6 @@
-package io.lishman.green.entity;
+package io.lishman.green.person;
+
+import io.lishman.green.country.CountryEntity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

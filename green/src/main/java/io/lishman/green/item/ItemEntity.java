@@ -1,6 +1,7 @@
-package io.lishman.green.entity;
+package io.lishman.green.item;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import io.lishman.green.group.GroupEntity;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;

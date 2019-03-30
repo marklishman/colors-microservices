@@ -24,7 +24,7 @@ spring:
 
 eureka:
   client:
-    enabled: true
+    enabled: false
     healthcheck:
       enabled: true
     serviceUrl:
