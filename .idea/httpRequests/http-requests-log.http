@@ -1,3 +1,42 @@
+GET http://localhost:8061/purple/api/items/search/findByGroupName?groupNameContains=gro&page=1&size=3&sort=name,desc&projection=totals
+Content-Type: application/json
+
+<> 2019-03-30T103303.200.json
+
+###
+
+GET http://localhost:8061/purple/api/items/search
+
+<> 2019-03-30T103222.200.json
+
+###
+
+GET http://localhost:8061/purple/api/countries?page=5&size=3&sort=code,desc
+Content-Type: application/json
+
+<> 2019-03-30T102957.200.json
+
+###
+
+GET http://localhost:8061/purple/api/groups?page=5&size=2
+
+<> 2019-03-30T102945.200.json
+
+###
+
+GET http://localhost:8061/purple/api/groups
+
+<> 2019-03-30T102924.200.json
+
+###
+
+GET http://localhost:8061/purple/api/countries
+Content-Type: application/json
+
+<> 2019-03-30T102845.200.json
+
+###
+
 GET http://localhost:8061/purple/api/countries?page=5&size=3&sort=code,desc
 Content-Type: application/json
 
@@ -280,47 +319,6 @@ GET http://localhost:8061/purple/api/groups
 GET http://localhost:8061/purple/api/groups
 
 <> 2019-03-30T075501.404.json
-
-###
-
-GET http://localhost:8061/purple/api/groups
-
-<> 2019-03-30T074145.200.json
-
-###
-
-GET http://localhost:8061/purple/api/groups
-
-<> 2019-03-30T074104.200.json
-
-###
-
-GET http://localhost:8061/purple/api/groups
-GET http:
-Content-Type: application/json
-
-<> 2019-03-30T074051.400.html
-
-###
-
-GET http://localhost:8061/purple/api/categories
-Content-Type: application/json
-
-<> 2019-03-30T074004.200.json
-
-###
-
-GET http://localhost:8061/purple/api/category
-Content-Type: application/json
-
-<> 2019-03-30T073956.404.json
-
-###
-
-GET http://localhost:8061/purple/api/countries
-Content-Type: application/json
-
-<> 2019-03-30T073826.200.json
 
 ###
 
