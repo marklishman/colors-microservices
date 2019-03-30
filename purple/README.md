@@ -286,30 +286,30 @@ However, the `items` resource includes `data` resource as well.
 
 ~~~json
 {
-  "uuid": "8574a479-b583-4db4-9c03-bfd0ddc7a069",
-  "name": "Item four name",
-  "description": "New Item four description",
+  "uuid": "4b30d7c8-2f17-49da-bff9-3a04364c5a08",
+  "name": "Item Four",
+  "description": "Item four description",
   "correlationId": "128a7512-0b92-4f49-8f61-15dabbd757b8",
   "status": 3,
-  "createdAt": "2019-03-29T12:39:50.978056",
+  "createdAt": "2019-03-29T16:00:26.676794",
   "data": [
     {
-      "value": 11.49,
-      "createdAt": "2019-03-29T12:39:51.810117",
+      "value": 111.43,
+      "createdAt": "2019-03-29T16:00:27.126485",
       "_links": {
-        "category": {
-          "href": "http://localhost:8061/purple/api/categories/3{?projection}",
-          "templated": true
-        },
         "item": {
           "href": "http://localhost:8061/purple/api/items/4{?projection}",
+          "templated": true
+        },
+        "category": {
+          "href": "http://localhost:8061/purple/api/categories/3{?projection}",
           "templated": true
         }
       }
     },
     {
-      "value": 45.76,
-      "createdAt": "2019-03-29T12:39:51.84181",
+      "value": 7.43,
+      "createdAt": "2019-03-29T16:00:27.159121",
       "_links": {
         "item": {
           "href": "http://localhost:8061/purple/api/items/4{?projection}",
@@ -318,26 +318,12 @@ However, the `items` resource includes `data` resource as well.
       }
     }
   ],
-  "total": 57.25,
-  "_embedded": {
-    "group": {
-      "details": "Group Two (Group two description)",
-      "_links": {
-        "self": {
-          "href": "http://localhost:8061/purple/api/groups/2"
-        },
-        "items": {
-          "href": "http://localhost:8061/purple/api/groups/2/items{?projection}",
-          "templated": true
-        }
-      }
-    }
-  },
+  "total": 118.86,
   "_links": {
     "self": {
       "href": "http://localhost:8061/purple/api/items/4"
     },
-    "itemEntity": {
+    "item": {
       "href": "http://localhost:8061/purple/api/items/4{?projection}",
       "templated": true
     },
@@ -362,30 +348,30 @@ for each of the associations the item resource has.
     
 ~~~json
 {
-  "uuid": "8574a479-b583-4db4-9c03-bfd0ddc7a069",
-  "name": "Item four name",
-  "description": "New Item four description",
+  "uuid": "4b30d7c8-2f17-49da-bff9-3a04364c5a08",
+  "name": "Item Four",
+  "description": "Item four description",
   "correlationId": "128a7512-0b92-4f49-8f61-15dabbd757b8",
   "status": 3,
-  "createdAt": "2019-03-29T12:39:50.978056",
+  "createdAt": "2019-03-29T16:00:26.676794",
   "data": [
     {
-      "value": 11.49,
-      "createdAt": "2019-03-29T12:39:51.810117",
+      "value": 111.43,
+      "createdAt": "2019-03-29T16:00:27.126485",
       "_links": {
-        "category": {
-          "href": "http://localhost:8061/purple/api/categories/3{?projection}",
-          "templated": true
-        },
         "item": {
           "href": "http://localhost:8061/purple/api/items/4{?projection}",
+          "templated": true
+        },
+        "category": {
+          "href": "http://localhost:8061/purple/api/categories/3{?projection}",
           "templated": true
         }
       }
     },
     {
-      "value": 45.76,
-      "createdAt": "2019-03-29T12:39:51.84181",
+      "value": 7.43,
+      "createdAt": "2019-03-29T16:00:27.159121",
       "_links": {
         "item": {
           "href": "http://localhost:8061/purple/api/items/4{?projection}",
@@ -394,26 +380,12 @@ for each of the associations the item resource has.
       }
     }
   ],
-  "total": 57.25,
-  "_embedded": {
-    "group": {
-      "details": "Group Two (Group two description)",
-      "_links": {
-        "self": {
-          "href": "http://localhost:8061/purple/api/groups/2"
-        },
-        "items": {
-          "href": "http://localhost:8061/purple/api/groups/2/items{?projection}",
-          "templated": true
-        }
-      }
-    }
-  },
+  "total": 118.86,
   "_links": {
     "self": {
       "href": "http://localhost:8061/purple/api/items/4"
     },
-    "itemEntity": {
+    "item": {
       "href": "http://localhost:8061/purple/api/items/4{?projection}",
       "templated": true
     },
