@@ -12,7 +12,7 @@ Content-Type: application/json
 # -----------------------------------------------------------------------------
 # SpEL
 
-GET http://localhost:8061/purple/api/categories/1?projection=name
+GET http://localhost:8061/purple/api/people/1?projection=name
 Content-Type: application/json
 
 ###

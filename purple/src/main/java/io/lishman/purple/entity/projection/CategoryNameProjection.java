@@ -9,4 +9,5 @@ public interface CategoryNameProjection {
 
     @Value("#{target.name} - #{target.description}")
     String getDetails();
+
 }

@@ -405,10 +405,12 @@ Projections alter the view of the returned data.
 This projection returns the item name and description
 
 ~~~java
-@Projection(name = "name", types = { Item.class })
+@Projection(name = "name", types = { ItemEntity.class })
 public interface ItemNameProjection {
+
     String getName();
     String getDescription();
+
 }
 ~~~
 
@@ -418,48 +420,53 @@ returns a subset of the `item` resource
 
 ~~~json
 {
-    "name": "Item One",
-    "description": "Item one description",
-    "_links": {
-        "self": {
-            "href": "http://localhost:8061/purple/api/items/1"
-        },
-        "itemEntity": {
-            "href": "http://localhost:8061/purple/api/items/1{?projection}",
-            "templated": true
-        },
-        "group": {
-            "href": "http://localhost:8061/purple/api/items/1/group"
-        }
+  "name": "Item One",
+  "description": "Item one description",
+  "_links": {
+    "self": {
+      "href": "http://localhost:8061/purple/api/items/1"
+    },
+    "item": {
+      "href": "http://localhost:8061/purple/api/items/1{?projection}",
+      "templated": true
+    },
+    "group": {
+      "href": "http://localhost:8061/purple/api/items/1/group"
     }
+  }
 }
+
 ~~~
 
 ### Using SpEL
 
 ~~~java
-@Projection(name = "name", types = { CategoryEntity.class })
-public interface CategoryNameProjection {
+@Projection(name = "name", types = { PersonEntity.class })
+public interface PersonNameProjection {
 
-    @Value("#{target.name} - #{target.description}")
-    String getDetails();
+    @Value("#{target.firstName} #{target.lastName}")
+    String getFullName();
+
 }
 ~~~
 
-    http://localhost:8061/purple/api/categories/1?projection=name
+    http://localhost:8061/purple/api/people/1?projection=name
     
 ~~~json
 {
-    "details": "Category One - Category one description",
-    "_links": {
-        "self": {
-            "href": "http://localhost:8061/purple/api/categories/1"
-        },
-        "categoryEntity": {
-            "href": "http://localhost:8061/purple/api/categories/1{?projection}",
-            "templated": true
-        }
+  "fullName": "Bob Jones",
+  "_links": {
+    "self": {
+      "href": "http://localhost:8061/purple/api/people/1"
+    },
+    "person": {
+      "href": "http://localhost:8061/purple/api/people/1{?projection}",
+      "templated": true
+    },
+    "countries": {
+      "href": "http://localhost:8061/purple/api/people/1/countries"
     }
+  }
 }
 ~~~
 
@@ -468,6 +475,7 @@ public interface CategoryNameProjection {
 ~~~java
 @Projection(name = "full", types = { ItemEntity.class })
 public interface ItemFullProjection {
+    
     String getId();
     UUID getUuid();
     String getName();
@@ -476,6 +484,7 @@ public interface ItemFullProjection {
     Integer getStatus();
     LocalDateTime getCreatedAt();
     List<DataFullProjection> getData();
+    
 }
 ~~~
 
@@ -484,10 +493,24 @@ and
 ~~~java
 @Projection(name = "full", types = { DataEntity.class })
 public interface DataFullProjection {
+
     String getId();
     BigDecimal getValue();
     LocalDateTime getCreatedAt();
     CategoryNameProjection getCategory();
+
+}
+~~~
+
+and
+
+~~~java
+@Projection(name = "name", types = { CategoryEntity.class })
+public interface CategoryNameProjection {
+
+    @Value("#{target.name} - #{target.description}")
+    String getDetails();
+
 }
 ~~~
 
@@ -495,47 +518,47 @@ public interface DataFullProjection {
 
 ~~~json
 {
-    "name": "Item Four",
-    "id": "4",
-    "data": [
-        {
-            "value": 111.43,
-            "id": "15",
-            "createdAt": "2019-03-28T19:59:46.793971",
-            "category": {
-                "details": "Category Three - Category three description",
-                "_links": {
-                    "self": {
-                        "href": "http://localhost:8061/purple/api/categories/3{?projection}",
-                        "templated": true
-                    }
-                }
-            }
-        },
-        {
-            "value": 7.43,
-            "id": "16",
-            "createdAt": "2019-03-28T19:59:46.812306",
-            "category": null
-        }
-    ],
-    "description": "Item four description",
-    "uuid": "4b30d7c8-2f17-49da-bff9-3a04364c5a08",
-    "correlationId": "128a7512-0b92-4f49-8f61-15dabbd757b8",
-    "status": 3,
-    "createdAt": "2019-03-28T19:59:46.39203",
-    "_links": {
-        "self": {
-            "href": "http://localhost:8061/purple/api/items/4"
-        },
-        "itemEntity": {
-            "href": "http://localhost:8061/purple/api/items/4{?projection}",
+  "name": "Item Four",
+  "id": "4",
+  "uuid": "4b30d7c8-2f17-49da-bff9-3a04364c5a08",
+  "description": "Item four description",
+  "correlationId": "128a7512-0b92-4f49-8f61-15dabbd757b8",
+  "status": 3,
+  "createdAt": "2019-03-29T16:00:26.676794",
+  "data": [
+    {
+      "value": 111.43,
+      "id": "15",
+      "createdAt": "2019-03-29T16:00:27.126485",
+      "category": {
+        "details": "Category Three - Category three description",
+        "_links": {
+          "self": {
+            "href": "http://localhost:8061/purple/api/categories/3{?projection}",
             "templated": true
-        },
-        "group": {
-            "href": "http://localhost:8061/purple/api/items/4/group"
+          }
         }
+      }
+    },
+    {
+      "value": 7.43,
+      "id": "16",
+      "createdAt": "2019-03-29T16:00:27.159121",
+      "category": null
     }
+  ],
+  "_links": {
+    "self": {
+      "href": "http://localhost:8061/purple/api/items/4"
+    },
+    "item": {
+      "href": "http://localhost:8061/purple/api/items/4{?projection}",
+      "templated": true
+    },
+    "group": {
+      "href": "http://localhost:8061/purple/api/items/4/group"
+    }
+  }
 }
 ~~~
 
@@ -550,23 +573,28 @@ explicitly specifying them in the projection.
 An excerpt is a projection that is automatically applied to a resource collection.
 
 ~~~java
-@Projection(name = "name", types = { CategoryEntity.class })
-public interface CategoryNameProjection {
+@Projection(name = "name", types = { PersonEntity.class })
+public interface PersonNameProjection {
 
-    @Value("#{target.name} - #{target.description}")
-    String getDetails();
+    @Value("#{target.firstName} #{target.lastName}")
+    String getFullName();
+
 }
 ~~~
 
 ~~~java
-@RepositoryRestResource(path = "categories", collectionResourceRel = "categories", excerptProjection = CategoryNameProjection.class)
-public interface CategoryRepository extends Repository<CategoryEntity, Long> {
+@RepositoryRestResource (
+        path = "people",
+        collectionResourceRel = "people",
+        collectionResourceDescription = @Description("A collection of people"),
+        itemResourceRel = "person",
+        itemResourceDescription = @Description("A single person"),
+        excerptProjection = PersonNameProjection.class
+)
+public interface PersonRepository extends JpaRepository<PersonEntity, Long> {
 
-    Optional<CategoryEntity> findById(final Long id);
-
-    List<CategoryEntity> findAll();
-
-    Optional<CategoryEntity> findByName(final String name);
+    @RestResource(path = "findByLastName")
+    List<PersonEntity> findByLastNameContainingIgnoreCase(final String nameContains);
 
 }
 ~~~
@@ -577,45 +605,58 @@ Projection is automatically applied
 
 ~~~json
 {
-    "_embedded": {
-        "categories": [
-            {
-                "details": "Category One - Category one description",
-                "_links": {
-                    "self": {
-                        "href": "http://localhost:8061/purple/api/categories/1"
-                    },
-                    "categoryEntity": {
-                        "href": "http://localhost:8061/purple/api/categories/1{?projection}",
-                        "templated": true
-                    }
-                }
-            },
-            {
-                "details": "Category Three - Category three description",
-                "_links": {
-                    "self": {
-                        "href": "http://localhost:8061/purple/api/categories/3"
-                    },
-                    "categoryEntity": {
-                        "href": "http://localhost:8061/purple/api/categories/3{?projection}",
-                        "templated": true
-                    }
-                }
-            }
-        ]
-    },
-    "_links": {
-        "self": {
-            "href": "http://localhost:8061/purple/api/categories"
-        },
-        "profile": {
-            "href": "http://localhost:8061/purple/api/profile/categories"
-        },
-        "search": {
-            "href": "http://localhost:8061/purple/api/categories/search"
+  "_embedded": {
+    "people": [
+      {
+        "fullName": "Bob Jones",
+        "_links": {
+          "self": {
+            "href": "http://localhost:8061/purple/api/people/1"
+          },
+          "person": {
+            "href": "http://localhost:8061/purple/api/people/1{?projection}",
+            "templated": true
+          },
+          "countries": {
+            "href": "http://localhost:8061/purple/api/people/1/countries"
+          }
         }
+      },
+      {
+        "fullName": "Sally Smith",
+        "_links": {
+          "self": {
+            "href": "http://localhost:8061/purple/api/people/4"
+          },
+          "person": {
+            "href": "http://localhost:8061/purple/api/people/4{?projection}",
+            "templated": true
+          },
+          "countries": {
+            "href": "http://localhost:8061/purple/api/people/4/countries"
+          }
+        }
+      }
+    ]
+  },
+  "_links": {
+    "self": {
+      "href": "http://localhost:8061/purple/api/people{?page,size,sort,projection}",
+      "templated": true
+    },
+    "profile": {
+      "href": "http://localhost:8061/purple/api/profile/people"
+    },
+    "search": {
+      "href": "http://localhost:8061/purple/api/people/search"
     }
+  },
+  "page": {
+    "size": 20,
+    "totalElements": 4,
+    "totalPages": 1,
+    "number": 0
+  }
 }
 ~~~
 

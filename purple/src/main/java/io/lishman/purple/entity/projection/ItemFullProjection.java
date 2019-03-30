@@ -9,6 +9,7 @@ import java.util.UUID;
 
 @Projection(name = "full", types = { ItemEntity.class })
 public interface ItemFullProjection {
+
     String getId();
     UUID getUuid();
     String getName();
@@ -17,4 +18,5 @@ public interface ItemFullProjection {
     Integer getStatus();
     LocalDateTime getCreatedAt();
     List<DataFullProjection> getData();
+
 }

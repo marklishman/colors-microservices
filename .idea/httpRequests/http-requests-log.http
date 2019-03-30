@@ -1,3 +1,31 @@
+GET http://localhost:8061/purple/api/people
+Content-Type: application/json
+
+<> 2019-03-30T094246.200.json
+
+###
+
+GET http://localhost:8061/purple/api/items/4?projection=full
+Content-Type: application/json
+
+<> 2019-03-30T093903.200.json
+
+###
+
+GET http://localhost:8061/purple/api/people/1?projection=name
+Content-Type: application/json
+
+<> 2019-03-30T093613.200.json
+
+###
+
+GET http://localhost:8061/purple/api/items/1?projection=name
+Content-Type: application/json
+
+<> 2019-03-30T093254.200.json
+
+###
+
 GET http://localhost:8061/purple/api/groups/2/items/4
 Content-Type: application/json
 
@@ -294,34 +322,6 @@ GET http://localhost:8061/purple/api/people
 Content-Type: application/json
 
 <> 2019-03-30T073249.200.json
-
-###
-
-GET http://localhost:8061/purple/api/person
-Content-Type: application/json
-
-<> 2019-03-30T073235.404.json
-
-###
-
-GET http://localhost:8061/purple/api/groups/2/items/4
-Content-Type: application/json
-
-<> 2019-03-29T035322.200.json
-
-###
-
-GET http://localhost:8061/purple/api/items/4
-Content-Type: application/json
-
-<> 2019-03-29T035049.200.json
-
-###
-
-GET http://localhost:8061/purple/api/items/5
-Content-Type: application/json
-
-<> 2019-03-29T035040.200.json
 
 ###
 
