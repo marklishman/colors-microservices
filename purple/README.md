@@ -992,10 +992,9 @@ http://localhost:8061/purple/api/items/search/findByGroupName?groupNameContains=
 
 # Create (POST)
 
-    URL: http://localhost:8061/purple/api/groups
-    Method: POST
+    POST http://localhost:8061/purple/api/groups
     Content-Type: application/json
-    Body:
+    
     {
         "name": "Group Six",
         "description": "Group six description"
@@ -1003,10 +1002,9 @@ http://localhost:8061/purple/api/items/search/findByGroupName?groupNameContains=
 
 or
 
-    URL: http://localhost:8061/purple/api/items
-    Method: POST
+    POST http://localhost:8061/purple/api/items
     Content-Type:application/json
-    body: 
+    
     {
         "group": "http://localhost:8061/purple/api/groups/4",
         "uuid": "9f84fa9a-4b9c-46f8-9098-4603efe7ccbc",
@@ -1031,21 +1029,19 @@ Note the resource URL in the JSON to specify the `group` and `category` parent e
 
 PUT replaces the entire resource so all values must be specified.
 
-    URL: http://localhost:8061/purple/api/groups/4
-    Method: PUT
+    PUT http://localhost:8061/purple/api/groups/4
     Content-Type: application/json
-    body: 
+    
     {
-        "name": "Group Four updated",
-        "description": "New group four description"
+      "name": "Group Four updated",
+      "description": "New group four description"
     }
     
 or
     
-    URL: http://localhost:8061/purple/api/items/4
-    Method: PUT
+    PUT http://localhost:8061/purple/api/items/4
     Content-Type:application/json
-    body: 
+    
     {
         "group": "http://localhost:8061/purple/groups/4",
         "uuid": "8574a479-b583-4db4-9c03-bfd0ddc7a069",
@@ -1066,39 +1062,37 @@ or
     
 Note I couldn't alter the _number_ of items in the `data` array with this command
 (ie adding or removing items). 
-I suspect this is a JPA issue rather than a Spring Data REST issue. 
+I suspect this is a JPA issue rather than a Spring Data REST issue.
+Maybe use event handlers to fix this?
 
 
 # Update (PATCH)
 
 PATCH is similar to PUT but partially updates the resources state.
 
-    URL: http://localhost:8061/purple/api/groups/4
-    Method: PATCH
+    PATCH http://localhost:8061/purple/api/groups/4
     Content-Type: application/json
-    body: 
+    
     {
-        "description": "Group four updated again"
+      "description": "Group four updated again"
     }
     
 or
 
-    URL: http://localhost:8061/purple/api/items/8
-    Method: PATCH
-    Content-Type:application/json
-    body: 
+    PATCH http://localhost:8061/purple/api/items/8
+    Content-Type: application/json
+    
     {
-        "group": "http://localhost:8061/purple/groups/3",
-        "description": "Item eight description updated",
-        "status": 6
+      "group": "http://localhost:8061/purple/groups/4",
+      "description": "Item eight description updated",
+      "status": 6
     }
 
 Note the change to the owning group.
 
 # Delete (DELETE)
 
-    URL: http://localhost:8061/purple/api/groups/5
-    Method: DELETE
+    DELETE http://localhost:8061/purple/api/groups/5
 
 # Create Association
 

@@ -1,6 +1,6 @@
 
 # -----------------------------------------------------------------------------
-# POST
+# POST group
 
 POST http://localhost:8061/purple/api/groups
 Content-Type: application/json
@@ -15,7 +15,7 @@ Content-Type: application/json
 
 
 # -----------------------------------------------------------------------------
-# POST
+# POST item with data
 
 POST http://localhost:8061/purple/api/items
 Content-Type:application/json

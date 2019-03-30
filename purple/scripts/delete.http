@@ -1,6 +1,6 @@
 
 # -----------------------------------------------------------------------------
-# DELETE
+# DELETE group
 
 DELETE http://localhost:8061/purple/api/groups/5
 
