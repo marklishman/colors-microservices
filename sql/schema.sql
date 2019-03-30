@@ -64,9 +64,10 @@ CREATE TABLE country (
 
 
 CREATE TABLE person (
-  psn_id   SERIAL PRIMARY KEY,
-  psn_name VARCHAR(200) UNIQUE,
-  psn_age  INTEGER NOT NULL
+  psn_id         SERIAL PRIMARY KEY,
+  psn_first_name VARCHAR(200),
+  psn_last_name  VARCHAR(200),
+  psn_age        INTEGER NOT NULL
 );
 
 CREATE TABLE visitor (

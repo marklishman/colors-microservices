@@ -1,8 +1,8 @@
 
 # -----------------------------------------------------------------------------
-# categories collection
+# groups collection
 
-GET http://localhost:8061/purple/api/categories
+GET http://localhost:8061/purple/api/groups
 Content-Type: application/json
 
 ###
@@ -10,9 +10,9 @@ Content-Type: application/json
 
 
 # -----------------------------------------------------------------------------
-# categories item
+# groups item
 
-GET http://localhost:8061/purple/api/categories/3
+GET http://localhost:8061/purple/api/groups/3
 Content-Type: application/json
 
 ###

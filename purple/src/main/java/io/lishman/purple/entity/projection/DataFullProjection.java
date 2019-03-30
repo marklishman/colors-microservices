@@ -8,8 +8,10 @@ import java.time.LocalDateTime;
 
 @Projection(name = "full", types = { DataEntity.class })
 public interface DataFullProjection {
+
     String getId();
     BigDecimal getValue();
     LocalDateTime getCreatedAt();
     CategoryNameProjection getCategory();
+
 }

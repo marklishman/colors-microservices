@@ -2,13 +2,20 @@ package io.lishman.purple.repository;
 
 import io.lishman.purple.entity.CountryEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.rest.core.annotation.Description;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.data.rest.core.annotation.RestResource;
 
 import java.util.List;
 import java.util.Optional;
 
-@RepositoryRestResource(path = "countries", collectionResourceRel = "countries")
+@RepositoryRestResource (
+        path = "countries",
+        collectionResourceRel = "countries",
+        collectionResourceDescription = @Description("A collection of countries"),
+        itemResourceRel = "country",
+        itemResourceDescription = @Description("A single country")
+)
 public interface CountryRepository extends JpaRepository<CountryEntity, Long> {
 
     @RestResource(exported = false)

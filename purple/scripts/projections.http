@@ -32,7 +32,7 @@ Content-Type: application/json
 # -----------------------------------------------------------------------------
 # Excerpt
 
-GET http://localhost:8061/purple/api/groups
+GET http://localhost:8061/purple/api/people
 Content-Type: application/json
 
 ###

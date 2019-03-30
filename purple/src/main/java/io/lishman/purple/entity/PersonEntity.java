@@ -21,8 +21,11 @@ public class PersonEntity {
     @Column(name = "psn_id", columnDefinition = "serial")
     private Long id;
 
-    @Column(name = "psn_name")
-    private String name;
+    @Column(name = "psn_first_name")
+    private String firstName;
+
+    @Column(name = "psn_last_name")
+    private String lastName;
 
     @Column(name = "psn_age")
     private Integer age;
@@ -41,8 +44,12 @@ public class PersonEntity {
         return id;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
     }
 
     public Integer getAge() {
@@ -68,9 +75,12 @@ public class PersonEntity {
 
     @Override
     public String toString() {
-        return "Person{" +
+        return "PersonEntity{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", age=" + age +
+                ", countries=" + countries +
                 '}';
     }
 }

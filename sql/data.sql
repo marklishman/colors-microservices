@@ -116,10 +116,10 @@ VALUES( (SELECT itm_id FROM "item" WHERE itm_name = 'Item Eight'), (SELECT cat_i
 INSERT INTO "data" (itm_id, cat_id, dat_value, dat_created_at)
 VALUES( (SELECT itm_id FROM "item" WHERE itm_name = 'Item Eight'), (SELECT cat_id FROM "category" WHERE cat_name = 'Category Six'), 89.43, now());
 
-INSERT INTO person (psn_name, psn_age) VALUES ('Bob Jones', 31);
-INSERT INTO person (psn_name, psn_age) VALUES ('Sarah Jones', 27);
-INSERT INTO person (psn_name, psn_age) VALUES ('Roger Smith', 24);
-INSERT INTO person (psn_name, psn_age) VALUES ('Sally Smith', 32);
+INSERT INTO person (psn_first_name, psn_last_name, psn_age) VALUES ('Bob', 'Jones', 31);
+INSERT INTO person (psn_first_name, psn_last_name, psn_age) VALUES ('Sarah', 'Jones', 27);
+INSERT INTO person (psn_first_name, psn_last_name, psn_age) VALUES ('Roger', 'Smith', 24);
+INSERT INTO person (psn_first_name, psn_last_name, psn_age) VALUES ('Sally', 'Smith', 32);
 
 INSERT INTO country (cty_name, cty_code) VALUES ('Afghanistan', 'AF');
 INSERT INTO country (cty_name, cty_code) VALUES ('Ã…land Islands', 'AX');

@@ -1,4 +1,244 @@
 GET http://localhost:8061/purple/api/groups/2/items/4
+
+<> 2019-03-30T084401.200.json
+
+###
+
+GET http://localhost:8061/purple/api/groups/3
+Content-Type: application/json
+
+<> 2019-03-30T084013.200.json
+
+###
+
+GET http://localhost:8061/purple/api/groups
+Content-Type: application/json
+
+<> 2019-03-30T083929.200.json
+
+###
+
+GET http://localhost:8061/purple/api
+Content-Type: application/json
+
+<> 2019-03-30T083826.200.json
+
+###
+
+GET http://localhost:8061/purple/api/profile/groupsPath
+
+<> 2019-03-30T082916.200.json
+
+###
+
+GET http://localhost:8061/purple/api/profile
+
+<> 2019-03-30T082852.200.json
+
+###
+
+GET http://localhost:8061/purple/api/groupsPath/profile
+
+<> 2019-03-30T082843.500.json
+
+###
+
+GET http://localhost:8061/purple/api/groupsPath/3
+
+<> 2019-03-30T082816.200.json
+
+###
+
+GET http://localhost:8061/purple/api/groupsPath
+
+<> 2019-03-30T082554.200.json
+
+###
+
+GET http://localhost:8061/purple/api/groupsCollection
+
+<> 2019-03-30T082547.404.json
+
+###
+
+GET http://localhost:8061/purple/api
+
+<> 2019-03-30T082522.200.json
+
+###
+
+GET http://localhost:8061/purple/api
+
+###
+
+GET http://localhost:8061/purple/api
+
+<> 2019-03-30T082457.200.json
+
+###
+
+GET http://localhost:8061/purple/api
+
+<> 2019-03-30T082413.200.json
+
+###
+
+GET http://localhost:8061/purple/api
+
+<> 2019-03-30T082258.200.json
+
+###
+
+GET http://localhost:8061/purple/api
+
+<> 2019-03-30T081421.200.json
+
+###
+
+GET http://localhost:8061/purple/api
+
+###
+
+GET http://localhost:8061/purple/api
+
+###
+
+GET http://localhost:8061/purple/api
+
+###
+
+GET http://localhost:8061/purple/api
+
+<> 2019-03-30T081340.200.json
+
+###
+
+GET http://localhost:8061/purple/api
+
+<> 2019-03-30T075753.200.json
+
+###
+
+GET http://localhost:8061/purple/api/groups
+
+<> 2019-03-30T075700.404.json
+
+###
+
+GET http://localhost:8061/purple/api/groupEntities
+
+<> 2019-03-30T075652.200.json
+
+###
+
+GET http://localhost:8061/purple/api/groupEntities
+
+<> 2019-03-30T075622.200.json
+
+###
+
+GET http://localhost:8061/purple/api/groupEntities
+
+<> 2019-03-30T075534.200.json
+
+###
+
+GET http://localhost:8061/purple/api/groups
+
+<> 2019-03-30T075519.404.json
+
+###
+
+GET http://localhost:8061/purple/api/groups
+
+<> 2019-03-30T075501.404.json
+
+###
+
+GET http://localhost:8061/purple/api/groups
+
+<> 2019-03-30T074145.200.json
+
+###
+
+GET http://localhost:8061/purple/api/groups
+
+<> 2019-03-30T074104.200.json
+
+###
+
+GET http://localhost:8061/purple/api/groups
+GET http:
+Content-Type: application/json
+
+<> 2019-03-30T074051.400.html
+
+###
+
+GET http://localhost:8061/purple/api/categories
+Content-Type: application/json
+
+<> 2019-03-30T074004.200.json
+
+###
+
+GET http://localhost:8061/purple/api/category
+Content-Type: application/json
+
+<> 2019-03-30T073956.404.json
+
+###
+
+GET http://localhost:8061/purple/api/countries
+Content-Type: application/json
+
+<> 2019-03-30T073826.200.json
+
+###
+
+GET http://localhost:8061/purple/api/groups
+Content-Type: application/json
+
+<> 2019-03-30T073725.200.json
+
+###
+
+GET http://localhost:8061/purple/api/categories/3
+Content-Type: application/json
+
+<> 2019-03-30T073713.200.json
+
+###
+
+GET http://localhost:8061/purple/api/categories
+Content-Type: application/json
+
+<> 2019-03-30T073540.200.json
+
+###
+
+GET http://localhost:8061/purple/api/people
+Content-Type: application/json
+
+<> 2019-03-30T073341.200.json
+
+###
+
+GET http://localhost:8061/purple/api/people
+Content-Type: application/json
+
+<> 2019-03-30T073249.200.json
+
+###
+
+GET http://localhost:8061/purple/api/person
+Content-Type: application/json
+
+<> 2019-03-30T073235.404.json
+
+###
+
+GET http://localhost:8061/purple/api/groups/2/items/4
 Content-Type: application/json
 
 <> 2019-03-29T035322.200.json
@@ -72,309 +312,6 @@ GET http://localhost:8061/purple/api/groups
 Content-Type: application/json
 
 <> 2019-03-29T034344.200.json
-
-###
-
-GET http://localhost:8061/purple/api
-Content-Type: application/json
-
-<> 2019-03-29T034220.200.json
-
-###
-
-GET http://localhost:8061/purple/api/groups
-Content-Type: application/json
-
-<> 2019-03-29T033825.200.json
-
-###
-
-GET http://localhost:8061/purple/api/items/7
-Content-Type: application/json
-
-<> 2019-03-29T033449.200.json
-
-###
-
-GET http://localhost:8061/purple/api/items/7
-Content-Type: application/json
-
-###
-
-GET http://localhost:8061/purple/api/items/7
-Content-Type: application/json
-
-###
-
-GET http://localhost:8061/purple/api/items/7
-Content-Type: application/json
-
-<> 2019-03-29T032829.200.json
-
-###
-
-GET http://localhost:8061/purple/api/items/7
-Content-Type: application/json
-
-<> 2019-03-29T032642.200.json
-
-###
-
-GET http://localhost:8061/purple/api/groups
-Content-Type: application/json
-
-###
-
-GET http://localhost:8061/purple/api/groups
-Content-Type: application/json
-
-<> 2019-03-29T011603.200.json
-
-###
-
-GET http://localhost:8061/purple/api/groups
-Content-Type: application/json
-
-<> 2019-03-29T011527.200.json
-
-###
-
-GET http://localhost:8061/purple/api/groups
-Content-Type: application/json
-
-<> 2019-03-29T011526.200.json
-
-###
-
-GET http://localhost:8061/purple/api/groups
-Content-Type: application/json
-
-<> 2019-03-29T011524.200.json
-
-###
-
-GET http://localhost:8061/purple/api/groups
-Content-Type: application/json
-
-<> 2019-03-29T011338.200.json
-
-###
-
-GET http://localhost:8061/purple/api/groups
-Content-Type: application/json
-
-<> 2019-03-29T011208.200.json
-
-###
-
-GET http://localhost:8061/purple/api/groups
-Content-Type: application/json
-
-<> 2019-03-29T011207.200.json
-
-###
-
-GET http://localhost:8061/purple/api/groups
-Content-Type: application/json
-
-###
-
-GET http://localhost:8061/purple/api/groups
-Content-Type: application/json
-
-<> 2019-03-29T010912.200.json
-
-###
-
-GET http://localhost:8061/purple/api/groups
-Content-Type: application/json
-
-<> 2019-03-29T010640.200.json
-
-###
-
-GET http://localhost:8061/purple/api/groups
-Content-Type: application/json
-
-<> 2019-03-29T010639.200.json
-
-###
-
-GET http://localhost:8061/purple/api/groups
-Content-Type: application/json
-
-<> 2019-03-29T010637.200.json
-
-###
-
-GET http://localhost:8061/purple/api/groups
-Content-Type: application/json
-
-<> 2019-03-29T010124.200.json
-
-###
-
-GET http://localhost:8061/purple/api/groups
-Content-Type: application/json
-
-<> 2019-03-29T010122.200.json
-
-###
-
-GET http://localhost:8061/purple/api/groups
-Content-Type: application/json
-
-<> 2019-03-29T010120.200.json
-
-###
-
-GET http://localhost:8061/purple/api/stats
-
-<> 2019-03-29T125857.200.json
-
-###
-
-GET http://localhost:8061/purple/api/stats
-
-<> 2019-03-29T125246.200.json
-
-###
-
-GET http://localhost:8061/purple/version
-
-<> 2019-03-29T124919.200.json
-
-###
-
-GET http://localhost:8061/purple/api/stats
-
-<> 2019-03-29T124536.200.json
-
-###
-
-GET http://localhost:8061/purple/api/stats
-
-<> 2019-03-29T124529.200.json
-
-###
-
-GET http://localhost:8061/purple/api/countries/BB/visitors
-
-<> 2019-03-29T124424.200.json
-
-###
-
-POST http://localhost:8061/purple/api/people/1/countries
-Content-Type: text/uri-list
-
-http://localhost:8061/purple/countries/20
-http://localhost:8061/purple/countries/24
-http://localhost:8061/purple/countries/30
-
-###
-
-POST http://localhost:8061/purple/people/1/countries
-Content-Type: text/uri-list
-
-http://localhost:8061/purple/countries/20
-http://localhost:8061/purple/countries/24
-http://localhost:8061/purple/countries/30
-
-<> 2019-03-29T124239.404.json
-
-###
-
-DELETE http://localhost:8061/purple/api/groups/5
-
-###
-
-PATCH http://localhost:8061/purple/api/items/8
-Content-Type: application/json
-
-{
-  "group": "http://localhost:8061/purple/groups/4",
-  "description": "Item eight description updated",
-  "status": 6
-}
-
-###
-
-PATCH http://localhost:8061/purple/api/groups/4
-Content-Type: application/json
-
-{
-  "description": "Group four updated again"
-}
-
-###
-
-PUT http://localhost:8061/purple/api/groups/4
-Content-Type: application/json
-
-{
-  "description": "Group four updated again"
-}
-
-<> 2019-03-29T124048.409.json
-
-###
-
-PUT http://localhost:8061/purple/api/groups/4
-Content-Type: application/json
-
-{
-  "name": "Group Four updated",
-  "description": "New group four description"
-}
-
-###
-
-PUT http://localhost:8061/purple/api/items/4
-Content-Type: application/json
-
-{
-    "group": "http://localhost:8061/purple/groups/4",
-    "uuid": "8574a479-b583-4db4-9c03-bfd0ddc7a069",
-    "name": "Item four name",
-    "description": "New Item four description",
-    "correlationId": "128a7512-0b92-4f49-8f61-15dabbd757b8",
-    "status": 3,
-    "data": [
-        {
-            "category": "http://localhost:8061/purple/categories/3",
-            "value": 11.49
-        },
-        {
-            "value": 45.76
-        }
-    ]
-}
-
-###
-
-PUT http://localhost:8061/purple/api/items/8
-Content-Type: application/json
-
-{
-  "group": "http://localhost:8061/purple/groups/4",
-  "description": "Item eight description updated",
-  "status": 6
-}
-
-<> 2019-03-29T123718.500.json
-
-###
-
-PUT http://localhost:8061/purple/api/items/8
-Content-Type: application/json
-
-{
-  "group": "http://localhost:8061/purple/groups/3",
-  "description": "Item eight description updated",
-  "status": 6
-}
-
-<> 2019-03-29T123649.500.json
 
 ###
 
