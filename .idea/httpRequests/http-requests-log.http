@@ -1,3 +1,24 @@
+GET http://localhost:8061/purple/api/groups/3
+Content-Type: application/json
+
+<> 2019-03-30T092012.200.json
+
+###
+
+GET http://localhost:8061/purple/api/groups
+Content-Type: application/json
+
+<> 2019-03-30T091904.200.json
+
+###
+
+GET http://localhost:8061/purple/api
+Content-Type: application/json
+
+<> 2019-03-30T091714.200.json
+
+###
+
 POST http://localhost:8061/purple/api/people
 Content-Type: application/json
 
@@ -301,27 +322,6 @@ GET http://localhost:8061/purple/api/categories/3
 Content-Type: application/json
 
 <> 2019-03-29T034628.200.json
-
-###
-
-GET http://localhost:8061/purple/api/categories
-Content-Type: application/json
-
-<> 2019-03-29T034529.200.json
-
-###
-
-GET http://localhost:8061/purple/api/categories
-Content-Type: application/json
-
-<> 2019-03-29T034504.200.json
-
-###
-
-GET http://localhost:8061/purple/api/categories/3
-Content-Type: application/json
-
-<> 2019-03-29T034416.200.json
 
 ###
 

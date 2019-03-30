@@ -168,20 +168,20 @@ public interface PersonRepository extends JpaRepository<PersonEntity, Long> {
       "href": "http://localhost:8061/purple/api/countries{?page,size,sort}",
       "templated": true
     },
-    "groups": {
-      "href": "http://localhost:8061/purple/api/groups{?page,size,sort}",
+    "categories": {
+      "href": "http://localhost:8061/purple/api/categories{?projection}",
       "templated": true
     },
     "people": {
-      "href": "http://localhost:8061/purple/api/people{?page,size,sort}",
+      "href": "http://localhost:8061/purple/api/people{?page,size,sort,projection}",
       "templated": true
     },
     "items": {
       "href": "http://localhost:8061/purple/api/items{?page,size,sort,projection}",
       "templated": true
     },
-    "categories": {
-      "href": "http://localhost:8061/purple/api/categories{?projection}",
+    "groups": {
+      "href": "http://localhost:8061/purple/api/groups{?page,size,sort}",
       "templated": true
     },
     "profile": {
@@ -193,47 +193,40 @@ public interface PersonRepository extends JpaRepository<PersonEntity, Long> {
 
 # Collection Resources
 
-    http://localhost:8061/purple/api/categories
+    http://localhost:8061/purple/api/groups
 
 ~~~json
 {
   "_embedded": {
-    "categories": [
+    "groups": [
       {
-        "name": "Category One",
-        "description": "Category one description",
+        "name": "Group One",
+        "description": "Group one description",
         "_links": {
           "self": {
-            "href": "http://localhost:8061/purple/api/categories/1"
+            "href": "http://localhost:8061/purple/api/groups/1"
           },
-          "categoryEntity": {
-            "href": "http://localhost:8061/purple/api/categories/1{?projection}",
+          "group": {
+            "href": "http://localhost:8061/purple/api/groups/1"
+          },
+          "items": {
+            "href": "http://localhost:8061/purple/api/groups/1/items{?projection}",
             "templated": true
           }
         }
       },
       {
-        "name": "Category Two",
-        "description": "Category two description",
+        "name": "Group Four",
+        "description": "Group four description",
         "_links": {
           "self": {
-            "href": "http://localhost:8061/purple/api/categories/2"
+            "href": "http://localhost:8061/purple/api/groups/4"
           },
-          "categoryEntity": {
-            "href": "http://localhost:8061/purple/api/categories/2{?projection}",
-            "templated": true
-          }
-        }
-      },
-      {
-        "name": "Category Six",
-        "description": "Category six description",
-        "_links": {
-          "self": {
-            "href": "http://localhost:8061/purple/api/categories/6"
+          "group": {
+            "href": "http://localhost:8061/purple/api/groups/4"
           },
-          "categoryEntity": {
-            "href": "http://localhost:8061/purple/api/categories/6{?projection}",
+          "items": {
+            "href": "http://localhost:8061/purple/api/groups/4/items{?projection}",
             "templated": true
           }
         }
@@ -242,32 +235,42 @@ public interface PersonRepository extends JpaRepository<PersonEntity, Long> {
   },
   "_links": {
     "self": {
-      "href": "http://localhost:8061/purple/api/categories"
+      "href": "http://localhost:8061/purple/api/groups{?page,size,sort}",
+      "templated": true
     },
     "profile": {
-      "href": "http://localhost:8061/purple/api/profile/categories"
+      "href": "http://localhost:8061/purple/api/profile/groups"
     },
     "search": {
-      "href": "http://localhost:8061/purple/api/categories/search"
+      "href": "http://localhost:8061/purple/api/groups/search"
     }
+  },
+  "page": {
+    "size": 20,
+    "totalElements": 4,
+    "totalPages": 1,
+    "number": 0
   }
 }
 ~~~
 
 # Item Resources
 
-    http://localhost:8061/purple/api/categories/3
+    http://localhost:8061/purple/api/groups/3
 
 ~~~json    
 {
-  "name": "Category Three",
-  "description": "Category three description",
+  "name": "Group Three",
+  "description": "Group three description",
   "_links": {
     "self": {
-      "href": "http://localhost:8061/purple/api/categories/3"
+      "href": "http://localhost:8061/purple/api/groups/3"
     },
-    "categoryEntity": {
-      "href": "http://localhost:8061/purple/api/categories/3{?projection}",
+    "group": {
+      "href": "http://localhost:8061/purple/api/groups/3"
+    },
+    "items": {
+      "href": "http://localhost:8061/purple/api/groups/3/items{?projection}",
       "templated": true
     }
   }
