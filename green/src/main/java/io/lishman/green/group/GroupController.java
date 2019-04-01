@@ -3,9 +3,8 @@ package io.lishman.green.group;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.hateoas.Resource;
-import org.springframework.hateoas.Resources;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -30,17 +29,19 @@ public class GroupController {
     }
 
     @GetMapping()
-    public Resources<?> getGroups() {
+    public ResponseEntity<GroupResources> getGroups() {
         LOGGER.info("Get all groups");
         final List<Group> groups = groupService.getAllGroups();
-        return GroupResources.fromGroups(groups);
+        final GroupResources groupResources = GroupResources.fromGroups(groups);
+        return ResponseEntity.ok(groupResources);
     }
 
     @GetMapping("/{id}")
-    public Resource<?> getGroup(@PathVariable("id") final Long id) {
+    public ResponseEntity<GroupResource> getGroup(@PathVariable("id") final Long id) {
         LOGGER.info("Get group for id {}", id);
         final var group = groupService.getById(id);
-        return GroupResource.fromGroup(group);
+        final var groupResource = GroupResource.fromGroup(group);
+        return ResponseEntity.ok(groupResource);
     }
 
     @PostMapping

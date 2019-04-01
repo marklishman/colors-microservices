@@ -44,7 +44,7 @@ public class GroupEntity {
 
     static GroupEntity fromGroup(final Group group) {
         return new GroupEntity(
-                group.getId(),
+                group.getGroupId(),
                 group.getName(),
                 group.getDescription()
         );

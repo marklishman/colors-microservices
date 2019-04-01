@@ -1,5 +1,7 @@
 package io.lishman.green.group;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.Objects;
 
 public final class Group {
@@ -34,7 +36,8 @@ public final class Group {
         return Group.newInstance(id, name, description);
     }
 
-    public Long getId() {
+    @JsonProperty("id")
+    public Long getGroupId() {
         return id;
     }
 
