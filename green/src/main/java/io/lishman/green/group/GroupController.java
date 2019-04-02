@@ -3,6 +3,7 @@ package io.lishman.green.group;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.Resources;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +16,9 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 
 @RestController
 @RequestMapping("/groups")
@@ -29,10 +33,23 @@ public class GroupController {
     }
 
     @GetMapping()
-    public ResponseEntity<GroupResources> getGroups() {
+    public ResponseEntity<Resources<GroupResource>> getGroups() {
         LOGGER.info("Get all groups");
         final List<Group> groups = groupService.getAllGroups();
-        final GroupResources groupResources = GroupResources.fromGroups(groups);
+
+        final List<GroupResource> groupResourceList = GroupResourceAssembler
+                .getInstance()
+                .toResources(groups);
+
+        /**
+         * NOTE that the collection link is being added manually here.
+         * In other words we are not using a ResourceAssembler.
+         *
+         * There are some significant changes regarding this in the
+         * next version of Spring.
+         */
+        final Resources<GroupResource> groupResources = new Resources<>(groupResourceList);
+        groupResources.add(linkTo(methodOn(getClass()).getGroups()).withSelfRel());
         return ResponseEntity.ok(groupResources);
     }
 
@@ -40,8 +57,11 @@ public class GroupController {
     public ResponseEntity<GroupResource> getGroup(@PathVariable("id") final Long id) {
         LOGGER.info("Get group for id {}", id);
         final var group = groupService.getById(id);
-        final var groupResource = GroupResource.fromGroup(group);
+        var groupResource = GroupResourceAssembler
+                .getInstance()
+                .toResource(group);
         return ResponseEntity.ok(groupResource);
+
     }
 
     @PostMapping
