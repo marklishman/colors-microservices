@@ -2,7 +2,9 @@ package io.lishman.green.group;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.hateoas.ResourceSupport;
+import org.springframework.hateoas.core.Relation;
 
+@Relation(value = "group", collectionRelation = "groups")
 final class GroupResource extends ResourceSupport {
 
     private final Long id;

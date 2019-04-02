@@ -1,0 +1,51 @@
+{
+  "_embedded": {
+    "groups": [
+      {
+        "name": "Group One",
+        "description": "Group one description",
+        "_links": {
+          "self": {
+            "href": "http://localhost:8021/green/groups/1"
+          }
+        },
+        "id": 1
+      },
+      {
+        "name": "Group Two",
+        "description": "Group two description",
+        "_links": {
+          "self": {
+            "href": "http://localhost:8021/green/groups/2"
+          }
+        },
+        "id": 2
+      },
+      {
+        "name": "Group Three",
+        "description": "Group three description",
+        "_links": {
+          "self": {
+            "href": "http://localhost:8021/green/groups/3"
+          }
+        },
+        "id": 3
+      },
+      {
+        "name": "Group Four",
+        "description": "Group four description",
+        "_links": {
+          "self": {
+            "href": "http://localhost:8021/green/groups/4"
+          }
+        },
+        "id": 4
+      }
+    ]
+  },
+  "_links": {
+    "self": {
+      "href": "http://localhost:8021/green/groups"
+    }
+  }
+}
