@@ -1,5 +1,7 @@
 package io.lishman.green.entity;
 
+import io.lishman.green.model.Country;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -29,6 +31,22 @@ public class CountryEntity {
     private List<PersonEntity> people;
 
     public CountryEntity() {
+    }
+
+    private CountryEntity(final String code,
+                          final String name,
+                          final List<PersonEntity> people) {
+        this.code = code;
+        this.name = name;
+        this.people = people;
+    }
+
+    public static CountryEntity fromCountry(final Country country) {
+        return new CountryEntity(
+                country.getCode(),
+                country.getName(),
+                country.getPeople()
+        );
     }
 
     public Long getId() {

@@ -1,3 +1,38 @@
+GET http://localhost:8021/green/countries
+Content-Type: application/json
+
+<> 2019-04-04T080421.200.json
+
+###
+
+GET http://localhost:8021/green/countries/20
+Content-Type: application/json
+
+<> 2019-04-04T080350.200.json
+
+###
+
+GET http://localhost:8021/green/countries
+Content-Type: application/json
+
+<> 2019-04-04T080327.200.json
+
+###
+
+GET http://localhost:8021/green/countries
+Content-Type: application/json
+
+<> 2019-04-04T074334.200.json
+
+###
+
+GET http://localhost:8021/green/countries
+Content-Type: application/json
+
+<> 2019-04-04T065609.200.json
+
+###
+
 GET http://localhost:8021/green/groups/3
 Content-Type: application/json
 
@@ -270,37 +305,6 @@ GET http://localhost:8021/green/groups
 Content-Type: application/json
 
 <> 2019-04-01T011650.200.json
-
-###
-
-GET http://localhost:8021/green/groups
-Content-Type: application/json
-
-###
-
-GET http://localhost:8021/green/groups
-Content-Type: application/json
-
-<> 2019-04-01T011523.200.json
-
-###
-
-GET http://localhost:8021/green/groups/3
-Content-Type: application/json
-
-<> 2019-04-01T010950.200.json
-
-###
-
-GET http://localhost:8021/green/groups/3
-Content-Type: application/json
-
-<> 2019-04-01T010945.200.json
-
-###
-
-GET http://localhost:8021/green/groups/3
-Content-Type: application/json
 
 ###
 

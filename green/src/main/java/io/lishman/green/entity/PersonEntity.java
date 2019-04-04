@@ -1,5 +1,7 @@
 package io.lishman.green.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -30,6 +32,7 @@ public class PersonEntity {
     @Column(name = "psn_age")
     private Integer age;
 
+    @JsonBackReference
     @ManyToMany
     @JoinTable(
             name = "visitor",
