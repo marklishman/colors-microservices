@@ -1,7 +1,7 @@
-package io.lishman.green.repository;
+package io.lishman.green.group.repository;
 
 
-import io.lishman.green.entity.GroupEntity;
+import io.lishman.green.group.service.GroupEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

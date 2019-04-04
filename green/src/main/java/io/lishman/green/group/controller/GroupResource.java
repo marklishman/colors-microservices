@@ -1,7 +1,7 @@
-package io.lishman.green.controller;
+package io.lishman.green.group.controller;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.lishman.green.model.Group;
+import io.lishman.green.group.model.Group;
 import org.springframework.hateoas.ResourceSupport;
 import org.springframework.hateoas.core.Relation;
 

@@ -1,4 +1,4 @@
-package io.lishman.green.controller;
+package io.lishman.green.controller.country;
 
 import io.lishman.green.model.Country;
 import org.springframework.hateoas.mvc.ResourceAssemblerSupport;

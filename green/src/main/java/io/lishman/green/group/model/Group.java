@@ -1,6 +1,6 @@
-package io.lishman.green.model;
+package io.lishman.green.group.model;
 
-import io.lishman.green.entity.GroupEntity;
+import io.lishman.green.group.service.GroupEntity;
 
 import java.util.Objects;
 

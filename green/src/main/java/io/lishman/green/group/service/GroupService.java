@@ -1,8 +1,7 @@
-package io.lishman.green.service;
+package io.lishman.green.group.service;
 
-import io.lishman.green.model.Group;
-import io.lishman.green.entity.GroupEntity;
-import io.lishman.green.repository.GroupRepository;
+import io.lishman.green.group.model.Group;
+import io.lishman.green.group.repository.GroupRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

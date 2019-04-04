@@ -1,4 +1,4 @@
-package io.lishman.green.controller;
+package io.lishman.green.controller.country;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.lishman.green.entity.PersonEntity;
