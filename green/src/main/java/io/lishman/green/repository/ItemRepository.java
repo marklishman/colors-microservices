@@ -1,5 +1,6 @@
-package io.lishman.green.item;
+package io.lishman.green.repository;
 
+import io.lishman.green.entity.ItemEntity;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 

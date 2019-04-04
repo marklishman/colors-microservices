@@ -1,29 +1,53 @@
-package io.lishman.green.category;
+package io.lishman.green.entity;
+
+import io.lishman.green.model.Group;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
-@Table(name="category")
-public class CategoryEntity {
+@Table(name="group")
+public class GroupEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "cat_id", columnDefinition = "serial")
+    @Column(name = "grp_id", columnDefinition = "serial")
     private Long id;
 
-    @Column(name = "cat_name")
+    @Column(name = "grp_name")
     private String name;
 
-    @Column(name = "cat_desc")
+    @Column(name = "grp_desc")
     private String description;
 
-    public CategoryEntity() {
+    @OneToMany(mappedBy = "group")
+    private List<ItemEntity> items;
+
+    public GroupEntity() {
+    }
+
+    private GroupEntity(final Long id,
+                        final String name,
+                        final String description
+    ) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+    }
+
+    public static GroupEntity fromGroup(final Group group) {
+        return new GroupEntity(
+                group.getId(),
+                group.getName(),
+                group.getDescription()
+        );
     }
 
     public Long getId() {
@@ -38,11 +62,15 @@ public class CategoryEntity {
         return description;
     }
 
+    public List<ItemEntity> getItems() {
+        return items;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        CategoryEntity that = (CategoryEntity) o;
+        GroupEntity that = (GroupEntity) o;
         return Objects.equals(id, that.id);
     }
 
@@ -53,7 +81,7 @@ public class CategoryEntity {
 
     @Override
     public String toString() {
-        return "Category{" +
+        return "Group{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +

@@ -1,3 +1,17 @@
+GET http://localhost:8021/green/groups/3
+Content-Type: application/json
+
+<> 2019-04-04T063659.200.json
+
+###
+
+GET http://localhost:8021/green/groups
+Content-Type: application/json
+
+<> 2019-04-04T063650.200.json
+
+###
+
 GET http://localhost:8021/green/groups
 Content-Type: application/json
 
@@ -282,18 +296,6 @@ GET http://localhost:8021/green/groups/3
 Content-Type: application/json
 
 <> 2019-04-01T010945.200.json
-
-###
-
-GET http://localhost:8021/green/groups/3
-Content-Type: application/json
-
-###
-
-GET http://localhost:8021/green/groups/3
-Content-Type: application/json
-
-<> 2019-04-01T010803.500.json
 
 ###
 

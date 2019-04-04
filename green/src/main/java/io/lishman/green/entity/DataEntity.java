@@ -1,7 +1,6 @@
-package io.lishman.green.item;
+package io.lishman.green.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import io.lishman.green.category.CategoryEntity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

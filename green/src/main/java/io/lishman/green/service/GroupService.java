@@ -1,5 +1,8 @@
-package io.lishman.green.group;
+package io.lishman.green.service;
 
+import io.lishman.green.model.Group;
+import io.lishman.green.entity.GroupEntity;
+import io.lishman.green.repository.GroupRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +38,7 @@ public class GroupService {
         this.groupRepository = groupRepository;
     }
 
-    List<Group> getAllGroups() {
+    public List<Group> getAllGroups() {
         // TODO Exception handling
         return groupRepository.findAll()
                 .stream()
@@ -43,20 +46,20 @@ public class GroupService {
                 .collect(Collectors.toList());
     }
 
-    Group getById(final Long id) {
+    public Group getById(final Long id) {
         // TODO Exception handling
         return groupRepository.findById(id)
                 .map(Group::fromGroupEntity)
                 .orElseThrow();
     }
 
-    Group createGroup(final Group group) {
+    public Group createGroup(final Group group) {
         final var groupEntity = GroupEntity.fromGroup(group);
         final var savedGroupEntity = this.groupRepository.save(groupEntity);
         return Group.fromGroupEntity(savedGroupEntity);
     }
 
-    Group updateGroup(final Long id, final Group group) {
+    public Group updateGroup(final Long id, final Group group) {
         final var groupWithId = group.cloneWithNewId(id);
         return this.createGroup(groupWithId);
     }

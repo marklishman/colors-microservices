@@ -1,4 +1,6 @@
-package io.lishman.green.group;
+package io.lishman.green.model;
+
+import io.lishman.green.entity.GroupEntity;
 
 import java.util.Objects;
 
@@ -16,13 +18,13 @@ public final class Group {
         this.description = description;
     }
 
-    static Group newInstance(final Long id,
+    public static Group newInstance(final Long id,
                              final String name,
                              final String description) {
         return new Group(id, name, description);
     }
 
-    static Group fromGroupEntity(GroupEntity groupEntity) {
+    public static Group fromGroupEntity(GroupEntity groupEntity) {
         return Group.newInstance(
                 groupEntity.getId(),
                 groupEntity.getName(),
@@ -30,7 +32,7 @@ public final class Group {
         );
     }
 
-    Group cloneWithNewId(final Long id) {
+    public Group cloneWithNewId(final Long id) {
         return Group.newInstance(id, name, description);
     }
 
@@ -42,7 +44,7 @@ public final class Group {
         return name;
     }
 
-    String getDescription() {
+    public String getDescription() {
         return description;
     }
 

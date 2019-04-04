@@ -1,5 +1,6 @@
-package io.lishman.green.group;
+package io.lishman.green.controller;
 
+import io.lishman.green.model.Group;
 import org.springframework.hateoas.mvc.ResourceAssemblerSupport;
 
 final class GroupResourceAssembler extends ResourceAssemblerSupport<Group, GroupResource> {
@@ -8,7 +9,7 @@ final class GroupResourceAssembler extends ResourceAssemblerSupport<Group, Group
         super(GroupController.class, GroupResource.class);
     }
 
-    static GroupResourceAssembler getInstance() {
+    public static GroupResourceAssembler getInstance() {
         return new GroupResourceAssembler();
     }
 

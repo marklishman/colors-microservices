@@ -1,6 +1,7 @@
-package io.lishman.green.country;
+package io.lishman.green.repository;
 
 
+import io.lishman.green.entity.CountryEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

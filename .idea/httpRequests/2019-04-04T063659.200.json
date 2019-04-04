@@ -1,0 +1,10 @@
+{
+  "name": "Group Three",
+  "description": "Group three description",
+  "_links": {
+    "self": {
+      "href": "http://localhost:8021/green/groups/3"
+    }
+  },
+  "id": 3
+}
