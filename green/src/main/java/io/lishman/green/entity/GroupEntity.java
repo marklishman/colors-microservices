@@ -1,7 +1,6 @@
-package io.lishman.green.group.service;
+package io.lishman.green.entity;
 
-import io.lishman.green.entity.ItemEntity;
-import io.lishman.green.group.model.Group;
+import io.lishman.green.model.Group;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

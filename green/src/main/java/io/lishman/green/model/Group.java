@@ -1,6 +1,6 @@
-package io.lishman.green.group.model;
+package io.lishman.green.model;
 
-import io.lishman.green.group.service.GroupEntity;
+import io.lishman.green.entity.GroupEntity;
 
 import java.util.Objects;
 
@@ -18,7 +18,7 @@ public final class Group {
         this.description = description;
     }
 
-    public static Group newInstance(final Long id,
+    private static Group newInstance(final Long id,
                              final String name,
                              final String description) {
         return new Group(id, name, description);

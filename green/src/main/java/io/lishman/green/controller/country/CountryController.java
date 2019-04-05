@@ -24,7 +24,7 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 
 @RestController
 @RequestMapping("/countries")
-public class CountryController {
+final class CountryController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(CountryController.class);
     private final CountryService countryService;

@@ -1,7 +1,7 @@
-package io.lishman.green.group.controller;
+package io.lishman.green.controller.group;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.lishman.green.group.model.Group;
+import io.lishman.green.model.Group;
 import org.springframework.hateoas.ResourceSupport;
 import org.springframework.hateoas.core.Relation;
 
@@ -20,7 +20,7 @@ final class GroupResource extends ResourceSupport {
         this.description = description;
     }
 
-    public static GroupResource fromGroup(final Group group) {
+    static GroupResource fromGroup(final Group group) {
         return new GroupResource(
                 group.getId(),
                 group.getName(),
@@ -29,15 +29,15 @@ final class GroupResource extends ResourceSupport {
     }
 
     @JsonProperty("id")
-    public Long getGroupId() {
+    Long getGroupId() {
         return id;
     }
 
-    public String getName() {
+    String getName() {
         return name;
     }
 
-    public String getDescription() {
+    String getDescription() {
         return description;
     }
 }

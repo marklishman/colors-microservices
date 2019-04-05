@@ -24,7 +24,7 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 
 @RestController
 @RequestMapping("/people")
-public class PersonController {
+final class PersonController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(PersonController.class);
     private final PersonService personService;

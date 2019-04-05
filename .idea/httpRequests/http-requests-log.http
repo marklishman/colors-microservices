@@ -1,3 +1,17 @@
+GET http://localhost:8021/green/countries/20
+Content-Type: application/json
+
+<> 2019-04-05T031900.200.json
+
+###
+
+GET http://localhost:8021/green/countries
+Content-Type: application/json
+
+<> 2019-04-05T031856.200.json
+
+###
+
 GET http://localhost:8021/green/people/3
 Content-Type: application/json
 
@@ -295,18 +309,6 @@ Content-Type: application/json
 
 GET http://localhost:8021/green/groups
 Content-Type: application/json
-
-###
-
-GET http://localhost:8021/green/groups
-Content-Type: application/json
-
-###
-
-GET http://localhost:8021/green/groups
-Content-Type: application/json
-
-<> 2019-04-01T075100.200.json
 
 ###
 

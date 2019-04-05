@@ -1,7 +1,7 @@
-package io.lishman.green.group.controller;
+package io.lishman.green.controller.group;
 
-import io.lishman.green.group.model.Group;
-import io.lishman.green.group.service.GroupService;
+import io.lishman.green.model.Group;
+import io.lishman.green.service.GroupService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +24,7 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 
 @RestController
 @RequestMapping("/groups")
-public class GroupController {
+final class GroupController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(GroupController.class);
     private final GroupService groupService;
