@@ -7,8 +7,9 @@ import org.springframework.hateoas.ResourceSupport;
 import org.springframework.hateoas.core.Relation;
 
 import java.util.List;
+import java.util.Objects;
 
-@Relation(value = "country", collectionRelation = "Countries")
+@Relation(value = "country", collectionRelation = "countries")
 final class CountryResource extends ResourceSupport {
 
     private final Long id;
@@ -16,7 +17,10 @@ final class CountryResource extends ResourceSupport {
     private final String name;
     private final List<PersonEntity> people;
 
-    private CountryResource(Long id, String code, String name, List<PersonEntity> people) {
+    private CountryResource(final Long id,
+                            final String code,
+                            final String name,
+                            final List<PersonEntity> people) {
         this.id = id;
         this.code = code;
         this.name = name;
@@ -47,5 +51,30 @@ final class CountryResource extends ResourceSupport {
 
     public List<PersonEntity> getPeople() {
         return people;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        CountryResource that = (CountryResource) o;
+        return Objects.equals(id, that.id) &&
+                Objects.equals(code, that.code) &&
+                Objects.equals(name, that.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), id, code, name);
+    }
+
+    @Override
+    public String toString() {
+        return "CountryResource{" +
+                "id=" + id +
+                ", code='" + code + '\'' +
+                ", name='" + name + '\'' +
+                '}';
     }
 }

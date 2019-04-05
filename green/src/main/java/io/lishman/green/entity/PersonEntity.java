@@ -1,6 +1,7 @@
 package io.lishman.green.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import io.lishman.green.model.Person;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -41,6 +42,22 @@ public class PersonEntity {
     private List<CountryEntity> countries;
 
     public PersonEntity() {
+    }
+
+    private PersonEntity(final String firstName,
+                         final String lastName,
+                         final Integer age) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.age = age;
+    }
+
+    public static PersonEntity fromPerson(final Person person) {
+        return new PersonEntity(
+                person.getFirstName(),
+                person.getLastName(),
+                person.getAge()
+        );
     }
 
     public Long getId() {

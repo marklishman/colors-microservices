@@ -1,8 +1,8 @@
 
 # -----------------------------------------------------------------------------
-# countries collection
+# people collection
 
-GET http://localhost:8021/green/countries
+GET http://localhost:8021/green/people
 Content-Type: application/json
 
 ###
@@ -10,9 +10,9 @@ Content-Type: application/json
 
 
 # -----------------------------------------------------------------------------
-# country item
+# people item
 
-GET http://localhost:8021/green/countries/20
+GET http://localhost:8021/green/people/3
 Content-Type: application/json
 
 ###
