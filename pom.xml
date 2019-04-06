@@ -21,6 +21,7 @@
         <module>pink</module>
         <module>purple</module>
         <module>white</module>
+        <module>cyan</module>
     </modules>
 
 </project>

@@ -1,6 +1,6 @@
-package io.lishman.webflux.contoller;
+package io.lishman.cyan.webflux;
 
-import io.lishman.webflux.model.User;
+import io.lishman.cyan.model.User;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

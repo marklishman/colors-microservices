@@ -1,8 +1,13 @@
-# Spring Webflux
+# White
 
 * [ ] JavaScript in `index.html`
 * [ ] Client doesn't use Spring Boot
 * [ ] `/events`
+
+# Features
+
+* Webflux
+
 
 ## Programming Models
 

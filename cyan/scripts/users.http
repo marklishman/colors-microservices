@@ -1,0 +1,9 @@
+
+
+# -----------------------------------------------------------------------------
+# users collection
+
+GET http://localhost:8081/cyan/users
+Content-Type: application/json
+
+###
