@@ -3,7 +3,15 @@
 # countries collection
 
 GET http://localhost:8021/green/countries
+Accept: application/json
 Content-Type: application/json
+
+###
+
+
+GET http://localhost:8021/green/countries
+Accept: application/hal+json
+Content-Type: application/hal+json
 
 ###
 
@@ -13,6 +21,14 @@ Content-Type: application/json
 # country item
 
 GET http://localhost:8021/green/countries/20
+Accept: application/json
 Content-Type: application/json
+
+###
+
+
+GET http://localhost:8021/green/countries/20
+Accept: application/hal+json
+Content-Type: application/hal+json
 
 ###

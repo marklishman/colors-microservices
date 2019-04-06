@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.Resources;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -34,9 +35,16 @@ class PersonController {
         this.personService = personService;
     }
 
-    @GetMapping()
-    public ResponseEntity<Resources<PersonResource>> getPersons() {
-        LOGGER.info("Get all persons");
+    @GetMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<Person>> getPeople() {
+        LOGGER.info("Get all people");
+        final List<Person> people = personService.getAllCountries();
+        return ResponseEntity.ok(people);
+    }
+
+    @GetMapping(consumes = "application/hal+json", produces = "application/hal+json")
+    public ResponseEntity<Resources<PersonResource>> getPeopleWithHal() {
+        LOGGER.info("Get all people with HAL");
         final List<Person> persons = personService.getAllCountries();
 
         final List<PersonResource> personResourceList = PersonResourceAssembler
@@ -51,13 +59,21 @@ class PersonController {
          * next version of Spring.
          */
         final Resources<PersonResource> personResources = new Resources<>(personResourceList);
-        personResources.add(linkTo(methodOn(getClass()).getPersons()).withSelfRel());
+        personResources.add(linkTo(methodOn(getClass()).getPeopleWithHal()).withSelfRel());
         return ResponseEntity.ok(personResources);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<PersonResource> getPerson(@PathVariable("id") final Long id) {
+    @GetMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Person> getPerson(@PathVariable("id") final Long id) {
         LOGGER.info("Get person for id {}", id);
+        final var person = personService.getPersonById(id);
+        return ResponseEntity.ok(person);
+
+    }
+
+    @GetMapping(value = "/{id}", consumes = "application/hal+json", produces = "application/hal+json")
+    public ResponseEntity<PersonResource> getPersonWithHal(@PathVariable("id") final Long id) {
+        LOGGER.info("Get person for id {} with HAL", id);
         final var person = personService.getPersonById(id);
         var personResource = PersonResourceAssembler
                 .getInstance()

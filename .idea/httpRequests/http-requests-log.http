@@ -1,4 +1,180 @@
 GET http://localhost:8021/green/people/3
+Accept: application/hal+json
+Content-Type: application/hal+json
+
+<> 2019-04-06T013643.200.json
+
+###
+
+GET http://localhost:8021/green/people/3
+Accept: application/json
+Content-Type: application/json
+
+<> 2019-04-06T013640.200.json
+
+###
+
+GET http://localhost:8021/green/people
+Accept: application/hal+json
+Content-Type: application/hal+json
+
+<> 2019-04-06T013636.200.json
+
+###
+
+GET http://localhost:8021/green/people
+Accept: application/json
+Content-Type: application/json
+
+<> 2019-04-06T013633.200.json
+
+###
+
+GET http://localhost:8021/green/countries/20
+Content-Type: application/hal+json
+
+<> 2019-04-06T013448.200.json
+
+###
+
+GET http://localhost:8021/green/countries/20
+Content-Type: application/hal+json
+
+<> 2019-04-06T013012.200.json
+
+###
+
+GET http://localhost:8021/green/countries/20
+Content-Type: application/json
+
+<> 2019-04-06T013009.200.json
+
+###
+
+GET http://localhost:8021/green/countries
+AcceptContent-Type: application/hal+json
+Content-Type: application/hal+json
+
+<> 2019-04-06T013004.200.json
+
+###
+
+GET http://localhost:8021/green/countries
+Accept: application/json
+Content-Type: application/json
+
+<> 2019-04-06T012959.200.json
+
+###
+
+GET http://localhost:8021/green/countries/20
+Content-Type: application/hal+json
+
+<> 2019-04-06T012855.200.json
+
+###
+
+GET http://localhost:8021/green/countries/20
+Content-Type: application/json
+
+<> 2019-04-06T012852.200.json
+
+###
+
+GET http://localhost:8021/green/countries
+Accept: application/json
+Content-Type: application/json
+
+<> 2019-04-06T012843.200.json
+
+###
+
+GET http://localhost:8021/green/countries
+AcceptContent-Type: application/hal+json
+Content-Type: application/hal+json
+
+<> 2019-04-06T012839.200.json
+
+###
+
+GET http://localhost:8021/green/countries
+AcceptContent-Type: application/hal+json
+Content-Type: application/hal+jsonx
+
+<> 2019-04-06T012834.415.json
+
+###
+
+GET http://localhost:8021/green/countries
+AcceptContent-Type: application/hal+jsonx
+Content-Type: application/hal+jsonx
+
+<> 2019-04-06T012826.415.json
+
+###
+
+GET http://localhost:8021/green/countries
+Content-Type: application/hal+json
+
+<> 2019-04-06T012750.200.json
+
+###
+
+GET http://localhost:8021/green/countries
+Accept: application/json
+Content-Type: application/json
+
+<> 2019-04-06T012734.200.json
+
+###
+
+GET http://localhost:8021/green/countries
+Content-Type: application/json
+
+###
+
+GET http://localhost:8021/green/countries
+Content-Type: application/json
+
+###
+
+GET http://localhost:8021/green/countries
+Content-Type: application/json
+
+###
+
+GET http://localhost:8021/green/countries
+Content-Type: application/json
+
+###
+
+GET http://localhost:8021/green/countries
+Content-Type: application/json
+
+###
+
+GET http://localhost:8021/green/countries
+Content-Type: application/json
+
+<> 2019-04-06T012454.200.json
+
+###
+
+GET http://localhost:8021/green/countries
+Content-Type: application/hal+json
+
+<> 2019-04-06T012250.200.json
+
+###
+
+GET http://localhost:8021/green/countries
+Content-Type: application/json
+
+<> 2019-04-06T012245.200.json
+
+###
+
+GET http://localhost:8021/green/people/3
 Content-Type: application/json
 
 <> 2019-04-06T010937.200.json
@@ -160,169 +336,6 @@ GET http://localhost:8071/users/5ca85e73d665dc0b5a8289e2
 Content-Type: application/json
 
 <> 2019-04-06T090933.404.json
-
-###
-
-GET http://localhost:8071/handler/users
-Content-Type: application/json
-
-<> 2019-04-06T090924.200.json
-
-###
-
-GET http://localhost:8071/users
-Content-Type: application/json
-
-<> 2019-04-06T090915.404.json
-
-###
-
-GET http://localhost:8071/users
-Content-Type: application/json
-
-###
-
-GET http://localhost:8071/users
-Content-Type: application/json
-
-<> 2019-04-06T082005.200.json
-
-###
-
-GET http://localhost:8071/controller/users
-Content-Type: application/json
-
-<> 2019-04-06T082001.200.json
-
-###
-
-GET http://localhost:8071/controller/users
-Content-Type: application/json
-
-###
-
-GET http://localhost:8071/controller/users
-Content-Type: application/json
-
-<> 2019-04-06T081838.200.json
-
-###
-
-GET http://localhost:8021/green/countries/20
-Content-Type: application/json
-
-<> 2019-04-05T031900.200.json
-
-###
-
-GET http://localhost:8021/green/countries
-Content-Type: application/json
-
-<> 2019-04-05T031856.200.json
-
-###
-
-GET http://localhost:8021/green/people/3
-Content-Type: application/json
-
-<> 2019-04-05T013248.200.json
-
-###
-
-GET http://localhost:8021/green/person/3
-Content-Type: application/json
-
-<> 2019-04-05T013239.404.json
-
-###
-
-GET http://localhost:8021/green/people
-Content-Type: application/json
-
-<> 2019-04-05T013224.200.json
-
-###
-
-GET http://localhost:8021/green/countries/20
-Content-Type: application/json
-
-<> 2019-04-05T013215.200.json
-
-###
-
-GET http://localhost:8021/green/countries
-Content-Type: application/json
-
-<> 2019-04-05T013159.200.json
-
-###
-
-GET http://localhost:8021/green/people
-Content-Type: application/json
-
-<> 2019-04-05T012458.200.json
-
-###
-
-GET http://localhost:8021/green/groups
-Content-Type: application/json
-
-<> 2019-04-04T081843.200.json
-
-###
-
-GET http://localhost:8021/green/countries
-Content-Type: application/json
-
-<> 2019-04-04T081837.200.json
-
-###
-
-GET http://localhost:8021/green/countries
-Content-Type: application/json
-
-###
-
-GET http://localhost:8021/green/countries
-Content-Type: application/json
-
-###
-
-GET http://localhost:8021/green/countries
-Content-Type: application/json
-
-###
-
-GET http://localhost:8021/green/countries
-Content-Type: application/json
-
-###
-
-GET http://localhost:8021/green/countries
-Content-Type: application/json
-
-<> 2019-04-04T080421.200.json
-
-###
-
-GET http://localhost:8021/green/countries/20
-Content-Type: application/json
-
-<> 2019-04-04T080350.200.json
-
-###
-
-GET http://localhost:8021/green/countries
-Content-Type: application/json
-
-<> 2019-04-04T080327.200.json
-
-###
-
-GET http://localhost:8021/green/countries
-Content-Type: application/json
-
-<> 2019-04-04T074334.200.json
 
 ###
 

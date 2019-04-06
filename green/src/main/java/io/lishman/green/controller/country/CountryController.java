@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.Resources;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -34,14 +35,21 @@ class CountryController {
         this.countryService = countryService;
     }
 
-    @GetMapping()
-    public ResponseEntity<Resources<CountryResource>> getCountrys() {
-        LOGGER.info("Get all countrys");
-        final List<Country> countrys = countryService.getAllCountries();
+    @GetMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<Country>> getCountries() {
+        LOGGER.info("Get all countries");
+        final List<Country> countries = countryService.getAllCountries();
+        return ResponseEntity.ok(countries);
+    }
+
+    @GetMapping(consumes = "application/hal+json", produces = "application/hal+json")
+    public ResponseEntity<Resources<CountryResource>> getCountriesWithHal() {
+        LOGGER.info("Get all countries with HAL");
+        final List<Country> countries = countryService.getAllCountries();
 
         final List<CountryResource> countryResourceList = CountryResourceAssembler
                 .getInstance()
-                .toResources(countrys);
+                .toResources(countries);
 
         /**
          * NOTE that the collection link is being added manually here.
@@ -51,19 +59,25 @@ class CountryController {
          * next version of Spring.
          */
         final Resources<CountryResource> countryResources = new Resources<>(countryResourceList);
-        countryResources.add(linkTo(methodOn(getClass()).getCountrys()).withSelfRel());
+        countryResources.add(linkTo(methodOn(getClass()).getCountriesWithHal()).withSelfRel());
         return ResponseEntity.ok(countryResources);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<CountryResource> getCountry(@PathVariable("id") final Long id) {
-        LOGGER.info("Get country for id {}", id);
+    @GetMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Country> getCountry(@PathVariable("id") final Long id) {
+        LOGGER.info("Get country for id {} with HAL", id);
+        final var country = countryService.getCountryById(id);
+        return ResponseEntity.ok(country);
+    }
+
+    @GetMapping(value = "/{id}", consumes = "application/hal+json", produces = "application/hal+json")
+    public ResponseEntity<CountryResource> getCountryWithHal(@PathVariable("id") final Long id) {
+        LOGGER.info("Get country for id {} with HAL", id);
         final var country = countryService.getCountryById(id);
         var countryResource = CountryResourceAssembler
                 .getInstance()
                 .toResource(country);
         return ResponseEntity.ok(countryResource);
-
     }
 
     @PostMapping
