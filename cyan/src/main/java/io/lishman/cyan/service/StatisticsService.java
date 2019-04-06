@@ -20,20 +20,20 @@ public final class StatisticsService {
                 .baseUrl("http://localhost:8021")
                 .build();
 
-        final Mono<Long> countryCountMono = greenClient
-                .get()
-                .uri("green/countries")
-                .accept(MediaType.APPLICATION_JSON)
-                .retrieve()
-                .bodyToFlux(Country.class)
-                .count();
-
         final Mono<Long> peopleCountMono = greenClient
                 .get()
                 .uri("green/people")
                 .accept(MediaType.APPLICATION_JSON)
                 .retrieve()
                 .bodyToFlux(Person.class)
+                .count();
+
+        final Mono<Long> countryCountMono = greenClient
+                .get()
+                .uri("green/countries")
+                .accept(MediaType.APPLICATION_JSON)
+                .retrieve()
+                .bodyToFlux(Country.class)
                 .count();
 
 
@@ -47,7 +47,7 @@ public final class StatisticsService {
                 .bodyToFlux(User.class)
                 .count();
 
-        return Flux.concat(countryCountMono, peopleCountMono, userCountMono)
+        return Flux.mergeSequential(peopleCountMono, countryCountMono, userCountMono)
                 .collectList()
                 .map(list -> Statistics.newInstance(list.get(0), list.get(1), list.get(2)))
                 .block();
