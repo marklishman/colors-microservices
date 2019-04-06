@@ -1,0 +1,38 @@
+
+# -----------------------------------------------------------------------------
+# users collection (annotated controller)
+
+GET http://localhost:8071/controller/users
+Content-Type: application/json
+
+###
+
+
+
+# -----------------------------------------------------------------------------
+# users item (annotated controller)
+
+GET http://localhost:8071/controller/users/5ca84d24d665dc0724b343c2
+Content-Type: application/json
+
+###
+
+
+
+# -----------------------------------------------------------------------------
+# users collection (functional endpoint)
+
+GET http://localhost:8071/users
+Content-Type: application/json
+
+###
+
+
+
+# -----------------------------------------------------------------------------
+# users item (functional endpoint)
+
+GET http://localhost:8071/users/5ca84d24d665dc0724b343c2
+Content-Type: application/json
+
+###

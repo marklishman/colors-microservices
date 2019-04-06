@@ -20,6 +20,7 @@
         <module>orange</module>
         <module>pink</module>
         <module>purple</module>
+        <module>white</module>
     </modules>
 
 </project>

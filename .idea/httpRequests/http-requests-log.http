@@ -1,3 +1,29 @@
+GET http://localhost:8071/users
+Content-Type: application/json
+
+<> 2019-04-06T082005.200.json
+
+###
+
+GET http://localhost:8071/controller/users
+Content-Type: application/json
+
+<> 2019-04-06T082001.200.json
+
+###
+
+GET http://localhost:8071/controller/users
+Content-Type: application/json
+
+###
+
+GET http://localhost:8071/controller/users
+Content-Type: application/json
+
+<> 2019-04-06T081838.200.json
+
+###
+
 GET http://localhost:8021/green/countries/20
 Content-Type: application/json
 
@@ -283,32 +309,6 @@ GET http://localhost:8021/green/groups/3
 Content-Type: application/json
 
 <> 2019-04-01T075939.200.json
-
-###
-
-GET http://localhost:8021/green/groups/3
-Content-Type: application/json
-
-<> 2019-04-01T075851.500.json
-
-###
-
-GET http://localhost:8021/green/groups/3
-Content-Type: application/json
-
-<> 2019-04-01T075820.500.json
-
-###
-
-GET http://localhost:8021/green/groups
-Content-Type: application/json
-
-<> 2019-04-01T075803.200.json
-
-###
-
-GET http://localhost:8021/green/groups
-Content-Type: application/json
 
 ###
 

@@ -1,0 +1,26 @@
+[
+  {
+    "userId": "5ca8531cd665dc08cc8d12ae",
+    "name": "two",
+    "username": "user_two",
+    "email": "two@email.com",
+    "phone": "056754333",
+    "website": "www.two.com"
+  },
+  {
+    "userId": "5ca8531cd665dc08cc8d12af",
+    "name": "three",
+    "username": "user_three",
+    "email": "three@email.com",
+    "phone": "067856469",
+    "website": "www.three.com"
+  },
+  {
+    "userId": "5ca8531cd665dc08cc8d12ad",
+    "name": "one",
+    "username": "user_one",
+    "email": "one@email.com",
+    "phone": "01234567",
+    "website": "www.one.com"
+  }
+]
