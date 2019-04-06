@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -28,24 +29,21 @@ public class CountryEntity {
     private String name;
 
     @ManyToMany(mappedBy = "countries")
-    private List<PersonEntity> people;
+    private List<PersonEntity> people = new ArrayList<>();
 
     public CountryEntity() {
     }
 
     private CountryEntity(final String code,
-                          final String name,
-                          final List<PersonEntity> people) {
+                          final String name) {
         this.code = code;
         this.name = name;
-        this.people = people;
     }
 
     public static CountryEntity fromCountry(final Country country) {
         return new CountryEntity(
                 country.getCode(),
-                country.getName(),
-                country.getPeople()
+                country.getName()
         );
     }
 

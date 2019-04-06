@@ -1,10 +1,7 @@
 package io.lishman.green.model;
 
 import io.lishman.green.entity.CountryEntity;
-import io.lishman.green.entity.PersonEntity;
 
-import java.util.Collections;
-import java.util.List;
 import java.util.Objects;
 
 public final class Country {
@@ -12,36 +9,31 @@ public final class Country {
     private final Long id;
     private final String code;
     private final String name;
-    private final List<PersonEntity> people;
 
     private Country(final Long id,
                     final String code,
-                    final String name,
-                    final List<PersonEntity> people) {
+                    final String name) {
         this.id = id;
         this.code = code;
         this.name = name;
-        this.people = people;
     }
 
     public static Country newInstance(final Long id,
                                       final String code,
-                                      final String name,
-                                      final List<PersonEntity> people) {
-        return new Country(id, code, name, people);
+                                      final String name) {
+        return new Country(id, code, name);
     }
 
     public static Country fromCountryEntity(CountryEntity countryEntity) {
         return new Country (
                 countryEntity.getId(),
                 countryEntity.getCode(),
-                countryEntity.getName(),
-                countryEntity.getPeople()
+                countryEntity.getName()
         );
     }
 
     public Country cloneWithNewId(final Long id) {
-        return Country.newInstance(id, code, name, people);
+        return Country.newInstance(id, code, name);
     }
 
     public Long getId() {
@@ -54,10 +46,6 @@ public final class Country {
 
     public String getName() {
         return name;
-    }
-
-    public List<PersonEntity> getPeople() {
-        return Collections.unmodifiableList(people);
     }
 
     @Override

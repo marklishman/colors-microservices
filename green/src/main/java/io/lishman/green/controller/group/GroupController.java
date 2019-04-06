@@ -24,7 +24,7 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 
 @RestController
 @RequestMapping("/groups")
-final class GroupController {
+class GroupController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(GroupController.class);
     private final GroupService groupService;

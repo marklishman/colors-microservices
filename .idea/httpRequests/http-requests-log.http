@@ -1,3 +1,66 @@
+GET http://localhost:8021/green/people/3
+Content-Type: application/json
+
+<> 2019-04-06T010937.200.json
+
+###
+
+GET http://localhost:8021/green/people
+Content-Type: application/json
+
+<> 2019-04-06T010933.200.json
+
+###
+
+GET http://localhost:8021/green/groups/3
+Content-Type: application/json
+
+<> 2019-04-06T010800.200.json
+
+###
+
+GET http://localhost:8021/green/groups
+Content-Type: application/json
+
+<> 2019-04-06T010749.200.json
+
+###
+
+GET http://localhost:8021/green/countries/20
+Content-Type: application/json
+
+<> 2019-04-06T010743.200.json
+
+###
+
+GET http://localhost:8021/green/countries
+Content-Type: application/json
+
+<> 2019-04-06T010734.200.json
+
+###
+
+GET http://localhost:8021/green/countries
+Content-Type: application/json
+
+<> 2019-04-06T010657.500.json
+
+###
+
+GET http://localhost:8021/green/groups
+Content-Type: application/json
+
+<> 2019-04-06T010641.200.json
+
+###
+
+GET http://localhost:8021/green/groups
+Content-Type: application/json
+
+<> 2019-04-06T010443.500.json
+
+###
+
 GET http://localhost:8081/cyan/users
 Content-Type: application/json
 
@@ -260,63 +323,6 @@ GET http://localhost:8021/green/countries
 Content-Type: application/json
 
 <> 2019-04-04T074334.200.json
-
-###
-
-GET http://localhost:8021/green/countries
-Content-Type: application/json
-
-<> 2019-04-04T065609.200.json
-
-###
-
-GET http://localhost:8021/green/groups/3
-Content-Type: application/json
-
-<> 2019-04-04T063659.200.json
-
-###
-
-GET http://localhost:8021/green/groups
-Content-Type: application/json
-
-<> 2019-04-04T063650.200.json
-
-###
-
-GET http://localhost:8021/green/groups
-Content-Type: application/json
-
-<> 2019-04-02T071955.200.json
-
-###
-
-GET http://localhost:8021/green/groups
-Content-Type: application/json
-
-<> 2019-04-02T071835.200.json
-
-###
-
-GET http://localhost:8021/green/groups
-Content-Type: application/json
-
-<> 2019-04-02T071726.200.json
-
-###
-
-GET http://localhost:8021/green/groups
-Content-Type: application/json
-
-###
-
-GET http://localhost:8021/green/groups
-Content-Type: application/json
-
-###
-
-GET http://localhost:8021/green/groups
-Content-Type: application/json
 
 ###
 

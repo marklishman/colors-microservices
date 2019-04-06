@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/countries")
-final class CountriesController {
+class CountriesController {
 
     final CountryService countryService;
 

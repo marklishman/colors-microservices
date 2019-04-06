@@ -10,7 +10,7 @@ import reactor.core.publisher.Flux;
 
 @RestController
 @RequestMapping("/users")
-final class UserController {
+class UserController {
 
     final UserService userService;
 
