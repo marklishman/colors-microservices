@@ -35,14 +35,14 @@ class CountryController {
         this.countryService = countryService;
     }
 
-    @GetMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Country>> getCountries() {
         LOGGER.info("Get all countries");
         final List<Country> countries = countryService.getAllCountries();
         return ResponseEntity.ok(countries);
     }
 
-    @GetMapping(consumes = "application/hal+json", produces = "application/hal+json")
+    @GetMapping(produces = "application/hal+json")
     public ResponseEntity<Resources<CountryResource>> getCountriesWithHal() {
         LOGGER.info("Get all countries with HAL");
         final List<Country> countries = countryService.getAllCountries();
@@ -63,14 +63,14 @@ class CountryController {
         return ResponseEntity.ok(countryResources);
     }
 
-    @GetMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Country> getCountry(@PathVariable("id") final Long id) {
         LOGGER.info("Get country for id {} with HAL", id);
         final var country = countryService.getCountryById(id);
         return ResponseEntity.ok(country);
     }
 
-    @GetMapping(value = "/{id}", consumes = "application/hal+json", produces = "application/hal+json")
+    @GetMapping(value = "/{id}", produces = "application/hal+json")
     public ResponseEntity<CountryResource> getCountryWithHal(@PathVariable("id") final Long id) {
         LOGGER.info("Get country for id {} with HAL", id);
         final var country = countryService.getCountryById(id);

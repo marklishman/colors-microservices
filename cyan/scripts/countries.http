@@ -1,0 +1,19 @@
+
+
+# -----------------------------------------------------------------------------
+# countries collection
+
+GET http://localhost:8081/cyan/countries
+Content-Type: application/json
+
+###
+
+
+
+# -----------------------------------------------------------------------------
+# countries item
+
+GET http://localhost:8081/cyan/countries/20
+Content-Type: application/json
+
+###

@@ -1,27 +1,47 @@
 package io.lishman.cyan.service;
 
-import io.lishman.cyan.model.User;
+import io.lishman.cyan.model.Country;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
-import reactor.core.publisher.Flux;
+
+import java.util.List;
 
 @Service
 public final class CountryService {
 
-    public ResponseEntity<Flux<User>> getCountries() {
+    public List<Country> getCountries() {
 
-        final WebClient webClient = WebClient.create("http://localhost:8021");
+        final WebClient webClient = WebClient
+                .builder()
+                .baseUrl("http://localhost:8021")
+//                .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
+                .build();
 
-        final Flux<User> users = webClient
+        return webClient
                 .get()
                 .uri("green/countries")
                 .accept(MediaType.APPLICATION_JSON)
                 .retrieve()
-                .bodyToFlux(User.class);
+                .bodyToFlux(Country.class)
+                .collectList()
+                .block();
+    }
 
-        return ResponseEntity.ok(users);
+    public Country getCountry(final Long id) {
+
+        final WebClient webClient = WebClient
+                .builder()
+                .baseUrl("http://localhost:8021")
+                .build();
+
+        return webClient
+                .get()
+                .uri("green/countries/{id}", id)
+                .accept(MediaType.APPLICATION_JSON)
+                .retrieve()
+                .bodyToMono(Country.class)
+                .block();
     }
 
 }
