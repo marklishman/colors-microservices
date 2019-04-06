@@ -35,14 +35,14 @@ class PersonController {
         this.personService = personService;
     }
 
-    @GetMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Person>> getPeople() {
         LOGGER.info("Get all people");
         final List<Person> people = personService.getAllCountries();
         return ResponseEntity.ok(people);
     }
 
-    @GetMapping(consumes = "application/hal+json", produces = "application/hal+json")
+    @GetMapping(produces = "application/hal+json")
     public ResponseEntity<Resources<PersonResource>> getPeopleWithHal() {
         LOGGER.info("Get all people with HAL");
         final List<Person> persons = personService.getAllCountries();
@@ -63,7 +63,7 @@ class PersonController {
         return ResponseEntity.ok(personResources);
     }
 
-    @GetMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Person> getPerson(@PathVariable("id") final Long id) {
         LOGGER.info("Get person for id {}", id);
         final var person = personService.getPersonById(id);
@@ -71,7 +71,7 @@ class PersonController {
 
     }
 
-    @GetMapping(value = "/{id}", consumes = "application/hal+json", produces = "application/hal+json")
+    @GetMapping(value = "/{id}", produces = "application/hal+json")
     public ResponseEntity<PersonResource> getPersonWithHal(@PathVariable("id") final Long id) {
         LOGGER.info("Get person for id {} with HAL", id);
         final var person = personService.getPersonById(id);

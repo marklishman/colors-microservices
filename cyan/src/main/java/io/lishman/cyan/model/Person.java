@@ -1,5 +1,8 @@
 package io.lishman.cyan.model;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.Objects;
 
 public final class Person {
@@ -16,10 +19,11 @@ public final class Person {
         this.age = age;
     }
 
-    public static Person newInstance(final Long id,
-                                     final String firstName,
-                                     final String lastName,
-                                     final int age) {
+    @JsonCreator
+    public static Person newInstance(@JsonProperty("id") Long id,
+                                     @JsonProperty("firstName") String firstName,
+                                     @JsonProperty("lastName") String lastName,
+                                     @JsonProperty("age") int age) {
         return new Person(id, firstName, lastName, age);
     }
 

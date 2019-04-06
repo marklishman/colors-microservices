@@ -4,14 +4,12 @@
 
 GET http://localhost:8021/green/people
 Accept: application/json
-Content-Type: application/json
 
 ###
 
 
 GET http://localhost:8021/green/people
 Accept: application/hal+json
-Content-Type: application/hal+json
 
 ###
 
@@ -21,13 +19,11 @@ Content-Type: application/hal+json
 
 GET http://localhost:8021/green/people/3
 Accept: application/json
-Content-Type: application/json
 
 ###
 
 
 GET http://localhost:8021/green/people/3
 Accept: application/hal+json
-Content-Type: application/hal+json
 
 ###

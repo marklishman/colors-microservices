@@ -1,0 +1,10 @@
+
+
+# -----------------------------------------------------------------------------
+# stats
+
+GET http://localhost:8081/cyan/stats
+Content-Type: application/json
+
+###
+

@@ -33,9 +33,15 @@ public class WhiteApplication {
     CommandLineRunner init(UserRepo repo) {
         return args -> {
             Flux<User> userFlux = Flux.just(
-                new User("one", "user_one", "one@email.com", "01234567", "www.one.com"),
-                new User("two", "user_two", "two@email.com", "056754333", "www.two.com"),
-                new User("three", "user_three", "three@email.com", "067856469", "www.three.com")
+                new User("one", "user_one", "one@email.com", "012345672", "www.one.com"),
+                new User("two", "user_two", "two@email.com", "056543336", "www.two.com"),
+                new User("three", "user_three", "three@email.com", "048745663", "www.three.com"),
+                new User("four", "user_four", "four@email.com", "087645767", "www.four.com"),
+                new User("five", "user_five", "five@email.com", "087686324", "www.five.com"),
+                new User("six", "user_six", "six@email.com", "074657634", "www.six.com"),
+                new User("seven", "user_seven", "seven@email.com", "083647566", "www.seven.com"),
+                new User("eight", "user_eight", "eight@email.com", "073465763", "www.eight.com"),
+                new User("nine", "user_nine", "nine@email.com", "043756236", "www.nine.com")
             ).flatMap(repo::save);
 
             userFlux.thenMany(repo.findAll())

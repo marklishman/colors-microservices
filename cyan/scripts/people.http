@@ -1,0 +1,19 @@
+
+
+# -----------------------------------------------------------------------------
+# people collection
+
+GET http://localhost:8081/cyan/people
+Content-Type: application/json
+
+###
+
+
+
+# -----------------------------------------------------------------------------
+# people item
+
+GET http://localhost:8081/cyan/people/2
+Content-Type: application/json
+
+###

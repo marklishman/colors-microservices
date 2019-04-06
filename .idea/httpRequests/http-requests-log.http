@@ -1,3 +1,166 @@
+GET http://localhost:8081/cyan/stats
+Content-Type: application/json
+
+<> 2019-04-06T044157.200.json
+
+###
+
+GET http://localhost:8081/cyan/stats
+Content-Type: application/json
+
+<> 2019-04-06T043650.200.json
+
+###
+
+GET http://localhost:8081/cyan/stats
+Content-Type: application/json
+
+###
+
+GET http://localhost:8081/cyan/stats
+Content-Type: application/json
+
+###
+
+GET http://localhost:8081/cyan/stats
+Content-Type: application/json
+
+###
+
+GET http://localhost:8081/cyan/stats
+Content-Type: application/json
+
+###
+
+GET http://localhost:8081/cyan/stats
+Content-Type: application/json
+
+<> 2019-04-06T040110.200.json
+
+###
+
+GET http://localhost:8081/cyan/stat
+Content-Type: application/json
+
+<> 2019-04-06T040059.404.json
+
+###
+
+GET http://localhost:8081/cyan/stat
+Content-Type: application/json
+
+<> 2019-04-06T040029.404.json
+
+###
+
+GET http://localhost:8081/cyan/stat
+Content-Type: application/json
+
+<> 2019-04-06T040027.404.json
+
+###
+
+GET http://localhost:8081/cyan/stat
+Content-Type: application/json
+
+###
+
+GET http://localhost:8081/cyan/people/2
+Content-Type: application/json
+
+<> 2019-04-06T031400.200.json
+
+###
+
+GET http://localhost:8081/cyan/people/20
+Content-Type: application/json
+
+<> 2019-04-06T031349.500.json
+
+###
+
+GET http://localhost:8081/cyan/people
+Content-Type: application/json
+
+<> 2019-04-06T031341.200.json
+
+###
+
+GET http://localhost:8081/cyan/people
+Content-Type: application/json
+
+<> 2019-04-06T031205.500.json
+
+###
+
+GET http://localhost:8021/green/people/3
+Accept: application/hal+json
+
+<> 2019-04-06T031149.200.json
+
+###
+
+GET http://localhost:8021/green/people/3
+Accept: application/json
+
+<> 2019-04-06T031146.200.json
+
+###
+
+GET http://localhost:8021/green/people
+Accept: application/hal+json
+
+<> 2019-04-06T031143.200.json
+
+###
+
+GET http://localhost:8021/green/people
+Accept: application/json
+
+<> 2019-04-06T031140.200.json
+
+###
+
+GET http://localhost:8021/green/countries
+Accept: application/json
+
+<> 2019-04-06T031026.200.json
+
+###
+
+GET http://localhost:8021/green/people
+Accept: application/json
+
+<> 2019-04-06T031017.415.json
+
+###
+
+GET http://localhost:8021/green/people
+Accept: application/json
+
+<> 2019-04-06T031008.415.json
+
+###
+
+GET http://localhost:8021/green/people
+Accept: application/json
+
+<> 2019-04-06T031007.415.json
+
+###
+
+GET http://localhost:8021/green/people
+Accept: application/json
+
+###
+
+GET http://localhost:8081/cyan/people
+Content-Type: application/json
+
+<> 2019-04-06T030809.500.json
+
+###
+
 GET http://localhost:8081/cyan/countries/21
 Content-Type: application/json
 
@@ -162,180 +325,6 @@ GET http://localhost:8081/cyan/countries
 Content-Type: application/json
 
 <> 2019-04-06T021538.500.json
-
-###
-
-GET http://localhost:8081/cyan/countries
-Content-Type: application/json
-
-<> 2019-04-06T021510.500.json
-
-###
-
-GET http://localhost:8081/cyan/countries
-Content-Type: application/json
-
-<> 2019-04-06T021325.500.json
-
-###
-
-GET http://localhost:8021/green/countries
-Content-Type: application/json
-
-<> 2019-04-06T021208.200.json
-
-###
-
-GET http://localhost:8081/cyan/countries
-Content-Type: application/json
-
-<> 2019-04-06T021131.500.json
-
-###
-
-GET http://localhost:8081/cyan/countries
-Content-Type: application/json
-
-<> 2019-04-06T020929.500.json
-
-###
-
-GET http://localhost:8021/green/countries/20
-Content-Type: application/hal+json
-
-<> 2019-04-06T020634.200.json
-
-###
-
-GET http://localhost:8021/green/countries/20
-Content-Type: application/json
-
-<> 2019-04-06T020631.200.json
-
-###
-
-GET http://localhost:8021/green/countries
-Content-Type: application/hal+json
-
-<> 2019-04-06T020628.200.json
-
-###
-
-GET http://localhost:8021/green/countries
-Content-Type: application/json
-
-<> 2019-04-06T020623.200.json
-
-###
-
-GET http://localhost:8021/green/countries
-Accept: application/hal+json
-Content-Type: application/hal+json
-
-<> 2019-04-06T020540.200.json
-
-###
-
-GET http://localhost:8021/green/countries
-Content-Type: application/json
-
-<> 2019-04-06T020535.200.json
-
-###
-
-GET http://localhost:8021/green/countries
-Accept: application/hal+json
-Content-Type: application/hal+json
-
-<> 2019-04-06T020526.200.json
-
-###
-
-GET http://localhost:8021/green/countries
-Accept: application/json
-Content-Type: application/json
-
-<> 2019-04-06T020521.200.json
-
-###
-
-GET http://localhost:8021/green/countries
-Accept: application/json
-
-<> 2019-04-06T020401.415.json
-
-###
-
-GET http://localhost:8021/green/countries
-Accept: application/json
-Content-Type: application/json
-
-<> 2019-04-06T020339.200.json
-
-###
-
-GET http://localhost:8021/green/countries
-Accept: application/json
-Content-Type: application/json
-
-###
-
-GET http://localhost:8021/green/countries
-Accept: application/json
-Content-Type: application/json
-
-###
-
-GET http://localhost:8021/green/countries
-Accept: application/json
-Content-Type: application/json
-
-###
-
-GET http://localhost:8021/green/countries
-Accept: application/json
-Content-Type: application/json
-
-###
-
-GET http://localhost:8021/green/countries
-Accept: application/json
-Content-Type: application/json
-
-###
-
-GET http://localhost:8021/green/countries
-Accept: application/json
-
-<> 2019-04-06T020046.415.json
-
-###
-
-GET http://localhost:8081/cyan/countries
-Content-Type: application/json
-
-<> 2019-04-06T020015.500.json
-
-###
-
-GET http://localhost:8081/cyan/countries
-Content-Type: application/json
-
-<> 2019-04-06T015908.500.json
-
-###
-
-GET http://localhost:8081/cyan/countries
-Content-Type: application/json
-
-<> 2019-04-06T015859.500.json
-
-###
-
-GET http://localhost:8081/cyan/countries
-Content-Type: application/json
-
-<> 2019-04-06T015856.500.json
 
 ###
 
