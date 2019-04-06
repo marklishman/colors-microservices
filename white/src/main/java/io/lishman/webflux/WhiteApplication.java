@@ -46,15 +46,17 @@ public class WhiteApplication {
     @Bean
     @Profile("!ControllerTest")
     RouterFunction<ServerResponse> routes(UserHandler handler) {
-        return route(GET("/users").and(accept(APPLICATION_JSON)), handler::getAllUsers)
-				.andRoute(POST("/users").and(contentType(APPLICATION_JSON)), handler::saveUser)
-				.andRoute(DELETE("/users").and(accept(APPLICATION_JSON)), handler::deleteAllUsers)
-				.andRoute(GET("/users/events").and(accept(TEXT_EVENT_STREAM)), handler::getUserEvents)
-				.andRoute(GET("/users/{id}").and(accept(APPLICATION_JSON)), handler::getUser)
-				.andRoute(PUT("/users/{id}").and(contentType(APPLICATION_JSON)), handler::updateUser)
-				.andRoute(DELETE("/users/{id}").and(accept(APPLICATION_JSON)), handler::deleteUser);
 
+        // ~~~~ Flat
+        return route(GET("/handler/users").and(accept(APPLICATION_JSON)), handler::getAllUsers)
+				.andRoute(POST("/handler/users").and(contentType(APPLICATION_JSON)), handler::saveUser)
+				.andRoute(DELETE("/handler/users").and(accept(APPLICATION_JSON)), handler::deleteAllUsers)
+				.andRoute(GET("/handler/users/events").and(accept(TEXT_EVENT_STREAM)), handler::getUserEvents)
+				.andRoute(GET("/handler/users/{id}").and(accept(APPLICATION_JSON)), handler::getUser)
+				.andRoute(PUT("/handler/users/{id}").and(contentType(APPLICATION_JSON)), handler::updateUser)
+				.andRoute(DELETE("/handler/users/{id}").and(accept(APPLICATION_JSON)), handler::deleteUser);
 
+        // ~~~~ Nested
 //        return nest(path("/handler/users"),
 //                nest(accept(APPLICATION_JSON).or(contentType(APPLICATION_JSON)).or(accept(TEXT_EVENT_STREAM)),
 //                        route(GET("/"), handler::getAllUsers)

@@ -1,3 +1,50 @@
+GET http://localhost:8071/remote/user/1
+Content-Type: application/json
+
+<> 2019-04-06T091255.500.json
+
+###
+
+GET http://localhost:8071/handler/users/5ca85e73d665dc0b5a8289e2
+Content-Type: application/json
+
+<> 2019-04-06T090955.200.json
+
+###
+
+GET http://localhost:8071/users/handler/5ca85e73d665dc0b5a8289e2
+Content-Type: application/json
+
+<> 2019-04-06T090942.404.json
+
+###
+
+GET http://localhost:8071/users/5ca85e73d665dc0b5a8289e2
+Content-Type: application/json
+
+<> 2019-04-06T090933.404.json
+
+###
+
+GET http://localhost:8071/handler/users
+Content-Type: application/json
+
+<> 2019-04-06T090924.200.json
+
+###
+
+GET http://localhost:8071/users
+Content-Type: application/json
+
+<> 2019-04-06T090915.404.json
+
+###
+
+GET http://localhost:8071/users
+Content-Type: application/json
+
+###
+
 GET http://localhost:8071/users
 Content-Type: application/json
 
@@ -266,49 +313,6 @@ Content-Type: application/json
 
 GET http://localhost:8021/green/groups
 Content-Type: application/json
-
-###
-
-GET http://localhost:8021/green/groups/3
-Content-Type: application/json
-
-<> 2019-04-01T083744.200.json
-
-###
-
-GET http://localhost:8021/green/groups/3
-Content-Type: application/json
-
-<> 2019-04-01T082105.200.json
-
-###
-
-GET http://localhost:8021/green/groups/3
-Content-Type: application/json
-
-<> 2019-04-01T081856.200.json
-
-###
-
-GET http://localhost:8021/green/groups/3
-Content-Type: application/json
-
-###
-
-GET http://localhost:8021/green/groups/3
-Content-Type: application/json
-
-###
-
-GET http://localhost:8021/green/groups/3
-Content-Type: application/json
-
-###
-
-GET http://localhost:8021/green/groups/3
-Content-Type: application/json
-
-<> 2019-04-01T075939.200.json
 
 ###
 

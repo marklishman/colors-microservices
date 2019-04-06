@@ -22,7 +22,7 @@ Content-Type: application/json
 # -----------------------------------------------------------------------------
 # users collection (functional endpoint)
 
-GET http://localhost:8071/users
+GET http://localhost:8071/handler/users
 Content-Type: application/json
 
 ###
@@ -32,7 +32,7 @@ Content-Type: application/json
 # -----------------------------------------------------------------------------
 # users item (functional endpoint)
 
-GET http://localhost:8071/users/5ca84d24d665dc0724b343c2
+GET http://localhost:8071/handler/users/5ca85e73d665dc0b5a8289e2
 Content-Type: application/json
 
 ###
