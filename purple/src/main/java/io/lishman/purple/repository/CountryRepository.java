@@ -18,11 +18,11 @@ import java.util.Optional;
 )
 public interface CountryRepository extends JpaRepository<CountryEntity, Long> {
 
-    @RestResource(exported = false)
-    Optional<CountryEntity> findByCode(final String code);
-
     @RestResource(path = "findByName")
     List<CountryEntity> findByNameContainingIgnoreCase(final String nameContains);
+
+    @RestResource(exported = false)
+    Optional<CountryEntity> findByCode(final String code);
 
     @RestResource(exported = false)
     @Override

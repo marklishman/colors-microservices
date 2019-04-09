@@ -87,11 +87,11 @@ public interface CategoryRepository extends Repository<CategoryEntity, Long> {
 )
 public interface CountryRepository extends JpaRepository<CountryEntity, Long> {
 
-    @RestResource(exported = false)
-    Optional<CountryEntity> findByCode(final String code);
-
     @RestResource(path = "findByName")
     List<CountryEntity> findByNameContainingIgnoreCase(final String nameContains);
+
+    @RestResource(exported = false)
+    Optional<CountryEntity> findByCode(final String code);
 
     @RestResource(exported = false)
     @Override
@@ -373,7 +373,7 @@ Projections alter the view of the returned data.
 
 ### Subset
 
-This projection returns the item name and description
+This projection returns the item name and description only
 
 ~~~java
 @Projection(name = "name", types = { ItemEntity.class })
@@ -485,6 +485,8 @@ public interface CategoryNameProjection {
 }
 ~~~
 
+produces
+
     http://localhost:8061/purple/api/items/4?projection=full
 
 ~~~json
@@ -570,9 +572,9 @@ public interface PersonRepository extends JpaRepository<PersonEntity, Long> {
 }
 ~~~
 
-    http://localhost:8061/purple/api/categories
-    
 Projection is automatically applied
+
+    http://localhost:8061/purple/api/categories    
 
 ~~~json
 {
@@ -748,11 +750,11 @@ we get a list of the query methods on the resource repository.
 )
 public interface CountryRepository extends JpaRepository<CountryEntity, Long> {
 
-    @RestResource(exported = false)
-    Optional<CountryEntity> findByCode(final String code);
-
     @RestResource(path = "findByName")
     List<CountryEntity> findByNameContainingIgnoreCase(final String nameContains);
+
+    @RestResource(exported = false)
+    Optional<CountryEntity> findByCode(final String code);
 
     @RestResource(exported = false)
     @Override
@@ -1147,7 +1149,7 @@ public class ItemEntityEventHandler {
 # `@RepositoryRestController`
 
 `@RepositoryRestController` is used to override _Spring Data REST managed resources_.
-In fact, Spring makes sure the URI refers to a repository.
+In fact, Spring makes sure the URI refers to an existing repository.
 
 ~~~java
 @RepositoryRestController
@@ -1216,7 +1218,8 @@ public class CountryController {
 
 # `@BasePathAwareController`
 
-To build custom operations underneath `basePath`, such as Spring MVC views, resources, and others, use `@BasePathAwareController`.
+> If you are not interested in entity-specific operations but still want to build custom operations underneath `basePath`, 
+such as Spring MVC views, resources, and others, use `@BasePathAwareController`.
 
 ~~~java
 @BasePathAwareController
@@ -1341,7 +1344,7 @@ public class RestApiConfiguration implements RepositoryRestConfigurer {
 }
 ~~~
 
-This requires the `@RepositoryRestResource`
+This requires the `@RepositoryRestResource` annotation on the repository.
 
 ~~~java
 @RepositoryRestResource (
@@ -1395,11 +1398,11 @@ Alternatively, use `@RestResource(exported = false)` to exclude the method.
 )
 public interface CountryRepository extends JpaRepository<CountryEntity, Long> {
 
-    @RestResource(exported = false)
-    Optional<CountryEntity> findByCode(final String code);
-
     @RestResource(path = "findByName")
     List<CountryEntity> findByNameContainingIgnoreCase(final String nameContains);
+
+    @RestResource(exported = false)
+    Optional<CountryEntity> findByCode(final String code);
 
     @RestResource(exported = false)
     @Override
