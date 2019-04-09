@@ -16,7 +16,7 @@ public final class UserService {
 
         final Flux<User> users = webClient
                 .get()
-                .uri("controller/users")
+                .uri("/controller/users")
                 .accept(MediaType.APPLICATION_JSON)
                 .retrieve()
                 .bodyToFlux(User.class);
