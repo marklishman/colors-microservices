@@ -61,11 +61,34 @@ Microservice architecture with Spring Cloud.
 * Not registered with Eureka
 * No remote config
 
-# Database
+# Set Up
 
-Include
+### Postgres
 
-    -Dspring.datasource.password=secret
+* `docker start ref-db`
+* Create a schema with service color, eg `purple`
+* Run the `sql/schema.sql` script in this schema.
+* Run the `sql/data.sql` script in this schema.
+* Use `-Dspring.datasource.password=my-secret-password` to access the database from the app
+
+### Eureka
+
+To enable or disable the Eureka client change this property in `application.yml`
+
+~~~yaml
+eureka:
+  client:
+    enabled: true
+~~~
+
+### Elastic Stack
+
+* Use `estack` profile
+* Start filebeats
+
+### HTTP Scripts
+
+See the `/scripts` directory in each module for the HTTP requests.
 
 # Eureka & Ribbon
 

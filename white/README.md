@@ -25,25 +25,14 @@
 
 * Webflux
 
-# Getting Started
+# Set Up
 
 ### Database
 
 No need to install a database. This microservice uses an embedded Mongodb
 database which is started and populated when the application starts.
 
-### Eureka
-
-To enable or disable the Eureka client change this property in `application.yml`
-
-~~~yaml
-eureka:
-  client:
-    enabled: true
-~~~
-
-
-## Programming Models
+# Programming Models
 
 There are two programming models supported by Spring WebFlux.
 

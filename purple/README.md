@@ -7,35 +7,6 @@
 
 ---
 
-# Getting Started
-
-### Postgres
-* `docker start ref-db`
-* Create a schema called `purple`
-* Run the `sql/schema.sql` script in this schema.
-* Run the `sql/data.sql` script in this schema.
-
-### Eureka
-
-To enable or disable the Eureka client change this property in `application.yml`
-
-~~~yaml
-eureka:
-  client:
-    enabled: true
-~~~
-
-### Elastic Stack
-
-* Use `estack` profile
-* Start filebeats
-
-### HTTP Scripts
-
-Script files to run the requests below can be found in the `/scripts` directory.
-
----
-
 # Schema
 
 <img src="database-schema.png" width="700" height="800"/>
