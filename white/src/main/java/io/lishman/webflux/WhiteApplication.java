@@ -2,7 +2,7 @@ package io.lishman.webflux;
 
 import io.lishman.webflux.handler.UserHandler;
 import io.lishman.webflux.model.User;
-import io.lishman.webflux.repository.UserRepo;
+import io.lishman.webflux.repository.UserRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -30,7 +30,7 @@ public class WhiteApplication {
     }
 
     @Bean
-    CommandLineRunner init(UserRepo repo) {
+    CommandLineRunner init(UserRepository repo) {
         return args -> {
             Flux<User> userFlux = Flux.just(
                 new User("one", "user_one", "one@email.com", "012345672", "www.one.com"),

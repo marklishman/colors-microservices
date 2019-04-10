@@ -1,16 +1,9 @@
 # White
 
-### To Do
-
-* [ ] Add maven dependencies
-* [ ] Test Eureka, elastic stack, zipkin etc
-* [ ] Remove version 4 tests
-* [ ] Run tests
-
 ### README
 
-* [ ] JavaScript in `index.html`
 * [ ] `/events`
+* [ ] JavaScript in `index.html`
 * [ ] tests
 
 ### Style Guide
@@ -43,13 +36,13 @@ Consistent with Spring MVC and based on the same annotations from the spring-web
 ~~~java
 @GetMapping
 public Flux<User> getAllUsers() {
-    return userRepo.findAll();
+    return userRepository.findAll();
 }
 
 
 @GetMapping("/{id}")
 public Mono<ResponseEntity<User>> getUser(@PathVariable("id") final String id) {
-    return userRepo.findById(id)
+    return userRepository.findById(id)
             .map(ResponseEntity::ok)
             .defaultIfEmpty(ResponseEntity.notFound().build());
 }
@@ -64,7 +57,7 @@ handle requests.
 
 ~~~java
 public Mono<ServerResponse> getAllUsers(ServerRequest request) {
-    Flux<User> users = userRepo.findAll();
+    Flux<User> users = userRepository.findAll();
 
     return ServerResponse.ok()
             .contentType(APPLICATION_JSON)
@@ -74,7 +67,7 @@ public Mono<ServerResponse> getAllUsers(ServerRequest request) {
 public Mono<ServerResponse> getUser(ServerRequest request) {
     String id = request.pathVariable("id");
 
-    Mono<User> userMono = this.userRepo.findById(id);
+    Mono<User> userMono = this.userRepository.findById(id);
     Mono<ServerResponse> notFound = ServerResponse.notFound().build();
 
     return userMono

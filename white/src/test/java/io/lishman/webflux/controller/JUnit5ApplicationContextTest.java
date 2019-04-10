@@ -2,7 +2,7 @@ package io.lishman.webflux.controller;
 
 import io.lishman.webflux.model.User;
 import io.lishman.webflux.model.UserEvent;
-import io.lishman.webflux.repository.UserRepo;
+import io.lishman.webflux.repository.UserRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -27,7 +27,7 @@ public class JUnit5ApplicationContextTest {
     private List<User> expectedList;
 
     @Autowired
-    private UserRepo repository;
+    private UserRepository repository;
 
     @Autowired
     private ApplicationContext context;

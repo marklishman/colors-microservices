@@ -3,7 +3,7 @@ package io.lishman.webflux.controller;
 import io.lishman.webflux.contoller.UserController;
 import io.lishman.webflux.model.User;
 import io.lishman.webflux.model.UserEvent;
-import io.lishman.webflux.repository.UserRepo;
+import io.lishman.webflux.repository.UserRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -30,7 +30,7 @@ public class UserApiAnnotationApplicationTests{
 	private List<User> expectedList;
 
 	@Autowired
-	private UserRepo repository;
+	private UserRepository repository;
 
 	@Before
 	public void beforeEach() {

@@ -4,7 +4,7 @@ import io.lishman.webflux.model.User;
 import org.springframework.data.mongodb.repository.ReactiveMongoRepository;
 import reactor.core.publisher.Flux;
 
-public interface UserRepo extends ReactiveMongoRepository<User, String> {
+public interface UserRepository extends ReactiveMongoRepository<User, String> {
 
     Flux<User> findByUsername(String username);
 

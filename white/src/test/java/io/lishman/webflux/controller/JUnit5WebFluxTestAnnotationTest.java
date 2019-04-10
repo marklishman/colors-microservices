@@ -3,7 +3,7 @@ package io.lishman.webflux.controller;
 import io.lishman.webflux.contoller.UserController;
 import io.lishman.webflux.model.User;
 import io.lishman.webflux.model.UserEvent;
-import io.lishman.webflux.repository.UserRepo;
+import io.lishman.webflux.repository.UserRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -42,7 +42,7 @@ public class JUnit5WebFluxTestAnnotationTest {
     private List<User> expectedList;
 
     @MockBean
-    private UserRepo repository;
+    private UserRepository repository;
 
     @MockBean
     private CommandLineRunner commandLineRunner;

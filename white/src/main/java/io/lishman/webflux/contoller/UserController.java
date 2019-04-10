@@ -2,7 +2,7 @@ package io.lishman.webflux.contoller;
 
 import io.lishman.webflux.model.User;
 import io.lishman.webflux.model.UserEvent;
-import io.lishman.webflux.repository.UserRepo;
+import io.lishman.webflux.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -25,22 +25,22 @@ import java.time.Duration;
 @RequestMapping("/controller/users")
 public class UserController {
 
-    private final UserRepo userRepo;
+    private final UserRepository userRepository;
 
     @Autowired
-    public UserController(UserRepo userRepo) {
-        this.userRepo = userRepo;
+    public UserController(UserRepository userRepository) {
+        this.userRepository = userRepository;
     }
 
     @GetMapping
     public Flux<User> getAllUsers() {
-        return userRepo.findAll();
+        return userRepository.findAll();
     }
 
 
     @GetMapping("/{id}")
     public Mono<ResponseEntity<User>> getUser(@PathVariable("id") final String id) {
-        return userRepo.findById(id)
+        return userRepository.findById(id)
                 .map(ResponseEntity::ok)
                 .defaultIfEmpty(ResponseEntity.notFound().build());
     }
@@ -48,12 +48,12 @@ public class UserController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Mono<User> saveUser(@RequestBody User user) {
-        return userRepo.save(user);
+        return userRepository.save(user);
     }
 
     @PutMapping("/{id}")
     public Mono<ResponseEntity<User>> updateUser(@PathVariable("id") String id, @RequestBody User user) {
-        return userRepo
+        return userRepository
                 .findById(id)
                 .flatMap(existingUser -> {
                     var updatedUser = new User(
@@ -64,7 +64,7 @@ public class UserController {
                             user.getUsername(),
                             user.getWebsite()
                     );
-                    return userRepo.save(updatedUser);
+                    return userRepository.save(updatedUser);
                 })
                 .map(updateUser -> ResponseEntity.ok(updateUser))
                 .defaultIfEmpty(ResponseEntity.notFound().build());
@@ -72,9 +72,9 @@ public class UserController {
 
     @DeleteMapping("/{id}")
     public Mono<ResponseEntity<Void>> deleteUser(@PathVariable("id") String id) {
-        return userRepo.findById(id)
+        return userRepository.findById(id)
                 .flatMap(existingUser ->
-                        userRepo.delete(existingUser)
+                        userRepository.delete(existingUser)
                             .then(Mono.just(ResponseEntity.ok().<Void>build()))
                 )
                 .defaultIfEmpty(ResponseEntity.notFound().build());
@@ -83,7 +83,7 @@ public class UserController {
 
     @DeleteMapping
     public Mono<Void> deleteAll() {
-        return userRepo.deleteAll();
+        return userRepository.deleteAll();
     }
 
     @GetMapping(value = "/events", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
