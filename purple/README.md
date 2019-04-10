@@ -1,9 +1,40 @@
 # Purple
 
-## Features
+## Project Features
 
 * Spring Data REST
 * HATEOAS
+
+---
+
+# Spring Data REST Features
+
+* Discoverability, Hypermedia, Links
+* Collections, items, and sub-resources
+* Projections, excerpts
+* Paging, sorting
+* Object graph
+* Search
+* CRUD, associations
+* Events
+* Custom controllers
+* Security
+* Metadata
+* Traverson
+
+From the Spring Data REST page. 
+
+* Exposes a discoverable REST API for your domain model using HAL as media type.
+* Exposes collection, item and association resources representing your model.
+* Supports pagination via navigational links.
+* Allows to dynamically filter collection resources.
+* Exposes dedicated search resources for query methods defined in your repositories.
+* Allows to hook into the handling of REST requests by handling Spring ApplicationEvents.
+* Exposes metadata about the model discovered as ALPS and JSON Schema.
+* Allows to define client specific representations through projections.
+* Ships a customized variant of the HAL Browser to leverage the exposed metadata.
+* Currently supports JPA, MongoDB, Neo4j, Solr, Cassandra, Gemfire.
+* Allows advanced customizations of the default resources exposed.
 
 ---
 
