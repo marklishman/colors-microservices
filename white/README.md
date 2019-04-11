@@ -14,7 +14,7 @@
 
 ---
 
-# Features
+# Project Features
 
 * Webflux
 
@@ -22,8 +22,12 @@
 
 ### Database
 
-No need to install a database. This microservice uses an embedded Mongodb
-database which is started and populated when the application starts.
+No need to install a database. This microservice uses an embedded MongoDb
+database which is started and populated each time the application is executed.
+
+Why MongoDb? Because it supports reactive repositories, JDBC does not.
+
+---
 
 # Programming Models
 
@@ -77,6 +81,18 @@ public Mono<ServerResponse> getUser(ServerRequest request) {
                             .body(fromObject(user)))
             .switchIfEmpty(notFound);
 }
+~~~
+
+This works in conjunction with routes. 
+
+~~~java
+return route(GET("/handler/users").and(accept(APPLICATION_JSON)), handler::getAllUsers)
+        .andRoute(POST("/handler/users").and(contentType(APPLICATION_JSON)), handler::saveUser)
+        .andRoute(DELETE("/handler/users").and(accept(APPLICATION_JSON)), handler::deleteAllUsers)
+        .andRoute(GET("/handler/users/events").and(accept(TEXT_EVENT_STREAM)), handler::getUserEvents)
+        .andRoute(GET("/handler/users/{id}").and(accept(APPLICATION_JSON)), handler::getUser)
+        .andRoute(PUT("/handler/users/{id}").and(contentType(APPLICATION_JSON)), handler::updateUser)
+        .andRoute(DELETE("/handler/users/{id}").and(accept(APPLICATION_JSON)), handler::deleteUser);
 ~~~
 
 ---
