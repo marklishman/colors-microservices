@@ -1,83 +1,63 @@
 # Spring Data REST
 
-__Do__ use Spring Data REST if at least some of the microservices are data-centric (CRUD).
+__Do__ use Spring Data REST.
 
-__Why?__ Features
- 
-* Lots of cool features for free (see below)
-* Reduces boiler plate code
-* It just works really well :-)
-
-__Why?__ Standards
+__Why?__ Standards and Best Practice
 
 * REST level 3 - HATEOAS
-* HAL (HAL-Forms, USER etc)
+* HAL 
 * ALPS
+* Affordances (future)
+* HAL-Forms (future)
+* UBER (future)
 
-__Why?__ Developer experience
+__Why?__ Improved Developer experience for the author
+
+* Lots of cool features for free
+* Reduced boilerplate code, less moving parts, less maintenance
+* It just works :-)
+
+__Why?__ Improved Developer experience for the client
 
 * Discoverability (Hypermedia, links)
 * Top level API to get started
 * Metadata (with descriptions)
 * HAL Browser
-* Reduced boilerplate code, less maintenance
 * Client usage (eg Links, HAL-FORMS)
 * Documentation
-
-Benefits of Spring Data REST outweigh cost of implementing HATEOAS on non Spring Data REST services.
 
 __Why?__ Client Code
 
 * Hypermedia, Links
 * Traverson
 * Maintainability
-* HAL-FORMS
+* HAL-Forms (future)
 * Metadata
 
-__Why?__ Features
+In my opinion, the benefits of Spring Data REST outweigh the cost of implementing 
+HATEOAS on non Spring Data REST services.
 
-* Discoverability, Hypermedia, Links
-* Collections, items, sub-resources
-* Projections & excerpts
-* Paging, sorting
-* Object graph
-* Search
-* CRUD, associations
-* Events
-* Custom controllers
-* Security
-* Metadata
-* Traverson
-
-From the Spring Data REST page. 
-
-* Exposes a discoverable REST API for your domain model using HAL as media type.
-* Exposes collection, item and association resources representing your model.
-* Supports pagination via navigational links.
-* Allows to dynamically filter collection resources.
-* Exposes dedicated search resources for query methods defined in your repositories.
-* Allows to hook into the handling of REST requests by handling Spring ApplicationEvents.
-* Exposes metadata about the model discovered as ALPS and JSON Schema.
-* Allows to define client specific representations through projections.
-* Ships a customized variant of the HAL Browser to leverage the exposed metadata.
-* Currently supports JPA, MongoDB, Neo4j, Solr, Cassandra, Gemfire.
-* Allows advanced customizations of the default resources exposed.
 
 __Avoid__ Spring Data REST if HATEOAS is not an option.
 
 __Why?__ It can't be switched off
 
+
 __Avoid__ Spring Data REST if no services are data-centric (CRUD)
 
-__Why?__ Spring Data REST adds no value.
+__Why?__ Spring Data REST adds little value.
+
+
+# Naming
+
+__Do__ add the `Entity` suffix to entity classes. `CountryEntity`
+
+__Why?__ Easily identifies entity classes and avoids name classes with other model objects.
 
 __Do__ add the `Projection` suffix to projection classes. `ItemListProjection`
 
-__Why?__
+__Why?__ Easily identifies projection classes and avoids name classes with other model objects.
 
-__Consider__ using the adapter pattern to create projections.
-
-__Why?__
 
 # Access
 
@@ -87,15 +67,15 @@ __Why?__ It is the most explicit and restrictive of the detection strategies whi
 
 __Do__ only implement the repository methods that are needed.
 
-__Why?__
+__Why?__ It stops unwanted REST endpoints from being exposed.
 
 __Do__ use `@RestResource` to restrict access to methods.
 
-__Why?__
+__Why?__ It stops unwanted REST endpoints from being exposed.
 
 __Do__ use Spring Security on repository methods.
 
-__Why?__
+__Why?__ It controls who can use the REST endpoint.
 
 # Example
 
