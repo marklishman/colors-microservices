@@ -6,10 +6,12 @@ __Why?__ Standards and Best Practice
 
 * REST level 3 - HATEOAS
 * HAL 
-* ALPS
+* ALPS, JSON Schema
 * Affordances (future)
-* HAL-Forms (future)
+* HAL-FORMS (future)
+* Collection+JSON (future)
 * UBER (future)
+* RFCs
 
 __Why?__ Improved Developer experience for the author
 
@@ -23,7 +25,7 @@ __Why?__ Improved Developer experience for the client
 * Top level API to get started
 * Metadata (with descriptions)
 * HAL Browser
-* Client usage (eg Links, HAL-FORMS)
+* Client usage (eg Links, HAL-Forms)
 * Documentation
 
 __Why?__ Client Code

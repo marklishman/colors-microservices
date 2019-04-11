@@ -19,7 +19,7 @@
 * Events
 * Custom controllers
 * Security
-* Metadata
+* Metadata - ALPS, JSON Schema
 * Traverson
 
 From the Spring Data REST page. 
