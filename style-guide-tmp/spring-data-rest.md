@@ -7,11 +7,11 @@ __Why?__ Standards and Best Practice
 * REST level 3 - HATEOAS
 * HAL 
 * ALPS, JSON Schema
+* RFC-5988 Web Linking, RFC-6570 URI Template
 * Affordances (future)
 * HAL-FORMS (future)
 * Collection+JSON (future)
 * UBER (future)
-* RFC-5988 Web Linking, RFC-6570 URI Template
 
 __Why?__ Improved Developer experience for the author
 
