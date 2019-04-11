@@ -13,13 +13,13 @@ __Why?__ Standards and Best Practice
 * Collection+JSON (future)
 * UBER (future)
 
-__Why?__ Improved Developer experience for the author
+__Why?__ Improved developer experience for the author
 
 * Lots of cool features for free
 * Reduced boilerplate code, less moving parts, less maintenance
 * It just works :-)
 
-__Why?__ Improved Developer experience for the client
+__Why?__ Improved developer experience for the client
 
 * Discoverability (Hypermedia, links)
 * Top level API to get started
