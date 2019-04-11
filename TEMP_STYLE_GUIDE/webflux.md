@@ -34,6 +34,10 @@ __Consider__ using Spring Webflux but _only_ if it makes sense to do so.
 
 __Why?__ It _can_ allow an application to scale with less resources, but be careful.
 
+__Do__ use Annotated Controllers rather than Functional Endpoints
+
+__Why?__ It is a more familiar model to most developers as it mirrors traditional Spring MVC.
+
 
 # Reference
 
