@@ -11,7 +11,7 @@ __Why?__ Standards and Best Practice
 * HAL-FORMS (future)
 * Collection+JSON (future)
 * UBER (future)
-* RFCs
+* RFC-5988 Web Linking, RFC-6570 URI Template
 
 __Why?__ Improved Developer experience for the author
 
