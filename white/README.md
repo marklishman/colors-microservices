@@ -117,7 +117,7 @@ public Mono<ServerResponse> getUserEvents(ServerRequest request) {
 }
 ~~~
 
-With functional endpoints we also need to define the routes. 
+With functional endpoints we also need to define routes. 
 
 ~~~java
 return route(GET("/handler/users").and(accept(APPLICATION_JSON)), handler::getAllUsers)
