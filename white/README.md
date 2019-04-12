@@ -11,7 +11,7 @@
 There is no need to install a database. This microservice uses an embedded MongoDB
 database which is started and populated each time the application is executed.
 
-Why MongoDB? Because it supports reactive repositories, JDBC does not.
+Why MongoDB? Because it supports reactive repositories, JDBC / JPA does not.
 
 ---
 
