@@ -13,19 +13,19 @@
         <ul></ul>
 
         <script type="text/javascript">
-        if (!!window.EventSource) {
-            var evtSource = new EventSource('users/events'); //http://localhost:8080/index.html
-            var eventList = document.querySelector('ul');
+            if (!!window.EventSource) {
+                var evtSource = new EventSource('users/events'); //http://localhost:8080/index.html
+                var eventList = document.querySelector('ul');
 
-            evtSource.onmessage = function(e) {
-              var newElement = document.createElement("li");
+                evtSource.onmessage = function(e) {
+                  var newElement = document.createElement("li");
 
-              newElement.textContent = "Event: " + e.data;
-              eventList.appendChild(newElement);
+                  newElement.textContent = "Event: " + e.data;
+                  eventList.appendChild(newElement);
+                }
+            } else {
+                alert("The browser doesn't support SSE");
             }
-        } else {
-            alert("The browser doesn't support SSE");
-        }
         </script>
     </body>
 </html>

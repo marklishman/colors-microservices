@@ -58,6 +58,27 @@ public Flux<UserEvent> getUserEvents() {
 
 Note the `TEXT_EVENT_STREAM_VALUE` media type.
 
+If the browser does not support streams, we can use JavaScript instead.
+
+~~~html
+<script type="text/javascript">
+    if (!!window.EventSource) {
+        var evtSource = new EventSource('users/events'); //http://localhost:8080/index.html
+        var eventList = document.querySelector('ul');
+
+        evtSource.onmessage = function(e) {
+          var newElement = document.createElement("li");
+
+          newElement.textContent = "Event: " + e.data;
+          eventList.appendChild(newElement);
+        }
+    } else {
+        alert("The browser doesn't support SSE");
+    }
+</script>
+~~~
+
+
 ### Functional Endpoints
 
 Lambda-based, lightweight, and functional programming model. You can think of this 
