@@ -2,15 +2,7 @@
 
 ### README
 
-* [ ] `/events`
 * [ ] JavaScript in `index.html`
-* [ ] tests
-
-### Style Guide
-
-* [ ] Favour Annotation based model, more familiar
-* [ ] Don't use unless absolutely necessary
-* [ ] Don't use of any part of app is synchronous (eg database driver)
 
 ---
 
@@ -52,6 +44,19 @@ public Mono<ResponseEntity<User>> getUser(@PathVariable("id") final String id) {
 }
 ~~~
 
+We can also get a stream of objects decoded from the response.
+
+~~~java
+@GetMapping(value = "/events", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
+public Flux<UserEvent> getUserEvents() {
+    return Flux.interval(Duration.ofSeconds(1))
+            .map(val ->
+                    new UserEvent(val, "User Event")
+            );
+}
+~~~
+
+Note the `TEXT_EVENT_STREAM_VALUE` media type.
 
 ### Functional Endpoints
 
@@ -83,7 +88,21 @@ public Mono<ServerResponse> getUser(ServerRequest request) {
 }
 ~~~
 
-This works in conjunction with routes. 
+We get a stream of objects like this 
+
+~~~java
+public Mono<ServerResponse> getUserEvents(ServerRequest request) {
+    Flux<UserEvent> eventsFlux = Flux.interval(Duration.ofSeconds(1)).map(val ->
+            new UserEvent(val, "User Event")
+    );
+
+    return ServerResponse.ok()
+            .contentType(MediaType.TEXT_EVENT_STREAM)
+            .body(eventsFlux, UserEvent.class);
+}
+~~~
+
+With functional endpoints we also need to define the routes. 
 
 ~~~java
 return route(GET("/handler/users").and(accept(APPLICATION_JSON)), handler::getAllUsers)
