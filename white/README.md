@@ -1,11 +1,5 @@
 # White
 
-### README
-
-* [ ] JavaScript in `index.html`
-
----
-
 # Project Features
 
 * Webflux
