@@ -8,7 +8,7 @@
 
 ### Database
 
-No need to install a database. This microservice uses an embedded MongoDb
+There is no need to install a database. This microservice uses an embedded MongoDb
 database which is started and populated each time the application is executed.
 
 Why MongoDb? Because it supports reactive repositories, JDBC does not.
