@@ -4,16 +4,25 @@
 # countries collection
 
 GET http://localhost:8081/cyan/countries
-Content-Type: application/json
+Accept: application/json
 
 ###
 
+GET http://localhost:8081/cyan/countries
+Accept: application/hal+json
+
+###
 
 
 # -----------------------------------------------------------------------------
 # countries item
 
 GET http://localhost:8081/cyan/countries/20
-Content-Type: application/json
+Accept: application/json
+
+###
+
+GET http://localhost:8081/cyan/countries/20
+Accept: application/hal+json
 
 ###

@@ -20,37 +20,14 @@ import java.util.stream.Collectors;
 import static org.springframework.hateoas.client.Hop.rel;
 
 @Service
-public final class PersonService {
+public final class PeopleService {
 
     private final WebClient greenHalWebClient;
     private final RestTemplate restTemplate;
 
-    public PersonService(final WebClient greenHalWebClient, final RestTemplate restTemplate) {
+    public PeopleService(final WebClient greenHalWebClient, final RestTemplate restTemplate) {
         this.greenHalWebClient = greenHalWebClient;
         this.restTemplate = restTemplate;
-    }
-
-    // ~~~~ WebClient
-
-    public List<Person> getPeopleUsingWebClient() {
-
-        final ParameterizedTypeReference<Resources<Resource<Person>>> peopleResourceTypeReference =
-                new ParameterizedTypeReference<>() {};
-
-        final Resources<Resource<Person>> peopleResources = greenHalWebClient
-                .get()
-                .uri("green/people")
-                .retrieve()
-                .bodyToMono(peopleResourceTypeReference)
-                .block();
-
-        List<Person> people = peopleResources
-                .getContent()
-                .stream()
-                .map(resource -> resource.getContent())
-                .collect(Collectors.toList());
-
-        return people;
     }
 
     // ~~~~ Traverson
@@ -80,30 +57,11 @@ public final class PersonService {
                 .exchange("http://localhost:8021/green/people", HttpMethod.GET, null, peopleResourceTypeReference)
                 .getBody();
 
-        List<Person> people = peopleResources
+        return peopleResources
                 .getContent()
                 .stream()
-                .map(resource -> resource.getContent())
+                .map(Resource::getContent)
                 .collect(Collectors.toList());
-
-        return people;
-    }
-
-    // ~~~~ WebClient
-
-    public Person getPersonUsingWebClient(final Long id) {
-
-        final ParameterizedTypeReference<Resource<Person>> personResourceTypeReference =
-                new ParameterizedTypeReference<>() {};
-
-        final Resource<Person> personResource = greenHalWebClient
-                .get()
-                .uri("green/people/{id}", id)
-                .retrieve()
-                .bodyToMono(personResourceTypeReference)
-                .block();
-
-        return personResource.getContent();
     }
 
     // ~~~~ Traverson

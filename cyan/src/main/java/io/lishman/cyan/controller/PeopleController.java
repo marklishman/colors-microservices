@@ -1,7 +1,7 @@
 package io.lishman.cyan.controller;
 
 import io.lishman.cyan.model.Person;
-import io.lishman.cyan.service.PersonService;
+import io.lishman.cyan.service.PeopleService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,21 +14,21 @@ import java.util.List;
 @RequestMapping("/people")
 class PeopleController {
 
-    final PersonService countryService;
+    final PeopleService peopleService;
 
-    PeopleController(PersonService countryService) {
-        this.countryService = countryService;
+    PeopleController(PeopleService peopleService) {
+        this.peopleService = peopleService;
     }
 
     @GetMapping
     ResponseEntity<List<Person>> getUsers() {
-        final List<Person> countries = countryService.getPeopleUsingWebClient();
+        final List<Person> countries = peopleService.getPeopleUsingRestTemplate();
         return ResponseEntity.ok(countries);
     }
 
     @GetMapping("{id}")
     ResponseEntity<Person> getUserById(@PathVariable("id") final Long id) {
-        final Person country = countryService.getPersonUsingWebClient(id);
+        final Person country = peopleService.getPersonUsingRestTemplate(id);
         return ResponseEntity.ok(country);
     }
 
