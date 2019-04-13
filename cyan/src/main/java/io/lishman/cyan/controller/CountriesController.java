@@ -18,7 +18,7 @@ class CountriesController {
 
     final CountriesService countriesService;
 
-    CountriesController(CountriesService countriesService) {
+    CountriesController(final CountriesService countriesService) {
         this.countriesService = countriesService;
     }
 

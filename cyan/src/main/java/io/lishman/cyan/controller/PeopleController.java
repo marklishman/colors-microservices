@@ -16,20 +16,20 @@ class PeopleController {
 
     final PeopleService peopleService;
 
-    PeopleController(PeopleService peopleService) {
+    PeopleController(final PeopleService peopleService) {
         this.peopleService = peopleService;
     }
 
     @GetMapping
-    ResponseEntity<List<Person>> getUsers() {
-        final List<Person> countries = peopleService.getPeopleUsingRestTemplate();
+    ResponseEntity<List<Person>> getPeople() {
+        final List<Person> countries = peopleService.getPeople();
         return ResponseEntity.ok(countries);
     }
 
     @GetMapping("{id}")
-    ResponseEntity<Person> getUserById(@PathVariable("id") final Long id) {
-        final Person country = peopleService.getPersonUsingRestTemplate(id);
-        return ResponseEntity.ok(country);
+    ResponseEntity<Person> getPersonById(@PathVariable("id") final Long id) {
+        final Person person = peopleService.getPerson(id);
+        return ResponseEntity.ok(person);
     }
 
 }

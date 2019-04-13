@@ -1,60 +1,37 @@
 package io.lishman.cyan.service;
 
 import io.lishman.cyan.model.Person;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.hateoas.MediaTypes;
 import org.springframework.hateoas.Resource;
 import org.springframework.hateoas.Resources;
-import org.springframework.hateoas.client.Traverson;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.reactive.function.client.WebClient;
 
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import static org.springframework.hateoas.client.Hop.rel;
 
 @Service
 public final class PeopleService {
 
-    private final WebClient greenHalWebClient;
-    private final RestTemplate restTemplate;
+    private static final Logger LOGGER = LoggerFactory.getLogger(PeopleService.class);
 
-    public PeopleService(final WebClient greenHalWebClient, final RestTemplate restTemplate) {
-        this.greenHalWebClient = greenHalWebClient;
-        this.restTemplate = restTemplate;
+    private final RestTemplate greenRestTemplate;
+
+    public PeopleService(final RestTemplate greenRestTemplate) {
+        this.greenRestTemplate = greenRestTemplate;
     }
 
-    // ~~~~ Traverson
-
-    public Collection<Person> getPeopleUsingTraverson() {
-
-        final ParameterizedTypeReference<Resources<Person>> peopleResourceTypeReference =
-                new ParameterizedTypeReference<>() {};
-
-        final Traverson traverson = new Traverson(getUri("http://localhost:8021/green/people"), MediaTypes.HAL_JSON);
-
-        Resources<Person> peopleResource = traverson
-                .follow(rel("self"))
-                .toObject(peopleResourceTypeReference);
-
-        return peopleResource.getContent();
-    }
-
-    // ~~~~ RestTemplate
-
-    public List<Person> getPeopleUsingRestTemplate() {
+    public List<Person> getPeople() {
+        LOGGER.info("Get People with HAL");
 
         final ParameterizedTypeReference<Resources<Resource<Person>>> peopleResourceTypeReference =
                 new ParameterizedTypeReference<>() {};
 
-        final Resources<Resource<Person>> peopleResources = restTemplate
-                .exchange("http://localhost:8021/green/people", HttpMethod.GET, null, peopleResourceTypeReference)
+        final Resources<Resource<Person>> peopleResources = greenRestTemplate
+                .exchange("/people", HttpMethod.GET, null, peopleResourceTypeReference)
                 .getBody();
 
         return peopleResources
@@ -64,43 +41,16 @@ public final class PeopleService {
                 .collect(Collectors.toList());
     }
 
-    // ~~~~ Traverson
-
-    public Person getPersonUsingTraverson(final Long pos) {
-
-        final ParameterizedTypeReference<Resource<Person>> personResourceTypeReference =
-                new ParameterizedTypeReference<>() {};
-
-        final Traverson traverson = new Traverson(getUri("http://localhost:8021/green/people"), MediaTypes.HAL_JSON);
-
-        final String rel = String.format("$._embedded.people[%s]._links.self.href", pos);
-
-        Resource<Person> personResource = traverson
-                .follow(rel)
-                .toObject(personResourceTypeReference);
-
-        return personResource.getContent();
-    }
-
-    // ~~~~ RestTemplate
-
-    public Person getPersonUsingRestTemplate(final Long id) {
+    public Person getPerson(final Long id) {
+        LOGGER.info("Get Person {} with HAL", id);
 
         final ParameterizedTypeReference<Resource<Person>> personResourceTypeReference =
                 new ParameterizedTypeReference<>() {};
 
-        final Resource<Person> personResource = restTemplate
-                .exchange("http://localhost:8021/green/people/{id}", HttpMethod.GET, null, personResourceTypeReference, id)
+        final Resource<Person> personResource = greenRestTemplate
+                .exchange("/people/{id}", HttpMethod.GET, null, personResourceTypeReference, id)
                 .getBody();
 
         return personResource.getContent();
-    }
-
-    private URI getUri(final String uri) {
-        try {
-            return new URI(uri);
-        } catch (URISyntaxException e) {
-            throw new RuntimeException(e);
-        }
     }
 }

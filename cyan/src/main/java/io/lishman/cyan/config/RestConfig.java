@@ -18,11 +18,16 @@ import org.springframework.web.reactive.function.client.WebClient;
 @Configuration
 public class RestConfig {
 
+    // ~~~~ RestTemplate
+
     @Bean
-    public RestTemplate restTemplate() {
+    public RestTemplate greenRestTemplate() {
         return new RestTemplateBuilder()
+                .rootUri("http://localhost:8021/green")
                 .build();
     }
+
+    // ~~~~ WebClient
 
     @Bean
     public WebClient greenWebClient() {

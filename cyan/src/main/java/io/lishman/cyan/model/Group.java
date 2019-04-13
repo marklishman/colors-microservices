@@ -1,6 +1,9 @@
 package io.lishman.cyan.model;
 
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.Objects;
 
 public final class Group {
@@ -17,9 +20,10 @@ public final class Group {
         this.description = description;
     }
 
-    private static Group newInstance(final Long id,
-                             final String name,
-                             final String description) {
+    @JsonCreator
+    private static Group newInstance(@JsonProperty("id") final Long id,
+                                     @JsonProperty("name") final String name,
+                                     @JsonProperty("description") final String description) {
         return new Group(id, name, description);
     }
 
