@@ -60,12 +60,7 @@ public final class PersonService {
         final ParameterizedTypeReference<Resources<Person>> peopleResourceTypeReference =
                 new ParameterizedTypeReference<>() {};
 
-        Traverson traverson = null;
-        try {
-            traverson = new Traverson(new URI("http://localhost:8021/green/people"), MediaTypes.HAL_JSON);
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-        }
+        final Traverson traverson = new Traverson(getUri("http://localhost:8021/green/people"), MediaTypes.HAL_JSON);
 
         Resources<Person> peopleResource = traverson
                 .follow(rel("self"))
@@ -113,21 +108,17 @@ public final class PersonService {
 
     // ~~~~ Traverson
 
-    public Person getPersonUsingTraverson(final Long id) {
+    public Person getPersonUsingTraverson(final Long pos) {
 
         final ParameterizedTypeReference<Resource<Person>> personResourceTypeReference =
                 new ParameterizedTypeReference<>() {};
 
-        Traverson traverson = null;
-        try {
-            traverson = new Traverson(new URI("http://localhost:8021/green/people"), MediaTypes.HAL_JSON);
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-        }
+        final Traverson traverson = new Traverson(getUri("http://localhost:8021/green/people"), MediaTypes.HAL_JSON);
 
+        final String rel = String.format("$._embedded.people[%s]._links.self.href", pos);
 
         Resource<Person> personResource = traverson
-                .follow("$._embedded.people[3]._links.self.href")
+                .follow(rel)
                 .toObject(personResourceTypeReference);
 
         return personResource.getContent();
@@ -145,5 +136,13 @@ public final class PersonService {
                 .getBody();
 
         return personResource.getContent();
+    }
+
+    private URI getUri(final String uri) {
+        try {
+            return new URI(uri);
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
