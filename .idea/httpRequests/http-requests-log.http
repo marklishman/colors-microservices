@@ -1,244 +1,77 @@
-GET http://localhost:8081/cyan/stats
+GET http://localhost:8081/cyan/people
 Content-Type: application/json
 
-<> 2019-04-06T053403.500.json
+<> 2019-04-13T031329.200.json
 
 ###
 
-GET http://localhost:8081/cyan/stats
+GET http://localhost:8081/cyan/countries
 Content-Type: application/json
 
-<> 2019-04-06T052830.200.json
+<> 2019-04-13T031321.200.json
 
 ###
 
-GET http://localhost:8081/cyan/stats
-Content-Type: application/json
-
-<> 2019-04-06T052319.200.json
-
-###
-
-GET http://localhost:8081/cyan/stats
-Content-Type: application/json
-
-<> 2019-04-06T052116.200.json
-
-###
-
-GET http://localhost:8081/cyan/stats
-Content-Type: application/json
-
-<> 2019-04-06T052102.200.json
-
-###
-
-GET http://localhost:8081/cyan/stats
-Content-Type: application/json
-
-<> 2019-04-06T051936.200.json
-
-###
-
-GET http://localhost:8081/cyan/stats
-Content-Type: application/json
-
-<> 2019-04-06T051918.200.json
-
-###
-
-GET http://localhost:8081/cyan/stats
-Content-Type: application/json
-
-<> 2019-04-06T051842.200.json
-
-###
-
-GET http://localhost:8081/cyan/stats
-Content-Type: application/json
-
-<> 2019-04-06T051600.200.json
-
-###
-
-GET http://localhost:8081/cyan/stats
-Content-Type: application/json
-
-<> 2019-04-06T051433.200.json
-
-###
-
-GET http://localhost:8081/cyan/stats
-Content-Type: application/json
-
-<> 2019-04-06T051324.200.json
-
-###
-
-GET http://localhost:8081/cyan/stats
-Content-Type: application/json
-
-<> 2019-04-06T050646.200.json
-
-###
-
-GET http://localhost:8081/cyan/stats
-Content-Type: application/json
-
-<> 2019-04-06T050634.200.json
-
-###
-
-GET http://localhost:8081/cyan/stats
-Content-Type: application/json
-
-<> 2019-04-06T050410.200.json
-
-###
-
-GET http://localhost:8081/cyan/stats
-Content-Type: application/json
-
-<> 2019-04-06T050305.200.json
-
-###
-
-GET http://localhost:8081/cyan/stats
-Content-Type: application/json
-
-<> 2019-04-06T050203.200.json
-
-###
-
-GET http://localhost:8081/cyan/stats
-Content-Type: application/json
-
-<> 2019-04-06T045901.200.json
-
-###
-
-GET http://localhost:8081/cyan/stats
-Content-Type: application/json
-
-<> 2019-04-06T045613.200.json
-
-###
-
-GET http://localhost:8081/cyan/stats
-Content-Type: application/json
-
-<> 2019-04-06T045523.200.json
-
-###
-
-GET http://localhost:8081/cyan/stats
-Content-Type: application/json
-
-<> 2019-04-06T045504.200.json
-
-###
-
-GET http://localhost:8081/cyan/stats
-Content-Type: application/json
-
-<> 2019-04-06T045410.200.json
-
-###
-
-GET http://localhost:8081/cyan/stats
+GET http://localhost:8081/cyan/countries
 Content-Type: application/json
 
 ###
 
-GET http://localhost:8081/cyan/stats
-Content-Type: application/json
-
-<> 2019-04-06T045351.200.json
-
-###
-
-GET http://localhost:8081/cyan/stats
-Content-Type: application/json
-
-<> 2019-04-06T044927.200.json
-
-###
-
-GET http://localhost:8081/cyan/stats
+GET http://localhost:8081/cyan/countries
 Content-Type: application/json
 
 ###
 
-GET http://localhost:8081/cyan/stats
+GET http://localhost:8081/cyan/countries
 Content-Type: application/json
 
-<> 2019-04-06T044647.200.json
+<> 2019-04-13T031147.200.json
 
 ###
 
-GET http://localhost:8081/cyan/stats
+GET http://localhost:8081/cyan/people
 Content-Type: application/json
 
-<> 2019-04-06T044157.200.json
+<> 2019-04-13T031135.200.json
 
 ###
 
-GET http://localhost:8081/cyan/stats
+GET http://localhost:8081/cyan/countries
 Content-Type: application/json
 
-<> 2019-04-06T043650.200.json
+<> 2019-04-13T030926.200.json
 
 ###
 
-GET http://localhost:8081/cyan/stats
+GET http://localhost:8081/cyan/people
 Content-Type: application/json
+
+<> 2019-04-13T030915.200.json
 
 ###
 
-GET http://localhost:8081/cyan/stats
+GET http://localhost:8081/cyan/countries/20
 Content-Type: application/json
+
+<> 2019-04-13T030827.200.json
 
 ###
 
-GET http://localhost:8081/cyan/stats
+GET http://localhost:8081/cyan/countries/20
 Content-Type: application/json
+
+<> 2019-04-13T030724.200.json
 
 ###
 
-GET http://localhost:8081/cyan/stats
+GET http://localhost:8081/cyan/people/2
 Content-Type: application/json
+
+<> 2019-04-13T030713.200.json
 
 ###
 
-GET http://localhost:8081/cyan/stats
-Content-Type: application/json
-
-<> 2019-04-06T040110.200.json
-
-###
-
-GET http://localhost:8081/cyan/stat
-Content-Type: application/json
-
-<> 2019-04-06T040059.404.json
-
-###
-
-GET http://localhost:8081/cyan/stat
-Content-Type: application/json
-
-<> 2019-04-06T040029.404.json
-
-###
-
-GET http://localhost:8081/cyan/stat
-Content-Type: application/json
-
-<> 2019-04-06T040027.404.json
-
-###
-
-GET http://localhost:8081/cyan/stat
+GET http://localhost:8081/cyan/people/2
 Content-Type: application/json
 
 ###
@@ -246,89 +79,244 @@ Content-Type: application/json
 GET http://localhost:8081/cyan/people/2
 Content-Type: application/json
 
-<> 2019-04-06T031400.200.json
+###
+
+GET http://localhost:8081/cyan/people/2
+Content-Type: application/json
+
+<> 2019-04-13T030126.500.json
 
 ###
 
-GET http://localhost:8081/cyan/people/20
+GET http://localhost:8081/cyan/people/2
 Content-Type: application/json
 
-<> 2019-04-06T031349.500.json
+<> 2019-04-13T030101.200.json
+
+###
+
+GET http://localhost:8081/cyan/people/2
+Content-Type: application/json
+
+###
+
+GET http://localhost:8081/cyan/people/2
+Content-Type: application/json
+
+<> 2019-04-13T025954.500.json
+
+###
+
+GET http://localhost:8081/cyan/people/2
+Content-Type: application/json
+
+<> 2019-04-13T025947.500.json
+
+###
+
+GET http://localhost:8081/cyan/people/2
+Content-Type: application/json
 
 ###
 
 GET http://localhost:8081/cyan/people
 Content-Type: application/json
 
-<> 2019-04-06T031341.200.json
+<> 2019-04-13T025133.200.json
 
 ###
 
 GET http://localhost:8081/cyan/people
 Content-Type: application/json
 
-<> 2019-04-06T031205.500.json
+<> 2019-04-13T025056.200.json
 
 ###
 
-GET http://localhost:8021/green/people/3
-Accept: application/hal+json
+GET http://localhost:8081/cyan/people
+Content-Type: application/json
 
-<> 2019-04-06T031149.200.json
-
-###
-
-GET http://localhost:8021/green/people/3
-Accept: application/json
-
-<> 2019-04-06T031146.200.json
+<> 2019-04-13T024448.200.json
 
 ###
 
-GET http://localhost:8021/green/people
-Accept: application/hal+json
+GET http://localhost:8081/cyan/people
+Content-Type: application/json
 
-<> 2019-04-06T031143.200.json
-
-###
-
-GET http://localhost:8021/green/people
-Accept: application/json
-
-<> 2019-04-06T031140.200.json
+<> 2019-04-13T024400.200.json
 
 ###
 
-GET http://localhost:8021/green/countries
-Accept: application/json
+GET http://localhost:8081/cyan/people/2
+Content-Type: application/json
 
-<> 2019-04-06T031026.200.json
-
-###
-
-GET http://localhost:8021/green/people
-Accept: application/json
-
-<> 2019-04-06T031017.415.json
+<> 2019-04-13T024353.200.json
 
 ###
 
-GET http://localhost:8021/green/people
-Accept: application/json
+GET http://localhost:8081/cyan/people/2
+Content-Type: application/json
 
-<> 2019-04-06T031008.415.json
-
-###
-
-GET http://localhost:8021/green/people
-Accept: application/json
-
-<> 2019-04-06T031007.415.json
+<> 2019-04-13T023811.200.json
 
 ###
 
-GET http://localhost:8021/green/people
-Accept: application/json
+GET http://localhost:8081/cyan/people/2
+Content-Type: application/json
+
+<> 2019-04-13T023752.200.json
+
+###
+
+GET http://localhost:8081/cyan/people/2
+Content-Type: application/json
+
+<> 2019-04-13T023729.200.json
+
+###
+
+GET http://localhost:8081/cyan/people/2
+Content-Type: application/json
+
+<> 2019-04-13T023555.500.json
+
+###
+
+GET http://localhost:8081/cyan/people/2
+Content-Type: application/json
+
+<> 2019-04-13T023549.500.json
+
+###
+
+GET http://localhost:8081/cyan/people/2
+Content-Type: application/json
+
+###
+
+GET http://localhost:8081/cyan/people/2
+Content-Type: application/json
+
+<> 2019-04-13T023339.200.json
+
+###
+
+GET http://localhost:8081/cyan/people/2
+Content-Type: application/json
+
+<> 2019-04-13T012732.200.json
+
+###
+
+GET http://localhost:8081/cyan/people/2
+Content-Type: application/json
+
+<> 2019-04-13T012711.200.json
+
+###
+
+GET http://localhost:8081/cyan/people
+Content-Type: application/json
+
+<> 2019-04-13T012149.200.json
+
+###
+
+GET http://localhost:8081/cyan/people
+Content-Type: application/json
+
+<> 2019-04-13T012120.200.json
+
+###
+
+GET http://localhost:8081/cyan/people/2
+Content-Type: application/json
+
+<> 2019-04-13T011837.200.json
+
+###
+
+GET http://localhost:8081/cyan/people/2
+Content-Type: application/json
+
+<> 2019-04-13T011817.200.json
+
+###
+
+GET http://localhost:8081/cyan/people/2
+Content-Type: application/json
+
+<> 2019-04-13T011632.200.json
+
+###
+
+GET http://localhost:8081/cyan/people/2
+Content-Type: application/json
+
+<> 2019-04-13T010800.200.json
+
+###
+
+GET http://localhost:8081/cyan/people/2
+Content-Type: application/json
+
+###
+
+GET http://localhost:8081/cyan/people
+Content-Type: application/json
+
+<> 2019-04-13T010210.200.json
+
+###
+
+GET http://localhost:8081/cyan/people
+Content-Type: application/json
+
+<> 2019-04-13T010146.200.json
+
+###
+
+GET http://localhost:8081/cyan/people/2
+Content-Type: application/json
+
+<> 2019-04-13T125237.200.json
+
+###
+
+GET http://localhost:8081/cyan/people/2
+Content-Type: application/json
+
+###
+
+GET http://localhost:8081/cyan/people/2
+Content-Type: application/json
+
+<> 2019-04-13T125213.200.json
+
+###
+
+GET http://localhost:8081/cyan/people/2
+Content-Type: application/json
+
+###
+
+GET http://localhost:8081/cyan/people/2
+Content-Type: application/json
+
+###
+
+GET http://localhost:8081/cyan/people/2
+Content-Type: application/json
+
+###
+
+GET http://localhost:8081/cyan/people/2
+Content-Type: application/json
+
+###
+
+GET http://localhost:8081/cyan/people/2
+Content-Type: application/json
 
 ###
 

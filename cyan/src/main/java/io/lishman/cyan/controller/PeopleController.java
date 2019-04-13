@@ -22,13 +22,13 @@ class PeopleController {
 
     @GetMapping
     ResponseEntity<List<Person>> getUsers() {
-        final List<Person> countries = countryService.getPeople();
+        final List<Person> countries = countryService.getPeopleUsingWebClient();
         return ResponseEntity.ok(countries);
     }
 
     @GetMapping("{id}")
     ResponseEntity<Person> getUserById(@PathVariable("id") final Long id) {
-        final Person country = countryService.getPerson(id);
+        final Person country = countryService.getPersonUsingWebClient(id);
         return ResponseEntity.ok(country);
     }
 
