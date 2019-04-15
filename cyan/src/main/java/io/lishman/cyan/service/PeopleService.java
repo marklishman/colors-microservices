@@ -13,6 +13,10 @@ import org.springframework.web.client.RestTemplate;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ *  RestTemplate
+ */
+
 @Service
 public final class PeopleService {
 

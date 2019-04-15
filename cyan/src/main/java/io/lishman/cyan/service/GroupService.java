@@ -16,6 +16,10 @@ import java.util.Collection;
 
 import static org.springframework.hateoas.client.Hop.rel;
 
+/**
+ *  Traverson
+ */
+
 @Service
 public final class GroupService {
 

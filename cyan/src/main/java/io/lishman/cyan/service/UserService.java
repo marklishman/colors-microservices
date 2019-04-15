@@ -7,6 +7,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Flux;
 
+/**
+ *  WebClient with WebFlux
+ */
+
 @Service
 public final class UserService {
 

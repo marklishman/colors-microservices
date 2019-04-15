@@ -30,6 +30,15 @@ public class RestConfig {
     // ~~~~ WebClient
 
     @Bean
+    public WebClient whiteWebClient() {
+        return WebClient
+                .builder()
+                .baseUrl("http://localhost:8071")
+                .defaultHeader(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_VALUE)
+                .build();
+    }
+
+    @Bean
     public WebClient greenWebClient() {
         return greenWebClientBuilder()
                 .defaultHeader(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_VALUE)

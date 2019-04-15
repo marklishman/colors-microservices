@@ -12,6 +12,10 @@ import org.springframework.web.reactive.function.client.WebClient;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ *  WebClient - synchronous
+ */
+
 @Service
 public final class CountriesService {
 
