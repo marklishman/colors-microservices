@@ -1,3 +1,15 @@
+GET http://localhost:8081/cyan/users
+Content-Type: application/json
+
+<> 2019-04-15T011543.200.json
+
+###
+
+GET http://localhost:8081/cyan/users
+Content-Type: application/json
+
+###
+
 GET http://localhost:8081/cyan/stats
 Content-Type: application/json
 
@@ -297,20 +309,6 @@ GET http://localhost:8081/cyan/countries/20
 Content-Type: application/json
 
 <> 2019-04-13T035735.200.json
-
-###
-
-GET http://localhost:8081/cyan/countries
-Accept: application/hal+json
-
-<> 2019-04-13T035730.200.json
-
-###
-
-GET http://localhost:8081/cyan/countries
-Accept: application/json
-
-<> 2019-04-13T035725.200.json
 
 ###
 

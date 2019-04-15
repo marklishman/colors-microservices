@@ -1,0 +1,74 @@
+[
+  {
+    "userId": "5cb475e448ab320756d12caa",
+    "name": "seven",
+    "username": "user_seven",
+    "email": "seven@email.com",
+    "phone": "083647566",
+    "website": "www.seven.com"
+  },
+  {
+    "userId": "5cb475e448ab320756d12ca5",
+    "name": "two",
+    "username": "user_two",
+    "email": "two@email.com",
+    "phone": "056543336",
+    "website": "www.two.com"
+  },
+  {
+    "userId": "5cb475e448ab320756d12ca8",
+    "name": "five",
+    "username": "user_five",
+    "email": "five@email.com",
+    "phone": "087686324",
+    "website": "www.five.com"
+  },
+  {
+    "userId": "5cb475e448ab320756d12ca9",
+    "name": "six",
+    "username": "user_six",
+    "email": "six@email.com",
+    "phone": "074657634",
+    "website": "www.six.com"
+  },
+  {
+    "userId": "5cb475e448ab320756d12ca4",
+    "name": "one",
+    "username": "user_one",
+    "email": "one@email.com",
+    "phone": "012345672",
+    "website": "www.one.com"
+  },
+  {
+    "userId": "5cb475e448ab320756d12cab",
+    "name": "eight",
+    "username": "user_eight",
+    "email": "eight@email.com",
+    "phone": "073465763",
+    "website": "www.eight.com"
+  },
+  {
+    "userId": "5cb475e448ab320756d12ca6",
+    "name": "three",
+    "username": "user_three",
+    "email": "three@email.com",
+    "phone": "048745663",
+    "website": "www.three.com"
+  },
+  {
+    "userId": "5cb475e448ab320756d12cac",
+    "name": "nine",
+    "username": "user_nine",
+    "email": "nine@email.com",
+    "phone": "043756236",
+    "website": "www.nine.com"
+  },
+  {
+    "userId": "5cb475e448ab320756d12ca7",
+    "name": "four",
+    "username": "user_four",
+    "email": "four@email.com",
+    "phone": "087645767",
+    "website": "www.four.com"
+  }
+]

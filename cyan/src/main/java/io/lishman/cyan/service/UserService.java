@@ -1,6 +1,8 @@
 package io.lishman.cyan.service;
 
 import io.lishman.cyan.model.User;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -14,11 +16,18 @@ import reactor.core.publisher.Flux;
 @Service
 public final class UserService {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(UserService.class);
+
+    private final WebClient whiteWebClient;
+
+    public UserService(WebClient whiteWebClient) {
+        this.whiteWebClient = whiteWebClient;
+    }
+
     public ResponseEntity<Flux<User>> getUsers() {
+        LOGGER.info("Get Users");
 
-        final WebClient webClient = WebClient.create("http://localhost:8071");
-
-        final Flux<User> users = webClient
+        final Flux<User> users = whiteWebClient
                 .get()
                 .uri("/controller/users")
                 .accept(MediaType.APPLICATION_JSON)
