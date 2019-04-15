@@ -30,6 +30,7 @@ public final class StatisticsService {
     }
 
     public Statistics getStats() {
+        LOGGER.info("Get Statistics");
 
         final Mono<Long> peopleCountMono = greenWebClient
                 .get()
