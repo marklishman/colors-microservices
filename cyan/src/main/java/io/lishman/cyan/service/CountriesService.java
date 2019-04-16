@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  *  WebClient - synchronous
@@ -20,6 +19,9 @@ import java.util.stream.Collectors;
 public final class CountriesService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(CountriesService.class);
+
+    private static final ParameterizedTypeReference<Resource<Country>> COUNTRY_TYPE_REF = new ParameterizedTypeReference<>() {};
+    private static final ParameterizedTypeReference<Resources<Resource<Country>>> COUNTRIES_TYPE_REF = new ParameterizedTypeReference<>() {};
 
     private final WebClient greenWebClient;
     private final WebClient greenHalWebClient;
@@ -43,21 +45,13 @@ public final class CountriesService {
     public List<Country> getCountriesAsHal() {
         LOGGER.info("Get Countries with HAL");
 
-        final ParameterizedTypeReference<Resources<Resource<Country>>> countriesResourceTypeReference =
-                new ParameterizedTypeReference<>() {};
-
-        final Resources<Resource<Country>> countryResources = greenHalWebClient
+        return greenHalWebClient
                 .get()
                 .uri("green/countries")
                 .retrieve()
-                .bodyToMono(countriesResourceTypeReference)
+                .bodyToMono(COUNTRIES_TYPE_REF)
+                .map(ResourceUtils::getContent)
                 .block();
-
-        return countryResources
-                .getContent()
-                .stream()
-                .map(Resource::getContent)
-                .collect(Collectors.toList());
     }
 
     public Country getCountry(final Long id) {
@@ -73,17 +67,13 @@ public final class CountriesService {
     public Country getCountryAsHal(final Long id) {
         LOGGER.info("Get Country {} with HAL", id);
 
-        final ParameterizedTypeReference<Resource<Country>> countryResourceTypeReference =
-                new ParameterizedTypeReference<>() {};
-
-        final Resource<Country> countryResource = greenHalWebClient
+        return greenHalWebClient
                 .get()
                 .uri("green/countries/{id}", id)
                 .retrieve()
-                .bodyToMono(countryResourceTypeReference)
+                .bodyToMono(COUNTRY_TYPE_REF)
+                .map(Resource::getContent)
                 .block();
-
-        return countryResource.getContent();
     }
 
 }
