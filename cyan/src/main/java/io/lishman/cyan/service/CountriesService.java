@@ -44,7 +44,6 @@ public final class CountriesService {
 
     public List<Country> getCountriesAsHal() {
         LOGGER.info("Get Countries with HAL");
-
         return greenHalWebClient
                 .get()
                 .uri("green/countries")
@@ -66,7 +65,6 @@ public final class CountriesService {
 
     public Country getCountryAsHal(final Long id) {
         LOGGER.info("Get Country {} with HAL", id);
-
         return greenHalWebClient
                 .get()
                 .uri("green/countries/{id}", id)
@@ -75,5 +73,4 @@ public final class CountriesService {
                 .map(Resource::getContent)
                 .block();
     }
-
 }
