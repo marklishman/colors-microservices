@@ -4,17 +4,12 @@ import io.lishman.cyan.model.Group;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.hateoas.MediaTypes;
 import org.springframework.hateoas.Resource;
 import org.springframework.hateoas.Resources;
 import org.springframework.hateoas.client.Traverson;
 import org.springframework.stereotype.Service;
 
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.Collection;
-
-import static org.springframework.hateoas.client.Hop.rel;
 
 /**
  *  Traverson
@@ -25,17 +20,21 @@ public final class GroupService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(GroupService.class);
 
+    private final Traverson greenTraverson;
+
+    public GroupService(Traverson greenTraverson) {
+        this.greenTraverson = greenTraverson;
+    }
+
     public Collection<Group> getGroups() {
         LOGGER.info("Get Groups with HAL");
 
-        final ParameterizedTypeReference<Resources<Group>> GroupsResourceTypeReference =
+        final ParameterizedTypeReference<Resources<Group>> groupsResourceTypeReference =
                 new ParameterizedTypeReference<>() {};
 
-        final Traverson traverson = new Traverson(getUri("http://localhost:8061/purple/api/groups"), MediaTypes.HAL_JSON);
-
-        Resources<Group> GroupsResource = traverson
-                .follow(rel("self"))
-                .toObject(GroupsResourceTypeReference);
+        final Resources<Group> GroupsResource = greenTraverson
+                .follow("groups")
+                .toObject(groupsResourceTypeReference);
 
         return GroupsResource.getContent();
     }
@@ -46,22 +45,13 @@ public final class GroupService {
         final ParameterizedTypeReference<Resource<Group>> groupResourceTypeReference =
                 new ParameterizedTypeReference<>() {};
 
-        final Traverson traverson = new Traverson(getUri("http://localhost:8061/purple/api/groups"), MediaTypes.HAL_JSON);
-
         final String rel = String.format("$._embedded.groups[%s]._links.self.href", pos);
 
-        Resource<Group> groupResource = traverson
+        final Resource<Group> groupResource = greenTraverson
                 .follow(rel)
                 .toObject(groupResourceTypeReference);
 
         return groupResource.getContent();
     }
 
-    private URI getUri(final String uri) {
-        try {
-            return new URI(uri);
-        } catch (URISyntaxException e) {
-            throw new RuntimeException(e);
-        }
-    }
 }

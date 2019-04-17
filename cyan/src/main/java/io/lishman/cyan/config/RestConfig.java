@@ -6,6 +6,7 @@ import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.hateoas.MediaTypes;
+import org.springframework.hateoas.client.Traverson;
 import org.springframework.hateoas.hal.Jackson2HalModule;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -14,6 +15,9 @@ import org.springframework.http.codec.json.Jackson2JsonEncoder;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.reactive.function.client.ExchangeStrategies;
 import org.springframework.web.reactive.function.client.WebClient;
+
+import java.net.URI;
+import java.net.URISyntaxException;
 
 @Configuration
 public class RestConfig {
@@ -65,9 +69,27 @@ public class RestConfig {
                 .build();
     }
 
+
+    // ~~~~ Traverson
+
+    @Bean
+    public Traverson greenTraverson() {
+        return new Traverson(getUri("http://localhost:8061/purple/api"), MediaTypes.HAL_JSON);
+    }
+
+    // ~~~~ private
+
     private WebClient.Builder greenWebClientBuilder() {
         return WebClient
                 .builder()
                 .baseUrl("http://localhost:8021");
+    }
+
+    private URI getUri(final String uri) {
+        try {
+            return new URI(uri);
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

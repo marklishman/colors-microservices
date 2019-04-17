@@ -1,0 +1,93 @@
+{
+  "uuid": "afe9c3e1-415b-43e8-a27c-2b5249670bef",
+  "name": "Item One",
+  "description": "Item one description",
+  "correlationId": "e4b4a967-3758-4479-9a26-7ed5608f978a",
+  "status": 1,
+  "createdAt": "2019-03-30T11:05:19.248743",
+  "data": [
+    {
+      "value": 67.43,
+      "createdAt": "2019-03-30T11:05:19.432301",
+      "_links": {
+        "item": {
+          "href": "http://localhost:8061/purple/api/items/1{?projection}",
+          "templated": true
+        },
+        "category": {
+          "href": "http://localhost:8061/purple/api/categories/1{?projection}",
+          "templated": true
+        }
+      }
+    },
+    {
+      "value": 12.05,
+      "createdAt": "2019-03-30T11:05:19.462399",
+      "_links": {
+        "item": {
+          "href": "http://localhost:8061/purple/api/items/1{?projection}",
+          "templated": true
+        },
+        "category": {
+          "href": "http://localhost:8061/purple/api/categories/2{?projection}",
+          "templated": true
+        }
+      }
+    },
+    {
+      "value": 99.54,
+      "createdAt": "2019-03-30T11:05:19.492867",
+      "_links": {
+        "item": {
+          "href": "http://localhost:8061/purple/api/items/1{?projection}",
+          "templated": true
+        },
+        "category": {
+          "href": "http://localhost:8061/purple/api/categories/3{?projection}",
+          "templated": true
+        }
+      }
+    },
+    {
+      "value": 128.43,
+      "createdAt": "2019-03-30T11:05:19.523416",
+      "_links": {
+        "item": {
+          "href": "http://localhost:8061/purple/api/items/1{?projection}",
+          "templated": true
+        },
+        "category": {
+          "href": "http://localhost:8061/purple/api/categories/4{?projection}",
+          "templated": true
+        }
+      }
+    },
+    {
+      "value": 12.54,
+      "createdAt": "2019-03-30T11:05:19.550132",
+      "_links": {
+        "item": {
+          "href": "http://localhost:8061/purple/api/items/1{?projection}",
+          "templated": true
+        },
+        "category": {
+          "href": "http://localhost:8061/purple/api/categories/5{?projection}",
+          "templated": true
+        }
+      }
+    }
+  ],
+  "total": 319.99,
+  "_links": {
+    "self": {
+      "href": "http://localhost:8061/purple/api/items/1"
+    },
+    "item": {
+      "href": "http://localhost:8061/purple/api/items/1{?projection}",
+      "templated": true
+    },
+    "group": {
+      "href": "http://localhost:8061/purple/api/items/1/group"
+    }
+  }
+}
