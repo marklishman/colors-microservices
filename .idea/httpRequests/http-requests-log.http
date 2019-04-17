@@ -1,3 +1,122 @@
+GET http://localhost:8081/cyan/people/2?client=feign
+Content-Type: application/json
+
+<> 2019-04-17T075426.200.json
+
+###
+
+GET http://localhost:8081/cyan/people/2
+Content-Type: application/json
+
+<> 2019-04-17T075417.200.json
+
+###
+
+GET http://localhost:8081/cyan/people?client=feign
+Content-Type: application/json
+
+<> 2019-04-17T075410.200.json
+
+###
+
+GET http://localhost:8081/cyan/people
+Content-Type: application/json
+
+<> 2019-04-17T075403.200.json
+
+###
+
+GET http://localhost:8081/cyan/people
+Content-Type: application/json
+
+<> 2019-04-17T075353.200.json
+
+###
+
+GET http://localhost:8081/cyan/countries?client=hal
+Accept: application/json
+
+<> 2019-04-17T074057.200.json
+
+###
+
+GET http://localhost:8081/cyan/countries/20?client=hal
+Accept: application/json
+
+<> 2019-04-17T073950.200.json
+
+###
+
+GET http://localhost:8081/cyan/countries/20
+Accept: application/json
+
+<> 2019-04-17T073947.200.json
+
+###
+
+GET http://localhost:8081/cyan/countries?client=hal
+Accept: application/json
+
+<> 2019-04-17T073901.200.json
+
+###
+
+GET http://localhost:8081/cyan/countries
+Accept: application/json
+
+<> 2019-04-17T073855.200.json
+
+###
+
+GET http://localhost:8081/cyan/countries?client=halx
+Accept: application/json
+
+<> 2019-04-17T073824.200.json
+
+###
+
+GET http://localhost:8081/cyan/countries?client=hal
+Accept: application/json
+
+<> 2019-04-17T073814.200.json
+
+###
+
+GET http://localhost:8081/cyan/countries
+Accept: application/json
+
+<> 2019-04-17T073808.200.json
+
+###
+
+GET http://localhost:8021/green/countries/20
+Accept: application/hal+json
+
+<> 2019-04-17T073013.200.json
+
+###
+
+GET http://localhost:8021/green/countries/20
+Accept: application/json
+
+<> 2019-04-17T073009.200.json
+
+###
+
+GET http://localhost:8021/green/countries
+Accept: application/hal+json
+
+<> 2019-04-17T073003.200.json
+
+###
+
+GET http://localhost:8021/green/countries
+Accept: application/json
+
+<> 2019-04-17T072958.200.json
+
+###
+
 GET http://localhost:8081/cyan/countries/20
 Accept: application/json
 
@@ -220,125 +339,6 @@ GET http://localhost:8061/purple/api
 Content-Type: application/json
 
 <> 2019-04-17T120448.200.json
-
-###
-
-GET http://localhost:8081/purple/api
-Content-Type: application/json
-
-<> 2019-04-17T120429.404.html
-
-###
-
-GET http://localhost:8081/purple/api
-Content-Type: application/json
-
-<> 2019-04-17T120419.404.html
-
-###
-
-GET http://localhost:8081/purple
-Content-Type: application/json
-
-<> 2019-04-17T120410.404.html
-
-###
-
-GET http://localhost:8081/cyan/groups
-Content-Type: application/json
-
-<> 2019-04-17T083254.500.json
-
-###
-
-GET http://localhost:8081/cyan/groups
-Content-Type: application/json
-
-<> 2019-04-17T083202.500.json
-
-###
-
-GET http://localhost:8081/cyan/groups
-Content-Type: application/json
-
-<> 2019-04-17T082941.500.json
-
-###
-
-GET http://localhost:8061/purple/api/groups
-Content-Type: application/json
-
-<> 2019-04-17T082821.200.json
-
-###
-
-GET http://localhost:8061/purple/api/groups/3
-Content-Type: application/json
-
-<> 2019-04-17T082722.200.json
-
-###
-
-GET http://localhost:8061/purple/api/groups
-Content-Type: application/json
-
-<> 2019-04-17T082707.200.json
-
-###
-
-GET http://localhost:8081/cyan/groups
-Content-Type: application/json
-
-<> 2019-04-17T081800.200.json
-
-###
-
-GET http://localhost:8081/cyan/groups
-Content-Type: application/json
-
-<> 2019-04-17T081712.500.json
-
-###
-
-GET http://localhost:8081/cyan/groups
-Content-Type: application/json
-
-<> 2019-04-17T081553.200.json
-
-###
-
-GET http://localhost:8081/cyan/groups
-Content-Type: application/json
-
-<> 2019-04-17T080605.500.json
-
-###
-
-GET http://localhost:8081/cyan/groups
-Content-Type: application/json
-
-<> 2019-04-17T080406.500.json
-
-###
-
-GET http://localhost:8081/cyan/groups
-Content-Type: application/json
-
-<> 2019-04-17T080243.200.json
-
-###
-
-GET http://localhost:8081/cyan/groups
-Content-Type: application/json
-
-<> 2019-04-17T080150.200.json
-
-###
-
-GET http://localhost:8081/cyan/countries
-Accept: application/json
-
-<> 2019-04-16T012300.200.json
 
 ###
 

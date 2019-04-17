@@ -5,6 +5,7 @@ import io.lishman.green.service.CountryService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.MediaTypes;
 import org.springframework.hateoas.Resources;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -25,13 +26,13 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 
 @RestController
 @RequestMapping("/countries")
-class CountryController {
+class CountriesController {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(CountryController.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(CountriesController.class);
     private final CountryService countryService;
 
     @Autowired
-    public CountryController(CountryService countryService) {
+    public CountriesController(CountryService countryService) {
         this.countryService = countryService;
     }
 
@@ -42,7 +43,7 @@ class CountryController {
         return ResponseEntity.ok(countries);
     }
 
-    @GetMapping(produces = "application/hal+json")
+    @GetMapping(produces = MediaTypes.HAL_JSON_VALUE)
     public ResponseEntity<Resources<CountryResource>> getCountriesWithHal() {
         LOGGER.info("Get all countries with HAL");
         final List<Country> countries = countryService.getAllCountries();
@@ -70,7 +71,7 @@ class CountryController {
         return ResponseEntity.ok(country);
     }
 
-    @GetMapping(value = "/{id}", produces = "application/hal+json")
+    @GetMapping(value = "/{id}", produces = MediaTypes.HAL_JSON_VALUE)
     public ResponseEntity<CountryResource> getCountryWithHal(@PathVariable("id") final Long id) {
         LOGGER.info("Get country for id {} with HAL", id);
         final var country = countryService.getCountryById(id);

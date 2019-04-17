@@ -6,7 +6,7 @@ import org.springframework.hateoas.mvc.ResourceAssemblerSupport;
 final class CountryResourceAssembler extends ResourceAssemblerSupport<Country, CountryResource> {
 
     private CountryResourceAssembler() {
-        super(CountryController.class, CountryResource.class);
+        super(CountriesController.class, CountryResource.class);
     }
 
     public static CountryResourceAssembler getInstance() {

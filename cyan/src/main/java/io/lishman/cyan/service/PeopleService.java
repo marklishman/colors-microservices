@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- *  RestTemplate
+ *  RestTemplate & Feign
  */
 
 @Service
@@ -23,13 +23,17 @@ public final class PeopleService {
     private static final Logger LOGGER = LoggerFactory.getLogger(PeopleService.class);
 
     private final RestTemplate greenRestTemplate;
+    private final PeopleFeignClient peopleFeignClient;
 
-    public PeopleService(final RestTemplate greenRestTemplate) {
+    public PeopleService(final RestTemplate greenRestTemplate, final PeopleFeignClient peopleFeignClient) {
         this.greenRestTemplate = greenRestTemplate;
+        this.peopleFeignClient = peopleFeignClient;
     }
 
+    // ~~~~ RestTemplate
+
     public List<Person> getPeople() {
-        LOGGER.info("Get People with HAL");
+        LOGGER.info("Get People with RestTemplate and HAL");
 
         final ParameterizedTypeReference<Resources<Resource<Person>>> peopleResourceTypeReference =
                 new ParameterizedTypeReference<>() {};
@@ -46,7 +50,7 @@ public final class PeopleService {
     }
 
     public Person getPerson(final Long id) {
-        LOGGER.info("Get Person {} with HAL", id);
+        LOGGER.info("Get Person {} with RestTemplate and HAL", id);
 
         final ParameterizedTypeReference<Resource<Person>> personResourceTypeReference =
                 new ParameterizedTypeReference<>() {};
@@ -56,5 +60,17 @@ public final class PeopleService {
                 .getBody();
 
         return personResource.getContent();
+    }
+
+    // ~~~~ Feign
+
+    public List<Person> getPeopleWithFeign() {
+        LOGGER.info("Get People with Feign");
+        return peopleFeignClient.getPeople();
+    }
+
+    public Person getPersonWithFeign(final Long id) {
+        LOGGER.info("Get Person {} with Feign", id);
+        return peopleFeignClient.getPerson(id);
     }
 }
