@@ -26,20 +26,27 @@ public final class CountriesService {
     private final WebClient greenWebClient;
     private final WebClient greenHalWebClient;
 
-    public CountriesService(final WebClient greenWebClient, final WebClient greenHalWebClient) {
+    private final CountriesFeignClient countriesFeignClient;
+
+    public CountriesService(final WebClient greenWebClient,
+                            final WebClient greenHalWebClient,
+                            final CountriesFeignClient countriesFeignClient) {
         this.greenWebClient = greenWebClient;
         this.greenHalWebClient = greenHalWebClient;
+        this.countriesFeignClient = countriesFeignClient;
     }
 
     public List<Country> getCountries() {
         LOGGER.info("Get Countries");
-        return greenWebClient
-                .get()
-                .uri("green/countries")
-                .retrieve()
-                .bodyToFlux(Country.class)
-                .collectList()
-                .block();
+//        return greenWebClient
+//                .get()
+//                .uri("green/countries")
+//                .retrieve()
+//                .bodyToFlux(Country.class)
+//                .collectList()
+//                .block();
+
+        return countriesFeignClient.getCountries();
     }
 
     public List<Country> getCountriesAsHal() {
@@ -55,12 +62,14 @@ public final class CountriesService {
 
     public Country getCountry(final Long id) {
         LOGGER.info("Get Country {}", id);
-        return greenWebClient
-                .get()
-                .uri("green/countries/{id}", id)
-                .retrieve()
-                .bodyToMono(Country.class)
-                .block();
+//        return greenWebClient
+//                .get()
+//                .uri("green/countries/{id}", id)
+//                .retrieve()
+//                .bodyToMono(Country.class)
+//                .block();
+
+        return countriesFeignClient.getCountry(id);
     }
 
     public Country getCountryAsHal(final Long id) {

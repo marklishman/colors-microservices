@@ -1,3 +1,88 @@
+GET http://localhost:8081/cyan/countries/20
+Accept: application/json
+
+<> 2019-04-17T013821.200.json
+
+###
+
+GET http://localhost:8081/cyan/countries/20
+Accept: application/json
+
+<> 2019-04-17T013710.500.json
+
+###
+
+GET http://localhost:8081/cyan/countries/20
+Accept: application/json
+
+<> 2019-04-17T013706.500.json
+
+###
+
+GET http://localhost:8081/cyan/countries
+Accept: application/json
+
+<> 2019-04-17T013651.200.json
+
+###
+
+GET http://localhost:8081/cyan/countries
+Accept: application/json
+
+<> 2019-04-17T013514.200.json
+
+###
+
+GET http://localhost:8081/cyan/countries
+Accept: application/json
+
+<> 2019-04-17T013324.500.json
+
+###
+
+GET http://localhost:8081/cyan/countries
+Accept: application/json
+
+<> 2019-04-17T013320.500.json
+
+###
+
+GET http://localhost:8081/cyan/countries
+Accept: application/json
+
+<> 2019-04-17T013317.500.json
+
+###
+
+GET http://localhost:8081/cyan/countries
+Accept: application/json
+
+<> 2019-04-17T013246.500.json
+
+###
+
+GET http://localhost:8081/cyan/countries
+Accept: application/json
+
+<> 2019-04-17T013119.500.json
+
+###
+
+GET http://localhost:8081/cyan/countries
+Accept: application/json
+
+###
+
+GET http://localhost:8081/cyan/countries
+Accept: application/json
+
+###
+
+GET http://localhost:8081/cyan/countries
+Accept: application/json
+
+###
+
 GET http://localhost:8061/purple/api/items/1
 Content-Type: application/json
 
@@ -254,91 +339,6 @@ GET http://localhost:8081/cyan/countries
 Accept: application/json
 
 <> 2019-04-16T012300.200.json
-
-###
-
-GET http://localhost:8081/cyan/countries
-Accept: application/json
-
-<> 2019-04-16T012150.200.json
-
-###
-
-GET http://localhost:8081/cyan/countries
-Accept: application/json
-
-<> 2019-04-16T012052.200.json
-
-###
-
-GET http://localhost:8081/cyan/countries
-Accept: application/json
-
-<> 2019-04-16T012026.200.json
-
-###
-
-GET http://localhost:8081/cyan/countries
-Accept: application/json
-
-<> 2019-04-16T011917.200.json
-
-###
-
-GET http://localhost:8081/cyan/countries
-Accept: application/json
-
-<> 2019-04-16T011800.200.json
-
-###
-
-GET http://localhost:8081/cyan/countries
-Accept: application/hal+json
-
-<> 2019-04-16T011738.200.json
-
-###
-
-GET http://localhost:8081/cyan/countries
-Accept: application/hal+json
-
-<> 2019-04-16T122847.200.json
-
-###
-
-GET http://localhost:8081/cyan/countries
-Accept: application/hal+json
-
-<> 2019-04-16T122714.200.json
-
-###
-
-GET http://localhost:8081/cyan/countries
-Accept: application/hal+json
-
-<> 2019-04-16T122654.200.json
-
-###
-
-GET http://localhost:8081/cyan/countries
-Accept: application/hal+json
-
-<> 2019-04-16T122544.200.json
-
-###
-
-GET http://localhost:8081/cyan/countries
-Accept: application/hal+json
-
-###
-
-GET http://localhost:8081/cyan/countries
-Accept: application/hal+json
-
-###
-
-GET http://localhost:8081/cyan/countries
-Accept: application/hal+json
 
 ###
 
