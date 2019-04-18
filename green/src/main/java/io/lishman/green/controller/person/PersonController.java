@@ -2,8 +2,6 @@ package io.lishman.green.controller.person;
 
 import io.lishman.green.model.Person;
 import io.lishman.green.service.PersonService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.Resources;
 import org.springframework.http.HttpStatus;
@@ -27,7 +25,6 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 @RequestMapping("/people")
 class PersonController {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(PersonController.class);
     private final PersonService personService;
 
     @Autowired
@@ -37,14 +34,12 @@ class PersonController {
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Person>> getPeople() {
-        LOGGER.info("Get all people");
         final List<Person> people = personService.getAllCountries();
         return ResponseEntity.ok(people);
     }
 
     @GetMapping(produces = "application/hal+json")
     public ResponseEntity<Resources<PersonResource>> getPeopleWithHal() {
-        LOGGER.info("Get all people with HAL");
         final List<Person> persons = personService.getAllCountries();
 
         final List<PersonResource> personResourceList = PersonResourceAssembler
@@ -65,7 +60,6 @@ class PersonController {
 
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Person> getPerson(@PathVariable("id") final Long id) {
-        LOGGER.info("Get person for id {}", id);
         final var person = personService.getPersonById(id);
         return ResponseEntity.ok(person);
 
@@ -73,7 +67,6 @@ class PersonController {
 
     @GetMapping(value = "/{id}", produces = "application/hal+json")
     public ResponseEntity<PersonResource> getPersonWithHal(@PathVariable("id") final Long id) {
-        LOGGER.info("Get person for id {} with HAL", id);
         final var person = personService.getPersonById(id);
         var personResource = PersonResourceAssembler
                 .getInstance()
@@ -85,7 +78,6 @@ class PersonController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Person createPerson(@RequestBody final Person person) {
-        // TODO logging
         return personService.createPerson(person);
     }
 
@@ -94,7 +86,6 @@ class PersonController {
     public Person updateDetails(
             @PathVariable("id") final Long id,
             @RequestBody final Person person) {
-        // TODO logging
         return personService.updatePerson(id, person);
     }
 }

@@ -3,8 +3,6 @@ package io.lishman.green.service;
 import io.lishman.green.entity.CountryEntity;
 import io.lishman.green.model.Country;
 import io.lishman.green.repository.CountryRepository;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
@@ -16,8 +14,6 @@ import java.util.stream.Collectors;
 @Service
 @RefreshScope
 public class CountryService {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(CountryService.class);
 
     @Value("${spring.application.name}")
     private String name;
@@ -39,7 +35,6 @@ public class CountryService {
     }
 
     public List<Country> getAllCountries() {
-        // TODO Exception handling
         return countryRepository.findAll()
                 .stream()
                 .map(Country::fromCountryEntity)
@@ -47,7 +42,6 @@ public class CountryService {
     }
 
     public Country getCountryById(final Long id) {
-        // TODO Exception handling
         return countryRepository.findById(id)
                 .map(Country::fromCountryEntity)
                 .orElseThrow();

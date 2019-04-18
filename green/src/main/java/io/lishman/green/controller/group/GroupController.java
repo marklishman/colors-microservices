@@ -2,8 +2,6 @@ package io.lishman.green.controller.group;
 
 import io.lishman.green.model.Group;
 import io.lishman.green.service.GroupService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.Resources;
 import org.springframework.http.HttpStatus;
@@ -26,7 +24,6 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 @RequestMapping("/groups")
 class GroupController {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(GroupController.class);
     private final GroupService groupService;
 
     @Autowired
@@ -36,7 +33,6 @@ class GroupController {
 
     @GetMapping()
     public ResponseEntity<Resources<GroupResource>> getGroups() {
-        LOGGER.info("Get all groups");
         final List<Group> groups = groupService.getAllGroups();
 
         final List<GroupResource> groupResourceList = GroupResourceAssembler
@@ -57,7 +53,6 @@ class GroupController {
 
     @GetMapping("/{id}")
     public ResponseEntity<GroupResource> getGroup(@PathVariable("id") final Long id) {
-        LOGGER.info("Get group for id {}", id);
         final var group = groupService.getById(id);
         var groupResource = GroupResourceAssembler
                 .getInstance()
@@ -69,7 +64,6 @@ class GroupController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Group createGroup(@RequestBody final Group group) {
-        // TODO logging
         return groupService.createGroup(group);
     }
 
@@ -78,7 +72,6 @@ class GroupController {
     public Group updateDetails(
             @PathVariable("id") final Long id,
             @RequestBody final Group group) {
-        // TODO logging
         return groupService.updateGroup(id, group);
     }
 }

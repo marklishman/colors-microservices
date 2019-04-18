@@ -39,7 +39,6 @@ public class PersonService {
     }
 
     public List<Person> getAllCountries() {
-        // TODO Exception handling
         return personRepository.findAll()
                 .stream()
                 .map(Person::fromPersonEntity)
@@ -47,7 +46,6 @@ public class PersonService {
     }
 
     public Person getPersonById(final Long id) {
-        // TODO Exception handling
         return personRepository.findById(id)
                 .map(Person::fromPersonEntity)
                 .orElseThrow();

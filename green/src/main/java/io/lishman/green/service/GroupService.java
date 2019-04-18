@@ -39,7 +39,6 @@ public class GroupService {
     }
 
     public List<Group> getAllGroups() {
-        // TODO Exception handling
         return groupRepository.findAll()
                 .stream()
                 .map(Group::fromGroupEntity)
@@ -47,7 +46,6 @@ public class GroupService {
     }
 
     public Group getById(final Long id) {
-        // TODO Exception handling
         return groupRepository.findById(id)
                 .map(Group::fromGroupEntity)
                 .orElseThrow();

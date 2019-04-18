@@ -84,7 +84,7 @@ class CountriesController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Country createCountry(@RequestBody final Country country) {
-        // TODO logging
+        LOGGER.info("Post country");
         return countryService.createCountry(country);
     }
 
@@ -93,7 +93,7 @@ class CountriesController {
     public Country updateDetails(
             @PathVariable("id") final Long id,
             @RequestBody final Country country) {
-        // TODO logging
+        LOGGER.info("Put country");
         return countryService.updateCountry(id, country);
     }
 }
