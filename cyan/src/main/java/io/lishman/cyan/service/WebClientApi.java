@@ -1,7 +1,6 @@
 package io.lishman.cyan.service;
 
 import io.lishman.cyan.model.User;
-import io.lishman.cyan.model.UserEvent;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -24,7 +23,6 @@ public class WebClientApi {
                 .flatMap(user -> updateUser(user.getUserId(), "Updated User Name"))
                 .flatMap(user -> deleteUser(user.getUserId()))
                 .thenMany(getAllUsers())
-                .thenMany(getAllEvents())
                 .subscribe(System.out::println);
     }
 
@@ -64,13 +62,5 @@ public class WebClientApi {
                 .retrieve()
                 .bodyToMono(Void.class)
                 .doOnSuccess(o -> System.out.println("**********DELETE " + o));
-    }
-
-    private Flux<UserEvent> getAllEvents() {
-        return whiteWebClient
-                .get()
-                .uri("/controller/users/events")
-                .retrieve()
-                .bodyToFlux(UserEvent.class);
     }
 }
