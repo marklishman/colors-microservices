@@ -54,6 +54,14 @@ public final class Person {
         return age;
     }
 
+    public String getFullName() {
+        return String.join(" ",  getFirstName(), getLastName());
+    }
+
+    public boolean isAdult() {
+        return getAge() >= 18;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

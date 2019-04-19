@@ -14,15 +14,21 @@ final class PersonResource extends ResourceSupport {
     private final String firstName;
     private final String LastName;
     private final int age;
+    private final String fullName;
+    private final boolean isAdult;
 
     public PersonResource(final Long id,
                           final String firstName,
                           final String lastName,
-                          final int age) {
+                          final int age,
+                          final String fullName,
+                          final boolean isAdult) {
         this.id = id;
         this.firstName = firstName;
         LastName = lastName;
         this.age = age;
+        this.fullName = fullName;
+        this.isAdult = isAdult;
     }
 
     public static PersonResource fromPerson(final Person person) {
@@ -30,8 +36,9 @@ final class PersonResource extends ResourceSupport {
                 person.getId(),
                 person.getFirstName(),
                 person.getLastName(),
-                person.getAge()
-        );
+                person.getAge(),
+                person.getFullName(),
+                person.isAdult());
     }
 
     @JsonProperty("id")
@@ -51,6 +58,14 @@ final class PersonResource extends ResourceSupport {
         return age;
     }
 
+    public String getFullName() {
+        return fullName;
+    }
+
+    public boolean isAdult() {
+        return isAdult;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -58,14 +73,16 @@ final class PersonResource extends ResourceSupport {
         if (!super.equals(o)) return false;
         PersonResource that = (PersonResource) o;
         return age == that.age &&
+                isAdult == that.isAdult &&
                 Objects.equals(id, that.id) &&
                 Objects.equals(firstName, that.firstName) &&
-                Objects.equals(LastName, that.LastName);
+                Objects.equals(LastName, that.LastName) &&
+                Objects.equals(fullName, that.fullName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), id, firstName, LastName, age);
+        return Objects.hash(super.hashCode(), id, firstName, LastName, age, fullName, isAdult);
     }
 
     @Override
@@ -75,6 +92,8 @@ final class PersonResource extends ResourceSupport {
                 ", firstName='" + firstName + '\'' +
                 ", LastName='" + LastName + '\'' +
                 ", age=" + age +
+                ", fullName='" + fullName + '\'' +
+                ", isAdult=" + isAdult +
                 '}';
     }
 }

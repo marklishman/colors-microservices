@@ -52,6 +52,7 @@ class CountriesController {
                 .getInstance()
                 .toResources(countries);
 
+        // TODO move to readme
         /**
          * NOTE that the collection link is being added manually here.
          * In other words we are not using a ResourceAssembler.

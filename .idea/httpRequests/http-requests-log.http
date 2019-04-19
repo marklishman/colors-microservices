@@ -1,3 +1,68 @@
+GET http://localhost:8081/cyan/people/2
+Content-Type: application/json
+
+<> 2019-04-19T082127.200.json
+
+###
+
+GET http://localhost:8081/cyan/people/2
+Content-Type: application/json
+
+###
+
+GET http://localhost:8081/cyan/people/2
+Content-Type: application/json
+
+###
+
+GET http://localhost:8081/cyan/people/2
+Content-Type: application/json
+
+###
+
+GET http://localhost:8081/cyan/people/2
+Content-Type: application/json
+
+###
+
+GET http://localhost:8081/cyan/people/2
+Content-Type: application/json
+
+###
+
+GET http://localhost:8081/cyan/people/2
+Content-Type: application/json
+
+###
+
+GET http://localhost:8081/cyan/people/2
+Content-Type: application/json
+
+<> 2019-04-19T081802.200.json
+
+###
+
+GET http://localhost:8021/green/people
+Accept: application/hal+json
+
+<> 2019-04-19T081649.200.json
+
+###
+
+GET http://localhost:8021/green/people
+Accept: application/json
+
+<> 2019-04-19T081634.200.json
+
+###
+
+GET http://localhost:8021/green/people/3
+Accept: application/json
+
+<> 2019-04-19T081619.200.json
+
+###
+
 GET http://localhost:8081/cyan/people/2?client=feign
 Content-Type: application/json
 
@@ -262,83 +327,6 @@ GET http://localhost:8081/cyan/groups
 Content-Type: application/json
 
 <> 2019-04-17T121427.200.json
-
-###
-
-GET http://localhost:8081/cyan/groups
-Content-Type: application/json
-
-<> 2019-04-17T121327.500.json
-
-###
-
-GET http://localhost:8081/cyan/groups
-Content-Type: application/json
-
-<> 2019-04-17T121322.500.json
-
-###
-
-GET http://localhost:8081/cyan/groups
-Content-Type: application/json
-
-<> 2019-04-17T121317.500.json
-
-###
-
-GET http://localhost:8061/purple/api/groups/1
-Content-Type: application/json
-
-<> 2019-04-17T121237.200.json
-
-###
-
-GET http://localhost:8061/purple/api/item/1
-Content-Type: application/json
-
-<> 2019-04-17T121219.404.json
-
-###
-
-GET http://localhost:8061/purple/api/item/3
-Content-Type: application/json
-
-<> 2019-04-17T121210.404.json
-
-###
-
-GET http://localhost:8061/purple/api/items
-Content-Type: application/json
-
-<> 2019-04-17T121126.200.json
-
-###
-
-GET http://localhost:8061/purple/api/groups
-Content-Type: application/json
-
-<> 2019-04-17T121041.200.json
-
-###
-
-GET http://localhost:8081/cyan/groups
-Content-Type: application/json
-
-<> 2019-04-17T121020.500.json
-
-###
-
-GET http://localhost:8061/purple/api/groups
-Content-Type: application/json
-
-<> 2019-04-17T120606.200.json
-
-###
-
-GET http://localhost:8061/purple/api
-Content-Type: application/json
-
-<> 2019-04-17T120448.200.json
 
 ###
 
