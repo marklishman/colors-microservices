@@ -1,0 +1,23 @@
+package io.lishman.black;
+
+import io.lishman.black.client.WebClientApi;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class BlackApplication implements CommandLineRunner {
+
+    @Autowired
+    private WebClientApi webClientApi;
+
+    public static void main(String[] args) {
+        SpringApplication.run(BlackApplication.class, args);
+    }
+
+    @Override
+    public void run(String... args) {
+        webClientApi.runClient();
+    }
+}

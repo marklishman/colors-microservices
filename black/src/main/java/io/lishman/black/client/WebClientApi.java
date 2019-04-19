@@ -1,38 +1,37 @@
-package io.lishman.webflux.client;
+package io.lishman.black.client;
 
-import io.lishman.webflux.model.User;
-import io.lishman.webflux.model.UserEvent;
+import io.lishman.black.model.User;
+import io.lishman.black.model.UserEvent;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+@Component
 public class WebClientApi {
 
-    private WebClient webClient;
+    private final WebClient webClient;
 
-    WebClientApi() {
-        this.webClient = WebClient.builder()
-                .baseUrl("http://localhost:8071/controller/users")
-                .build();
+    WebClientApi(WebClient webClient) {
+        this.webClient = webClient;
     }
 
-    public static void main(String args[]) {
-        WebClientApi api = new WebClientApi();
-
-        api.postNewUser()
-                .thenMany(api.getAllUsers())
+    public void runClient() {
+        postNewUser()
+                .thenMany(getAllUsers())
                 .take(1)
-                .flatMap(user -> api.updateUser(user.getUserId(), "Updated User Name"))
-                .flatMap(user -> api.deleteUser(user.getUserId()))
-                .thenMany(api.getAllUsers())
-                .thenMany(api.getAllEvents())
+                .flatMap(user -> updateUser(user.getUserId(), "Updated User Name"))
+                .flatMap(user -> deleteUser(user.getUserId()))
+                .thenMany(getAllUsers())
+                .thenMany(getAllEvents())
                 .subscribe(System.out::println);
     }
 
     private Mono<ResponseEntity<User>> postNewUser() {
         return webClient
                 .post()
+                .uri("/controller/users")
                 .body(Mono.just(new User("four", "user_four", "four@email.com", "067856469", "www.four.com")), User.class)
                 .exchange()
                 .flatMap(response -> response.toEntity(User.class))
@@ -42,6 +41,7 @@ public class WebClientApi {
     private Flux<User> getAllUsers() {
         return webClient
                 .get()
+                .uri("/controller/users")
                 .retrieve()
                 .bodyToFlux(User.class)
                 .doOnNext(o -> System.out.println("**********GET: " + o));
@@ -50,7 +50,7 @@ public class WebClientApi {
     private Mono<User> updateUser(String id, String name) {
         return webClient
                 .put()
-                .uri("/{id}", id)
+                .uri("/controller/users/{id}", id)
                 .body(Mono.just(new User(name, "user_four", "four@email.com", "067856469", "www.four.com")), User.class)
                 .retrieve()
                 .bodyToMono(User.class)
@@ -60,7 +60,7 @@ public class WebClientApi {
     private Mono<Void> deleteUser(String id) {
         return webClient
                 .delete()
-                .uri("/{id}", id)
+                .uri("/controller/users/{id}", id)
                 .retrieve()
                 .bodyToMono(Void.class)
                 .doOnSuccess(o -> System.out.println("**********DELETE " + o));
@@ -69,7 +69,7 @@ public class WebClientApi {
     private Flux<UserEvent> getAllEvents() {
         return webClient
                 .get()
-                .uri("/events")
+                .uri("/controller/users/events")
                 .retrieve()
                 .bodyToFlux(UserEvent.class);
     }
