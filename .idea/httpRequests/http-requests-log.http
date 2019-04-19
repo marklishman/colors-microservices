@@ -1,3 +1,21 @@
+GET http://localhost:8081/cyan/users/webflux
+
+<> 2019-04-19T123015.200.txt
+
+###
+
+GET http://localhost:8081/cyan/users/webflux
+
+<> 2019-04-19T123001.200.txt
+
+###
+
+GET http://localhost:8081/cyan/users/webflux
+
+<> 2019-04-19T122934.200.txt
+
+###
+
 GET http://localhost:8081/cyan/users/latest
 Content-Type: application/json
 
@@ -299,27 +317,6 @@ GET http://localhost:8081/cyan/countries/20?client=hal
 Accept: application/json
 
 <> 2019-04-17T073950.200.json
-
-###
-
-GET http://localhost:8081/cyan/countries/20
-Accept: application/json
-
-<> 2019-04-17T073947.200.json
-
-###
-
-GET http://localhost:8081/cyan/countries?client=hal
-Accept: application/json
-
-<> 2019-04-17T073901.200.json
-
-###
-
-GET http://localhost:8081/cyan/countries
-Accept: application/json
-
-<> 2019-04-17T073855.200.json
 
 ###
 

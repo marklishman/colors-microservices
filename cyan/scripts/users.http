@@ -9,6 +9,13 @@ Content-Type: application/json
 ###
 
 
+# -----------------------------------------------------------------------------
+# webflux features
+
+GET http://localhost:8081/cyan/users/webflux
+
+###
+
 
 # -----------------------------------------------------------------------------
 # latest user event (not a stream)

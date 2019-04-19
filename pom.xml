@@ -14,7 +14,6 @@
     </properties>
 
     <modules>
-        <module>black</module>
         <module>blue</module>
         <module>green</module>
         <module>red</module>

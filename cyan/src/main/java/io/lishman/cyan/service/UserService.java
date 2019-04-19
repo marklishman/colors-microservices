@@ -22,11 +22,13 @@ public final class UserService {
     private static final Logger LOGGER = LoggerFactory.getLogger(UserService.class);
 
     private final WebClient whiteWebClient;
+    private final WebClientApi webClientApi;
 
     private UserEvent latestUserEvent;
 
-    public UserService(WebClient whiteWebClient) {
+    public UserService(WebClient whiteWebClient, final WebClientApi webClientApi) {
         this.whiteWebClient = whiteWebClient;
+        this.webClientApi = webClientApi;
     }
 
     public ResponseEntity<Flux<User>> getUsers() {
@@ -40,6 +42,10 @@ public final class UserService {
                 .bodyToFlux(User.class);
 
         return ResponseEntity.ok(users);
+    }
+
+    public void webFluxClient() {
+        webClientApi.runClient();
     }
 
     public UserEvent getLatestUserEvent() {

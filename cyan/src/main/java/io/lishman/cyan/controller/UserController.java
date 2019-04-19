@@ -24,6 +24,12 @@ class UserController {
         return userService.getUsers();
     }
 
+    @GetMapping("webflux")
+    ResponseEntity<String> webFluxClient() {
+        userService.webFluxClient();
+        return ResponseEntity.ok("done");
+    }
+
     @GetMapping("/latest")
     ResponseEntity<UserEvent> getLatestUser() {
         final UserEvent userEvent = userService.getLatestUserEvent();

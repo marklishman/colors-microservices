@@ -1,7 +1,7 @@
-package io.lishman.black.client;
+package io.lishman.cyan.service;
 
-import io.lishman.black.model.User;
-import io.lishman.black.model.UserEvent;
+import io.lishman.cyan.model.User;
+import io.lishman.cyan.model.UserEvent;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -11,10 +11,10 @@ import reactor.core.publisher.Mono;
 @Component
 public class WebClientApi {
 
-    private final WebClient webClient;
+    private final WebClient whiteWebClient;
 
-    WebClientApi(WebClient webClient) {
-        this.webClient = webClient;
+    WebClientApi(WebClient whiteWebClient) {
+        this.whiteWebClient = whiteWebClient;
     }
 
     public void runClient() {
@@ -29,7 +29,7 @@ public class WebClientApi {
     }
 
     private Mono<ResponseEntity<User>> postNewUser() {
-        return webClient
+        return whiteWebClient
                 .post()
                 .uri("/controller/users")
                 .body(Mono.just(new User("four", "user_four", "four@email.com", "067856469", "www.four.com")), User.class)
@@ -39,7 +39,7 @@ public class WebClientApi {
     }
 
     private Flux<User> getAllUsers() {
-        return webClient
+        return whiteWebClient
                 .get()
                 .uri("/controller/users")
                 .retrieve()
@@ -48,7 +48,7 @@ public class WebClientApi {
     }
 
     private Mono<User> updateUser(String id, String name) {
-        return webClient
+        return whiteWebClient
                 .put()
                 .uri("/controller/users/{id}", id)
                 .body(Mono.just(new User(name, "user_four", "four@email.com", "067856469", "www.four.com")), User.class)
@@ -58,7 +58,7 @@ public class WebClientApi {
     }
 
     private Mono<Void> deleteUser(String id) {
-        return webClient
+        return whiteWebClient
                 .delete()
                 .uri("/controller/users/{id}", id)
                 .retrieve()
@@ -67,7 +67,7 @@ public class WebClientApi {
     }
 
     private Flux<UserEvent> getAllEvents() {
-        return webClient
+        return whiteWebClient
                 .get()
                 .uri("/controller/users/events")
                 .retrieve()
