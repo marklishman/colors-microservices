@@ -43,7 +43,7 @@ We can also get a stream of objects decoded from the response.
 ~~~java
 @GetMapping(value = "/events", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
 public Flux<UserEvent> getUserEvents() {
-    return Flux.interval(Duration.ofSeconds(1))
+    return Flux.interval(Duration.ofSeconds(2))
             .map(val ->
                     new UserEvent(val, "User Event")
             );
@@ -107,7 +107,7 @@ We get a stream of objects like this
 
 ~~~java
 public Mono<ServerResponse> getUserEvents(ServerRequest request) {
-    Flux<UserEvent> eventsFlux = Flux.interval(Duration.ofSeconds(1)).map(val ->
+    Flux<UserEvent> eventsFlux = Flux.interval(Duration.ofSeconds(2)).map(val ->
             new UserEvent(val, "User Event")
     );
 

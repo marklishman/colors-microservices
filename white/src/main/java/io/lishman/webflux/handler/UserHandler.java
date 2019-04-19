@@ -102,8 +102,8 @@ public class UserHandler {
     }
 
     public Mono<ServerResponse> getUserEvents(ServerRequest request) {
-        Flux<UserEvent> eventsFlux = Flux.interval(Duration.ofSeconds(1)).map(val ->
-                new UserEvent(val, "User Event")
+        Flux<UserEvent> eventsFlux = Flux.interval(Duration.ofSeconds(2)).map(val ->
+                new UserEvent(val, "User Event " + val)
         );
 
         return ServerResponse.ok()

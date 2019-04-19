@@ -7,3 +7,13 @@ GET http://localhost:8081/cyan/users
 Content-Type: application/json
 
 ###
+
+
+
+# -----------------------------------------------------------------------------
+# latest user event (not a stream)
+
+GET http://localhost:8081/cyan/users/latest
+Content-Type: application/json
+
+###

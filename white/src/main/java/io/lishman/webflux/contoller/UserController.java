@@ -88,9 +88,9 @@ public class UserController {
 
     @GetMapping(value = "/events", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
     public Flux<UserEvent> getUserEvents() {
-        return Flux.interval(Duration.ofSeconds(1))
+        return Flux.interval(Duration.ofSeconds(2))
                 .map(val ->
-                        new UserEvent(val, "User Event")
+                        new UserEvent(val, "User Event " + val)
                 );
     }
 
