@@ -190,3 +190,39 @@ whiteWebClient
         .log()
         .subscribe(userEvent -> latestUserEvent = userEvent);
 ~~~
+
+---
+
+# RestTemplate
+
+To use `RestTemplate` to retrieve a resource in HAL format create a bean
+
+~~~java
+@Bean
+public RestTemplate greenRestTemplate() {
+    return new RestTemplateBuilder()
+            .rootUri("http://localhost:8021/green")
+            .build();
+}
+~~~
+
+and use the `exchange` method with a `ParameterizedTypeReference`.
+
+~~~java
+public List<Person> getPeople() {
+    LOGGER.info("Get People with RestTemplate and HAL");
+
+    final ParameterizedTypeReference<Resources<Resource<Person>>> peopleResourceTypeReference =
+            new ParameterizedTypeReference<>() {};
+
+    final Resources<Resource<Person>> peopleResources = greenRestTemplate
+            .exchange("/people", HttpMethod.GET, null, peopleResourceTypeReference)
+            .getBody();
+
+    return peopleResources
+            .getContent()
+            .stream()
+            .map(Resource::getContent)
+            .collect(Collectors.toList());
+}
+~~~
