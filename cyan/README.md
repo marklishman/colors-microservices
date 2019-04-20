@@ -111,12 +111,12 @@ public Country getCountryAsHal(final Long id) {
 }
 ~~~
 
-## Merging Results
-
 Note that we are using `WebClient` in synchronous mode by blocking at the end for the result.
 
+## Merging Results
+
 When making multiple calls it is more efficient to avoid blocking on each response 
-and instead wait for the combined result.
+and instead wait for the combined result using `merge`, `mergeSequential` or `zip` etc.
 
 ~~~java
 public Statistics getStats() {
