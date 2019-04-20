@@ -6,7 +6,6 @@ import io.lishman.cyan.model.Statistics;
 import io.lishman.cyan.model.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Flux;
@@ -35,7 +34,6 @@ public final class StatisticsService {
         final Mono<Long> peopleCountMono = greenWebClient
                 .get()
                 .uri("green/people")
-                .accept(MediaType.APPLICATION_JSON)
                 .retrieve()
                 .bodyToFlux(Person.class)
                 .count();
@@ -43,7 +41,6 @@ public final class StatisticsService {
         final Mono<Long> countryCountMono = greenWebClient
                 .get()
                 .uri("green/countries")
-                .accept(MediaType.APPLICATION_JSON)
                 .retrieve()
                 .bodyToFlux(Country.class)
                 .count();
@@ -51,7 +48,6 @@ public final class StatisticsService {
         final Mono<Long> userCountMono = whiteWebClient
                 .get()
                 .uri("controller/users")
-                .accept(MediaType.APPLICATION_JSON)
                 .retrieve()
                 .bodyToFlux(User.class)
                 .count();

@@ -158,7 +158,6 @@ public Statistics getStats() {
     final Mono<Long> peopleCountMono = greenWebClient
             .get()
             .uri("green/people")
-            .accept(MediaType.APPLICATION_JSON)
             .retrieve()
             .bodyToFlux(Person.class)
             .count();
@@ -166,7 +165,6 @@ public Statistics getStats() {
     final Mono<Long> countryCountMono = greenWebClient
             .get()
             .uri("green/countries")
-            .accept(MediaType.APPLICATION_JSON)
             .retrieve()
             .bodyToFlux(Country.class)
             .count();
@@ -174,7 +172,6 @@ public Statistics getStats() {
     final Mono<Long> userCountMono = whiteWebClient
             .get()
             .uri("controller/users")
-            .accept(MediaType.APPLICATION_JSON)
             .retrieve()
             .bodyToFlux(User.class)
             .count();
