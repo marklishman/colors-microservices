@@ -9,6 +9,15 @@
 
 ---
 
+# Set Up
+
+* Start the `ref-db` database
+* Start the `green`, `purple` and `white` services
+* Start this service (`cyan`)
+* Run the HTTP scripts in the `/scripts` directory
+
+---
+
 # WebClient
 
 > Non-blocking, reactive client to perform HTTP requests, exposing a fluent, reactive API over underlying HTTP client libraries such as Reactor Netty.
