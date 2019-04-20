@@ -153,7 +153,9 @@ public Statistics getStats() {
 
 # WebFlux
 
-We can of course also use `WebClient` with WebFlux. For example, a get
+We can of course use `WebClient` with WebFlux. 
+
+For example, a get
 
 ~~~java
 final Flux<User> users = whiteWebClient
