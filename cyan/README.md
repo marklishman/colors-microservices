@@ -2,25 +2,27 @@
 
 # Project Features
 
-* `WebClient`
-* `RestTemplate`
+* WebClient
+* RestTemplate
 * Traverson
 * Feign
 
 ---
 
-# `WebClient`
+# WebClient
 
 > Non-blocking, reactive client to perform HTTP requests, exposing a fluent, reactive API over underlying HTTP client libraries such as Reactor Netty.
 
 `WebClient` Bean
 ~~~java
-@Bean
-public WebClient greenWebClient() {
-    return greenWebClientBuilder()
-            .defaultHeader(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_VALUE)
-            .build();
-}
+    @Bean
+    public WebClient greenWebClient() {
+        return WebClient
+                .builder()
+                .baseUrl("http://localhost:8021")
+                .defaultHeader(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_VALUE)
+                .build();
+    }
 ~~~
 
 Get a resource collection
