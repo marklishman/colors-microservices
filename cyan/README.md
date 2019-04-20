@@ -110,3 +110,43 @@ public Country getCountryAsHal(final Long id) {
             .block();
 }
 ~~~
+
+Note that we are using `WebClient` in synchronous mode by blocking at the end for the result.
+
+If we are making multiple calls, it is more efficient to avoid blocking on each response, 
+and instead wait for the combined result
+
+~~~java
+public Statistics getStats() {
+    LOGGER.info("Get Statistics");
+
+    final Mono<Long> peopleCountMono = greenWebClient
+            .get()
+            .uri("green/people")
+            .accept(MediaType.APPLICATION_JSON)
+            .retrieve()
+            .bodyToFlux(Person.class)
+            .count();
+
+    final Mono<Long> countryCountMono = greenWebClient
+            .get()
+            .uri("green/countries")
+            .accept(MediaType.APPLICATION_JSON)
+            .retrieve()
+            .bodyToFlux(Country.class)
+            .count();
+
+    final Mono<Long> userCountMono = whiteWebClient
+            .get()
+            .uri("controller/users")
+            .accept(MediaType.APPLICATION_JSON)
+            .retrieve()
+            .bodyToFlux(User.class)
+            .count();
+
+    return Flux.mergeSequential(peopleCountMono, countryCountMono, userCountMono)
+            .collectList()
+            .map(list -> Statistics.newInstance(list.get(0), list.get(1), list.get(2)))
+            .block();
+}
+~~~
