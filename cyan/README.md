@@ -55,7 +55,7 @@ public Country getCountry(final Long id) {
 
 ## HAL
 
-To GET the resource in HAL format first we need to define a couple of `ParameterizedTypeReference`s
+If the resource is in HAL format first we need to define a couple of `ParameterizedTypeReference`s
 
 ~~~java
     private static final ParameterizedTypeReference<Resource<Country>> COUNTRY_TYPE_REF = 
@@ -83,7 +83,7 @@ public class ResourceUtils {
 }
 ~~~
 
-Then we can get a collection of HAL resources and extract the content as a list.
+Then we can get a collection of HAL resources and extract the content as a list
 
 ~~~java
 public List<Country> getCountriesAsHal() {
