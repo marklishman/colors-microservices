@@ -313,3 +313,50 @@ public Person getPersonWithFeign(final Long id) {
     return peopleFeignClient.getPerson(id);
 }
 ~~~ 
+
+---
+
+# Traverson
+
+Traverson is an API for client side service traversal.
+
+Create the bean
+
+~~~java
+@Bean
+public Traverson greenTraverson() {
+    return new Traverson(getUri("http://localhost:8061/purple/api"), MediaTypes.HAL_JSON);
+}
+~~~
+
+and follow the links
+
+~~~java
+public Collection<Group> getGroups() {
+    final ParameterizedTypeReference<Resources<Group>> groupsResourceTypeReference =
+            new ParameterizedTypeReference<>() {};
+
+    final Resources<Group> GroupsResource = greenTraverson
+            .follow("groups")
+            .toObject(groupsResourceTypeReference);
+
+    return GroupsResource.getContent();
+}
+~~~
+
+or use jsonpath.
+
+~~~java    
+public Group getGroup(final Long pos) {
+    final ParameterizedTypeReference<Resource<Group>> groupResourceTypeReference =
+            new ParameterizedTypeReference<>() {};
+
+    final String rel = String.format("$._embedded.groups[%s]._links.self.href", pos);
+
+    final Resource<Group> groupResource = greenTraverson
+            .follow(rel)
+            .toObject(groupResourceTypeReference);
+
+    return groupResource.getContent();
+}
+~~~
