@@ -18,6 +18,18 @@
 
 ---
 
+# Service Classes
+
+* `CountriesService` - WebClient, synchronous
+* `GroupService` - Traverson
+* `PeopleFeignClient` - Feign
+* `PeopleService` - RestTemplate, Feign
+* `StatisticsService` - WebClient, synchronous
+* `UserService` - WebClient, WebFlux
+* `WebClientApi` - WebClient, WebFlux
+
+---
+
 # WebClient
 
 > Non-blocking, reactive client to perform HTTP requests, exposing a fluent, reactive API over underlying HTTP client libraries such as Reactor Netty.
