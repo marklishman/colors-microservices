@@ -150,3 +150,41 @@ public Statistics getStats() {
             .block();
 }
 ~~~
+
+# WebFlux
+
+We can of course also use `WebClient` with WebFlux. For example, a get
+
+~~~java
+final Flux<User> users = whiteWebClient
+        .get()
+        .uri("/controller/users")
+        .accept(MediaType.APPLICATION_JSON)
+        .retrieve()
+        .bodyToFlux(User.class);
+~~~
+
+a post
+
+~~~java
+return whiteWebClient
+        .post()
+        .uri("/controller/users")
+        .body(Mono.just(new User("four", "user_four", "four@email.com", "067856469", "www.four.com")), User.class)
+        .exchange()
+        .flatMap(response -> response.toEntity(User.class))
+        .doOnSuccess(o -> System.out.println("**********POST " + o));
+~~~
+
+or an event stream.
+
+~~~java
+whiteWebClient
+        .get()
+        .uri("/controller/users/events")
+        .accept(MediaType.TEXT_EVENT_STREAM)
+        .retrieve()
+        .bodyToFlux(UserEvent.class)
+        .log()
+        .subscribe(userEvent -> latestUserEvent = userEvent);
+~~~
