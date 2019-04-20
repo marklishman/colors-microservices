@@ -267,3 +267,49 @@ public List<Person> getPeople() {
             .collect(Collectors.toList());
 }
 ~~~
+
+---
+
+# Feign
+
+Feign is a declarative web service client.
+
+Enable Feign with the `@EnableFeignClients` annotation
+
+~~~java
+@SpringBootApplication
+@EnableHypermediaSupport(type = EnableHypermediaSupport.HypermediaType.HAL)
+@EnableFeignClients
+public class CyanApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(CyanApplication.class, args);
+    }
+}
+~~~
+
+and create the client interface.
+
+~~~java
+@FeignClient(name = "people", url = "http://localhost:8021/green/people")
+public interface PeopleFeignClient {
+
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    List<Person> getPeople();
+
+    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    Person getPerson(@PathVariable("id") final Long id);
+}
+~~~
+
+To use the Feign client simply call the methods on the interface.
+
+~~~java
+public List<Person> getPeopleWithFeign() {
+    return peopleFeignClient.getPeople();
+}
+
+public Person getPersonWithFeign(final Long id) {
+    return peopleFeignClient.getPerson(id);
+}
+~~~ 

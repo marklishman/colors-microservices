@@ -13,7 +13,7 @@ import org.springframework.hateoas.config.EnableHypermediaSupport;
  * activated through the type() attribute. Hypermedia-type-specific implementations of the following components
  * will be registered:
  * 1. LinkDiscoverer
- * 2. a Jackson (1 or 2, dependning on what is on the classpath) module to correctly marshal the resource model
+ * 2. a Jackson (1 or 2, depending on what is on the classpath) module to correctly marshal the resource model
  * classes into the appropriate representation.
  */
 

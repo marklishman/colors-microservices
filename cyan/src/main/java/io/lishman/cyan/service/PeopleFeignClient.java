@@ -16,5 +16,4 @@ public interface PeopleFeignClient {
 
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     Person getPerson(@PathVariable("id") final Long id);
-
 }
