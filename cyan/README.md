@@ -13,7 +13,8 @@
 
 > Non-blocking, reactive client to perform HTTP requests, exposing a fluent, reactive API over underlying HTTP client libraries such as Reactor Netty.
 
-`WebClient` Bean
+Create the `WebClient` bean
+
 ~~~java
 @Bean
 public WebClient greenWebClient() {
@@ -25,7 +26,7 @@ public WebClient greenWebClient() {
 }
 ~~~
 
-Get a resource collection
+and get a resource collection
 
 ~~~java
 public List<Country> getCountries() {
@@ -39,7 +40,7 @@ public List<Country> getCountries() {
 }
 ~~~
 
-Get a resource item
+or a single resource item.
 
 ~~~java
 public Country getCountry(final Long id) {
@@ -82,7 +83,7 @@ public class ResourceUtils {
 }
 ~~~
 
-Then we can get a collection of HAL resources
+Then we can get a collection of HAL resources and extract the content as a list.
 
 ~~~java
 public List<Country> getCountriesAsHal() {
@@ -96,7 +97,7 @@ public List<Country> getCountriesAsHal() {
 }
 ~~~
 
-or a single HAL resource 
+or a single resource item. 
 
 ~~~java
 public Country getCountryAsHal(final Long id) {
