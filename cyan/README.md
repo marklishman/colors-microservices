@@ -97,7 +97,7 @@ public List<Country> getCountriesAsHal() {
 }
 ~~~
 
-or a single resource item. 
+or extract the content directly from a single resource item. 
 
 ~~~java
 public Country getCountryAsHal(final Long id) {
