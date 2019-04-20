@@ -55,7 +55,33 @@ public Country getCountry(final Long id) {
 
 ## HAL
 
-If the resource is in HAL format first we need to define a couple of `ParameterizedTypeReference`s
+If the resource is in HAL format we need to configure the HAL object mapper,
+
+~~~java
+@Bean
+public WebClient greenHalWebClient() {
+
+    final ObjectMapper mapper = new ObjectMapper();
+    mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+    mapper.registerModule(new Jackson2HalModule());
+
+    final ExchangeStrategies strategies = ExchangeStrategies
+            .builder()
+            .codecs(clientDefaultCodecsConfigurer -> {
+                clientDefaultCodecsConfigurer.defaultCodecs().jackson2JsonEncoder(new Jackson2JsonEncoder(new ObjectMapper(), MediaType.APPLICATION_JSON));
+                clientDefaultCodecsConfigurer.defaultCodecs().jackson2JsonDecoder(new Jackson2JsonDecoder(mapper, MediaType.APPLICATION_JSON, MediaTypes.HAL_JSON));
+            }).build();
+
+    return WebClient
+            .builder()
+            .baseUrl("http://localhost:8021")
+            .defaultHeader(HttpHeaders.ACCEPT, MediaTypes.HAL_JSON_VALUE)
+            .exchangeStrategies(strategies)
+            .build();
+}
+~~~
+
+define a couple of `ParameterizedTypeReference`s
 
 ~~~java
     private static final ParameterizedTypeReference<Resource<Country>> COUNTRY_TYPE_REF = 
