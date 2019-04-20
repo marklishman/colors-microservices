@@ -120,8 +120,6 @@ and instead wait for the combined result using `merge`, `mergeSequential` or `zi
 
 ~~~java
 public Statistics getStats() {
-    LOGGER.info("Get Statistics");
-
     final Mono<Long> peopleCountMono = greenWebClient
             .get()
             .uri("green/people")
