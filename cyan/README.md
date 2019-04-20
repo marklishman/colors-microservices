@@ -55,7 +55,7 @@ public Country getCountry(final Long id) {
 
 ## HAL
 
-If the resource is in HAL format we need to configure the HAL object mapper,
+If the resource is in HAL format we need to configure a Jackson module to marshal the HAL resource,
 
 ~~~java
 @Bean
@@ -221,7 +221,22 @@ whiteWebClient
 
 # RestTemplate
 
-To use `RestTemplate` to retrieve a resource in HAL format create a bean
+To use `RestTemplate` to retrieve a HAL resource add include `@EnableHypermediaSupport` annotation.
+This will register the Jackson module to marshal the resource model classes into the appropriate representation.
+
+~~~java
+@SpringBootApplication
+@EnableHypermediaSupport(type = EnableHypermediaSupport.HypermediaType.HAL)
+@EnableFeignClients
+public class CyanApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(CyanApplication.class, args);
+    }
+}
+~~~
+
+create a bean (necessary to use the config created with the `@EnableHypermediaSupport` annotation above)
 
 ~~~java
 @Bean
