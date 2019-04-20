@@ -344,7 +344,7 @@ public Collection<Group> getGroups() {
 }
 ~~~
 
-or use jsonpath.
+or use JSONPath.
 
 ~~~java    
 public Group getGroup(final Long pos) {
