@@ -26,3 +26,42 @@ GET http://localhost:8081/cyan/countries/20?client=hal
 Accept: application/json
 
 ###
+
+
+
+# -----------------------------------------------------------------------------
+# POST
+
+POST http://localhost:8081/cyan/countries
+Content-Type: application/json
+
+{
+  "code": "OB",
+  "name": "Some Obscure Country"
+}
+
+###
+
+
+
+# -----------------------------------------------------------------------------
+# PUT
+
+PUT http://localhost:8081/cyan/countries/10
+Content-Type: application/json
+
+{
+  "code": "AG",
+  "name": "Antigua & Barbuda"
+}
+
+###
+
+
+
+# -----------------------------------------------------------------------------
+# DELETE
+
+DELETE http://localhost:8081/cyan/countries/10
+
+###

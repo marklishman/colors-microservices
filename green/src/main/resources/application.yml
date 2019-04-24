@@ -16,6 +16,9 @@ spring:
   jpa:
     properties:
       hibernate:
+        show_sql: true
+        use_sql_comments: true
+        format_sql: true
         dialect: org.hibernate.dialect.PostgreSQL9Dialect
         default_schema: green
         jdbc:

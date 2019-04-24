@@ -24,7 +24,47 @@ Accept: application/json
 ###
 
 
+
 GET http://localhost:8021/green/countries/20
 Accept: application/hal+json
+
+###
+
+
+
+# -----------------------------------------------------------------------------
+# POST
+
+POST http://localhost:8021/green/countries
+Content-Type: application/json
+
+{
+  "code": "OB",
+  "name": "Some Obscure Country"
+}
+
+###
+
+
+
+# -----------------------------------------------------------------------------
+# PUT
+
+PUT http://localhost:8021/green/countries/10
+Content-Type: application/json
+
+{
+  "code": "AG",
+  "name": "Antigua & Barbuda"
+}
+
+###
+
+
+
+# -----------------------------------------------------------------------------
+# DELETE
+
+DELETE http://localhost:8021/green/countries/260
 
 ###

@@ -34,14 +34,17 @@ public class CountryEntity {
     public CountryEntity() {
     }
 
-    private CountryEntity(final String code,
+    private CountryEntity(final Long id,
+                          final String code,
                           final String name) {
+        this.id = id;
         this.code = code;
         this.name = name;
     }
 
     public static CountryEntity fromCountry(final Country country) {
         return new CountryEntity(
+                country.getId(),
                 country.getCode(),
                 country.getName()
         );

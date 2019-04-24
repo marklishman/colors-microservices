@@ -57,4 +57,8 @@ public class CountryService {
         final var countryWithId = country.cloneWithNewId(id);
         return this.createCountry(countryWithId);
     }
+
+    public void deleteCountry(final Long id) {
+        this.countryRepository.deleteById(id);
+    }
 }

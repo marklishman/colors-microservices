@@ -1,3 +1,280 @@
+DELETE http://localhost:8021/green/countries/260
+
+<> 2019-04-24T083848.500.json
+
+###
+
+DELETE http://localhost:8021/green/countries/260
+
+###
+
+DELETE http://localhost:8021/green/countries/260
+
+<> 2019-04-24T082630.405.json
+
+###
+
+DELETE http://localhost:8021/cyan/countries/260
+Content-Type: application/json
+
+<> 2019-04-24T082617.404.html
+
+###
+
+DELETE http://localhost:8021/cyan/countries/260
+
+<> 2019-04-24T082607.404.html
+
+###
+
+PUT http://localhost:8021/cyan/countries/260
+
+<> 2019-04-24T082541.404.html
+
+###
+
+POST http://localhost:8021/green/countries
+Content-Type: application/json
+
+{
+  "code": "OB",
+  "name": "Some Obscure Country"
+}
+
+<> 2019-04-24T082426.201.json
+
+###
+
+POST http://localhost:8021/green/countries
+Content-Type: application/json
+
+{
+  "code": "OB",
+  "name": "Some Obscure Country"
+}
+
+<> 2019-04-24T082338.201.json
+
+###
+
+POST http://localhost:8081/green/countries
+Content-Type: application/json
+
+{
+  "code": "OB",
+  "name": "Some Obscure Country"
+}
+
+###
+
+PUT http://localhost:8021/green/countries/10
+Content-Type: application/json
+
+{
+  "code": "AG",
+  "name": "Antigua & Barbuda"
+}
+
+<> 2019-04-24T081324.200.json
+
+###
+
+PUT http://localhost:8021/green/countries/10
+Content-Type: application/json
+
+{
+  "code": "AG",
+  "name": "Antigua & Barbuda"
+}
+
+<> 2019-04-24T080456.500.json
+
+###
+
+PUT http://localhost:8021/green/countries/10
+Content-Type: application/json
+
+{
+  "code": "AG",
+  "name": "Antigua & Barbuda"
+}
+
+<> 2019-04-24T080443.500.json
+
+###
+
+PUT http://localhost:8021/green/countries/10
+Content-Type: application/json
+
+{
+  "code": "AG",
+  "name": "Antigua & Barbuda"
+}
+
+<> 2019-04-24T064906.500.json
+
+###
+
+PUT http://localhost:8021/green/countries/10
+Content-Type: application/json
+
+{
+  "code": "AG",
+  "name": "Antigua & Barbuda"
+}
+
+<> 2019-04-24T064757.500.json
+
+###
+
+PUT http://localhost:8021/green/countries/10
+Content-Type: application/json
+
+{
+  "code": "AG",
+  "name": "Antigua & Barbuda"
+}
+
+<> 2019-04-24T064206.500.json
+
+###
+
+PUT http://localhost:8081/cyan/countries/10
+Content-Type: application/json
+
+{
+  "code": "AG",
+  "name": "Antigua & Barbuda"
+}
+
+<> 2019-04-23T064851.500.json
+
+###
+
+PUT http://localhost:8081/cyan/countries/10
+Content-Type: application/json
+
+{
+  "code": "AG",
+  "name": "Antigua & Barbuda"
+}
+
+<> 2019-04-23T064802.500.json
+
+###
+
+PUT http://localhost:8081/cyan/countries/10
+Content-Type: application/json
+
+{
+  "code": "AG",
+  "name": "Antigua & Barbuda"
+}
+
+<> 2019-04-23T064242.500.json
+
+###
+
+PUT http://localhost:8081/cyan/countries/10
+Content-Type: application/json
+
+{
+  "code": "AG",
+  "name": "Antigua & Barbuda"
+}
+
+<> 2019-04-23T061719.500.json
+
+###
+
+PUT http://localhost:8081/cyan/countries/10
+Content-Type: application/json
+
+{
+  "code": "AG",
+  "name": "Antigua & Barbuda"
+}
+
+<> 2019-04-23T125957.500.json
+
+###
+
+POST http://localhost:8081/cyan/countries
+Content-Type: application/json
+
+{
+  "code": "XX",
+  "name": "Xxxxxx"
+}
+
+<> 2019-04-23T094028.201.json
+
+###
+
+POST http://localhost:8081/cyan/countries
+Content-Type: application/json
+
+{
+  "code": "XX",
+  "name": "Xxxxxx"
+}
+
+<> 2019-04-23T093503.201.json
+
+###
+
+GET http://localhost:8081/cyan/countries/20
+Accept: application/json
+
+<> 2019-04-23T093436.200.json
+
+###
+
+GET http://localhost:8081/cyan/countries/20
+Accept: application/json
+
+###
+
+GET http://localhost:8081/cyan/countries/20
+Accept: application/json
+
+<> 2019-04-22T105018.200.json
+
+###
+
+GET http://localhost:8081/cyan/countries/20
+Accept: application/json
+
+###
+
+GET http://localhost:8081/cyan/countries/20
+Accept: application/json
+
+<> 2019-04-22T104922.200.json
+
+###
+
+GET http://localhost:8081/cyan/countries/20
+Accept: application/json
+
+<> 2019-04-22T104653.200.json
+
+###
+
+GET http://localhost:8081/cyan/countries/20
+Accept: application/json
+
+<> 2019-04-22T104331.200.json
+
+###
+
+GET http://localhost:8081/cyan/countries/20
+Accept: application/json
+
+<> 2019-04-22T104051.200.json
+
+###
+
 GET http://localhost:8081/cyan/stats
 Content-Type: application/json
 
@@ -123,200 +400,6 @@ GET http://localhost:8081/cyan/users/webflux
 GET http://localhost:8081/cyan/users/webflux
 
 <> 2019-04-19T124007.200.txt
-
-###
-
-GET http://localhost:8081/cyan/users/webflux
-
-<> 2019-04-19T123959.200.txt
-
-###
-
-GET http://localhost:8081/cyan/users/webflux
-
-<> 2019-04-19T123645.200.txt
-
-###
-
-GET http://localhost:8081/cyan/users/webflux
-
-<> 2019-04-19T123015.200.txt
-
-###
-
-GET http://localhost:8081/cyan/users/webflux
-
-<> 2019-04-19T123001.200.txt
-
-###
-
-GET http://localhost:8081/cyan/users/webflux
-
-<> 2019-04-19T122934.200.txt
-
-###
-
-GET http://localhost:8081/cyan/users/latest
-Content-Type: application/json
-
-<> 2019-04-19T101404-1.200.json
-
-###
-
-GET http://localhost:8081/cyan/users/latest
-Content-Type: application/json
-
-<> 2019-04-19T101404.200.json
-
-###
-
-GET http://localhost:8081/cyan/users/latest
-Content-Type: application/json
-
-<> 2019-04-19T101403.200.json
-
-###
-
-GET http://localhost:8081/cyan/users/latest
-Content-Type: application/json
-
-<> 2019-04-19T101359.200.json
-
-###
-
-GET http://localhost:8081/cyan/users/latest
-Content-Type: application/json
-
-<> 2019-04-19T101218.200.json
-
-###
-
-GET http://localhost:8081/cyan/users/latest
-Content-Type: application/json
-
-<> 2019-04-19T101216.200.json
-
-###
-
-GET http://localhost:8081/cyan/users/latest
-Content-Type: application/json
-
-<> 2019-04-19T101215.200.json
-
-###
-
-GET http://localhost:8081/cyan/users/latest
-Content-Type: application/json
-
-<> 2019-04-19T101214.200.json
-
-###
-
-GET http://localhost:8081/cyan/users/latest
-Content-Type: application/json
-
-<> 2019-04-19T101210.200.json
-
-###
-
-GET http://localhost:8081/cyan/users/events
-Content-Type: application/json
-
-<> 2019-04-19T101152.404.json
-
-###
-
-GET http://localhost:8081/cyan/users/events
-Content-Type: application/json
-
-<> 2019-04-19T101053.404.json
-
-###
-
-GET http://localhost:8081/cyan/users/events
-Content-Type: application/json
-
-<> 2019-04-19T101039.404.json
-
-###
-
-GET http://localhost:8071/controller/users/events
-
-###
-
-GET http://localhost:8071/controller/users/events
-Accept: ext/event-stream
-Content-Type: ext/event-stream
-
-###
-
-GET http://localhost:8071/controller/users/events
-Accept: ext/event-stream
-Content-Type: ext/event-stream
-
-###
-
-GET http://localhost:8071/controller/users/events
-Accept: ext/event-stream
-
-###
-
-GET http://localhost:8071/controller/users/events
-Content-Type: application/json
-
-###
-
-GET http://localhost:8081/cyan/users
-Content-Type: application/json
-
-<> 2019-04-19T085642.200.json
-
-###
-
-GET http://localhost:8081/cyan/users
-Content-Type: application/json
-
-<> 2019-04-19T085421.200.json
-
-###
-
-GET http://localhost:8081/cyan/users
-Content-Type: application/json
-
-<> 2019-04-19T085059.200.json
-
-###
-
-GET http://localhost:8081/cyan/users
-Content-Type: application/json
-
-###
-
-GET http://localhost:8081/cyan/users
-Content-Type: application/json
-
-<> 2019-04-19T084948.200.json
-
-###
-
-GET http://localhost:8081/cyan/users
-Content-Type: application/json
-
-<> 2019-04-19T084939.200.json
-
-###
-
-GET http://localhost:8081/cyan/users
-Content-Type: application/json
-
-<> 2019-04-19T084755.200.json
-
-###
-
-GET http://localhost:8081/cyan/users
-Content-Type: application/json
-
-<> 2019-04-19T084314.200.json
 
 ###
 

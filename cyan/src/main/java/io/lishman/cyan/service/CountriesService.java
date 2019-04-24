@@ -74,4 +74,35 @@ public final class CountriesService {
                 .map(Resource::getContent)
                 .block();
     }
+
+    public Country createCountry(final Country country) {
+        LOGGER.info("Create Country");
+        return greenWebClient.post()
+                .uri("green/countries")
+                .syncBody(country)
+                .retrieve()
+                .bodyToMono(Country.class)
+                .block();
+    }
+
+    // TODO fix this
+    public Country updateCountry(final Long id, final Country country) {
+        LOGGER.info("Update Country");
+
+        final Country updatedCountry = greenWebClient
+                .get()
+                .uri("green/countries/{id}", id)
+                .retrieve()
+                .bodyToMono(Country.class)
+                .map(existingCountry -> existingCountry)
+                .block();
+
+        return greenWebClient
+                .put()
+                .uri("green/countries/{id}", id)
+                .syncBody(updatedCountry)
+                .retrieve()
+                .bodyToMono(Country.class)
+                .block();
+    }
 }
