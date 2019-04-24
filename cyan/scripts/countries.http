@@ -62,6 +62,6 @@ Content-Type: application/json
 # -----------------------------------------------------------------------------
 # DELETE
 
-DELETE http://localhost:8081/cyan/countries/10
+DELETE http://localhost:8081/cyan/countries/261
 
 ###

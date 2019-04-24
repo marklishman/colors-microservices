@@ -4,6 +4,7 @@ import io.lishman.cyan.model.Country;
 import io.lishman.cyan.service.CountriesService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -69,6 +70,14 @@ class CountriesController {
             @PathVariable("id") final Long id,
             @RequestBody final Country country) {
         return countriesService.updateCountry(id, country);
+    }
+
+    // ~~~~ DELETE
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void updateDetails(@PathVariable("id") final Long id) {
+        countriesService.deleteCountry(id);
     }
 
 }

@@ -85,24 +85,23 @@ public final class CountriesService {
                 .block();
     }
 
-    // TODO fix this
     public Country updateCountry(final Long id, final Country country) {
         LOGGER.info("Update Country");
-
-        final Country updatedCountry = greenWebClient
-                .get()
-                .uri("green/countries/{id}", id)
-                .retrieve()
-                .bodyToMono(Country.class)
-                .map(existingCountry -> existingCountry)
-                .block();
-
-        return greenWebClient
-                .put()
+        final Country updatedCountry = country.cloneWithNewId(id);
+        return greenWebClient.put()
                 .uri("green/countries/{id}", id)
                 .syncBody(updatedCountry)
                 .retrieve()
                 .bodyToMono(Country.class)
+                .block();
+    }
+
+    public void deleteCountry(final Long id) {
+        LOGGER.info("Delete Country");
+        greenWebClient.delete()
+                .uri("green/countries/{id}", id)
+                .retrieve()
+                .bodyToMono(Void.class)
                 .block();
     }
 }
