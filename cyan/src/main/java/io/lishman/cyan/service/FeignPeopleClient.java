@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import java.util.List;
 
 @FeignClient(name = "people", url = "http://localhost:8021/green/people")
-public interface PeopleFeignClient {
+public interface FeignPeopleClient {
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     List<Person> getPeople();

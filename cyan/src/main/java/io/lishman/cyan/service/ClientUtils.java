@@ -6,11 +6,11 @@ import org.springframework.hateoas.Resources;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class ResourceUtils {
+public class ClientUtils {
 
-    private ResourceUtils() { }
+    private ClientUtils() { }
 
-    public static <T> List<T> getContent(Resources<Resource<T>> resources) {
+    public static <T> List<T> getResourcesContent(Resources<Resource<T>> resources) {
         return resources
                 .getContent()
                 .stream()

@@ -8,11 +8,11 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @Component
-public class WebClientApi {
+public class WebClientUserWebFluxClient {
 
     private final WebClient whiteWebClient;
 
-    WebClientApi(WebClient whiteWebClient) {
+    WebClientUserWebFluxClient(WebClient whiteWebClient) {
         this.whiteWebClient = whiteWebClient;
     }
 

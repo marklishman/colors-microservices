@@ -11,18 +11,14 @@ import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 
-/**
- *  Traverson
- */
-
 @Service
-public final class GroupService {
+public final class TraversonGroupService {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(GroupService.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(TraversonGroupService.class);
 
     private final Traverson greenTraverson;
 
-    public GroupService(Traverson greenTraverson) {
+    public TraversonGroupService(Traverson greenTraverson) {
         this.greenTraverson = greenTraverson;
     }
 

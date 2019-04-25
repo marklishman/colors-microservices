@@ -12,23 +12,19 @@ import reactor.core.publisher.Flux;
 
 import javax.annotation.PostConstruct;
 
-/**
- *  WebClient with WebFlux
- */
-
 @Service
-public final class UserService {
+public final class WebClientUserService {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(UserService.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(WebClientUserService.class);
 
     private final WebClient whiteWebClient;
-    private final WebClientApi webClientApi;
+    private final WebClientUserWebFluxClient webClientUserWebFluxClient;
 
     private UserEvent latestUserEvent;
 
-    public UserService(WebClient whiteWebClient, final WebClientApi webClientApi) {
+    public WebClientUserService(WebClient whiteWebClient, final WebClientUserWebFluxClient webClientUserWebFluxClient) {
         this.whiteWebClient = whiteWebClient;
-        this.webClientApi = webClientApi;
+        this.webClientUserWebFluxClient = webClientUserWebFluxClient;
     }
 
     public ResponseEntity<Flux<User>> getUsers() {
@@ -45,7 +41,7 @@ public final class UserService {
     }
 
     public void webFluxClient() {
-        webClientApi.runClient();
+        webClientUserWebFluxClient.runClient();
     }
 
     public UserEvent getLatestUserEvent() {
@@ -55,7 +51,6 @@ public final class UserService {
     @PostConstruct
     public void userEventStream() {
         LOGGER.info("Starting User Event Stream");
-
         whiteWebClient
                 .get()
                 .uri("/controller/users/events")

@@ -1,7 +1,7 @@
 package io.lishman.cyan.controller;
 
 import io.lishman.cyan.model.Statistics;
-import io.lishman.cyan.service.StatisticsService;
+import io.lishman.cyan.service.WebClientStatisticsService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,15 +11,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/stats")
 class StatisticsController {
 
-    final StatisticsService statisticsService;
+    final WebClientStatisticsService webClientStatisticsService;
 
-    StatisticsController(final StatisticsService statisticsService) {
-        this.statisticsService = statisticsService;
+    StatisticsController(final WebClientStatisticsService webClientStatisticsService) {
+        this.webClientStatisticsService = webClientStatisticsService;
     }
 
     @GetMapping
     ResponseEntity<Statistics> getStata() {
-        final Statistics statistics = statisticsService.getStats();
+        final Statistics statistics = webClientStatisticsService.getStats();
         return ResponseEntity.ok(statistics);
     }
 

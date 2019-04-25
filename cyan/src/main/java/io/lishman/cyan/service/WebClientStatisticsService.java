@@ -11,19 +11,15 @@ import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-/**
- *  WebClient with merge
- */
-
 @Service
-public final class StatisticsService {
+public final class WebClientStatisticsService {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(StatisticsService.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(WebClientStatisticsService.class);
 
     private final WebClient greenWebClient;
     private final WebClient whiteWebClient;
 
-    public StatisticsService(final WebClient greenWebClient, final WebClient whiteWebClient) {
+    public WebClientStatisticsService(final WebClient greenWebClient, final WebClient whiteWebClient) {
         this.greenWebClient = greenWebClient;
         this.whiteWebClient = whiteWebClient;
     }

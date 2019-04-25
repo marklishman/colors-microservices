@@ -13,24 +13,16 @@ import org.springframework.web.client.RestTemplate;
 import java.util.List;
 import java.util.stream.Collectors;
 
-/**
- *  RestTemplate & Feign
- */
-
 @Service
-public final class PeopleService {
+public final class RestTemplatePeopleService {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(PeopleService.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(RestTemplatePeopleService.class);
 
     private final RestTemplate greenRestTemplate;
-    private final PeopleFeignClient peopleFeignClient;
 
-    public PeopleService(final RestTemplate greenRestTemplate, final PeopleFeignClient peopleFeignClient) {
+    public RestTemplatePeopleService(final RestTemplate greenRestTemplate) {
         this.greenRestTemplate = greenRestTemplate;
-        this.peopleFeignClient = peopleFeignClient;
     }
-
-    // ~~~~ RestTemplate
 
     public List<Person> getPeople() {
         LOGGER.info("Get People with RestTemplate and HAL");
@@ -60,17 +52,5 @@ public final class PeopleService {
                 .getBody();
 
         return personResource.getContent();
-    }
-
-    // ~~~~ Feign
-
-    public List<Person> getPeopleWithFeign() {
-        LOGGER.info("Get People with Feign");
-        return peopleFeignClient.getPeople();
-    }
-
-    public Person getPersonWithFeign(final Long id) {
-        LOGGER.info("Get Person {} with Feign", id);
-        return peopleFeignClient.getPerson(id);
     }
 }

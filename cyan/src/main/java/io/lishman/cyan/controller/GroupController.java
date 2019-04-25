@@ -1,7 +1,7 @@
 package io.lishman.cyan.controller;
 
 import io.lishman.cyan.model.Group;
-import io.lishman.cyan.service.GroupService;
+import io.lishman.cyan.service.TraversonGroupService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,21 +14,21 @@ import java.util.Collection;
 @RequestMapping("/groups")
 class GroupController {
 
-    final GroupService groupService;
+    final TraversonGroupService traversonGroupService;
 
-    GroupController(final GroupService groupService) {
-        this.groupService = groupService;
+    GroupController(final TraversonGroupService traversonGroupService) {
+        this.traversonGroupService = traversonGroupService;
     }
 
     @GetMapping
     ResponseEntity<Collection<Group>> getGroups() {
-        final Collection<Group> groups = groupService.getGroups();
+        final Collection<Group> groups = traversonGroupService.getGroups();
         return ResponseEntity.ok(groups);
     }
 
     @GetMapping("{id}")
     ResponseEntity<Group> getGroupById(@PathVariable("id") final Long id) {
-        final Group group = groupService.getGroup(id);
+        final Group group = traversonGroupService.getGroup(id);
         return ResponseEntity.ok(group);
     }
 

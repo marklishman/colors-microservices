@@ -11,14 +11,10 @@ import org.springframework.web.reactive.function.client.WebClient;
 
 import java.util.List;
 
-/**
- *  WebClient - synchronous
- */
-
 @Service
-public final class CountriesService {
+public final class WebClientCountriesService {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(CountriesService.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(WebClientCountriesService.class);
 
     private static final ParameterizedTypeReference<Resource<Country>> COUNTRY_TYPE_REF = new ParameterizedTypeReference<>() {};
     private static final ParameterizedTypeReference<Resources<Resource<Country>>> COUNTRIES_TYPE_REF = new ParameterizedTypeReference<>() {};
@@ -26,8 +22,8 @@ public final class CountriesService {
     private final WebClient greenWebClient;
     private final WebClient greenHalWebClient;
 
-    public CountriesService(final WebClient greenWebClient,
-                            final WebClient greenHalWebClient) {
+    public WebClientCountriesService(final WebClient greenWebClient,
+                                     final WebClient greenHalWebClient) {
         this.greenWebClient = greenWebClient;
         this.greenHalWebClient = greenHalWebClient;
     }
@@ -50,7 +46,7 @@ public final class CountriesService {
                 .uri("green/countries")
                 .retrieve()
                 .bodyToMono(COUNTRIES_TYPE_REF)
-                .map(ResourceUtils::getContent)
+                .map(ClientUtils::getResourcesContent)
                 .block();
     }
 

@@ -1,7 +1,7 @@
 package io.lishman.cyan.controller;
 
 import io.lishman.cyan.model.Country;
-import io.lishman.cyan.service.CountriesService;
+import io.lishman.cyan.service.WebClientCountriesService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -20,23 +20,23 @@ import java.util.List;
 @RequestMapping("/countries")
 class CountriesController {
 
-    final CountriesService countriesService;
+    final WebClientCountriesService webClientCountriesService;
 
-    CountriesController(final CountriesService countriesService) {
-        this.countriesService = countriesService;
+    CountriesController(final WebClientCountriesService webClientCountriesService) {
+        this.webClientCountriesService = webClientCountriesService;
     }
 
     // ~~~~ JSON
 
     @GetMapping
     ResponseEntity<List<Country>> getUsers() {
-        final List<Country> countries = countriesService.getCountries();
+        final List<Country> countries = webClientCountriesService.getCountries();
         return ResponseEntity.ok(countries);
     }
 
     @GetMapping(value = "{id}")
     ResponseEntity<Country> getUserById(@PathVariable("id") final Long id) {
-        final Country country = countriesService.getCountry(id);
+        final Country country = webClientCountriesService.getCountry(id);
         return ResponseEntity.ok(country);
     }
 
@@ -44,13 +44,13 @@ class CountriesController {
 
     @GetMapping(params = "client=hal")
     ResponseEntity<List<Country>> getUsersWithHal() {
-        final List<Country> countries = countriesService.getCountriesAsHal();
+        final List<Country> countries = webClientCountriesService.getCountriesAsHal();
         return ResponseEntity.ok(countries);
     }
 
     @GetMapping(value = "{id}", params = "client=hal")
     ResponseEntity<Country> getUserByIdWithHal(@PathVariable("id") final Long id) {
-        final Country country = countriesService.getCountryAsHal(id);
+        final Country country = webClientCountriesService.getCountryAsHal(id);
         return ResponseEntity.ok(country);
     }
 
@@ -59,7 +59,7 @@ class CountriesController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Country createCountry(@RequestBody final Country country) {
-        return countriesService.createCountry(country);
+        return webClientCountriesService.createCountry(country);
     }
 
     // ~~~~ PUT
@@ -69,7 +69,7 @@ class CountriesController {
     public Country updateDetails(
             @PathVariable("id") final Long id,
             @RequestBody final Country country) {
-        return countriesService.updateCountry(id, country);
+        return webClientCountriesService.updateCountry(id, country);
     }
 
     // ~~~~ DELETE
@@ -77,7 +77,7 @@ class CountriesController {
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void updateDetails(@PathVariable("id") final Long id) {
-        countriesService.deleteCountry(id);
+        webClientCountriesService.deleteCountry(id);
     }
 
 }
