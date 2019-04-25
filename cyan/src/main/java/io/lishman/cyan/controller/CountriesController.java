@@ -42,13 +42,13 @@ class CountriesController {
 
     // ~~~~ HAL
 
-    @GetMapping(params = "client=hal")
+    @GetMapping(params = "format=hal")
     ResponseEntity<List<Country>> getUsersWithHal() {
         final List<Country> countries = webClientCountriesService.getCountriesAsHal();
         return ResponseEntity.ok(countries);
     }
 
-    @GetMapping(value = "{id}", params = "client=hal")
+    @GetMapping(value = "{id}", params = "format=hal")
     ResponseEntity<Country> getUserByIdWithHal(@PathVariable("id") final Long id) {
         final Country country = webClientCountriesService.getCountryAsHal(id);
         return ResponseEntity.ok(country);

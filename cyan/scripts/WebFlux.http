@@ -1,9 +1,15 @@
 
 
 # -----------------------------------------------------------------------------
-# users collection
+# users, Flux
 
 GET http://localhost:8081/cyan/users
+Content-Type: application/json
+
+###
+
+
+GET http://localhost:8081/cyan/users/{UUID}
 Content-Type: application/json
 
 ###
@@ -18,7 +24,7 @@ GET http://localhost:8081/cyan/users/webflux
 
 
 # -----------------------------------------------------------------------------
-# latest user event (not a stream)
+# latest user event
 
 GET http://localhost:8081/cyan/users/latest
 Content-Type: application/json

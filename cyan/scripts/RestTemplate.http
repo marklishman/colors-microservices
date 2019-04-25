@@ -1,0 +1,14 @@
+
+
+# -----------------------------------------------------------------------------
+# people, RestTemplate
+
+GET http://localhost:8081/cyan/people?client=resttemplate
+Content-Type: application/json
+
+###
+
+GET http://localhost:8081/cyan/people/2?client=resttemplate
+Content-Type: application/json
+
+###

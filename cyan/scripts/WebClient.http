@@ -1,28 +1,32 @@
 
 
 # -----------------------------------------------------------------------------
-# countries collection
+# countries, WebClient, JSON
 
 GET http://localhost:8081/cyan/countries
 Accept: application/json
 
 ###
 
-GET http://localhost:8081/cyan/countries?client=hal
-Accept: application/json
-
-###
-
-
-# -----------------------------------------------------------------------------
-# countries item
-
 GET http://localhost:8081/cyan/countries/20
 Accept: application/json
 
 ###
 
-GET http://localhost:8081/cyan/countries/20?client=hal
+
+
+# -----------------------------------------------------------------------------
+# countries, WebClient, HAL
+#
+# Note: the client (in the service) uses HAL but the contents
+# are returned as plain JSON from this request
+
+GET http://localhost:8081/cyan/countries?format=hal
+Accept: application/json
+
+###
+
+GET http://localhost:8081/cyan/countries/20?format=hal
 Accept: application/json
 
 ###
@@ -30,7 +34,17 @@ Accept: application/json
 
 
 # -----------------------------------------------------------------------------
-# POST
+# stats, merge
+
+GET http://localhost:8081/cyan/stats
+Content-Type: application/json
+
+###
+
+
+
+# -----------------------------------------------------------------------------
+# POST, WebClient
 
 POST http://localhost:8081/cyan/countries
 Content-Type: application/json
@@ -45,7 +59,7 @@ Content-Type: application/json
 
 
 # -----------------------------------------------------------------------------
-# PUT
+# PUT, WebClient
 
 PUT http://localhost:8081/cyan/countries/10
 Content-Type: application/json
@@ -60,8 +74,8 @@ Content-Type: application/json
 
 
 # -----------------------------------------------------------------------------
-# DELETE
+# DELETE, WebClient
 
-DELETE http://localhost:8081/cyan/countries/261
+DELETE http://localhost:8081/cyan/countries/262
 
 ###

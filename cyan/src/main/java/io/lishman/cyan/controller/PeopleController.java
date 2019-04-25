@@ -26,13 +26,13 @@ class PeopleController {
 
     // ~~~~ RestTemplate
 
-    @GetMapping
+    @GetMapping(params = "client=resttemplate")
     ResponseEntity<List<Person>> getPeople() {
         final List<Person> countries = restTemplatePeopleService.getPeople();
         return ResponseEntity.ok(countries);
     }
 
-    @GetMapping("{id}")
+    @GetMapping(value = "{id}", params = "client=resttemplate")
     ResponseEntity<Person> getPersonById(@PathVariable("id") final Long id) {
         final Person person = restTemplatePeopleService.getPerson(id);
         return ResponseEntity.ok(person);

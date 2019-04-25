@@ -9,8 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Flux;
-
-import javax.annotation.PostConstruct;
+import reactor.core.publisher.Mono;
 
 @Service
 public final class WebClientUserService {
@@ -40,6 +39,17 @@ public final class WebClientUserService {
         return ResponseEntity.ok(users);
     }
 
+    public ResponseEntity<Mono<User>> getUser(final String id) {
+        final Mono<User> user = whiteWebClient
+                .get()
+                .uri("/controller/users/{id}", id)
+                .accept(MediaType.APPLICATION_JSON)
+                .retrieve()
+                .bodyToMono(User.class);
+
+        return ResponseEntity.ok(user);
+    }
+
     public void webFluxClient() {
         webClientUserWebFluxClient.runClient();
     }
@@ -48,7 +58,7 @@ public final class WebClientUserService {
         return latestUserEvent;
     }
 
-    @PostConstruct
+//    @PostConstruct
     public void userEventStream() {
         LOGGER.info("Starting User Event Stream");
         whiteWebClient

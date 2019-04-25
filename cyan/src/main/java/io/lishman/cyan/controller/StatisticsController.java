@@ -18,7 +18,7 @@ class StatisticsController {
     }
 
     @GetMapping
-    ResponseEntity<Statistics> getStata() {
+    ResponseEntity<Statistics> getStats() {
         final Statistics statistics = webClientStatisticsService.getStats();
         return ResponseEntity.ok(statistics);
     }

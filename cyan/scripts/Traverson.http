@@ -1,17 +1,13 @@
 
 
 # -----------------------------------------------------------------------------
-# groups collection
+# groups, traverson
 
 GET http://localhost:8081/cyan/groups
 Content-Type: application/json
 
 ###
 
-
-
-# -----------------------------------------------------------------------------
-# people item
 
 GET http://localhost:8081/cyan/groups/0
 Content-Type: application/json

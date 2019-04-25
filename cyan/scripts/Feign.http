@@ -1,0 +1,13 @@
+
+# -----------------------------------------------------------------------------
+# people, Feign
+
+GET http://localhost:8081/cyan/people?client=feign
+Content-Type: application/json
+
+###
+
+GET http://localhost:8081/cyan/people/2?client=feign
+Content-Type: application/json
+
+###

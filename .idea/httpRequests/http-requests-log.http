@@ -1,3 +1,133 @@
+DELETE http://localhost:8081/cyan/countries/262
+
+<> 2019-04-25T014055.500.json
+
+###
+
+DELETE http://localhost:8081/cyan/countries/262
+
+###
+
+PUT http://localhost:8081/cyan/countries/10
+Content-Type: application/json
+
+{
+  "code": "AG",
+  "name": "Antigua & Barbuda"
+}
+
+<> 2019-04-25T014026.200.json
+
+###
+
+POST http://localhost:8081/cyan/countries
+Content-Type: application/json
+
+{
+  "code": "OB",
+  "name": "Some Obscure Country"
+}
+
+<> 2019-04-25T014022.201.json
+
+###
+
+GET http://localhost:8081/cyan/stats
+Content-Type: application/json
+
+<> 2019-04-25T014012.200.json
+
+###
+
+GET http://localhost:8081/cyan/countries/20?format=hal
+Accept: application/json
+
+<> 2019-04-25T013304.200.json
+
+###
+
+GET http://localhost:8081/cyan/countries?format=hal
+Accept: application/json
+
+<> 2019-04-25T013244.200.json
+
+###
+
+GET http://localhost:8081/cyan/countries/20
+Accept: application/json
+
+<> 2019-04-25T013241.200.json
+
+###
+
+GET http://localhost:8081/cyan/countries
+Accept: application/json
+
+<> 2019-04-25T013237.200.json
+
+###
+
+GET http://localhost:8081/cyan/people/2?client=feign
+Content-Type: application/json
+
+<> 2019-04-25T013231.200.json
+
+###
+
+GET http://localhost:8081/cyan/people?client=feign
+Content-Type: application/json
+
+<> 2019-04-25T013227.200.json
+
+###
+
+GET http://localhost:8081/cyan/people/2?client=resttemplate
+Content-Type: application/json
+
+<> 2019-04-25T013057.200.json
+
+###
+
+GET http://localhost:8081/cyan/people?client=resttemplate
+Content-Type: application/json
+
+<> 2019-04-25T013054.200.json
+
+###
+
+GET http://localhost:8081/cyan/people/2?client=feign
+Content-Type: application/json
+
+<> 2019-04-25T013038.200.json
+
+###
+
+GET http://localhost:8081/cyan/people?client=feign
+Content-Type: application/json
+
+<> 2019-04-25T013022.200.json
+
+###
+
+GET http://localhost:8081/cyan/people/2?client=feign
+Content-Type: application/json
+
+<> 2019-04-25T013009.200.json
+
+###
+
+GET http://localhost:8081/cyan/people/2?client=feign
+Content-Type: application/json
+
+<> 2019-04-25T012916.500.json
+
+###
+
+GET http://localhost:8081/cyan/people/2?client=feign
+Content-Type: application/json
+
+###
+
 DELETE http://localhost:8081/cyan/countries/261
 
 ###
@@ -293,122 +423,6 @@ GET http://localhost:8081/cyan/countries/20
 Accept: application/json
 
 <> 2019-04-22T104331.200.json
-
-###
-
-GET http://localhost:8081/cyan/countries/20
-Accept: application/json
-
-<> 2019-04-22T104051.200.json
-
-###
-
-GET http://localhost:8081/cyan/stats
-Content-Type: application/json
-
-<> 2019-04-20T111242.200.json
-
-###
-
-GET http://localhost:8081/cyan/stats
-Content-Type: application/json
-
-<> 2019-04-20T111241.200.json
-
-###
-
-GET http://localhost:8081/cyan/stats
-Content-Type: application/json
-
-###
-
-GET http://localhost:8081/cyan/stats
-Content-Type: application/json
-
-<> 2019-04-20T111222.200.json
-
-###
-
-GET http://localhost:8081/cyan/stats
-Content-Type: application/json
-
-<> 2019-04-20T111213.200.json
-
-###
-
-GET http://localhost:8081/cyan/stats
-Content-Type: application/json
-
-###
-
-GET http://localhost:8081/cyan/stats
-Content-Type: application/json
-
-###
-
-GET http://localhost:8081/cyan/stats
-Content-Type: application/json
-
-###
-
-GET http://localhost:8081/cyan/stats
-Content-Type: application/json
-
-<> 2019-04-20T110959.200.json
-
-###
-
-GET http://localhost:8081/cyan/users/webflux
-
-<> 2019-04-19T124326.200.txt
-
-###
-
-GET http://localhost:8081/cyan/users/webflux
-
-<> 2019-04-19T124324.200.txt
-
-###
-
-GET http://localhost:8081/cyan/users/latest
-Content-Type: application/json
-
-<> 2019-04-19T124320-1.200.json
-
-###
-
-GET http://localhost:8081/cyan/users/latest
-Content-Type: application/json
-
-<> 2019-04-19T124320.200.json
-
-###
-
-GET http://localhost:8081/cyan/users/latest
-Content-Type: application/json
-
-<> 2019-04-19T124319-1.200.json
-
-###
-
-GET http://localhost:8081/cyan/users/latest
-Content-Type: application/json
-
-<> 2019-04-19T124319.200.json
-
-###
-
-GET http://localhost:8081/cyan/users/latest
-Content-Type: application/json
-
-<> 2019-04-19T124318.200.json
-
-###
-
-GET http://localhost:8081/cyan/users/latest
-Content-Type: application/json
-
-<> 2019-04-19T124316.200.json
 
 ###
 
