@@ -73,7 +73,8 @@ public final class WebClientCountriesService {
 
     public Country createCountry(final Country country) {
         LOGGER.info("Create Country with WebClient");
-        return greenWebClient.post()
+        return greenWebClient
+                .post()
                 .uri("green/countries")
                 .syncBody(country)
                 .retrieve()
@@ -84,7 +85,8 @@ public final class WebClientCountriesService {
     public Country updateCountry(final Long id, final Country country) {
         LOGGER.info("Update Country {} with WebClient", id);
         final Country updatedCountry = country.cloneWithNewId(id);
-        return greenWebClient.put()
+        return greenWebClient
+                .put()
                 .uri("green/countries/{id}", id)
                 .syncBody(updatedCountry)
                 .retrieve()
@@ -94,7 +96,8 @@ public final class WebClientCountriesService {
 
     public void deleteCountry(final Long id) {
         LOGGER.info("Delete Country {} with WebClient", id);
-        greenWebClient.delete()
+        greenWebClient
+                .delete()
                 .uri("green/countries/{id}", id)
                 .retrieve()
                 .bodyToMono(Void.class)

@@ -105,11 +105,11 @@ public WebClient greenHalWebClient() {
 define a couple of `ParameterizedTypeReference`s
 
 ~~~java
-    private static final ParameterizedTypeReference<Resource<Country>> COUNTRY_TYPE_REF = 
-        new ParameterizedTypeReference<>() {};
-        
-    private static final ParameterizedTypeReference<Resources<Resource<Country>>> COUNTRIES_TYPE_REF = 
-        new ParameterizedTypeReference<>() {};
+private static final ParameterizedTypeReference<Resource<Country>> COUNTRY_TYPE_REF = 
+    new ParameterizedTypeReference<>() {};
+    
+private static final ParameterizedTypeReference<Resources<Resource<Country>>> COUNTRIES_TYPE_REF = 
+    new ParameterizedTypeReference<>() {};
 ~~~
 
 and include a utility class to extract a list of objects from `Resources`.

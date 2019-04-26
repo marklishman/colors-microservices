@@ -63,7 +63,8 @@ Content-Type: application/json
 #
 # See response from POST above for id
 
-PUT http://localhost:8081/cyan/countries/{id}
+#PUT http://localhost:8081/cyan/countries/{id}
+PUT http://localhost:8081/cyan/countries/265
 Content-Type: application/json
 
 {
@@ -81,6 +82,7 @@ Content-Type: application/json
 # See response from POST above for id
 
 
-DELETE http://localhost:8081/cyan/countries/{id}
+#DELETE http://localhost:8081/cyan/countries/{id}
+DELETE http://localhost:8081/cyan/countries/265
 
 ###
