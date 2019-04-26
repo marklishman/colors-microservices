@@ -16,19 +16,19 @@ public final class TraversonGroupService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(TraversonGroupService.class);
 
-    private final Traverson greenTraverson;
+    private final Traverson purpleTraverson;
 
-    public TraversonGroupService(Traverson greenTraverson) {
-        this.greenTraverson = greenTraverson;
+    public TraversonGroupService(Traverson purpleTraverson) {
+        this.purpleTraverson = purpleTraverson;
     }
 
     public Collection<Group> getGroups() {
-        LOGGER.info("Get Groups with HAL");
+        LOGGER.info("Get Groups with Traverson as HAL");
 
         final ParameterizedTypeReference<Resources<Group>> groupsResourceTypeReference =
                 new ParameterizedTypeReference<>() {};
 
-        final Resources<Group> GroupsResource = greenTraverson
+        final Resources<Group> GroupsResource = purpleTraverson
                 .follow("groups")
                 .toObject(groupsResourceTypeReference);
 
@@ -36,15 +36,15 @@ public final class TraversonGroupService {
     }
 
     public Group getGroup(final Long pos) {
-        LOGGER.info("Get Group {} with HAL", pos);
+        LOGGER.info("Get Group at position {} with Traverson as HAL", pos);
 
         final ParameterizedTypeReference<Resource<Group>> groupResourceTypeReference =
                 new ParameterizedTypeReference<>() {};
 
         final String rel = String.format("$._embedded.groups[%s]._links.self.href", pos);
 
-        final Resource<Group> groupResource = greenTraverson
-                .follow(rel)
+        final Resource<Group> groupResource = purpleTraverson
+                .follow("groups", rel)
                 .toObject(groupResourceTypeReference);
 
         return groupResource.getContent();

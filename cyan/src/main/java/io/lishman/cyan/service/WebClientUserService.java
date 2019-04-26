@@ -8,6 +8,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
+import reactor.core.Disposable;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -19,6 +20,7 @@ public final class WebClientUserService {
     private final WebClient whiteWebClient;
     private final WebClientUserWebFluxClient webClientUserWebFluxClient;
 
+    private Disposable disposable;
     private UserEvent latestUserEvent;
 
     public WebClientUserService(WebClient whiteWebClient, final WebClientUserWebFluxClient webClientUserWebFluxClient) {
@@ -27,8 +29,7 @@ public final class WebClientUserService {
     }
 
     public ResponseEntity<Flux<User>> getUsers() {
-        LOGGER.info("Get Users");
-
+        LOGGER.info("Get Users with WebClient from WebFlux");
         final Flux<User> users = whiteWebClient
                 .get()
                 .uri("/controller/users")
@@ -40,6 +41,7 @@ public final class WebClientUserService {
     }
 
     public ResponseEntity<Mono<User>> getUser(final String id) {
+        LOGGER.info("Get User {} with WebClient from WebFlux", id);
         final Mono<User> user = whiteWebClient
                 .get()
                 .uri("/controller/users/{id}", id)
@@ -51,17 +53,23 @@ public final class WebClientUserService {
     }
 
     public void webFluxClient() {
+        LOGGER.info("Multiple calls to WebFux API with WebClient");
         webClientUserWebFluxClient.runClient();
+    }
+
+    public String toggleUserEventStream() {
+        return this.disposable == null ?
+                startUserEventStream() :
+                stopUserEventStream();
     }
 
     public UserEvent getLatestUserEvent() {
         return latestUserEvent;
     }
 
-//    @PostConstruct
-    public void userEventStream() {
+    private String startUserEventStream() {
         LOGGER.info("Starting User Event Stream");
-        whiteWebClient
+        disposable = whiteWebClient
                 .get()
                 .uri("/controller/users/events")
                 .accept(MediaType.TEXT_EVENT_STREAM)
@@ -69,6 +77,14 @@ public final class WebClientUserService {
                 .bodyToFlux(UserEvent.class)
                 .log()
                 .subscribe(userEvent -> latestUserEvent = userEvent);
+        return "started";
+    }
+
+    private String stopUserEventStream() {
+        LOGGER.info("Stopping User Event Stream");
+        disposable.dispose();
+        disposable = null;
+        return "stopped";
     }
 
 }

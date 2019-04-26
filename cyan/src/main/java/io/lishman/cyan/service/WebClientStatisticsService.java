@@ -25,7 +25,7 @@ public final class WebClientStatisticsService {
     }
 
     public Statistics getStats() {
-        LOGGER.info("Get Statistics");
+        LOGGER.info("Get Statistics with WebClient");
 
         final Mono<Long> peopleCountMono = greenWebClient
                 .get()

@@ -1,13 +1,15 @@
 
 
 # -----------------------------------------------------------------------------
-# users, Flux
+# users, WebClient, WebFlux
 
 GET http://localhost:8081/cyan/users
 Content-Type: application/json
 
 ###
 
+
+# Get a UUID from White service console output
 
 GET http://localhost:8081/cyan/users/{UUID}
 Content-Type: application/json
@@ -16,7 +18,7 @@ Content-Type: application/json
 
 
 # -----------------------------------------------------------------------------
-# webflux features
+# users, multiple calls to WebFlux API
 
 GET http://localhost:8081/cyan/users/webflux
 
@@ -24,9 +26,17 @@ GET http://localhost:8081/cyan/users/webflux
 
 
 # -----------------------------------------------------------------------------
-# latest user event
+# event streams
 
-GET http://localhost:8081/cyan/users/latest
+# Toggle the event stream on and off
+POST http://localhost:8081/cyan/users/events/toggle
+Content-Type: application/json
+
+###
+
+
+# Get the latest event
+GET http://localhost:8081/cyan/users/events/latest
 Content-Type: application/json
 
 ###

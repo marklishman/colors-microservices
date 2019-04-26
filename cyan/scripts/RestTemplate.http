@@ -1,7 +1,7 @@
 
 
 # -----------------------------------------------------------------------------
-# people, RestTemplate
+# people, RestTemplate, HAL
 
 GET http://localhost:8081/cyan/people?client=resttemplate
 Content-Type: application/json

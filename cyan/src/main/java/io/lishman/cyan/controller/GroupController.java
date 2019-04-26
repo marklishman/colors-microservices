@@ -26,9 +26,9 @@ class GroupController {
         return ResponseEntity.ok(groups);
     }
 
-    @GetMapping("{id}")
-    ResponseEntity<Group> getGroupById(@PathVariable("id") final Long id) {
-        final Group group = traversonGroupService.getGroup(id);
+    @GetMapping("{pos}")
+    ResponseEntity<Group> getGroupById(@PathVariable("pos") final Long pos) {
+        final Group group = traversonGroupService.getGroup(pos);
         return ResponseEntity.ok(group);
     }
 

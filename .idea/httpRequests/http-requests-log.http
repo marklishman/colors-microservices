@@ -1,22 +1,201 @@
-DELETE http://localhost:8081/cyan/countries/262
+POST http://localhost:8081/cyan/users/events/toggle
+Content-Type: application/json
 
-<> 2019-04-25T014055.500.json
-
-###
-
-DELETE http://localhost:8081/cyan/countries/262
+<> 2019-04-26T111609.200.txt
 
 ###
 
-PUT http://localhost:8081/cyan/countries/10
+GET http://localhost:8081/cyan/users/events/latest
+Content-Type: application/json
+
+<> 2019-04-26T111606.200.json
+
+###
+
+GET http://localhost:8081/cyan/users/events/latest
+Content-Type: application/json
+
+<> 2019-04-26T111604.200.json
+
+###
+
+GET http://localhost:8081/cyan/users/events/latest
+Content-Type: application/json
+
+<> 2019-04-26T111602.200.json
+
+###
+
+POST http://localhost:8081/cyan/users/events/toggle
+Content-Type: application/json
+
+<> 2019-04-26T111555.200.txt
+
+###
+
+POST http://localhost:8081/cyan/users/events/toggle
+Content-Type: application/json
+
+<> 2019-04-26T111553.200.txt
+
+###
+
+POST http://localhost:8081/cyan/users/events/toggle
+Content-Type: application/json
+
+<> 2019-04-26T111547.200.txt
+
+###
+
+POST http://localhost:8081/cyan/users/events/toggle
+Content-Type: application/json
+
+<> 2019-04-26T111437.200.txt
+
+###
+
+POST http://localhost:8081/cyan/users/events/toggle
+Content-Type: application/json
+
+<> 2019-04-26T111431.200.txt
+
+###
+
+GET http://localhost:8081/cyan/users/events/stop
+Content-Type: application/json
+
+<> 2019-04-26T110332.200.txt
+
+###
+
+GET http://localhost:8081/cyan/users/events/latest
+Content-Type: application/json
+
+<> 2019-04-26T110330.200.json
+
+###
+
+GET http://localhost:8081/cyan/users/events/latest
+Content-Type: application/json
+
+<> 2019-04-26T110329.200.json
+
+###
+
+GET http://localhost:8081/cyan/users/events/latest
+Content-Type: application/json
+
+<> 2019-04-26T110328.200.json
+
+###
+
+GET http://localhost:8081/cyan/users/events/latest
+Content-Type: application/json
+
+<> 2019-04-26T110325.200.json
+
+###
+
+GET http://localhost:8081/cyan/users/events/start
+Content-Type: application/json
+
+<> 2019-04-26T110320.200.txt
+
+###
+
+GET http://localhost:8081/cyan/users/events/latest
+Content-Type: application/json
+
+<> 2019-04-26T110250.200.json
+
+###
+
+GET http://localhost:8081/cyan/users/events/stop
+Content-Type: application/json
+
+<> 2019-04-26T110221.200.txt
+
+###
+
+GET http://localhost:8081/cyan/users/events/latest
+Content-Type: application/json
+
+<> 2019-04-26T110217.200.json
+
+###
+
+GET http://localhost:8081/cyan/users/events/latest
+Content-Type: application/json
+
+<> 2019-04-26T110216.200.json
+
+###
+
+GET http://localhost:8081/cyan/users/events/latest
+Content-Type: application/json
+
+<> 2019-04-26T110215.200.json
+
+###
+
+GET http://localhost:8081/cyan/users/events/latest
+Content-Type: application/json
+
+<> 2019-04-26T110211.200.json
+
+###
+
+GET http://localhost:8081/cyan/users/events/start
+Content-Type: application/json
+
+<> 2019-04-26T110201.200.txt
+
+###
+
+GET http://localhost:8081/cyan/users/webflux
+
+<> 2019-04-26T090329.200.txt
+
+###
+
+GET http://localhost:8081/cyan/users/5cc2ac868b80950f25a74c92
+Content-Type: application/json
+
+<> 2019-04-26T090002.200.json
+
+###
+
+GET http://localhost:8081/cyan/users/{UUID}
+Content-Type: application/json
+
+###
+
+GET http://localhost:8081/cyan/users
+Content-Type: application/json
+
+<> 2019-04-26T085813.200.json
+
+###
+
+DELETE http://localhost:8081/cyan/countries/264
+
+###
+
+DELETE http://localhost:8081/cyan/countries/263
+
+<> 2019-04-26T085326.500.json
+
+###
+
+PUT http://localhost:8081/cyan/countries/264
 Content-Type: application/json
 
 {
-  "code": "AG",
-  "name": "Antigua & Barbuda"
+  "code": "OX",
+  "name": "Updated obscure country name"
 }
 
-<> 2019-04-25T014026.200.json
+<> 2019-04-26T085323.200.json
 
 ###
 
@@ -28,401 +207,162 @@ Content-Type: application/json
   "name": "Some Obscure Country"
 }
 
-<> 2019-04-25T014022.201.json
+<> 2019-04-26T085316.201.json
+
+###
+
+DELETE http://localhost:8081/cyan/countries/263
+
+###
+
+PUT http://localhost:8081/cyan/countries/263
+Content-Type: application/json
+
+{
+  "code": "OX",
+  "name": "Updated obscure country name"
+}
+
+<> 2019-04-26T085241.200.json
+
+###
+
+PUT http://localhost:8081/cyan/countries/263
+Content-Type: application/json
+
+{
+  "code": "OX",
+  "name": "Updated obscure country name"
+}
+
+<> 2019-04-26T085036.200.json
+
+###
+
+PUT http://localhost:8081/cyan/countries/{id}
+Content-Type: application/json
+
+{
+  "code": "OX",
+  "name": "Updated obscure country name"
+}
+
+###
+
+POST http://localhost:8081/cyan/countries
+Content-Type: application/json
+
+{
+  "code": "OB",
+  "name": "Some Obscure Country"
+}
+
+<> 2019-04-26T084747.201.json
 
 ###
 
 GET http://localhost:8081/cyan/stats
 Content-Type: application/json
 
-<> 2019-04-25T014012.200.json
+<> 2019-04-26T084739.200.json
+
+###
+
+GET http://localhost:8081/cyan/stats
+Content-Type: application/json
+
+<> 2019-04-26T083756.200.json
 
 ###
 
 GET http://localhost:8081/cyan/countries/20?format=hal
 Accept: application/json
 
-<> 2019-04-25T013304.200.json
+<> 2019-04-26T083746.200.json
 
 ###
 
 GET http://localhost:8081/cyan/countries?format=hal
 Accept: application/json
 
-<> 2019-04-25T013244.200.json
+<> 2019-04-26T083738.200.json
 
 ###
 
 GET http://localhost:8081/cyan/countries/20
 Accept: application/json
 
-<> 2019-04-25T013241.200.json
+<> 2019-04-26T083728.200.json
 
 ###
 
 GET http://localhost:8081/cyan/countries
 Accept: application/json
 
-<> 2019-04-25T013237.200.json
+<> 2019-04-26T083721.200.json
 
 ###
 
-GET http://localhost:8081/cyan/people/2?client=feign
+GET http://localhost:8081/cyan/groups/0
 Content-Type: application/json
 
-<> 2019-04-25T013231.200.json
+<> 2019-04-26T082617.200.json
 
 ###
 
-GET http://localhost:8081/cyan/people?client=feign
+GET http://localhost:8081/cyan/groups
 Content-Type: application/json
 
-<> 2019-04-25T013227.200.json
+<> 2019-04-26T082600.200.json
 
 ###
 
 GET http://localhost:8081/cyan/people/2?client=resttemplate
 Content-Type: application/json
 
-<> 2019-04-25T013057.200.json
+<> 2019-04-26T082413.200.json
 
 ###
 
 GET http://localhost:8081/cyan/people?client=resttemplate
 Content-Type: application/json
 
-<> 2019-04-25T013054.200.json
+<> 2019-04-26T082404.200.json
 
 ###
 
-GET http://localhost:8081/cyan/people/2?client=feign
+GET http://localhost:8081/cyan/people?client=resttemplate
 Content-Type: application/json
 
-<> 2019-04-25T013038.200.json
+<> 2019-04-26T082329.200.json
 
 ###
 
-GET http://localhost:8081/cyan/people?client=feign
+GET http://localhost:8081/cyan/groups/0
 Content-Type: application/json
 
-<> 2019-04-25T013022.200.json
+<> 2019-04-26T081222.200.json
 
 ###
 
-GET http://localhost:8081/cyan/people/2?client=feign
+GET http://localhost:8081/cyan/groups/1
 Content-Type: application/json
 
-<> 2019-04-25T013009.200.json
+<> 2019-04-26T081213.200.json
 
 ###
 
-GET http://localhost:8081/cyan/people/2?client=feign
+GET http://localhost:8081/cyan/groups
 Content-Type: application/json
 
-<> 2019-04-25T012916.500.json
+<> 2019-04-26T081204.200.json
 
 ###
 
-GET http://localhost:8081/cyan/people/2?client=feign
+GET http://localhost:8081/cyan/people?client=resttemplate
 Content-Type: application/json
 
-###
-
-DELETE http://localhost:8081/cyan/countries/261
-
-###
-
-POST http://localhost:8081/cyan/countries
-Content-Type: application/json
-
-{
-  "code": "OB",
-  "name": "Some Obscure Country"
-}
-
-<> 2019-04-24T011154.201.json
-
-###
-
-PUT http://localhost:8081/cyan/countries/10
-Content-Type: application/json
-
-{
-  "code": "AG",
-  "name": "Antigua & Barbuda"
-}
-
-<> 2019-04-24T010759.200.json
-
-###
-
-DELETE http://localhost:8021/green/countries/260
-
-<> 2019-04-24T083848.500.json
-
-###
-
-DELETE http://localhost:8021/green/countries/260
-
-###
-
-DELETE http://localhost:8021/green/countries/260
-
-<> 2019-04-24T082630.405.json
-
-###
-
-DELETE http://localhost:8021/cyan/countries/260
-Content-Type: application/json
-
-<> 2019-04-24T082617.404.html
-
-###
-
-DELETE http://localhost:8021/cyan/countries/260
-
-<> 2019-04-24T082607.404.html
-
-###
-
-PUT http://localhost:8021/cyan/countries/260
-
-<> 2019-04-24T082541.404.html
-
-###
-
-POST http://localhost:8021/green/countries
-Content-Type: application/json
-
-{
-  "code": "OB",
-  "name": "Some Obscure Country"
-}
-
-<> 2019-04-24T082426.201.json
-
-###
-
-POST http://localhost:8021/green/countries
-Content-Type: application/json
-
-{
-  "code": "OB",
-  "name": "Some Obscure Country"
-}
-
-<> 2019-04-24T082338.201.json
-
-###
-
-POST http://localhost:8081/green/countries
-Content-Type: application/json
-
-{
-  "code": "OB",
-  "name": "Some Obscure Country"
-}
-
-###
-
-PUT http://localhost:8021/green/countries/10
-Content-Type: application/json
-
-{
-  "code": "AG",
-  "name": "Antigua & Barbuda"
-}
-
-<> 2019-04-24T081324.200.json
-
-###
-
-PUT http://localhost:8021/green/countries/10
-Content-Type: application/json
-
-{
-  "code": "AG",
-  "name": "Antigua & Barbuda"
-}
-
-<> 2019-04-24T080456.500.json
-
-###
-
-PUT http://localhost:8021/green/countries/10
-Content-Type: application/json
-
-{
-  "code": "AG",
-  "name": "Antigua & Barbuda"
-}
-
-<> 2019-04-24T080443.500.json
-
-###
-
-PUT http://localhost:8021/green/countries/10
-Content-Type: application/json
-
-{
-  "code": "AG",
-  "name": "Antigua & Barbuda"
-}
-
-<> 2019-04-24T064906.500.json
-
-###
-
-PUT http://localhost:8021/green/countries/10
-Content-Type: application/json
-
-{
-  "code": "AG",
-  "name": "Antigua & Barbuda"
-}
-
-<> 2019-04-24T064757.500.json
-
-###
-
-PUT http://localhost:8021/green/countries/10
-Content-Type: application/json
-
-{
-  "code": "AG",
-  "name": "Antigua & Barbuda"
-}
-
-<> 2019-04-24T064206.500.json
-
-###
-
-PUT http://localhost:8081/cyan/countries/10
-Content-Type: application/json
-
-{
-  "code": "AG",
-  "name": "Antigua & Barbuda"
-}
-
-<> 2019-04-23T064851.500.json
-
-###
-
-PUT http://localhost:8081/cyan/countries/10
-Content-Type: application/json
-
-{
-  "code": "AG",
-  "name": "Antigua & Barbuda"
-}
-
-<> 2019-04-23T064802.500.json
-
-###
-
-PUT http://localhost:8081/cyan/countries/10
-Content-Type: application/json
-
-{
-  "code": "AG",
-  "name": "Antigua & Barbuda"
-}
-
-<> 2019-04-23T064242.500.json
-
-###
-
-PUT http://localhost:8081/cyan/countries/10
-Content-Type: application/json
-
-{
-  "code": "AG",
-  "name": "Antigua & Barbuda"
-}
-
-<> 2019-04-23T061719.500.json
-
-###
-
-PUT http://localhost:8081/cyan/countries/10
-Content-Type: application/json
-
-{
-  "code": "AG",
-  "name": "Antigua & Barbuda"
-}
-
-<> 2019-04-23T125957.500.json
-
-###
-
-POST http://localhost:8081/cyan/countries
-Content-Type: application/json
-
-{
-  "code": "XX",
-  "name": "Xxxxxx"
-}
-
-<> 2019-04-23T094028.201.json
-
-###
-
-POST http://localhost:8081/cyan/countries
-Content-Type: application/json
-
-{
-  "code": "XX",
-  "name": "Xxxxxx"
-}
-
-<> 2019-04-23T093503.201.json
-
-###
-
-GET http://localhost:8081/cyan/countries/20
-Accept: application/json
-
-<> 2019-04-23T093436.200.json
-
-###
-
-GET http://localhost:8081/cyan/countries/20
-Accept: application/json
-
-###
-
-GET http://localhost:8081/cyan/countries/20
-Accept: application/json
-
-<> 2019-04-22T105018.200.json
-
-###
-
-GET http://localhost:8081/cyan/countries/20
-Accept: application/json
-
-###
-
-GET http://localhost:8081/cyan/countries/20
-Accept: application/json
-
-<> 2019-04-22T104922.200.json
-
-###
-
-GET http://localhost:8081/cyan/countries/20
-Accept: application/json
-
-<> 2019-04-22T104653.200.json
-
-###
-
-GET http://localhost:8081/cyan/countries/20
-Accept: application/json
-
-<> 2019-04-22T104331.200.json
+<> 2019-04-26T080817.200.json
 
 ###
 

@@ -29,7 +29,7 @@ public final class WebClientCountriesService {
     }
 
     public List<Country> getCountries() {
-        LOGGER.info("Get Countries");
+        LOGGER.info("Get Countries with WebClient");
         return greenWebClient
                 .get()
                 .uri("green/countries")
@@ -40,7 +40,7 @@ public final class WebClientCountriesService {
     }
 
     public List<Country> getCountriesAsHal() {
-        LOGGER.info("Get Countries with HAL");
+        LOGGER.info("Get Countries with WebClient as HAL");
         return greenHalWebClient
                 .get()
                 .uri("green/countries")
@@ -51,7 +51,7 @@ public final class WebClientCountriesService {
     }
 
     public Country getCountry(final Long id) {
-        LOGGER.info("Get Country {}", id);
+        LOGGER.info("Get Country {} with WebClient", id);
         return greenWebClient
                 .get()
                 .uri("green/countries/{id}", id)
@@ -61,7 +61,7 @@ public final class WebClientCountriesService {
     }
 
     public Country getCountryAsHal(final Long id) {
-        LOGGER.info("Get Country {} with HAL", id);
+        LOGGER.info("Get Country {} with WebClient as HAL", id);
         return greenHalWebClient
                 .get()
                 .uri("green/countries/{id}", id)
@@ -72,7 +72,7 @@ public final class WebClientCountriesService {
     }
 
     public Country createCountry(final Country country) {
-        LOGGER.info("Create Country");
+        LOGGER.info("Create Country with WebClient");
         return greenWebClient.post()
                 .uri("green/countries")
                 .syncBody(country)
@@ -82,7 +82,7 @@ public final class WebClientCountriesService {
     }
 
     public Country updateCountry(final Long id, final Country country) {
-        LOGGER.info("Update Country");
+        LOGGER.info("Update Country {} with WebClient", id);
         final Country updatedCountry = country.cloneWithNewId(id);
         return greenWebClient.put()
                 .uri("green/countries/{id}", id)
@@ -93,7 +93,7 @@ public final class WebClientCountriesService {
     }
 
     public void deleteCountry(final Long id) {
-        LOGGER.info("Delete Country");
+        LOGGER.info("Delete Country {} with WebClient", id);
         greenWebClient.delete()
                 .uri("green/countries/{id}", id)
                 .retrieve()

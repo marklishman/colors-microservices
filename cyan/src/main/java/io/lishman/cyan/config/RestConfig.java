@@ -73,7 +73,7 @@ public class RestConfig {
     // ~~~~ Traverson
 
     @Bean
-    public Traverson greenTraverson() {
+    public Traverson purpleTraverson() {
         return new Traverson(getUri("http://localhost:8061/purple/api"), MediaTypes.HAL_JSON);
     }
 

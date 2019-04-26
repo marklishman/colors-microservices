@@ -25,7 +25,7 @@ public final class RestTemplatePeopleService {
     }
 
     public List<Person> getPeople() {
-        LOGGER.info("Get People with RestTemplate and HAL");
+        LOGGER.info("Get People with RestTemplate as HAL");
 
         final ParameterizedTypeReference<Resources<Resource<Person>>> peopleResourceTypeReference =
                 new ParameterizedTypeReference<>() {};
@@ -42,7 +42,7 @@ public final class RestTemplatePeopleService {
     }
 
     public Person getPerson(final Long id) {
-        LOGGER.info("Get Person {} with RestTemplate and HAL", id);
+        LOGGER.info("Get Person {} with RestTemplate as HAL", id);
 
         final ParameterizedTypeReference<Resource<Person>> personResourceTypeReference =
                 new ParameterizedTypeReference<>() {};

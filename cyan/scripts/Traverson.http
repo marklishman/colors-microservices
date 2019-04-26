@@ -1,7 +1,7 @@
 
 
 # -----------------------------------------------------------------------------
-# groups, traverson
+# groups, Traverson
 
 GET http://localhost:8081/cyan/groups
 Content-Type: application/json

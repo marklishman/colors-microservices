@@ -1,7 +1,7 @@
 
 
 # -----------------------------------------------------------------------------
-# countries, WebClient, JSON
+# countries, WebClient
 
 GET http://localhost:8081/cyan/countries
 Accept: application/json
@@ -34,7 +34,7 @@ Accept: application/json
 
 
 # -----------------------------------------------------------------------------
-# stats, merge
+# stats, WebClient, merge
 
 GET http://localhost:8081/cyan/stats
 Content-Type: application/json
@@ -60,13 +60,15 @@ Content-Type: application/json
 
 # -----------------------------------------------------------------------------
 # PUT, WebClient
+#
+# See response from POST above for id
 
-PUT http://localhost:8081/cyan/countries/10
+PUT http://localhost:8081/cyan/countries/{id}
 Content-Type: application/json
 
 {
-  "code": "AG",
-  "name": "Antigua & Barbuda"
+  "code": "OX",
+  "name": "Updated obscure country name"
 }
 
 ###
@@ -75,7 +77,10 @@ Content-Type: application/json
 
 # -----------------------------------------------------------------------------
 # DELETE, WebClient
+#
+# See response from POST above for id
 
-DELETE http://localhost:8081/cyan/countries/262
+
+DELETE http://localhost:8081/cyan/countries/{id}
 
 ###
