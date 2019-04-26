@@ -183,6 +183,52 @@ public Statistics getStats() {
 }
 ~~~
 
+## Updates
+
+We can use WebClient to perform updates too.
+
+Post
+
+~~~java
+public Country createCountry(final Country country) {
+    return greenWebClient
+            .post()
+            .uri("green/countries")
+            .syncBody(country)
+            .retrieve()
+            .bodyToMono(Country.class)
+            .block();
+}
+~~~
+
+Put
+
+~~~java
+public Country updateCountry(final Long id, final Country country) {
+    final Country updatedCountry = country.cloneWithNewId(id);
+    return greenWebClient
+            .put()
+            .uri("green/countries/{id}", id)
+            .syncBody(updatedCountry)
+            .retrieve()
+            .bodyToMono(Country.class)
+            .block();
+}
+~~~
+
+Delete
+
+~~~java
+public void deleteCountry(final Long id) {
+    greenWebClient
+            .delete()
+            .uri("green/countries/{id}", id)
+            .retrieve()
+            .bodyToMono(Void.class)
+            .block();
+}
+~~~
+
 # WebFlux
 
 We can of course use `WebClient` with WebFlux. 
