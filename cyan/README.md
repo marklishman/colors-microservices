@@ -447,3 +447,37 @@ public Group getGroup(final Long pos) {
     return groupResource.getContent();
 }
 ~~~
+
+---
+
+# Extra JSON Data
+
+Adding data to the representation of a resource will not break existing clients if 
+these are correctly implemented.
+
+For example, the green service returns this JSON for a Person.
+
+~~~json
+{
+  "id": 3,
+  "firstName": "Roger",
+  "lastName": "Smith",
+  "age": 24,
+  "fullName": "Roger Smith",
+  "adult": true
+} 
+~~~
+
+However the client uses this static factory method to create the object.
+
+~~~java
+@JsonCreator
+public static Person newInstance(@JsonProperty("id") Long id,
+                                 @JsonProperty("firstName") String firstName,
+                                 @JsonProperty("lastName") String lastName,
+                                 @JsonProperty("age") int age) {
+    return new Person(id, firstName, lastName, age);
+}
+~~~
+
+The extra properties are ignored.
