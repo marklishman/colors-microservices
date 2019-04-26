@@ -18,18 +18,6 @@
 
 ---
 
-# Service Classes
-
-* `CountriesService` - WebClient, synchronous
-* `GroupService` - Traverson
-* `PeopleFeignClient` - Feign
-* `PeopleService` - RestTemplate, Feign
-* `StatisticsService` - WebClient, synchronous
-* `UserService` - WebClient, WebFlux
-* `WebClientApi` - WebClient, WebFlux
-
----
-
 # WebClient
 
 > Non-blocking, reactive client to perform HTTP requests, exposing a fluent, reactive API over underlying HTTP client libraries such as Reactor Netty.
@@ -139,7 +127,7 @@ public List<Country> getCountriesAsHal() {
             .uri("green/countries")
             .retrieve()
             .bodyToMono(COUNTRIES_TYPE_REF)
-            .map(ResourceUtils::getContent)
+            .map(ClientUtils::getResourcesContent)
             .block();
 }
 ~~~
@@ -210,7 +198,7 @@ final Flux<User> users = whiteWebClient
         .bodyToFlux(User.class);
 ~~~
 
-a post
+or a post.
 
 ~~~java
 return whiteWebClient
@@ -222,7 +210,7 @@ return whiteWebClient
         .doOnSuccess(o -> System.out.println("**********POST " + o));
 ~~~
 
-or an event stream.
+## Event Streams
 
 ~~~java
 whiteWebClient
@@ -269,8 +257,6 @@ and use the `exchange` method with a `ParameterizedTypeReference`.
 
 ~~~java
 public List<Person> getPeople() {
-    LOGGER.info("Get People with RestTemplate and HAL");
-
     final ParameterizedTypeReference<Resources<Resource<Person>>> peopleResourceTypeReference =
             new ParameterizedTypeReference<>() {};
 
@@ -310,7 +296,7 @@ and create the client interface.
 
 ~~~java
 @FeignClient(name = "people", url = "http://localhost:8021/green/people")
-public interface PeopleFeignClient {
+public interface FeignPeopleClient {
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     List<Person> getPeople();
@@ -323,12 +309,22 @@ public interface PeopleFeignClient {
 To use the Feign client simply call the methods on the interface.
 
 ~~~java
-public List<Person> getPeopleWithFeign() {
-    return peopleFeignClient.getPeople();
-}
+@Service
+public final class FeignPeopleService {
 
-public Person getPersonWithFeign(final Long id) {
-    return peopleFeignClient.getPerson(id);
+    private final FeignPeopleClient feignPeopleClient;
+
+    public FeignPeopleService(final FeignPeopleClient feignPeopleClient) {
+        this.feignPeopleClient = feignPeopleClient;
+    }
+
+    public List<Person> getPeople() {
+        return feignPeopleClient.getPeople();
+    }
+
+    public Person getPerson(final Long id) {
+        return feignPeopleClient.getPerson(id);
+    }
 }
 ~~~ 
 
@@ -342,7 +338,7 @@ Create the bean
 
 ~~~java
 @Bean
-public Traverson greenTraverson() {
+public Traverson purpleTraverson() {
     return new Traverson(getUri("http://localhost:8061/purple/api"), MediaTypes.HAL_JSON);
 }
 ~~~
@@ -354,7 +350,7 @@ public Collection<Group> getGroups() {
     final ParameterizedTypeReference<Resources<Group>> groupsResourceTypeReference =
             new ParameterizedTypeReference<>() {};
 
-    final Resources<Group> GroupsResource = greenTraverson
+    final Resources<Group> GroupsResource = purpleTraverson
             .follow("groups")
             .toObject(groupsResourceTypeReference);
 
@@ -364,15 +360,17 @@ public Collection<Group> getGroups() {
 
 or use JSONPath.
 
-~~~java    
+~~~java   
 public Group getGroup(final Long pos) {
+    LOGGER.info("Get Group at position {} with Traverson as HAL", pos);
+
     final ParameterizedTypeReference<Resource<Group>> groupResourceTypeReference =
             new ParameterizedTypeReference<>() {};
 
     final String rel = String.format("$._embedded.groups[%s]._links.self.href", pos);
 
-    final Resource<Group> groupResource = greenTraverson
-            .follow(rel)
+    final Resource<Group> groupResource = purpleTraverson
+            .follow("groups", rel)
             .toObject(groupResourceTypeReference);
 
     return groupResource.getContent();
