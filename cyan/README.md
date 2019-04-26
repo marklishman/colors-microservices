@@ -258,8 +258,27 @@ return whiteWebClient
 
 ## Event Streams
 
+Suppose this stream of events is produced on the server.
+
 ~~~java
-whiteWebClient
+@GetMapping(value = "/events", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
+public Flux<UserEvent> getUserEvents() {
+    return Flux.interval(Duration.ofSeconds(2))
+            .map(val ->
+                    new UserEvent(val, "User Event " + val)
+            );
+}
+~~~
+
+We can subscribe to the stream like this
+
+~~~java
+private Disposable disposable;
+private UserEvent latestUserEvent;
+~~~
+
+~~~java
+disposable = whiteWebClient
         .get()
         .uri("/controller/users/events")
         .accept(MediaType.TEXT_EVENT_STREAM)
@@ -267,6 +286,12 @@ whiteWebClient
         .bodyToFlux(UserEvent.class)
         .log()
         .subscribe(userEvent -> latestUserEvent = userEvent);
+~~~
+
+and cancel the subscription when we are done.
+
+~~~java
+disposable.dispose();
 ~~~
 
 ---
