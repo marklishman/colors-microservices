@@ -2,7 +2,10 @@
 
 ## Features
 
+* Spring Boot
+* Spring Data JPA
 * Spring HATEOAS
+* Testing
 
 ---
 
@@ -14,17 +17,5 @@
 * Run the `scripts/sql/schema.sql` script in this schema.
 * Run the `scripts/sql/data.sql` script in this schema.
 
-### Eureka
-
-To enable or disable the Eureka client change this property in `application.yml`
-
-~~~yaml
-eureka:
-  client:
-    enabled: true
-~~~
-
-### Elastic Stack
-
-* Use `estack` profile
-* Start filebeats
+### HTTP
+* Run the HTTP scripts in the `/scripts/http` directory

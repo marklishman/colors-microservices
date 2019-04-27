@@ -9,7 +9,7 @@
 
 ---
 
-# Set Up
+# Getting Started
 
 * Start the `ref-db` database
 * Start the `green`, `purple` and `white` services
