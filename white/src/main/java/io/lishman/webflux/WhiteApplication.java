@@ -33,15 +33,15 @@ public class WhiteApplication {
     CommandLineRunner init(EmployeeRepository repo) {
         return args -> {
             Flux<Employee> employeeFlux = Flux.just(
-                new Employee("one", "employee_one", "one@email.com", "012345672", "www.one.com"),
-                new Employee("two", "employee_two", "two@email.com", "056543336", "www.two.com"),
-                new Employee("three", "employee_three", "three@email.com", "048745663", "www.three.com"),
-                new Employee("four", "employee_four", "four@email.com", "087645767", "www.four.com"),
-                new Employee("five", "employee_five", "five@email.com", "087686324", "www.five.com"),
-                new Employee("six", "employee_six", "six@email.com", "074657634", "www.six.com"),
-                new Employee("seven", "employee_seven", "seven@email.com", "083647566", "www.seven.com"),
-                new Employee("eight", "employee_eight", "eight@email.com", "073465763", "www.eight.com"),
-                new Employee("nine", "employee_nine", "nine@email.com", "043756236", "www.nine.com")
+                new Employee("one", "employee_1", "one@email.com", "012345672"),
+                new Employee("two", "employee_2", "two@email.com", "056543336"),
+                new Employee("three", "employee_3", "three@email.com", "048745663"),
+                new Employee("four", "employee_4", "four@email.com", "087645767"),
+                new Employee("five", "employee_5", "five@email.com", "087686324"),
+                new Employee("six", "employee_6", "six@email.com", "074657634"),
+                new Employee("seven", "employee_7", "seven@email.com", "083647566"),
+                new Employee("eight", "employee_8", "eight@email.com", "073465763"),
+                new Employee("nine", "employee_9", "nine@email.com", "043756236")
             ).flatMap(repo::save);
 
             employeeFlux.thenMany(repo.findAll())

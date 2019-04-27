@@ -50,7 +50,7 @@ public class JUnit5WebFluxTestAnnotationTest {
     @BeforeEach
     void beforeEach() {
         this.expectedList = Arrays.asList(
-                new Employee(EMPLOYEE_ID,"one", "employee_one", "one@email.com", "01234567", "www.one.com")
+                new Employee(EMPLOYEE_ID,"one", "employee_one", "one@email.com", "01234567")
         );
     }
 

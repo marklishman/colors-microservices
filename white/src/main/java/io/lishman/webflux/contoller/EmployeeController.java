@@ -61,8 +61,7 @@ public class EmployeeController {
                             employee.getName(),
                             employee.getEmail(),
                             employee.getPhone(),
-                            employee.getEmployeeName(),
-                            employee.getWebsite()
+                            employee.getEmployeeNumber()
                     );
                     return employeeRepository.save(updatedEmployee);
                 })

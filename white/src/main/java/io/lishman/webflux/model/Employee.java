@@ -11,33 +11,29 @@ public final class Employee {
     @Id
     private String employeeId;
     private String name;
-    private String employeeName;
+    private String employeeNumber;
     private String email;
     private String phone;
-    private String website;
 
     public Employee() {
     }
 
     public Employee(final String name,
-                    final String employeeName,
+                    final String employeeNumber,
                     final String email,
-                    final String phone,
-                    final String website) {
+                    final String phone) {
         this.name = name;
-        this.employeeName = employeeName;
+        this.employeeNumber = employeeNumber;
         this.email = email;
         this.phone = phone;
-        this.website = website;
     }
 
     public Employee(final String employeeId,
                     final String name,
-                    final String employeeName,
+                    final String employeeNumber,
                     final String email,
-                    final String phone,
-                    final String website) {
-        this(name, employeeName, email, phone, website);
+                    final String phone) {
+        this(name, employeeNumber, email, phone);
         this.employeeId = employeeId;
     }
 
@@ -49,8 +45,8 @@ public final class Employee {
         return name;
     }
 
-    public String getEmployeeName() {
-        return employeeName;
+    public String getEmployeeNumber() {
+        return employeeNumber;
     }
 
     public String getEmail() {
@@ -61,10 +57,6 @@ public final class Employee {
         return phone;
     }
 
-    public String getWebsite() {
-        return website;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -72,15 +64,14 @@ public final class Employee {
         Employee employee = (Employee) o;
         return Objects.equals(employeeId, employee.employeeId) &&
                 Objects.equals(name, employee.name) &&
-                Objects.equals(employeeName, employee.employeeName) &&
+                Objects.equals(employeeNumber, employee.employeeNumber) &&
                 Objects.equals(email, employee.email) &&
-                Objects.equals(phone, employee.phone) &&
-                Objects.equals(website, employee.website);
+                Objects.equals(phone, employee.phone);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(employeeId, name, employeeName, email, phone, website);
+        return Objects.hash(employeeId, name, employeeNumber, email, phone);
     }
 
     @Override
@@ -88,10 +79,9 @@ public final class Employee {
         return "Employee{" +
                 "employeeId=" + employeeId +
                 ", name='" + name + '\'' +
-                ", employeeName='" + employeeName + '\'' +
+                ", employeeNumber='" + employeeNumber + '\'' +
                 ", email='" + email + '\'' +
                 ", phone='" + phone + '\'' +
-                ", website='" + website + '\'' +
                 '}';
     }
 }
