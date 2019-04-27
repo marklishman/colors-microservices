@@ -1,7 +1,8 @@
 package io.lishman.cyan.controller;
 
 import io.lishman.cyan.model.Person;
-import io.lishman.cyan.service.FeignPeopleService;
+import io.lishman.cyan.model.User;
+import io.lishman.cyan.service.FeignUsersService;
 import io.lishman.cyan.service.RestTemplatePeopleService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,16 +13,16 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/people")
+@RequestMapping("/users")
 class PeopleController {
 
     private final RestTemplatePeopleService restTemplatePeopleService;
-    private final FeignPeopleService feignPeopleService;
+    private final FeignUsersService feignUsersService;
 
     PeopleController(final RestTemplatePeopleService restTemplatePeopleService,
-                     final FeignPeopleService feignPeopleService) {
+                     final FeignUsersService feignUsersService) {
         this.restTemplatePeopleService = restTemplatePeopleService;
-        this.feignPeopleService = feignPeopleService;
+        this.feignUsersService = feignUsersService;
     }
 
     // ~~~~ RestTemplate
@@ -41,15 +42,15 @@ class PeopleController {
     // ~~~~ Feign
 
     @GetMapping(params = "client=feign")
-    ResponseEntity<List<Person>> getPeopleWithFeign() {
-        final List<Person> countries = feignPeopleService.getPeople();
-        return ResponseEntity.ok(countries);
+    ResponseEntity<List<User>> getUsersWithFeign() {
+        final List<User> users = feignUsersService.getUsers();
+        return ResponseEntity.ok(users);
     }
 
     @GetMapping(value = "{id}", params = "client=feign")
-    ResponseEntity<Person> feigetPersonByIdWithFeign(@PathVariable("id") final Long id) {
-        final Person person = feignPeopleService.getPerson(id);
-        return ResponseEntity.ok(person);
+    ResponseEntity<User> getUserByIdWithFeign(@PathVariable("id") final Long id) {
+        final User user = feignUsersService.getUser(id);
+        return ResponseEntity.ok(user);
     }
 
 }

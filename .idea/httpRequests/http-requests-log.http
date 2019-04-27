@@ -1,3 +1,10 @@
+GET http://localhost:8081/cyan/users?client=feign
+Content-Type: application/json
+
+<> 2019-04-27T110056.200.json
+
+###
+
 GET http://localhost:8021/green/users
 Accept: application/json
 
@@ -384,13 +391,6 @@ POST http://localhost:8081/cyan/users/events/toggle
 Content-Type: application/json
 
 <> 2019-04-26T111547.200.txt
-
-###
-
-POST http://localhost:8081/cyan/users/events/toggle
-Content-Type: application/json
-
-<> 2019-04-26T111437.200.txt
 
 ###
 
