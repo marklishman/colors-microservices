@@ -1,0 +1,30 @@
+
+# -----------------------------------------------------------------------------
+# employees (annotated controller)
+
+GET http://localhost:8071/controller/employees
+Content-Type: application/json
+
+###
+
+
+GET http://localhost:8071/controller/employees/{id}
+Content-Type: application/json
+
+###
+
+
+
+# -----------------------------------------------------------------------------
+# employees (functional endpoint)
+
+GET http://localhost:8071/handler/employees
+Content-Type: application/json
+
+###
+
+
+GET http://localhost:8071/handler/employees/{id}
+Content-Type: application/json
+
+###

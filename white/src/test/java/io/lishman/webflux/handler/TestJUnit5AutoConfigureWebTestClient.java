@@ -1,8 +1,8 @@
 package io.lishman.webflux.handler;
 
-import io.lishman.webflux.model.User;
-import io.lishman.webflux.model.UserEvent;
-import io.lishman.webflux.repository.UserRepository;
+import io.lishman.webflux.model.Employee;
+import io.lishman.webflux.model.EmployeeEvent;
+import io.lishman.webflux.repository.EmployeeRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -28,10 +28,10 @@ public class TestJUnit5AutoConfigureWebTestClient {
     @Autowired
     private WebTestClient client;
 
-    private List<User> expectedList;
+    private List<Employee> expectedList;
 
     @Autowired
-    private UserRepository repository;
+    private EmployeeRepository repository;
 
     @BeforeEach
     void beforeEach() {
@@ -48,7 +48,7 @@ public class TestJUnit5AutoConfigureWebTestClient {
                 .exchange()
                 .expectStatus()
                 .isOk()
-                .expectBodyList(User.class)
+                .expectBodyList(Employee.class)
                 .isEqualTo(expectedList);
     }
 
@@ -64,28 +64,28 @@ public class TestJUnit5AutoConfigureWebTestClient {
 
     @Test
     void testUserIdFound() {
-        User expectedUser = expectedList.get(0);
+        Employee expectedEmployee = expectedList.get(0);
         client
                 .get()
-                .uri("/{id}", expectedUser.getUserId())
+                .uri("/{id}", expectedEmployee.getEmployeeId())
                 .exchange()
                 .expectStatus()
                 .isOk()
-                .expectBody(User.class)
-                .isEqualTo(expectedUser);
+                .expectBody(Employee.class)
+                .isEqualTo(expectedEmployee);
     }
 
     @Test
     void testUserEvents() {
-        FluxExchangeResult<UserEvent> result =
+        FluxExchangeResult<EmployeeEvent> result =
                 client.get().uri("/events")
                         .accept(MediaType.TEXT_EVENT_STREAM)
                         .exchange()
                         .expectStatus().isOk()
-                        .returnResult(UserEvent.class);
+                        .returnResult(EmployeeEvent.class);
 
-        UserEvent expectedEvent =
-                new UserEvent(0L, "User Event");
+        EmployeeEvent expectedEvent =
+                new EmployeeEvent(0L, "Employee Event");
 
         StepVerifier.create(result.getResponseBody())
                 .expectNext(expectedEvent)

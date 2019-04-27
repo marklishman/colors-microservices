@@ -15,7 +15,7 @@ Accept: application/json
 
 
 # -----------------------------------------------------------------------------
-# user, HAL
+# employee, HAL
 
 GET http://localhost:8021/green/users
 Accept: application/hal+json

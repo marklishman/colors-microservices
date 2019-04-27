@@ -26,13 +26,13 @@ Consistent with Spring MVC and based on the same annotations from the spring-web
 ~~~java
 @GetMapping
 public Flux<User> getAllUsers() {
-    return userRepository.findAll();
+    return employeeRepository.findAll();
 }
 
 
 @GetMapping("/{id}")
 public Mono<ResponseEntity<User>> getUser(@PathVariable("id") final String id) {
-    return userRepository.findById(id)
+    return employeeRepository.findById(id)
             .map(ResponseEntity::ok)
             .defaultIfEmpty(ResponseEntity.notFound().build());
 }
@@ -81,7 +81,7 @@ handle requests.
 
 ~~~java
 public Mono<ServerResponse> getAllUsers(ServerRequest request) {
-    Flux<User> users = userRepository.findAll();
+    Flux<User> users = employeeRepository.findAll();
 
     return ServerResponse.ok()
             .contentType(APPLICATION_JSON)
@@ -91,14 +91,14 @@ public Mono<ServerResponse> getAllUsers(ServerRequest request) {
 public Mono<ServerResponse> getUser(ServerRequest request) {
     String id = request.pathVariable("id");
 
-    Mono<User> userMono = this.userRepository.findById(id);
+    Mono<User> userMono = this.employeeRepository.findById(id);
     Mono<ServerResponse> notFound = ServerResponse.notFound().build();
 
     return userMono
-            .flatMap(user ->
+            .flatMap(employee ->
                     ServerResponse.ok()
                             .contentType(APPLICATION_JSON)
-                            .body(fromObject(user)))
+                            .body(fromObject(employee)))
             .switchIfEmpty(notFound);
 }
 ~~~

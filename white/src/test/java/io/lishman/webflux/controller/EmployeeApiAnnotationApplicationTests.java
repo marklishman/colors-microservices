@@ -1,9 +1,9 @@
 package io.lishman.webflux.controller;
 
-import io.lishman.webflux.contoller.UserController;
-import io.lishman.webflux.model.User;
-import io.lishman.webflux.model.UserEvent;
-import io.lishman.webflux.repository.UserRepository;
+import io.lishman.webflux.contoller.EmployeeController;
+import io.lishman.webflux.model.Employee;
+import io.lishman.webflux.model.EmployeeEvent;
+import io.lishman.webflux.repository.EmployeeRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -23,20 +23,20 @@ import static org.hamcrest.Matchers.equalTo;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class UserApiAnnotationApplicationTests{
+public class EmployeeApiAnnotationApplicationTests {
 
 	private WebTestClient client;
 
-	private List<User> expectedList;
+	private List<Employee> expectedList;
 
 	@Autowired
-	private UserRepository repository;
+	private EmployeeRepository repository;
 
 	@Before
 	public void beforeEach() {
 		this.client =
 				WebTestClient
-						.bindToController(new UserController(repository))
+						.bindToController(new EmployeeController(repository))
 						.configureClient()
 						.baseUrl("/controller/users")
 						.build();
@@ -53,7 +53,7 @@ public class UserApiAnnotationApplicationTests{
 				.exchange()
 				.expectStatus()
 				.isOk()
-				.expectBodyList(User.class)
+				.expectBodyList(Employee.class)
 				.isEqualTo(expectedList);
 	}
 
@@ -69,28 +69,28 @@ public class UserApiAnnotationApplicationTests{
 
 	@Test
 	public void testUserIdFound() {
-		User expectedUser = expectedList.get(0);
+		Employee expectedEmployee = expectedList.get(0);
 		client
 				.get()
-				.uri("/{id}", expectedUser.getUserId())
+				.uri("/{id}", expectedEmployee.getEmployeeId())
 				.exchange()
 				.expectStatus()
 				.isOk()
-				.expectBody(User.class)
-				.isEqualTo(expectedUser);
+				.expectBody(Employee.class)
+				.isEqualTo(expectedEmployee);
 	}
 
 	@Test
 	public void testUserEvents() {
-		UserEvent expectedEvent =
-				new UserEvent(0L, "User Event");
+		EmployeeEvent expectedEvent =
+				new EmployeeEvent(0L, "Employee Event");
 
-		FluxExchangeResult<UserEvent> result =
+		FluxExchangeResult<EmployeeEvent> result =
 				client.get().uri("/events")
 						.accept(MediaType.TEXT_EVENT_STREAM)
 						.exchange()
 						.expectStatus().isOk()
-						.returnResult(UserEvent.class);
+						.returnResult(EmployeeEvent.class);
 
 		StepVerifier.create(result.getResponseBody())
 				.expectNext(expectedEvent)

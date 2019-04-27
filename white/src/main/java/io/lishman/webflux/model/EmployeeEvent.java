@@ -2,14 +2,14 @@ package io.lishman.webflux.model;
 
 import java.util.Objects;
 
-public class UserEvent {
+public class EmployeeEvent {
     private Long eventId;
 
     private String eventType;
 
-    public UserEvent() {}
+    public EmployeeEvent() {}
 
-    public UserEvent(Long eventId, String eventType) {
+    public EmployeeEvent(Long eventId, String eventType) {
         this.eventId = eventId;
         this.eventType = eventType;
     }
@@ -34,7 +34,7 @@ public class UserEvent {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        UserEvent that = (UserEvent) o;
+        EmployeeEvent that = (EmployeeEvent) o;
         return Objects.equals(eventId, that.eventId) &&
                 Objects.equals(eventType, that.eventType);
     }
@@ -47,7 +47,7 @@ public class UserEvent {
 
     @Override
     public String toString() {
-        return "UserEvent{" +
+        return "EmployeeEvent{" +
                 "eventId='" + eventId + '\'' +
                 ", eventType='" + eventType + '\'' +
                 '}';

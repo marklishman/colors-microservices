@@ -1,8 +1,8 @@
 package io.lishman.webflux;
 
-import io.lishman.webflux.handler.UserHandler;
-import io.lishman.webflux.model.User;
-import io.lishman.webflux.repository.UserRepository;
+import io.lishman.webflux.handler.EmployeeHandler;
+import io.lishman.webflux.model.Employee;
+import io.lishman.webflux.repository.EmployeeRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -30,49 +30,49 @@ public class WhiteApplication {
     }
 
     @Bean
-    CommandLineRunner init(UserRepository repo) {
+    CommandLineRunner init(EmployeeRepository repo) {
         return args -> {
-            Flux<User> userFlux = Flux.just(
-                new User("one", "user_one", "one@email.com", "012345672", "www.one.com"),
-                new User("two", "user_two", "two@email.com", "056543336", "www.two.com"),
-                new User("three", "user_three", "three@email.com", "048745663", "www.three.com"),
-                new User("four", "user_four", "four@email.com", "087645767", "www.four.com"),
-                new User("five", "user_five", "five@email.com", "087686324", "www.five.com"),
-                new User("six", "user_six", "six@email.com", "074657634", "www.six.com"),
-                new User("seven", "user_seven", "seven@email.com", "083647566", "www.seven.com"),
-                new User("eight", "user_eight", "eight@email.com", "073465763", "www.eight.com"),
-                new User("nine", "user_nine", "nine@email.com", "043756236", "www.nine.com")
+            Flux<Employee> employeeFlux = Flux.just(
+                new Employee("one", "employee_one", "one@email.com", "012345672", "www.one.com"),
+                new Employee("two", "employee_two", "two@email.com", "056543336", "www.two.com"),
+                new Employee("three", "employee_three", "three@email.com", "048745663", "www.three.com"),
+                new Employee("four", "employee_four", "four@email.com", "087645767", "www.four.com"),
+                new Employee("five", "employee_five", "five@email.com", "087686324", "www.five.com"),
+                new Employee("six", "employee_six", "six@email.com", "074657634", "www.six.com"),
+                new Employee("seven", "employee_seven", "seven@email.com", "083647566", "www.seven.com"),
+                new Employee("eight", "employee_eight", "eight@email.com", "073465763", "www.eight.com"),
+                new Employee("nine", "employee_nine", "nine@email.com", "043756236", "www.nine.com")
             ).flatMap(repo::save);
 
-            userFlux.thenMany(repo.findAll())
+            employeeFlux.thenMany(repo.findAll())
                     .subscribe(System.out::println);
         };
     }
 
     @Bean
     @Profile("!ControllerTest")
-    RouterFunction<ServerResponse> routes(UserHandler handler) {
+    RouterFunction<ServerResponse> routes(EmployeeHandler handler) {
 
         // ~~~~ Flat
-        return route(GET("/handler/users").and(accept(APPLICATION_JSON)), handler::getAllUsers)
-				.andRoute(POST("/handler/users").and(contentType(APPLICATION_JSON)), handler::saveUser)
-				.andRoute(DELETE("/handler/users").and(accept(APPLICATION_JSON)), handler::deleteAllUsers)
-				.andRoute(GET("/handler/users/events").and(accept(TEXT_EVENT_STREAM)), handler::getUserEvents)
-				.andRoute(GET("/handler/users/{id}").and(accept(APPLICATION_JSON)), handler::getUser)
-				.andRoute(PUT("/handler/users/{id}").and(contentType(APPLICATION_JSON)), handler::updateUser)
-				.andRoute(DELETE("/handler/users/{id}").and(accept(APPLICATION_JSON)), handler::deleteUser);
+        return route(GET("/handler/employees").and(accept(APPLICATION_JSON)), handler::getAllEmployees)
+				.andRoute(POST("/handler/employees").and(contentType(APPLICATION_JSON)), handler::saveEmployee)
+				.andRoute(DELETE("/handler/employees").and(accept(APPLICATION_JSON)), handler::deleteAllEmployees)
+				.andRoute(GET("/handler/employees/events").and(accept(TEXT_EVENT_STREAM)), handler::getEmployeeEvents)
+				.andRoute(GET("/handler/employees/{id}").and(accept(APPLICATION_JSON)), handler::getEmployee)
+				.andRoute(PUT("/handler/employees/{id}").and(contentType(APPLICATION_JSON)), handler::updateEmployee)
+				.andRoute(DELETE("/handler/employees/{id}").and(accept(APPLICATION_JSON)), handler::deleteEmployee);
 
         // ~~~~ Nested
-//        return nest(path("/handler/users"),
+//        return nest(path("/handler/employees"),
 //                nest(accept(APPLICATION_JSON).or(contentType(APPLICATION_JSON)).or(accept(TEXT_EVENT_STREAM)),
-//                        route(GET("/"), handler::getAllUsers)
-//                                .andRoute(method(HttpMethod.POST), handler::saveUser)
-//                                .andRoute(DELETE("/"), handler::deleteAllUsers)
-//                                .andRoute(GET("/events"), handler::getUserEvents)
+//                        route(GET("/"), handler::getAllEmployees)
+//                                .andRoute(method(HttpMethod.POST), handler::saveEmployee)
+//                                .andRoute(DELETE("/"), handler::deleteAllEmployees)
+//                                .andRoute(GET("/events"), handler::getEmployeeEvents)
 //                                .andNest(path("/{id}"),
-//                                        route(method(HttpMethod.GET), handler::getUser)
-//                                                .andRoute(method(HttpMethod.PUT), handler::updateUser)
-//                                                .andRoute(method(HttpMethod.DELETE), handler::deleteUser)
+//                                        route(method(HttpMethod.GET), handler::getEmployee)
+//                                                .andRoute(method(HttpMethod.PUT), handler::updateEmployee)
+//                                                .andRoute(method(HttpMethod.DELETE), handler::deleteEmployee)
 //                                )
 //                )
 //        );

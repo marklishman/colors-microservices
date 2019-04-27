@@ -1,9 +1,9 @@
 package io.lishman.webflux.controller;
 
-import io.lishman.webflux.contoller.UserController;
-import io.lishman.webflux.model.User;
-import io.lishman.webflux.model.UserEvent;
-import io.lishman.webflux.repository.UserRepository;
+import io.lishman.webflux.contoller.EmployeeController;
+import io.lishman.webflux.model.Employee;
+import io.lishman.webflux.model.EmployeeEvent;
+import io.lishman.webflux.repository.EmployeeRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -32,22 +32,22 @@ class JUnit5ControllerMockTest {
 
     private WebTestClient client;
 
-    private List<User> expectedList;
+    private List<Employee> expectedList;
 
     @MockBean
-    private UserRepository repository;
+    private EmployeeRepository repository;
 
     @BeforeEach
     void beforeEach() {
         this.client =
                 WebTestClient
-                        .bindToController(new UserController(repository))
+                        .bindToController(new EmployeeController(repository))
                         .configureClient()
                         .baseUrl("/controller/users")
                         .build();
 
         this.expectedList = Arrays.asList(
-                new User(USER_ID, "one", "user_one", "one@email.com", "01234567", "www.one.com")
+                new Employee(USER_ID, "one", "user_one", "one@email.com", "01234567", "www.one.com")
         );
     }
 
@@ -61,7 +61,7 @@ class JUnit5ControllerMockTest {
                 .exchange()
                 .expectStatus()
                 .isOk()
-                .expectBodyList(User.class)
+                .expectBodyList(Employee.class)
                 .isEqualTo(expectedList);
     }
 
@@ -80,8 +80,8 @@ class JUnit5ControllerMockTest {
 
     @Test
     void testUserIdFound() {
-        User expectedUser = this.expectedList.get(0);
-        when(repository.findById(expectedUser.getUserId())).thenReturn(Mono.just(expectedUser));
+        Employee expectedEmployee = this.expectedList.get(0);
+        when(repository.findById(expectedEmployee.getEmployeeId())).thenReturn(Mono.just(expectedEmployee));
 
         client
                 .get()
@@ -89,21 +89,21 @@ class JUnit5ControllerMockTest {
                 .exchange()
                 .expectStatus()
                 .isOk()
-                .expectBody(User.class)
-                .isEqualTo(expectedUser);
+                .expectBody(Employee.class)
+                .isEqualTo(expectedEmployee);
     }
 
     @Test
     void testUserEvents() {
-        UserEvent expectedEvent =
-                new UserEvent(0L, "User Event");
+        EmployeeEvent expectedEvent =
+                new EmployeeEvent(0L, "Employee Event");
 
-        FluxExchangeResult<UserEvent> result =
+        FluxExchangeResult<EmployeeEvent> result =
                 client.get().uri("/events")
                         .accept(MediaType.TEXT_EVENT_STREAM)
                         .exchange()
                         .expectStatus().isOk()
-                        .returnResult(UserEvent.class);
+                        .returnResult(EmployeeEvent.class);
 
         StepVerifier.create(result.getResponseBody())
                 .expectNext(expectedEvent)
