@@ -25,13 +25,13 @@ Consistent with Spring MVC and based on the same annotations from the spring-web
 
 ~~~java
 @GetMapping
-public Flux<User> getAllUsers() {
+public Flux<Employee> getAllEmployees() {
     return employeeRepository.findAll();
 }
 
 
 @GetMapping("/{id}")
-public Mono<ResponseEntity<User>> getUser(@PathVariable("id") final String id) {
+public Mono<ResponseEntity<Employee>> getEmployee(@PathVariable("id") final String id) {
     return employeeRepository.findById(id)
             .map(ResponseEntity::ok)
             .defaultIfEmpty(ResponseEntity.notFound().build());
@@ -42,10 +42,10 @@ We can also get a stream of objects decoded from the response.
 
 ~~~java
 @GetMapping(value = "/events", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
-public Flux<UserEvent> getUserEvents() {
+public Flux<EmployeeEvent> getEmployeeEvents() {
     return Flux.interval(Duration.ofSeconds(2))
             .map(val ->
-                    new UserEvent(val, "User Event")
+                    new EmployeeEvent(val, "Employee Event")
             );
 }
 ~~~
@@ -57,7 +57,7 @@ If the browser does not support streams, we can use JavaScript instead.
 ~~~html
 <script type="text/javascript">
     if (!!window.EventSource) {
-        var evtSource = new EventSource('users/events'); //http://localhost:8080/index.html
+        var evtSource = new EventSource('employees/events'); //http://localhost:8080/index.html
         var eventList = document.querySelector('ul');
 
         evtSource.onmessage = function(e) {
@@ -80,21 +80,21 @@ as a small library or a set of utilities that an application can use to route an
 handle requests.
 
 ~~~java
-public Mono<ServerResponse> getAllUsers(ServerRequest request) {
-    Flux<User> users = employeeRepository.findAll();
+public Mono<ServerResponse> getAllEmployees(ServerRequest request) {
+    Flux<Employee> employees = employeeRepository.findAll();
 
     return ServerResponse.ok()
             .contentType(APPLICATION_JSON)
-            .body(users, User.class);
+            .body(employees, Employee.class);
 }
 
-public Mono<ServerResponse> getUser(ServerRequest request) {
+public Mono<ServerResponse> getEmployee(ServerRequest request) {
     String id = request.pathVariable("id");
 
-    Mono<User> userMono = this.employeeRepository.findById(id);
+    Mono<Employee> employeeMono = this.employeeRepository.findById(id);
     Mono<ServerResponse> notFound = ServerResponse.notFound().build();
 
-    return userMono
+    return employeeMono
             .flatMap(employee ->
                     ServerResponse.ok()
                             .contentType(APPLICATION_JSON)
@@ -106,27 +106,27 @@ public Mono<ServerResponse> getUser(ServerRequest request) {
 We get a stream of objects like this 
 
 ~~~java
-public Mono<ServerResponse> getUserEvents(ServerRequest request) {
-    Flux<UserEvent> eventsFlux = Flux.interval(Duration.ofSeconds(2)).map(val ->
-            new UserEvent(val, "User Event")
+public Mono<ServerResponse> getEmployeeEvents(ServerRequest request) {
+    Flux<EmployeeEvent> eventsFlux = Flux.interval(Duration.ofSeconds(2)).map(val ->
+            new EmployeeEvent(val, "Employee Event")
     );
 
     return ServerResponse.ok()
             .contentType(MediaType.TEXT_EVENT_STREAM)
-            .body(eventsFlux, UserEvent.class);
+            .body(eventsFlux, EmployeeEvent.class);
 }
 ~~~
 
 With functional endpoints we also need to define routes. 
 
 ~~~java
-return route(GET("/handler/users").and(accept(APPLICATION_JSON)), handler::getAllUsers)
-        .andRoute(POST("/handler/users").and(contentType(APPLICATION_JSON)), handler::saveUser)
-        .andRoute(DELETE("/handler/users").and(accept(APPLICATION_JSON)), handler::deleteAllUsers)
-        .andRoute(GET("/handler/users/events").and(accept(TEXT_EVENT_STREAM)), handler::getUserEvents)
-        .andRoute(GET("/handler/users/{id}").and(accept(APPLICATION_JSON)), handler::getUser)
-        .andRoute(PUT("/handler/users/{id}").and(contentType(APPLICATION_JSON)), handler::updateUser)
-        .andRoute(DELETE("/handler/users/{id}").and(accept(APPLICATION_JSON)), handler::deleteUser);
+return route(GET("/handler/employees").and(accept(APPLICATION_JSON)), handler::getAllEmployees)
+        .andRoute(POST("/handler/employees").and(contentType(APPLICATION_JSON)), handler::saveEmployee)
+        .andRoute(DELETE("/handler/employees").and(accept(APPLICATION_JSON)), handler::deleteAllEmployees)
+        .andRoute(GET("/handler/employees/events").and(accept(TEXT_EVENT_STREAM)), handler::getEmployeeEvents)
+        .andRoute(GET("/handler/employees/{id}").and(accept(APPLICATION_JSON)), handler::getEmployee)
+        .andRoute(PUT("/handler/employees/{id}").and(contentType(APPLICATION_JSON)), handler::updateEmployee)
+        .andRoute(DELETE("/handler/employees/{id}").and(accept(APPLICATION_JSON)), handler::deleteEmployee);
 ~~~
 
 ---
