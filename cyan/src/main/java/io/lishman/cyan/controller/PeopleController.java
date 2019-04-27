@@ -1,8 +1,6 @@
 package io.lishman.cyan.controller;
 
 import io.lishman.cyan.model.Person;
-import io.lishman.cyan.model.User;
-import io.lishman.cyan.service.FeignUsersService;
 import io.lishman.cyan.service.RestTemplatePeopleService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,16 +11,13 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/people")
 class PeopleController {
 
     private final RestTemplatePeopleService restTemplatePeopleService;
-    private final FeignUsersService feignUsersService;
 
-    PeopleController(final RestTemplatePeopleService restTemplatePeopleService,
-                     final FeignUsersService feignUsersService) {
+    PeopleController(final RestTemplatePeopleService restTemplatePeopleService) {
         this.restTemplatePeopleService = restTemplatePeopleService;
-        this.feignUsersService = feignUsersService;
     }
 
     // ~~~~ RestTemplate
@@ -38,19 +33,4 @@ class PeopleController {
         final Person person = restTemplatePeopleService.getPerson(id);
         return ResponseEntity.ok(person);
     }
-
-    // ~~~~ Feign
-
-    @GetMapping(params = "client=feign")
-    ResponseEntity<List<User>> getUsersWithFeign() {
-        final List<User> users = feignUsersService.getUsers();
-        return ResponseEntity.ok(users);
-    }
-
-    @GetMapping(value = "{id}", params = "client=feign")
-    ResponseEntity<User> getUserByIdWithFeign(@PathVariable("id") final Long id) {
-        final User user = feignUsersService.getUser(id);
-        return ResponseEntity.ok(user);
-    }
-
 }

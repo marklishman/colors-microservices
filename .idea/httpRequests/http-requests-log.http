@@ -1,3 +1,52 @@
+GET http://localhost:8081/cyan/people/2?client=resttemplate
+Content-Type: application/json
+
+<> 2019-04-27T012409.200.json
+
+###
+
+GET http://localhost:8081/cyan/people?client=resttemplate
+Content-Type: application/json
+
+<> 2019-04-27T012406.200.json
+
+###
+
+GET http://localhost:8081/cyan/people?client=resttemplate
+Content-Type: application/json
+
+<> 2019-04-27T012255.500.json
+
+###
+
+GET http://localhost:8081/cyan/people?client=resttemplate
+Content-Type: application/json
+
+<> 2019-04-27T012042.500.json
+
+###
+
+GET http://localhost:8081/cyan/users/2?client=feign
+Content-Type: application/json
+
+<> 2019-04-27T012035.200.json
+
+###
+
+GET http://localhost:8081/cyan/users?client=feign
+Content-Type: application/json
+
+<> 2019-04-27T012032.200.json
+
+###
+
+GET http://localhost:8081/cyan/people?client=resttemplate
+Content-Type: application/json
+
+<> 2019-04-27T011822.404.json
+
+###
+
 GET http://localhost:8081/cyan/users/2?client=feign
 Content-Type: application/json
 
@@ -293,53 +342,6 @@ GET http://localhost:8071/handler/employees
 Content-Type: application/json
 
 <> 2019-04-27T112956.200.json
-
-###
-
-GET http://localhost:8071/controller/employees
-Content-Type: application/json
-
-<> 2019-04-27T112953.200.json
-
-###
-
-GET http://localhost:8071/handler/employees/5cc42ce74633e1124fccb001
-Content-Type: application/json
-
-<> 2019-04-27T112043.200.json
-
-###
-
-GET http://localhost:8071/handler/employees
-Content-Type: application/json
-
-<> 2019-04-27T112035.200.json
-
-###
-
-GET http://localhost:8071/handler/employees/5cc42c774633e1120f460ce3
-Content-Type: application/json
-
-###
-
-GET http://localhost:8071/handler/employees
-Content-Type: application/json
-
-<> 2019-04-27T112024.200.json
-
-###
-
-GET http://localhost:8071/handler/employees/5cc42c774633e1120f460ce3
-Content-Type: application/json
-
-<> 2019-04-27T111932.200.json
-
-###
-
-GET http://localhost:8071/handler/employees
-Content-Type: application/json
-
-<> 2019-04-27T111921.200.json
 
 ###
 

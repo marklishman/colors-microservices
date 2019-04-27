@@ -18,10 +18,10 @@ public final class RestTemplatePeopleService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(RestTemplatePeopleService.class);
 
-    private final RestTemplate greenRestTemplate;
+    private final RestTemplate purpleRestTemplate;
 
-    public RestTemplatePeopleService(final RestTemplate greenRestTemplate) {
-        this.greenRestTemplate = greenRestTemplate;
+    public RestTemplatePeopleService(final RestTemplate purpleRestTemplate) {
+        this.purpleRestTemplate = purpleRestTemplate;
     }
 
     public List<Person> getPeople() {
@@ -30,7 +30,7 @@ public final class RestTemplatePeopleService {
         final ParameterizedTypeReference<Resources<Resource<Person>>> peopleResourceTypeReference =
                 new ParameterizedTypeReference<>() {};
 
-        final Resources<Resource<Person>> peopleResources = greenRestTemplate
+        final Resources<Resource<Person>> peopleResources = purpleRestTemplate
                 .exchange("/people", HttpMethod.GET, null, peopleResourceTypeReference)
                 .getBody();
 
@@ -47,7 +47,7 @@ public final class RestTemplatePeopleService {
         final ParameterizedTypeReference<Resource<Person>> personResourceTypeReference =
                 new ParameterizedTypeReference<>() {};
 
-        final Resource<Person> personResource = greenRestTemplate
+        final Resource<Person> personResource = purpleRestTemplate
                 .exchange("/people/{id}", HttpMethod.GET, null, personResourceTypeReference, id)
                 .getBody();
 

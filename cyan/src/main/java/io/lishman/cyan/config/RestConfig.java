@@ -27,7 +27,7 @@ public class RestConfig {
     @Bean
     public RestTemplate purpleRestTemplate() {
         return new RestTemplateBuilder()
-                .rootUri("http://localhost:8061/purple")
+                .rootUri("http://localhost:8061/purple/api")
                 .build();
     }
 
