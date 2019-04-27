@@ -57,7 +57,7 @@ If the browser does not support streams, we can use JavaScript instead.
 ~~~html
 <script type="text/javascript">
     if (!!window.EventSource) {
-        var evtSource = new EventSource('employees/events'); //http://localhost:8080/index.html
+        var evtSource = new EventSource('controller/employees/events'); //http://localhost:8071/index.html
         var eventList = document.querySelector('ul');
 
         evtSource.onmessage = function(e) {
