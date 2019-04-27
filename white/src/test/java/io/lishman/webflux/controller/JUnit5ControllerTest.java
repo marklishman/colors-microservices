@@ -37,7 +37,7 @@ public class JUnit5ControllerTest {
                 WebTestClient
                         .bindToController(new EmployeeController(repository))
                         .configureClient()
-                        .baseUrl("/controller/users")
+                        .baseUrl("/controller/employees")
                         .build();
 
         this.expectedList =
@@ -45,7 +45,7 @@ public class JUnit5ControllerTest {
     }
 
     @Test
-    void testGetAllUsers() {
+    void testGetAllEmployees() {
         client
                 .get()
                 .uri("/")
@@ -57,7 +57,7 @@ public class JUnit5ControllerTest {
     }
 
     @Test
-    void testUserInvalidIdNotFound() {
+    void testEmployeeInvalidIdNotFound() {
         client
                 .get()
                 .uri("/aaa")
@@ -67,7 +67,7 @@ public class JUnit5ControllerTest {
     }
 
     @Test
-    void testUserIdFound() {
+    void testEmployeeIdFound() {
         Employee expectedEmployee = expectedList.get(0);
         client
                 .get()
@@ -80,9 +80,9 @@ public class JUnit5ControllerTest {
     }
 
     @Test
-    void testUserEvents() {
+    void testEmployeeEvents() {
         EmployeeEvent expectedEvent =
-                new EmployeeEvent(0L, "Employee Event");
+                new EmployeeEvent(0L, "Employee Event 0");
 
         FluxExchangeResult<EmployeeEvent> result =
                 client.get().uri("/events")

@@ -38,7 +38,7 @@ public class EmployeeApiAnnotationApplicationTests {
 				WebTestClient
 						.bindToController(new EmployeeController(repository))
 						.configureClient()
-						.baseUrl("/controller/users")
+						.baseUrl("/controller/employees")
 						.build();
 
 		this.expectedList =
@@ -46,7 +46,7 @@ public class EmployeeApiAnnotationApplicationTests {
 	}
 
 	@Test
-	public void testGetAllUsers() {
+	public void testGetAllEmployees() {
 		client
 				.get()
 				.uri("/")
@@ -58,7 +58,7 @@ public class EmployeeApiAnnotationApplicationTests {
 	}
 
 	@Test
-	public void testUserInvalidIdNotFound() {
+	public void testEmployeeInvalidIdNotFound() {
 		client
 				.get()
 				.uri("/aaa")
@@ -68,7 +68,7 @@ public class EmployeeApiAnnotationApplicationTests {
 	}
 
 	@Test
-	public void testUserIdFound() {
+	public void testEmployeeIdFound() {
 		Employee expectedEmployee = expectedList.get(0);
 		client
 				.get()
@@ -81,9 +81,9 @@ public class EmployeeApiAnnotationApplicationTests {
 	}
 
 	@Test
-	public void testUserEvents() {
+	public void testEmployeeEvents() {
 		EmployeeEvent expectedEvent =
-				new EmployeeEvent(0L, "Employee Event");
+				new EmployeeEvent(0L, "Employee Event 0");
 
 		FluxExchangeResult<EmployeeEvent> result =
 				client.get().uri("/events")

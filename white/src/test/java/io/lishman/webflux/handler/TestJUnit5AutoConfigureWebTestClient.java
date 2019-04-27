@@ -37,11 +37,11 @@ public class TestJUnit5AutoConfigureWebTestClient {
     void beforeEach() {
         this.expectedList =
                 repository.findAll().collectList().block();
-        this.client = this.client.mutate().baseUrl("/handler/users").build();
+        this.client = this.client.mutate().baseUrl("/handler/employees").build();
     }
 
     @Test
-    void testGetAllUsers() {
+    void testGetAllEmployees() {
         client
                 .get()
                 .uri("/")
@@ -53,7 +53,7 @@ public class TestJUnit5AutoConfigureWebTestClient {
     }
 
     @Test
-    void testUserInvalidIdNotFound() {
+    void testEmployeeInvalidIdNotFound() {
         client
                 .get()
                 .uri("/aaa")
@@ -63,7 +63,7 @@ public class TestJUnit5AutoConfigureWebTestClient {
     }
 
     @Test
-    void testUserIdFound() {
+    void testEmployeeIdFound() {
         Employee expectedEmployee = expectedList.get(0);
         client
                 .get()
@@ -76,7 +76,7 @@ public class TestJUnit5AutoConfigureWebTestClient {
     }
 
     @Test
-    void testUserEvents() {
+    void testEmployeeEvents() {
         FluxExchangeResult<EmployeeEvent> result =
                 client.get().uri("/events")
                         .accept(MediaType.TEXT_EVENT_STREAM)
@@ -85,7 +85,7 @@ public class TestJUnit5AutoConfigureWebTestClient {
                         .returnResult(EmployeeEvent.class);
 
         EmployeeEvent expectedEvent =
-                new EmployeeEvent(0L, "Employee Event");
+                new EmployeeEvent(0L, "Employee Event 0");
 
         StepVerifier.create(result.getResponseBody())
                 .expectNext(expectedEvent)

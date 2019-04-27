@@ -1,3 +1,71 @@
+GET http://localhost:8071/handler/employees
+Content-Type: application/json
+
+<> 2019-04-27T112956.200.json
+
+###
+
+GET http://localhost:8071/controller/employees
+Content-Type: application/json
+
+<> 2019-04-27T112953.200.json
+
+###
+
+GET http://localhost:8071/handler/employees/5cc42ce74633e1124fccb001
+Content-Type: application/json
+
+<> 2019-04-27T112043.200.json
+
+###
+
+GET http://localhost:8071/handler/employees
+Content-Type: application/json
+
+<> 2019-04-27T112035.200.json
+
+###
+
+GET http://localhost:8071/handler/employees/5cc42c774633e1120f460ce3
+Content-Type: application/json
+
+###
+
+GET http://localhost:8071/handler/employees
+Content-Type: application/json
+
+<> 2019-04-27T112024.200.json
+
+###
+
+GET http://localhost:8071/handler/employees/5cc42c774633e1120f460ce3
+Content-Type: application/json
+
+<> 2019-04-27T111932.200.json
+
+###
+
+GET http://localhost:8071/handler/employees
+Content-Type: application/json
+
+<> 2019-04-27T111921.200.json
+
+###
+
+GET http://localhost:8071/controller/employees/5cc42c774633e1120f460ce3
+Content-Type: application/json
+
+<> 2019-04-27T111914.200.json
+
+###
+
+GET http://localhost:8071/controller/employees
+Content-Type: application/json
+
+<> 2019-04-27T111855.200.json
+
+###
+
 GET http://localhost:8081/cyan/users?client=feign
 Content-Type: application/json
 
@@ -310,87 +378,6 @@ Content-Type: application/json
 }
 
 <> 2019-04-26T125732.200.json
-
-###
-
-POST http://localhost:8081/cyan/countries
-Content-Type: application/json
-
-{
-  "code": "OB",
-  "name": "Some Obscure Country"
-}
-
-<> 2019-04-26T125719.201.json
-
-###
-
-PUT http://localhost:8081/cyan/countries/{id}
-Content-Type: application/json
-
-{
-  "code": "OX",
-  "name": "Updated obscure country name"
-}
-
-###
-
-PUT http://localhost:8081/cyan/countries/{id}
-Content-Type: application/json
-
-{
-  "code": "OX",
-  "name": "Updated obscure country name"
-}
-
-###
-
-POST http://localhost:8081/cyan/users/events/toggle
-Content-Type: application/json
-
-<> 2019-04-26T111609.200.txt
-
-###
-
-GET http://localhost:8081/cyan/users/events/latest
-Content-Type: application/json
-
-<> 2019-04-26T111606.200.json
-
-###
-
-GET http://localhost:8081/cyan/users/events/latest
-Content-Type: application/json
-
-<> 2019-04-26T111604.200.json
-
-###
-
-GET http://localhost:8081/cyan/users/events/latest
-Content-Type: application/json
-
-<> 2019-04-26T111602.200.json
-
-###
-
-POST http://localhost:8081/cyan/users/events/toggle
-Content-Type: application/json
-
-<> 2019-04-26T111555.200.txt
-
-###
-
-POST http://localhost:8081/cyan/users/events/toggle
-Content-Type: application/json
-
-<> 2019-04-26T111553.200.txt
-
-###
-
-POST http://localhost:8081/cyan/users/events/toggle
-Content-Type: application/json
-
-<> 2019-04-26T111547.200.txt
 
 ###
 

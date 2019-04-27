@@ -34,7 +34,7 @@ import static org.mockito.Mockito.when;
 @ActiveProfiles("ControllerTest")
 public class JUnit5WebFluxTestAnnotationTest {
 
-    private static final String USER_ID = UUID.randomUUID().toString();
+    private static final String EMPLOYEE_ID = UUID.randomUUID().toString();
 
     @Autowired
     private WebTestClient client;
@@ -50,17 +50,17 @@ public class JUnit5WebFluxTestAnnotationTest {
     @BeforeEach
     void beforeEach() {
         this.expectedList = Arrays.asList(
-                new Employee(USER_ID,"one", "user_one", "one@email.com", "01234567", "www.one.com")
+                new Employee(EMPLOYEE_ID,"one", "employee_one", "one@email.com", "01234567", "www.one.com")
         );
     }
 
     @Test
-    void testGetAllUsers() {
+    void testGetAllEmployees() {
         when(repository.findAll()).thenReturn(Flux.fromIterable(this.expectedList));
 
         client
                 .get()
-                .uri("/controller/users")
+                .uri("/controller/employees")
                 .exchange()
                 .expectStatus()
                 .isOk()
@@ -69,26 +69,26 @@ public class JUnit5WebFluxTestAnnotationTest {
     }
 
     @Test
-    void testUserInvalidIdNotFound() {
+    void testEmployeeInvalidIdNotFound() {
         String id = "aaa";
         when(repository.findById(id)).thenReturn(Mono.empty());
 
         client
                 .get()
-                .uri("/controller/users/{id}", id)
+                .uri("/controller/employees/{id}", id)
                 .exchange()
                 .expectStatus()
                 .isNotFound();
     }
 
     @Test
-    void testUserIdFound() {
+    void testEmployeeIdFound() {
         Employee expectedEmployee = this.expectedList.get(0);
         when(repository.findById(expectedEmployee.getEmployeeId())).thenReturn(Mono.just(expectedEmployee));
 
         client
                 .get()
-                .uri("/controller/users/{id}", expectedEmployee.getEmployeeId())
+                .uri("/controller/employees/{id}", expectedEmployee.getEmployeeId())
                 .exchange()
                 .expectStatus()
                 .isOk()
@@ -97,12 +97,12 @@ public class JUnit5WebFluxTestAnnotationTest {
     }
 
     @Test
-    void testUserEvents() {
+    void testEmployeeEvents() {
         EmployeeEvent expectedEvent =
-                new EmployeeEvent(0L, "Employee Event");
+                new EmployeeEvent(0L, "Employee Event 0");
 
         FluxExchangeResult<EmployeeEvent> result =
-                client.get().uri("/controller/users/events")
+                client.get().uri("/controller/employees/events")
                         .accept(MediaType.TEXT_EVENT_STREAM)
                         .exchange()
                         .expectStatus().isOk()

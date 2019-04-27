@@ -28,7 +28,7 @@ import static org.mockito.Mockito.when;
 @ExtendWith(SpringExtension.class)
 class JUnit5ControllerMockTest {
 
-    private static final String USER_ID = UUID.randomUUID().toString();
+    private static final String EMPLOYEE_ID = UUID.randomUUID().toString();
 
     private WebTestClient client;
 
@@ -43,16 +43,16 @@ class JUnit5ControllerMockTest {
                 WebTestClient
                         .bindToController(new EmployeeController(repository))
                         .configureClient()
-                        .baseUrl("/controller/users")
+                        .baseUrl("/controller/employees")
                         .build();
 
         this.expectedList = Arrays.asList(
-                new Employee(USER_ID, "one", "user_one", "one@email.com", "01234567", "www.one.com")
+                new Employee(EMPLOYEE_ID, "one", "employee_one", "one@email.com", "01234567", "www.one.com")
         );
     }
 
     @Test
-    void testGetAllUsers() {
+    void testGetAllEmployees() {
         when(repository.findAll()).thenReturn(Flux.fromIterable(this.expectedList));
 
         client
@@ -66,7 +66,7 @@ class JUnit5ControllerMockTest {
     }
 
     @Test
-    void testUserInvalidIdNotFound() {
+    void testEmployeeInvalidIdNotFound() {
         String id = "aaa";
         when(repository.findById(id)).thenReturn(Mono.empty());
 
@@ -79,13 +79,13 @@ class JUnit5ControllerMockTest {
     }
 
     @Test
-    void testUserIdFound() {
+    void testEmployeeIdFound() {
         Employee expectedEmployee = this.expectedList.get(0);
         when(repository.findById(expectedEmployee.getEmployeeId())).thenReturn(Mono.just(expectedEmployee));
 
         client
                 .get()
-                .uri("/{id}", USER_ID)
+                .uri("/{id}", EMPLOYEE_ID)
                 .exchange()
                 .expectStatus()
                 .isOk()
@@ -94,9 +94,9 @@ class JUnit5ControllerMockTest {
     }
 
     @Test
-    void testUserEvents() {
+    void testEmployeeEvents() {
         EmployeeEvent expectedEvent =
-                new EmployeeEvent(0L, "Employee Event");
+                new EmployeeEvent(0L, "Employee Event 0");
 
         FluxExchangeResult<EmployeeEvent> result =
                 client.get().uri("/events")

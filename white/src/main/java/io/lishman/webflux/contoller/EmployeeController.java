@@ -33,13 +33,13 @@ public class EmployeeController {
     }
 
     @GetMapping
-    public Flux<Employee> getAllUsers() {
+    public Flux<Employee> getAllEmployees() {
         return employeeRepository.findAll();
     }
 
 
     @GetMapping("/{id}")
-    public Mono<ResponseEntity<Employee>> getUser(@PathVariable("id") final String id) {
+    public Mono<ResponseEntity<Employee>> getEmployee(@PathVariable("id") final String id) {
         return employeeRepository.findById(id)
                 .map(ResponseEntity::ok)
                 .defaultIfEmpty(ResponseEntity.notFound().build());
@@ -47,16 +47,16 @@ public class EmployeeController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Mono<Employee> saveUser(@RequestBody Employee employee) {
+    public Mono<Employee> saveEmployee(@RequestBody Employee employee) {
         return employeeRepository.save(employee);
     }
 
     @PutMapping("/{id}")
-    public Mono<ResponseEntity<Employee>> updateUser(@PathVariable("id") String id, @RequestBody Employee employee) {
+    public Mono<ResponseEntity<Employee>> updateEmployee(@PathVariable("id") String id, @RequestBody Employee employee) {
         return employeeRepository
                 .findById(id)
-                .flatMap(existingUser -> {
-                    var updatedUser = new Employee(
+                .flatMap(existingEmployee -> {
+                    var updatedEmployee = new Employee(
                             id,
                             employee.getName(),
                             employee.getEmail(),
@@ -64,17 +64,17 @@ public class EmployeeController {
                             employee.getEmployeeName(),
                             employee.getWebsite()
                     );
-                    return employeeRepository.save(updatedUser);
+                    return employeeRepository.save(updatedEmployee);
                 })
-                .map(updateUser -> ResponseEntity.ok(updateUser))
+                .map(updateEmployee -> ResponseEntity.ok(updateEmployee))
                 .defaultIfEmpty(ResponseEntity.notFound().build());
     }
 
     @DeleteMapping("/{id}")
-    public Mono<ResponseEntity<Void>> deleteUser(@PathVariable("id") String id) {
+    public Mono<ResponseEntity<Void>> deleteEmployee(@PathVariable("id") String id) {
         return employeeRepository.findById(id)
-                .flatMap(existingUser ->
-                        employeeRepository.delete(existingUser)
+                .flatMap(existingEmployee ->
+                        employeeRepository.delete(existingEmployee)
                             .then(Mono.just(ResponseEntity.ok().<Void>build()))
                 )
                 .defaultIfEmpty(ResponseEntity.notFound().build());
@@ -87,7 +87,7 @@ public class EmployeeController {
     }
 
     @GetMapping(value = "/events", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
-    public Flux<EmployeeEvent> getUserEvents() {
+    public Flux<EmployeeEvent> getEmployeeEvents() {
         return Flux.interval(Duration.ofSeconds(2))
                 .map(val ->
                         new EmployeeEvent(val, "Employee Event " + val)

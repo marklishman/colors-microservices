@@ -38,7 +38,7 @@ public class JUnit5ApplicationContextTest {
                 WebTestClient
                         .bindToApplicationContext(context)
                         .configureClient()
-                        .baseUrl("/controller/users")
+                        .baseUrl("/controller/employees")
                         .build();
 
         this.expectedList =
@@ -46,7 +46,7 @@ public class JUnit5ApplicationContextTest {
     }
 
     @Test
-    void testGetAllUsers() {
+    void testGetAllEmployees() {
         client
                 .get()
                 .uri("/")
@@ -58,7 +58,7 @@ public class JUnit5ApplicationContextTest {
     }
 
     @Test
-    void testUserInvalidIdNotFound() {
+    void testEmployeeInvalidIdNotFound() {
         client
                 .get()
                 .uri("/aaa")
@@ -68,7 +68,7 @@ public class JUnit5ApplicationContextTest {
     }
 
     @Test
-    void testUserIdFound() {
+    void testEmployeeIdFound() {
         Employee expectedEmployee = expectedList.get(0);
         client
                 .get()
@@ -81,9 +81,9 @@ public class JUnit5ApplicationContextTest {
     }
 
     @Test
-    void testUserEvents() {
+    void testEmployeeEvents() {
         EmployeeEvent expectedEvent =
-                new EmployeeEvent(0L, "Employee Event");
+                new EmployeeEvent(0L, "Employee Event 0");
 
         FluxExchangeResult<EmployeeEvent> result =
                 client.get().uri("/events")

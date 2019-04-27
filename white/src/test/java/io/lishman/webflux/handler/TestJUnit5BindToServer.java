@@ -40,7 +40,7 @@ public class TestJUnit5BindToServer {
         this.client =
                 WebTestClient
                         .bindToServer()
-                        .baseUrl("http://localhost:" + port + "/handler/users")
+                        .baseUrl("http://localhost:" + port + "/handler/employees")
                         .build();
 
         this.expectedList =
@@ -48,7 +48,7 @@ public class TestJUnit5BindToServer {
     }
 
     @Test
-    public void testGetAllUsers() {
+    public void testGetAllEmployees() {
         client
                 .get()
                 .uri("/")
@@ -60,7 +60,7 @@ public class TestJUnit5BindToServer {
     }
 
     @Test
-    public void testUserInvalidIdNotFound() {
+    public void testEmployeeInvalidIdNotFound() {
         client
                 .get()
                 .uri("/aaa")
@@ -70,7 +70,7 @@ public class TestJUnit5BindToServer {
     }
 
     @Test
-    public void testUserIdFound() {
+    public void testEmployeeIdFound() {
         Employee expectedEmployee = expectedList.get(0);
         client
                 .get()
@@ -83,7 +83,7 @@ public class TestJUnit5BindToServer {
     }
 
     @Test
-    public void testUserEvents() {
+    public void testEmployeeEvents() {
         FluxExchangeResult<EmployeeEvent> result =
                 client.get().uri("/events")
                         .accept(MediaType.TEXT_EVENT_STREAM)
@@ -92,7 +92,7 @@ public class TestJUnit5BindToServer {
                         .returnResult(EmployeeEvent.class);
 
         EmployeeEvent expectedEvent =
-                new EmployeeEvent(0L, "Employee Event");
+                new EmployeeEvent(0L, "Employee Event 0");
 
         StepVerifier.create(result.getResponseBody())
                 .expectNext(expectedEvent)
