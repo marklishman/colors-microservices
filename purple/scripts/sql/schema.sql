@@ -1,14 +1,5 @@
 
-/* ------------------------------------------
-
-
-    Change schema name below
-
-
- --------------------------------------------*/
-
--- CREATE SCHEMA IF NOT EXISTS schema_name;
-
+CREATE SCHEMA IF NOT EXISTS purple;
 
 DROP TABLE IF EXISTS "data";
 DROP TABLE IF EXISTS "item";
