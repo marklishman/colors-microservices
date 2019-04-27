@@ -319,9 +319,9 @@ Create a bean (necessary to use the config created with the `@EnableHypermediaSu
 
 ~~~java
 @Bean
-public RestTemplate greenRestTemplate() {
+public RestTemplate purpleRestTemplate() {
     return new RestTemplateBuilder()
-            .rootUri("http://localhost:8021/green")
+            .rootUri("http://localhost:8061/purple/api")
             .build();
 }
 ~~~
@@ -333,7 +333,7 @@ public List<Person> getPeople() {
     final ParameterizedTypeReference<Resources<Resource<Person>>> peopleResourceTypeReference =
             new ParameterizedTypeReference<>() {};
 
-    final Resources<Resource<Person>> peopleResources = greenRestTemplate
+    final Resources<Resource<Person>> peopleResources = purpleRestTemplate
             .exchange("/people", HttpMethod.GET, null, peopleResourceTypeReference)
             .getBody();
 
