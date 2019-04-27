@@ -1,3 +1,115 @@
+GET http://localhost:8081/cyan/users/2?client=feign
+Content-Type: application/json
+
+<> 2019-04-27T010537.200.json
+
+###
+
+GET http://localhost:8081/cyan/users?client=feign
+Content-Type: application/json
+
+<> 2019-04-27T010523.200.json
+
+###
+
+GET http://localhost:8081/cyan/stats
+Content-Type: application/json
+
+<> 2019-04-27T125957.200.json
+
+###
+
+GET http://localhost:8081/cyan/stats
+Content-Type: application/json
+
+<> 2019-04-27T125952.200.json
+
+###
+
+GET http://localhost:8081/cyan/stats
+Content-Type: application/json
+
+<> 2019-04-27T125643.500.json
+
+###
+
+GET http://localhost:8081/cyan/stats
+Content-Type: application/json
+
+<> 2019-04-27T125641.500.json
+
+###
+
+GET http://localhost:8081/cyan/stats
+Content-Type: application/json
+
+<> 2019-04-27T125640.500.json
+
+###
+
+GET http://localhost:8081/cyan/stats
+Content-Type: application/json
+
+<> 2019-04-27T125637.500.json
+
+###
+
+GET http://localhost:8081/cyan/stats
+Content-Type: application/json
+
+<> 2019-04-27T125635.500.json
+
+###
+
+GET http://localhost:8081/cyan/stats
+Content-Type: application/json
+
+<> 2019-04-27T125634.500.json
+
+###
+
+GET http://localhost:8081/cyan/stats
+Content-Type: application/json
+
+<> 2019-04-27T125633.500.json
+
+###
+
+GET http://localhost:8081/cyan/stats
+Content-Type: application/json
+
+<> 2019-04-27T125632.500.json
+
+###
+
+GET http://localhost:8081/cyan/stats
+Content-Type: application/json
+
+<> 2019-04-27T125631.500.json
+
+###
+
+GET http://localhost:8081/cyan/stats
+Content-Type: application/json
+
+<> 2019-04-27T125629.500.json
+
+###
+
+GET http://localhost:8081/cyan/stats
+Content-Type: application/json
+
+<> 2019-04-27T125606.500.json
+
+###
+
+GET http://localhost:8081/cyan/stats
+Content-Type: application/json
+
+<> 2019-04-27T124924.500.json
+
+###
+
 GET http://localhost:8081/cyan/employees/events/latest
 Content-Type: application/json
 
@@ -228,142 +340,6 @@ GET http://localhost:8071/handler/employees
 Content-Type: application/json
 
 <> 2019-04-27T111921.200.json
-
-###
-
-GET http://localhost:8071/controller/employees/5cc42c774633e1120f460ce3
-Content-Type: application/json
-
-<> 2019-04-27T111914.200.json
-
-###
-
-GET http://localhost:8071/controller/employees
-Content-Type: application/json
-
-<> 2019-04-27T111855.200.json
-
-###
-
-GET http://localhost:8081/cyan/users?client=feign
-Content-Type: application/json
-
-<> 2019-04-27T110056.200.json
-
-###
-
-GET http://localhost:8021/green/users
-Accept: application/json
-
-<> 2019-04-27T103900.200.json
-
-###
-
-GET http://localhost:8021/green/users/8
-Accept: application/json
-
-<> 2019-04-27T103854.200.json
-
-###
-
-GET http://localhost:8021/green/users/7
-Accept: application/json
-
-<> 2019-04-27T103849.200.json
-
-###
-
-GET http://localhost:8021/green/users/6
-Accept: application/json
-
-<> 2019-04-27T103843.200.json
-
-###
-
-GET http://localhost:8021/green/users/5
-Accept: application/json
-
-<> 2019-04-27T103832.200.json
-
-###
-
-DELETE http://localhost:8021/green/users/14
-
-###
-
-GET http://localhost:8021/green/users/14
-Accept: application/json
-
-<> 2019-04-27T103738.200.json
-
-###
-
-PUT http://localhost:8021/green/users/14
-Content-Type: application/json
-
-{
-  "firstName": "Micky",
-  "lastName": "Wiseman",
-  "userName": "Micky.Wise",
-  "email": "micky.wiseman@email.com",
-  "phoneNumber": "024-618-1244",
-  "age": 23,
-  "website": "wiseman.net"
-}
-
-<> 2019-04-27T103733.200.json
-
-###
-
-GET http://localhost:8021/green/users/14
-Accept: application/json
-
-<> 2019-04-27T103725.200.json
-
-###
-
-POST http://localhost:8021/green/users
-Content-Type: application/json
-
-{
-  "firstName": "Mick",
-  "lastName": "Wishman",
-  "userName": "mickywise",
-  "email": "micky.wiseman@email.com",
-  "phoneNumber": "024---618-1244",
-  "age": 20,
-  "website": "wiseman.com"
-}
-
-<> 2019-04-27T103716.201.json
-
-###
-
-DELETE http://localhost:8021/green/users/12
-
-###
-
-GET http://localhost:8021/green/users
-Accept: application/json
-
-<> 2019-04-27T103555.200.json
-
-###
-
-POST http://localhost:8021/green/users
-Content-Type: application/json
-
-{
-  "firstName": "MMiiickkkk",
-  "lastName": "Wiseman",
-  "userName": "Mi.Wis",
-  "email": "micky.wiseman@email.com",
-  "phoneNumber": "024---618-1244",
-  "age": 123,
-  "website": "wiseman.netxxx"
-}
-
-<> 2019-04-27T103545.500.json
 
 ###
 

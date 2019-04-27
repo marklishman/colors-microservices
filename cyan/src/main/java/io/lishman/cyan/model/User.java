@@ -4,60 +4,88 @@ import java.util.Objects;
 
 public final class User {
 
-    private String userId;
-    private String name;
-    private String username;
-    private String email;
-    private String phone;
-    private String website;
+    private final Long id;
+    private final String firstName;
+    private final String lastName;
+    private final String userName;
+    private final String email;
+    private final String phoneNumber;
+    private final Integer age;
+    private final String website;
 
-    public User() {
-    }
-
-    public User(final String name,
-                final String username,
-                final String email,
-                final String phone,
-                final String website) {
-        this.name = name;
-        this.username = username;
+    private User(final Long id,
+                 final String firstName,
+                 final String lastName,
+                 final String userName,
+                 final String email,
+                 final String phoneNumber,
+                 final Integer age,
+                 final String website) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.userName = userName;
         this.email = email;
-        this.phone = phone;
+        this.phoneNumber = phoneNumber;
+        this.age = age;
         this.website = website;
     }
 
-    public User(final String userId,
-                final String name,
-                final String username,
-                final String email,
-                final String phone,
-                final String website) {
-        this(name, username, email, phone, website);
-        this.userId = userId;
+    public static User newInstance(final Long id,
+                                   final String firstName,
+                                   final String lastName,
+                                   final String userName,
+                                   final String email,
+                                   final String phoneNumber,
+                                   final Integer age,
+                                   final String website) {
+        return new User(id, firstName, lastName, userName, email, phoneNumber, age, website);
     }
 
-    public String getUserId() {
-        return userId;
+    // @JsonCreator
+
+    public User cloneWithNewId(final Long id) {
+        return User.newInstance(id, firstName, lastName, userName, email, phoneNumber, age, website);
     }
 
-    public String getName() {
-        return name;
+    public Long getId() {
+        return id;
     }
 
-    public String getUsername() {
-        return username;
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getUserName() {
+        return userName;
     }
 
     public String getEmail() {
         return email;
     }
 
-    public String getPhone() {
-        return phone;
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public Integer getAge() {
+        return age;
     }
 
     public String getWebsite() {
         return website;
+    }
+
+    public String getFullName() {
+        return String.join(" ", getFirstName(), getLastName());
+    }
+
+    public boolean isAdult() {
+        return getAge() >= 18;
     }
 
     @Override
@@ -65,27 +93,31 @@ public final class User {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return Objects.equals(userId, user.userId) &&
-                Objects.equals(name, user.name) &&
-                Objects.equals(username, user.username) &&
+        return Objects.equals(id, user.id) &&
+                Objects.equals(firstName, user.firstName) &&
+                Objects.equals(lastName, user.lastName) &&
+                Objects.equals(userName, user.userName) &&
                 Objects.equals(email, user.email) &&
-                Objects.equals(phone, user.phone) &&
+                Objects.equals(phoneNumber, user.phoneNumber) &&
+                Objects.equals(age, user.age) &&
                 Objects.equals(website, user.website);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(userId, name, username, email, phone, website);
+        return Objects.hash(id, firstName, lastName, userName, email, phoneNumber, age, website);
     }
 
     @Override
     public String toString() {
         return "User{" +
-                "userId=" + userId +
-                ", name='" + name + '\'' +
-                ", username='" + username + '\'' +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", userName='" + userName + '\'' +
                 ", email='" + email + '\'' +
-                ", phone='" + phone + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", age=" + age +
                 ", website='" + website + '\'' +
                 '}';
     }
