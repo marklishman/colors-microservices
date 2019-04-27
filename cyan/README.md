@@ -247,13 +247,15 @@ final Flux<User> users = whiteWebClient
 or a post.
 
 ~~~java
-return whiteWebClient
-        .post()
-        .uri("/controller/users")
-        .body(Mono.just(new User("four", "user_four", "four@email.com", "067856469", "www.four.com")), User.class)
-        .exchange()
-        .flatMap(response -> response.toEntity(User.class))
-        .doOnSuccess(o -> System.out.println("**********POST " + o));
+private Mono<ResponseEntity<User>> postNewUser() {
+    return whiteWebClient
+            .post()
+            .uri("/controller/users")
+            .body(Mono.just(new User("four", "user_four", "four@email.com", "067856469", "www.four.com")), User.class)
+            .exchange()
+            .flatMap(response -> response.toEntity(User.class))
+            .doOnSuccess(o -> System.out.println("**********POST " + o));
+}
 ~~~
 
 ## Event Streams
@@ -298,7 +300,7 @@ disposable.dispose();
 
 # RestTemplate
 
-To use `RestTemplate` to retrieve a HAL resource add include `@EnableHypermediaSupport` annotation.
+To use `RestTemplate` to retrieve a HAL resource include the `@EnableHypermediaSupport` annotation.
 This will register the Jackson module to marshal the resource model classes into the appropriate representation.
 
 ~~~java
@@ -313,7 +315,7 @@ public class CyanApplication {
 }
 ~~~
 
-create a bean (necessary to use the config created with the `@EnableHypermediaSupport` annotation above)
+Create a bean (necessary to use the config created with the `@EnableHypermediaSupport` annotation above)
 
 ~~~java
 @Bean

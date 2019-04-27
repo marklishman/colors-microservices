@@ -26,6 +26,15 @@ public class WebClientUserWebFluxClient {
                 .subscribe(System.out::println);
     }
 
+    private Flux<User> getAllUsers() {
+        return whiteWebClient
+                .get()
+                .uri("/controller/users")
+                .retrieve()
+                .bodyToFlux(User.class)
+                .doOnNext(o -> System.out.println("**********GET: " + o));
+    }
+
     private Mono<ResponseEntity<User>> postNewUser() {
         return whiteWebClient
                 .post()
@@ -34,15 +43,6 @@ public class WebClientUserWebFluxClient {
                 .exchange()
                 .flatMap(response -> response.toEntity(User.class))
                 .doOnSuccess(o -> System.out.println("**********POST " + o));
-    }
-
-    private Flux<User> getAllUsers() {
-        return whiteWebClient
-                .get()
-                .uri("/controller/users")
-                .retrieve()
-                .bodyToFlux(User.class)
-                .doOnNext(o -> System.out.println("**********GET: " + o));
     }
 
     private Mono<User> updateUser(String id, String name) {

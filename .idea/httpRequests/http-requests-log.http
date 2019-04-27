@@ -1,3 +1,24 @@
+GET http://localhost:8021/green/people/3
+Accept: application/json
+
+<> 2019-04-26T032657.200.json
+
+###
+
+GET http://localhost:8021/green/countries/20
+Accept: application/json
+
+<> 2019-04-26T032623.200.json
+
+###
+
+GET http://localhost:8021/green/countries/20
+Accept: application/hal+json
+
+<> 2019-04-26T032612.200.json
+
+###
+
 PUT http://localhost:8081/cyan/countries/265
 Content-Type: application/json
 
@@ -358,27 +379,6 @@ GET http://localhost:8081/cyan/groups
 Content-Type: application/json
 
 <> 2019-04-26T082600.200.json
-
-###
-
-GET http://localhost:8081/cyan/people/2?client=resttemplate
-Content-Type: application/json
-
-<> 2019-04-26T082413.200.json
-
-###
-
-GET http://localhost:8081/cyan/people?client=resttemplate
-Content-Type: application/json
-
-<> 2019-04-26T082404.200.json
-
-###
-
-GET http://localhost:8081/cyan/people?client=resttemplate
-Content-Type: application/json
-
-<> 2019-04-26T082329.200.json
 
 ###
 
