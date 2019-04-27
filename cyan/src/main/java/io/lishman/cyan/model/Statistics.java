@@ -7,27 +7,27 @@ import java.util.Objects;
 
 public final class Statistics {
 
-    private final long personCount;
+    private final long userCount;
     private final long countryCount;
     private final long employeeCount;
 
-    private Statistics(final long personCount,
+    private Statistics(final long userCount,
                        final long countryCount,
                        final long employeeCount) {
-        this.personCount = personCount;
+        this.userCount = userCount;
         this.countryCount = countryCount;
         this.employeeCount = employeeCount;
     }
 
     @JsonCreator
-    public static Statistics newInstance(@JsonProperty("personCount") final long personCount,
+    public static Statistics newInstance(@JsonProperty("userCount") final long userCount,
                                          @JsonProperty("countryCount") final long countryCount,
                                          @JsonProperty("employeeCount") final long employeeCount) {
-        return new Statistics(personCount, countryCount, employeeCount);
+        return new Statistics(userCount, countryCount, employeeCount);
     }
 
-    public long getPersonCount() {
-        return personCount;
+    public long getUserCount() {
+        return userCount;
     }
 
     public long getCountryCount() {
@@ -43,20 +43,20 @@ public final class Statistics {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Statistics that = (Statistics) o;
-        return personCount == that.personCount &&
+        return userCount == that.userCount &&
                 countryCount == that.countryCount &&
                 employeeCount == that.employeeCount;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(personCount, countryCount, employeeCount);
+        return Objects.hash(userCount, countryCount, employeeCount);
     }
 
     @Override
     public String toString() {
         return "Statistics{" +
-                "personCount=" + personCount +
+                "userCount=" + userCount +
                 ", countryCount=" + countryCount +
                 ", employeeCount=" + employeeCount +
                 '}';

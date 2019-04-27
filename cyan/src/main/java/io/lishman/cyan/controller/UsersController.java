@@ -1,6 +1,7 @@
 package io.lishman.cyan.controller;
 
 import io.lishman.cyan.model.User;
+import io.lishman.cyan.service.FeignUsersService;
 import io.lishman.cyan.service.WebClientUsersService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,9 +22,11 @@ import java.util.List;
 class UsersController {
 
     final WebClientUsersService webClientUsersService;
+    private final FeignUsersService feignUsersService;
 
-    UsersController(final WebClientUsersService webClientUsersService) {
+    UsersController(final WebClientUsersService webClientUsersService, final FeignUsersService feignUsersService) {
         this.webClientUsersService = webClientUsersService;
+        this.feignUsersService = feignUsersService;
     }
 
     // ~~~~ JSON
@@ -78,6 +81,20 @@ class UsersController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void updateDetails(@PathVariable("id") final Long id) {
         webClientUsersService.deleteUser(id);
+    }
+
+    // ~~~~ Feign
+
+    @GetMapping(params = "client=feign")
+    ResponseEntity<List<User>> getUsersWithFeign() {
+        final List<User> users = feignUsersService.getUsers();
+        return ResponseEntity.ok(users);
+    }
+
+    @GetMapping(value = "{id}", params = "client=feign")
+    ResponseEntity<User> getUserByIdWithFeign(@PathVariable("id") final Long id) {
+        final User user = feignUsersService.getUser(id);
+        return ResponseEntity.ok(user);
     }
 
 }

@@ -34,6 +34,16 @@ public class RestConfig {
     // ~~~~ WebClient
 
     @Bean
+    public WebClient purpleHalWebClient() {
+        return WebClient
+                .builder()
+                .baseUrl("http://localhost:8061")
+                .defaultHeader(HttpHeaders.ACCEPT, MediaTypes.HAL_JSON_VALUE)
+                .exchangeStrategies(halExchangeStrategies())
+                .build();
+    }
+
+    @Bean
     public WebClient whiteWebClient() {
         return WebClient
                 .builder()
@@ -51,24 +61,11 @@ public class RestConfig {
 
     @Bean
     public WebClient greenHalWebClient() {
-
-        final ObjectMapper mapper = new ObjectMapper();
-        mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-        mapper.registerModule(new Jackson2HalModule());
-
-        final ExchangeStrategies strategies = ExchangeStrategies
-                .builder()
-                .codecs(clientDefaultCodecsConfigurer -> {
-                    clientDefaultCodecsConfigurer.defaultCodecs().jackson2JsonEncoder(new Jackson2JsonEncoder(new ObjectMapper(), MediaType.APPLICATION_JSON));
-                    clientDefaultCodecsConfigurer.defaultCodecs().jackson2JsonDecoder(new Jackson2JsonDecoder(mapper, MediaType.APPLICATION_JSON, MediaTypes.HAL_JSON));
-                }).build();
-
         return greenWebClientBuilder()
                 .defaultHeader(HttpHeaders.ACCEPT, MediaTypes.HAL_JSON_VALUE)
-                .exchangeStrategies(strategies)
+                .exchangeStrategies(halExchangeStrategies())
                 .build();
     }
-
 
     // ~~~~ Traverson
 
@@ -91,5 +88,18 @@ public class RestConfig {
         } catch (URISyntaxException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    private ExchangeStrategies halExchangeStrategies() {
+        final ObjectMapper mapper = new ObjectMapper();
+        mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        mapper.registerModule(new Jackson2HalModule());
+
+        return ExchangeStrategies
+                .builder()
+                .codecs(clientDefaultCodecsConfigurer -> {
+                    clientDefaultCodecsConfigurer.defaultCodecs().jackson2JsonEncoder(new Jackson2JsonEncoder(new ObjectMapper(), MediaType.APPLICATION_JSON));
+                    clientDefaultCodecsConfigurer.defaultCodecs().jackson2JsonDecoder(new Jackson2JsonDecoder(mapper, MediaType.APPLICATION_JSON, MediaTypes.HAL_JSON));
+                }).build();
     }
 }

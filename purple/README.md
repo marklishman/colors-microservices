@@ -1273,10 +1273,10 @@ public class StatisticsController {
     public ResponseEntity<?> stats()  {
 
         final int countryCount = countryRepository.findAll().size();
-        final int personCount = personRepository.findAll().size();
+        final int userCount = personRepository.findAll().size();
 
         final StatisticsResource countryStatistics = new StatisticsResource("country", countryCount);
-        final StatisticsResource personStatistics = new StatisticsResource("person", personCount);
+        final StatisticsResource personStatistics = new StatisticsResource("person", userCount);
 
         final Resources<Resource<StatisticsResource>> resources = new Resources<>(
                 List.of(
