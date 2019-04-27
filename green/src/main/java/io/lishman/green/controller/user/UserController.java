@@ -47,14 +47,6 @@ class UserController {
                 .getInstance()
                 .toResources(users);
 
-        // TODO move to README
-        /**
-         * NOTE that the collection link is being added manually here.
-         * In other words we are not using a ResourceAssembler.
-         *
-         * There are some significant changes regarding this in the
-         * next version of Spring.
-         */
         final Resources<UserResource> userResources = new Resources<>(userResourceList);
         userResources.add(linkTo(methodOn(getClass()).getUsersWithHal()).withSelfRel());
         return ResponseEntity.ok(userResources);

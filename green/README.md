@@ -19,3 +19,23 @@
 
 ### HTTP
 * Run the HTTP scripts in the `/scripts/http` directory
+
+
+# HAL
+     
+~~~java
+@GetMapping(produces = "application/hal+json")
+public ResponseEntity<Resources<UserResource>> getUsersWithHal() {
+    final List<User> users = userService.getAllUsers();
+
+    final List<UserResource> userResourceList = UserResourceAssembler
+            .getInstance()
+            .toResources(users);
+    final Resources<UserResource> userResources = new Resources<>(userResourceList);
+    userResources.add(linkTo(methodOn(getClass()).getUsersWithHal()).withSelfRel());
+    return ResponseEntity.ok(userResources);
+}
+~~~
+
+NOTE that the collection link is being added manually here. In other words we are not using a `ResourceAssembler`.
+There are some significant changes regarding this in the next version of Spring.
