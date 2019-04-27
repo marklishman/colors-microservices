@@ -11,8 +11,8 @@
 ### Postgres
 * `docker start ref-db`
 * Create a schema called `green`
-* Run the `sql/schema.sql` script in this schema.
-* Run the `sql/data.sql` script in this schema.
+* Run the `scripts/sql/schema.sql` script in this schema.
+* Run the `scripts/sql/data.sql` script in this schema.
 
 ### Eureka
 
