@@ -20,17 +20,26 @@ public final class RestTemplatePeopleService {
 
     private final RestTemplate purpleRestTemplate;
 
+    // Person excerpt
+    private static class PersonFullName {
+        public String fullName;
+
+        String getFullName() {
+            return fullName;
+        }
+    }
+
     public RestTemplatePeopleService(final RestTemplate purpleRestTemplate) {
         this.purpleRestTemplate = purpleRestTemplate;
     }
 
-    public List<Person> getPeople() {
-        LOGGER.info("Get People with RestTemplate as HAL");
+    public List<String> getPeopleNames() {
+        LOGGER.info("Get People names with RestTemplate as HAL");
 
-        final ParameterizedTypeReference<Resources<Resource<Person>>> peopleResourceTypeReference =
+        final ParameterizedTypeReference<Resources<Resource<PersonFullName>>> peopleResourceTypeReference =
                 new ParameterizedTypeReference<>() {};
 
-        final Resources<Resource<Person>> peopleResources = purpleRestTemplate
+        final Resources<Resource<PersonFullName>> peopleResources = purpleRestTemplate
                 .exchange("/people", HttpMethod.GET, null, peopleResourceTypeReference)
                 .getBody();
 
@@ -38,6 +47,7 @@ public final class RestTemplatePeopleService {
                 .getContent()
                 .stream()
                 .map(Resource::getContent)
+                .map(PersonFullName::getFullName)
                 .collect(Collectors.toList());
     }
 
