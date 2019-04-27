@@ -14,7 +14,7 @@
 * Start the `ref-db` database
 * Start the `green`, `purple` and `white` services
 * Start this service (`cyan`)
-* Run the HTTP scripts in the `/scripts` directory
+* Run the HTTP scripts in the `/scripts/http` directory
 
 ---
 

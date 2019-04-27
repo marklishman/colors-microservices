@@ -67,8 +67,8 @@ Microservice architecture with Spring Cloud.
 
 * `docker start ref-db`
 * Create a schema with service color, eg `purple`
-* Run the `sql/schema.sql` script in this schema.
-* Run the `sql/data.sql` script in this schema.
+* Run the `scripts/sql/schema.sql` script in this schema.
+* Run the `scripts/sql/data.sql` script in this schema.
 * Use `-Dspring.datasource.password=my-secret-password` to access the database from the app
 
 ### Eureka
@@ -88,7 +88,7 @@ eureka:
 
 ### HTTP Scripts
 
-See the `/scripts` directory in each module for the HTTP requests.
+See the `/scripts/http` directory in each module for the HTTP requests.
 
 # Eureka & Ribbon
 
