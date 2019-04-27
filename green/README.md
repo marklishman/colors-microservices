@@ -39,3 +39,17 @@ public ResponseEntity<Resources<UserResource>> getUsersWithHal() {
 
 NOTE that the collection link is being added manually here. In other words we are not using a `ResourceAssembler`.
 There are some significant changes regarding this in the next version of Spring.
+
+
+--
+
+
+# Resource
+
+From [Stack Overflow](https://stackoverflow.com/questions/21346387/how-to-correctly-use-pagedresourcesassembler-from-spring-data/21362291#21362291)
+
+* `Resource` - an item resource. Effectively to wrap around some DTO or entity that captures a single item and enriches it with links.
+* `Resources` - a collection resource, that can be a collection of somethings but usually are a collection of Resource instances.
+* `PagedResources` - an extension of Resources that captures additional pagination information like the number of total pages etc.
+
+All of these classes derive from `ResourceSupport`, which is a basic container for `Link` instances.

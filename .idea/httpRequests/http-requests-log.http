@@ -1,3 +1,17 @@
+GET http://localhost:8021/green/users/6
+Accept: application/json
+
+<> 2019-04-27T041711.200.json
+
+###
+
+GET http://localhost:8081/cyan/users
+Accept: application/json
+
+<> 2019-04-27T035749.200.json
+
+###
+
 GET http://localhost:8061/purple/api
 Content-Type: application/json
 
@@ -324,20 +338,6 @@ Content-Type: application/json
 GET http://localhost:8081/cyan/employees/webflux
 
 <> 2019-04-27T030206.200.txt
-
-###
-
-GET http://localhost:8081/cyan/employees
-Content-Type: application/json
-
-<> 2019-04-27T030203.200.json
-
-###
-
-GET http://localhost:8081/cyan/people?client=resttemplate
-Content-Type: application/json
-
-<> 2019-04-27T030148.200.json
 
 ###
 
