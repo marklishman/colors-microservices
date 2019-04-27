@@ -1,9 +1,9 @@
 
 
 # -----------------------------------------------------------------------------
-# users, WebClient, WebFlux
+# employees, WebClient, WebFlux
 
-GET http://localhost:8081/cyan/users
+GET http://localhost:8081/cyan/employees
 Content-Type: application/json
 
 ###
@@ -11,16 +11,16 @@ Content-Type: application/json
 
 # Get a UUID from White service console output
 
-GET http://localhost:8081/cyan/users/{UUID}
+GET http://localhost:8081/cyan/employees/{id}
 Content-Type: application/json
 
 ###
 
 
 # -----------------------------------------------------------------------------
-# users, multiple calls to WebFlux API
+# employees, multiple calls to WebFlux API
 
-GET http://localhost:8081/cyan/users/webflux
+GET http://localhost:8081/cyan/employees/webflux
 
 ###
 
@@ -29,14 +29,14 @@ GET http://localhost:8081/cyan/users/webflux
 # event streams
 
 # Toggle the event stream on and off
-POST http://localhost:8081/cyan/users/events/toggle
+POST http://localhost:8081/cyan/employees/events/toggle
 Content-Type: application/json
 
 ###
 
 
 # Get the latest event
-GET http://localhost:8081/cyan/users/events/latest
+GET http://localhost:8081/cyan/employees/events/latest
 Content-Type: application/json
 
 ###

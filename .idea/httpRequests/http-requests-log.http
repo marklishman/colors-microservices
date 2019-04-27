@@ -1,3 +1,182 @@
+GET http://localhost:8081/cyan/employees/events/latest
+Content-Type: application/json
+
+<> 2019-04-27T124757.200.json
+
+###
+
+POST http://localhost:8081/cyan/employees/events/toggle
+Content-Type: application/json
+
+<> 2019-04-27T124749.200.txt
+
+###
+
+POST http://localhost:8081/cyan/employees/events/toggle
+Content-Type: application/json
+
+<> 2019-04-27T124748.200.txt
+
+###
+
+POST http://localhost:8081/cyan/employees/events/toggle
+Content-Type: application/json
+
+<> 2019-04-27T124743.200.txt
+
+###
+
+GET http://localhost:8081/cyan/employees/events/latest
+Content-Type: application/json
+
+<> 2019-04-27T124740.200.json
+
+###
+
+GET http://localhost:8081/cyan/employees/events/latest
+Content-Type: application/json
+
+<> 2019-04-27T124739-1.200.json
+
+###
+
+GET http://localhost:8081/cyan/employees/events/latest
+Content-Type: application/json
+
+<> 2019-04-27T124739.200.json
+
+###
+
+GET http://localhost:8081/cyan/employees/events/latest
+Content-Type: application/json
+
+<> 2019-04-27T124735.200.json
+
+###
+
+POST http://localhost:8081/cyan/employees/events/toggle
+Content-Type: application/json
+
+<> 2019-04-27T124723.200.txt
+
+###
+
+GET http://localhost:8081/cyan/employees/webflux
+
+<> 2019-04-27T124711.200.txt
+
+###
+
+GET http://localhost:8081/cyan/employees/webflux
+
+<> 2019-04-27T124624.200.txt
+
+###
+
+GET http://localhost:8081/cyan/employees
+Content-Type: application/json
+
+<> 2019-04-27T124456.200.json
+
+###
+
+GET http://localhost:8081/cyan/employees/webflux
+
+<> 2019-04-27T124435.200.txt
+
+###
+
+GET http://localhost:8081/cyan/employees/5cc43efe4633e11882d3a4d3
+Content-Type: application/json
+
+<> 2019-04-27T124419.200.json
+
+###
+
+GET http://localhost:8081/cyan/employees
+Content-Type: application/json
+
+<> 2019-04-27T124348.200.json
+
+###
+
+GET http://localhost:8081/cyan/users
+Content-Type: application/json
+
+<> 2019-04-27T124341.400.json
+
+###
+
+GET http://localhost:8081/cyan/users
+Content-Type: application/json
+
+<> 2019-04-27T123842.500.json
+
+###
+
+GET http://localhost:8071/handler/employees/5cc435884633e115f5521ea7
+Content-Type: application/json
+
+<> 2019-04-27T115759.200.json
+
+###
+
+GET http://localhost:8071/controller/employees/5cc435884633e115f5521ea7
+Content-Type: application/json
+
+<> 2019-04-27T115755.200.json
+
+###
+
+GET http://localhost:8071/controller/employees
+Content-Type: application/json
+
+<> 2019-04-27T115726.200.json
+
+###
+
+GET http://localhost:8071/handler/employees
+Content-Type: application/json
+
+<> 2019-04-27T115718.200.json
+
+###
+
+GET http://localhost:8071/handler/employees
+Content-Type: application/json
+
+<> 2019-04-27T115626.200.json
+
+###
+
+GET http://localhost:8071/controller/employees
+Content-Type: application/json
+
+<> 2019-04-27T115616.200.json
+
+###
+
+GET http://localhost:8071/handler/employees
+Content-Type: application/json
+
+<> 2019-04-27T115224.200.json
+
+###
+
+GET http://localhost:8071/handler/employees
+Content-Type: application/json
+
+<> 2019-04-27T115216.200.json
+
+###
+
+GET http://localhost:8071/controller/employees
+Content-Type: application/json
+
+<> 2019-04-27T115210.200.json
+
+###
+
 GET http://localhost:8071/handler/employees
 Content-Type: application/json
 
@@ -185,199 +364,6 @@ Content-Type: application/json
 }
 
 <> 2019-04-27T103545.500.json
-
-###
-
-DELETE http://localhost:8021/green/users/11
-
-<> 2019-04-27T103536.500.json
-
-###
-
-PUT http://localhost:8021/green/users/11
-Content-Type: application/json
-
-{
-  "firstName": "Mick",
-  "lastName": "Wiseman",
-  "userName": "Micky.Wise",
-  "email": "micky.wiseman@email.com",
-  "phoneNumber": "024-618-1244",
-  "age": 23,
-  "website": "wiseman.net"
-}
-
-<> 2019-04-27T103525.200.json
-
-###
-
-DELETE http://localhost:8021/green/users/11
-
-###
-
-GET http://localhost:8021/green/users/11
-Accept: application/json
-
-<> 2019-04-27T103340.200.json
-
-###
-
-POST http://localhost:8021/green/users
-Content-Type: application/json
-
-{
-  "firstName": "Mick",
-  "lastName": "Wiseman",
-  "userName": "Micky.Wise",
-  "email": "micky.wiseman@email.com",
-  "phoneNumber": "024-618-1244",
-  "age": 23,
-  "website": "wiseman.net"
-}
-
-<> 2019-04-27T103331.201.json
-
-###
-
-GET http://localhost:8021/green/users
-Accept: application/json
-
-<> 2019-04-27T103143.200.json
-
-###
-
-GET http://localhost:8021/green/users/5
-Accept: application/hal+json
-
-<> 2019-04-27T103104.200.json
-
-###
-
-GET http://localhost:8021/green/users/20
-Accept: application/hal+json
-
-<> 2019-04-27T103058.500.json
-
-###
-
-GET http://localhost:8021/green/users
-Accept: application/hal+json
-
-<> 2019-04-27T103052.200.json
-
-###
-
-GET http://localhost:8021/green/users/5
-Accept: application/json
-
-<> 2019-04-27T103048.200.json
-
-###
-
-GET http://localhost:8021/green/users
-Accept: application/json
-
-<> 2019-04-27T103045.200.json
-
-###
-
-GET http://localhost:8021/green/users
-Accept: application/hal+json
-
-<> 2019-04-27T102931.200.json
-
-###
-
-GET http://localhost:8021/green/users
-Accept: application/json
-
-<> 2019-04-27T102848.200.json
-
-###
-
-GET http://localhost:8021/green/users
-Accept: application/json
-
-<> 2019-04-27T102741.500.json
-
-###
-
-GET http://localhost:8021/green/users
-Accept: application/json
-
-###
-
-GET http://localhost:8021/green/users
-Accept: application/json
-
-###
-
-GET http://localhost:8021/green/users
-Accept: application/json
-
-###
-
-GET http://localhost:8021/green/users
-Accept: application/json
-
-###
-
-GET http://localhost:8021/green/users
-Accept: application/json
-
-###
-
-GET http://localhost:8021/green/countries
-Accept: application/json
-
-<> 2019-04-27T071544.200.json
-
-###
-
-GET http://localhost:8021/green/countries
-Accept: application/json
-
-<> 2019-04-27T071523.200.json
-
-###
-
-GET http://localhost:8021/green/countries
-Accept: application/json
-
-<> 2019-04-27T071349.200.json
-
-###
-
-GET http://localhost:8021/green/people/3
-Accept: application/json
-
-<> 2019-04-26T032657.200.json
-
-###
-
-GET http://localhost:8021/green/countries/20
-Accept: application/json
-
-<> 2019-04-26T032623.200.json
-
-###
-
-GET http://localhost:8021/green/countries/20
-Accept: application/hal+json
-
-<> 2019-04-26T032612.200.json
-
-###
-
-PUT http://localhost:8081/cyan/countries/265
-Content-Type: application/json
-
-{
-  "code": "OX",
-  "name": "Updated obscure country name"
-}
-
-<> 2019-04-26T125732.200.json
 
 ###
 
