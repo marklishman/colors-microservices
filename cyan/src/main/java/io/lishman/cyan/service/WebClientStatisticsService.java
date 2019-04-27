@@ -3,7 +3,7 @@ package io.lishman.cyan.service;
 import io.lishman.cyan.model.Country;
 import io.lishman.cyan.model.Person;
 import io.lishman.cyan.model.Statistics;
-import io.lishman.cyan.model.User;
+import io.lishman.cyan.model.Employee;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -41,14 +41,14 @@ public final class WebClientStatisticsService {
                 .bodyToFlux(Country.class)
                 .count();
 
-        final Mono<Long> userCountMono = whiteWebClient
+        final Mono<Long> employeeCountMono = whiteWebClient
                 .get()
-                .uri("controller/users")
+                .uri("controller/employees")
                 .retrieve()
-                .bodyToFlux(User.class)
+                .bodyToFlux(Employee.class)
                 .count();
 
-        return Flux.mergeSequential(peopleCountMono, countryCountMono, userCountMono)
+        return Flux.mergeSequential(peopleCountMono, countryCountMono, employeeCountMono)
                 .collectList()
                 .map(list -> Statistics.newInstance(list.get(0), list.get(1), list.get(2)))
                 .block();

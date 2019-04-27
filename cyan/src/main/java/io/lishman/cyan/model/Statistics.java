@@ -9,21 +9,21 @@ public final class Statistics {
 
     private final long personCount;
     private final long countryCount;
-    private final long userCount;
+    private final long employeeCount;
 
     private Statistics(final long personCount,
                        final long countryCount,
-                       final long userCount) {
+                       final long employeeCount) {
         this.personCount = personCount;
         this.countryCount = countryCount;
-        this.userCount = userCount;
+        this.employeeCount = employeeCount;
     }
 
     @JsonCreator
     public static Statistics newInstance(@JsonProperty("personCount") final long personCount,
                                          @JsonProperty("countryCount") final long countryCount,
-                                         @JsonProperty("userCount") final long userCount) {
-        return new Statistics(personCount, countryCount, userCount);
+                                         @JsonProperty("employeeCount") final long employeeCount) {
+        return new Statistics(personCount, countryCount, employeeCount);
     }
 
     public long getPersonCount() {
@@ -34,8 +34,8 @@ public final class Statistics {
         return countryCount;
     }
 
-    public long getUserCount() {
-        return userCount;
+    public long getEmployeeCount() {
+        return employeeCount;
     }
 
     @Override
@@ -45,12 +45,12 @@ public final class Statistics {
         Statistics that = (Statistics) o;
         return personCount == that.personCount &&
                 countryCount == that.countryCount &&
-                userCount == that.userCount;
+                employeeCount == that.employeeCount;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(personCount, countryCount, userCount);
+        return Objects.hash(personCount, countryCount, employeeCount);
     }
 
     @Override
@@ -58,7 +58,7 @@ public final class Statistics {
         return "Statistics{" +
                 "personCount=" + personCount +
                 ", countryCount=" + countryCount +
-                ", userCount=" + userCount +
+                ", employeeCount=" + employeeCount +
                 '}';
     }
 }
