@@ -1,14 +1,14 @@
 
 
 # -----------------------------------------------------------------------------
-# countries, WebClient
+# users, WebClient
 
-GET http://localhost:8081/cyan/countries
+GET http://localhost:8081/cyan/users
 Accept: application/json
 
 ###
 
-GET http://localhost:8081/cyan/countries/20
+GET http://localhost:8081/cyan/users/5
 Accept: application/json
 
 ###
@@ -16,17 +16,17 @@ Accept: application/json
 
 
 # -----------------------------------------------------------------------------
-# countries, WebClient, HAL
+# users, WebClient, HAL
 #
 # Note: the client (in the service) uses HAL but the contents
 # are returned as plain JSON from this request
 
-GET http://localhost:8081/cyan/countries?format=hal
+GET http://localhost:8081/cyan/users?format=hal
 Accept: application/json
 
 ###
 
-GET http://localhost:8081/cyan/countries/20?format=hal
+GET http://localhost:8081/cyan/users/6?format=hal
 Accept: application/json
 
 ###
@@ -46,12 +46,17 @@ Content-Type: application/json
 # -----------------------------------------------------------------------------
 # POST, WebClient
 
-POST http://localhost:8081/cyan/countries
+POST http://localhost:8081/cyan/users
 Content-Type: application/json
 
 {
-  "code": "OB",
-  "name": "Some Obscure Country"
+  "firstName": "Mick",
+  "lastName": "Wishman",
+  "userName": "mickywise",
+  "email": "micky.wiseman@email.com",
+  "phoneNumber": "024---618-1244",
+  "age": 20,
+  "website": "wiseman.com"
 }
 
 ###
@@ -63,13 +68,17 @@ Content-Type: application/json
 #
 # See response from POST above for id
 
-#PUT http://localhost:8081/cyan/countries/{id}
-PUT http://localhost:8081/cyan/countries/265
+PUT http://localhost:8081/cyan/users/{id}
 Content-Type: application/json
 
 {
-  "code": "OX",
-  "name": "Updated obscure country name"
+  "firstName": "Micky",
+  "lastName": "Wiseman",
+  "userName": "Micky.Wise",
+  "email": "micky.wiseman@email.com",
+  "phoneNumber": "024-618-1244",
+  "age": 23,
+  "website": "wiseman.net"
 }
 
 ###
@@ -81,8 +90,6 @@ Content-Type: application/json
 #
 # See response from POST above for id
 
-
-#DELETE http://localhost:8081/cyan/countries/{id}
-DELETE http://localhost:8081/cyan/countries/265
+DELETE http://localhost:8081/cyan/users/{id}
 
 ###

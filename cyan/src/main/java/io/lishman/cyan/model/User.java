@@ -1,5 +1,8 @@
 package io.lishman.cyan.model;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.Objects;
 
 public final class User {
@@ -42,7 +45,17 @@ public final class User {
         return new User(id, firstName, lastName, userName, email, phoneNumber, age, website);
     }
 
-    // @JsonCreator
+    @JsonCreator
+    public static User jsonCreator(@JsonProperty("id") final Long id,
+                                   @JsonProperty("firstName") final String firstName,
+                                   @JsonProperty("lastName") final String lastName,
+                                   @JsonProperty("userName") final String userName,
+                                   @JsonProperty("email") final String email,
+                                   @JsonProperty("phoneNumber") final String phoneNumber,
+                                   @JsonProperty("age") final Integer age,
+                                   @JsonProperty("website") final String website) {
+        return newInstance(id, firstName, lastName, userName, email, phoneNumber, age, website);
+    }
 
     public User cloneWithNewId(final Long id) {
         return User.newInstance(id, firstName, lastName, userName, email, phoneNumber, age, website);
@@ -78,14 +91,6 @@ public final class User {
 
     public String getWebsite() {
         return website;
-    }
-
-    public String getFullName() {
-        return String.join(" ", getFirstName(), getLastName());
-    }
-
-    public boolean isAdult() {
-        return getAge() >= 18;
     }
 
     @Override
