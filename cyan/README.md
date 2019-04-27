@@ -38,12 +38,12 @@ public WebClient greenWebClient() {
 and get a resource collection
 
 ~~~java
-public List<Country> getCountries() {
+public List<User> getUsers() {
     return greenWebClient
             .get()
-            .uri("green/countries")
+            .uri("green/users")
             .retrieve()
-            .bodyToFlux(Country.class)
+            .bodyToFlux(User.class)
             .collectList()
             .block();
 }
@@ -52,12 +52,13 @@ public List<Country> getCountries() {
 or a single resource item.
 
 ~~~java
-public Country getCountry(final Long id) {
+public User getUser(final Long id) {
+    LOGGER.info("Get User {} with WebClient", id);
     return greenWebClient
             .get()
-            .uri("green/countries/{id}", id)
+            .uri("green/users/{id}", id)
             .retrieve()
-            .bodyToMono(Country.class)
+            .bodyToMono(User.class)
             .block();
 }
 ~~~
@@ -93,40 +94,38 @@ public WebClient greenHalWebClient() {
 define a couple of `ParameterizedTypeReference`s
 
 ~~~java
-private static final ParameterizedTypeReference<Resource<Country>> COUNTRY_TYPE_REF = 
+private static final ParameterizedTypeReference<Resource<User>> USER_TYPE_REF = 
     new ParameterizedTypeReference<>() {};
-    
-private static final ParameterizedTypeReference<Resources<Resource<Country>>> COUNTRIES_TYPE_REF = 
+private static final ParameterizedTypeReference<Resources<Resource<User>>> USERS_TYPE_REF = 
     new ParameterizedTypeReference<>() {};
 ~~~
 
 and include a utility class to extract a list of objects from `Resources`.
 
 ~~~java
-public class ResourceUtils {
+public final class ClientUtils {
 
-    private ResourceUtils() { }
+    private ClientUtils() { }
 
-    public static <T> List<T> getContent(Resources<Resource<T>> resources) {
+    public static <T> List<T> getResourcesContent(Resources<Resource<T>> resources) {
         return resources
                 .getContent()
                 .stream()
                 .map(Resource::getContent)
                 .collect(Collectors.toList());
     }
-
 }
 ~~~
 
 Then we can get a collection of HAL resources and extract the content as a list
 
 ~~~java
-public List<Country> getCountriesAsHal() {
+public List<User> getUsersAsHal() {
     return greenHalWebClient
             .get()
-            .uri("green/countries")
+            .uri("green/users")
             .retrieve()
-            .bodyToMono(COUNTRIES_TYPE_REF)
+            .bodyToMono(USERS_TYPE_REF)
             .map(ClientUtils::getResourcesContent)
             .block();
 }
@@ -135,12 +134,12 @@ public List<Country> getCountriesAsHal() {
 or extract the content directly from a single resource item. 
 
 ~~~java
-public Country getCountryAsHal(final Long id) {
+public User getUserAsHal(final Long id) {
     return greenHalWebClient
             .get()
-            .uri("green/countries/{id}", id)
+            .uri("green/users/{id}", id)
             .retrieve()
-            .bodyToMono(COUNTRY_TYPE_REF)
+            .bodyToMono(USER_TYPE_REF)
             .map(Resource::getContent)
             .block();
 }
@@ -155,19 +154,26 @@ and instead wait for the combined result using `merge`, `mergeSequential` or `zi
 
 ~~~java
 public Statistics getStats() {
-    final Mono<Long> peopleCountMono = greenWebClient
+
+    final Mono<Long> userCountMono = greenWebClient
             .get()
-            .uri("green/people")
+            .uri("green/users")
             .retrieve()
-            .bodyToFlux(Person.class)
+            .bodyToFlux(User.class)
             .count();
 
-    final Mono<Long> countryCountMono = greenWebClient
+    final Mono<Long> countryCountMono = purpleHalWebClient
             .get()
-            .uri("green/countries")
+            .uri(uriBuilder -> uriBuilder
+                    .path("purple/api/countries")
+                    .queryParam("size", Integer.MAX_VALUE)
+                    .build()
+            )
             .retrieve()
-            .bodyToFlux(Country.class)
-            .count();
+            .bodyToMono(Resources.class)
+            .map(Resources::getContent)
+            .map(Collection::size)
+            .map(Long::valueOf);
 
     final Mono<Long> employeeCountMono = whiteWebClient
             .get()
@@ -176,7 +182,7 @@ public Statistics getStats() {
             .bodyToFlux(Employee.class)
             .count();
 
-    return Flux.mergeSequential(peopleCountMono, countryCountMono, employeeCountMono)
+    return Flux.mergeSequential(userCountMono, countryCountMono, employeeCountMono)
             .collectList()
             .map(list -> Statistics.newInstance(list.get(0), list.get(1), list.get(2)))
             .block();
@@ -190,13 +196,13 @@ We can use WebClient to perform updates too.
 Post
 
 ~~~java
-public Country createCountry(final Country country) {
+public User createUser(final User user) {
     return greenWebClient
             .post()
-            .uri("green/countries")
-            .syncBody(country)
+            .uri("green/users")
+            .syncBody(user)
             .retrieve()
-            .bodyToMono(Country.class)
+            .bodyToMono(User.class)
             .block();
 }
 ~~~
@@ -204,14 +210,14 @@ public Country createCountry(final Country country) {
 Put
 
 ~~~java
-public Country updateCountry(final Long id, final Country country) {
-    final Country updatedCountry = country.cloneWithNewId(id);
+public User updateUser(final Long id, final User user) {
+    final User updatedUser = user.cloneWithNewId(id);
     return greenWebClient
             .put()
-            .uri("green/countries/{id}", id)
-            .syncBody(updatedCountry)
+            .uri("green/users/{id}", id)
+            .syncBody(updatedUser)
             .retrieve()
-            .bodyToMono(Country.class)
+            .bodyToMono(User.class)
             .block();
 }
 ~~~
@@ -219,10 +225,10 @@ public Country updateCountry(final Long id, final Country country) {
 Delete
 
 ~~~java
-public void deleteCountry(final Long id) {
+public void deleteUser(final Long id) {
     greenWebClient
             .delete()
-            .uri("green/countries/{id}", id)
+            .uri("green/users/{id}", id)
             .retrieve()
             .bodyToMono(Void.class)
             .block();
@@ -251,7 +257,7 @@ private Mono<ResponseEntity<Employee>> postNewEmployee() {
     return whiteWebClient
             .post()
             .uri("/controller/employees")
-            .body(Mono.just(new Employee("four", "employee_four", "four@email.com", "067856469", "www.four.com")), Employee.class)
+            .body(Mono.just(new Employee("four", "employee_four", "four@email.com", "067856469")), Employee.class)
             .exchange()
             .flatMap(response -> response.toEntity(Employee.class))
             .doOnSuccess(o -> System.out.println("**********POST " + o));
@@ -315,7 +321,7 @@ public class CyanApplication {
 }
 ~~~
 
-Create a bean (necessary to use the config created with the `@EnableHypermediaSupport` annotation above)
+Create a `RestTemplate` bean (this necessary to use the config created by the `@EnableHypermediaSupport` annotation above)
 
 ~~~java
 @Bean
@@ -329,19 +335,15 @@ public RestTemplate purpleRestTemplate() {
 and use the `exchange` method with a `ParameterizedTypeReference`.
 
 ~~~java
-public List<Person> getPeople() {
-    final ParameterizedTypeReference<Resources<Resource<Person>>> peopleResourceTypeReference =
+public Person getPerson(final Long id) {
+    final ParameterizedTypeReference<Resource<Person>> personResourceTypeReference =
             new ParameterizedTypeReference<>() {};
 
-    final Resources<Resource<Person>> peopleResources = purpleRestTemplate
-            .exchange("/people", HttpMethod.GET, null, peopleResourceTypeReference)
+    final Resource<Person> personResource = purpleRestTemplate
+            .exchange("/people/{id}", HttpMethod.GET, null, personResourceTypeReference, id)
             .getBody();
 
-    return peopleResources
-            .getContent()
-            .stream()
-            .map(Resource::getContent)
-            .collect(Collectors.toList());
+    return personResource.getContent();
 }
 ~~~
 
@@ -385,8 +387,6 @@ To use the Feign client simply call the methods on the interface.
 @Service
 public final class FeignUsersService {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(FeignUsersService.class);
-
     private final FeignUsersClient feignUsersClient;
 
     public FeignUsersService(final FeignUsersClient feignUsersClient) {
@@ -394,12 +394,10 @@ public final class FeignUsersService {
     }
 
     public List<User> getUsers() {
-        LOGGER.info("Get Users with Feign");
         return feignUsersClient.getUsers();
     }
 
     public User getUser(final Long id) {
-        LOGGER.info("Get User {} with Feign", id);
         return feignUsersClient.getUser(id);
     }
 }
@@ -456,34 +454,42 @@ public Group getGroup(final Long pos) {
 
 ---
 
-# Extra JSON Data
+# Adding Extra JSON Data
 
 Adding data to the representation of a resource will not break existing clients if 
 these are correctly implemented.
 
-For example, the green service returns this JSON for a Person.
+For example, the green service returns this JSON for a User.
 
 ~~~json
 {
-  "id": 3,
-  "firstName": "Roger",
-  "lastName": "Smith",
-  "age": 24,
-  "fullName": "Roger Smith",
+  "id": 6,
+  "firstName": "Dennis",
+  "lastName": "Schulist",
+  "userName": "Leopoldo_Corkery",
+  "email": "Karley_Dach@jasper.info",
+  "phoneNumber": "1-477-935-8478 x6430",
+  "age": 19,
+  "website": "ola.org",
+  "fullName": "Dennis Schulist",
   "adult": true
-} 
+}
 ~~~
 
 However the client uses this static factory method to create the object.
 
 ~~~java
 @JsonCreator
-public static Person newInstance(@JsonProperty("id") Long id,
-                                 @JsonProperty("firstName") String firstName,
-                                 @JsonProperty("lastName") String lastName,
-                                 @JsonProperty("age") int age) {
-    return new Person(id, firstName, lastName, age);
+public static User jsonCreator(@JsonProperty("id") final Long id,
+                               @JsonProperty("firstName") final String firstName,
+                               @JsonProperty("lastName") final String lastName,
+                               @JsonProperty("userName") final String userName,
+                               @JsonProperty("email") final String email,
+                               @JsonProperty("phoneNumber") final String phoneNumber,
+                               @JsonProperty("age") final Integer age,
+                               @JsonProperty("website") final String website) {
+    return newInstance(id, firstName, lastName, userName, email, phoneNumber, age, website);
 }
 ~~~
 
-The extra properties are ignored.
+Note that the `fullName` and `adult` properties are ignored.

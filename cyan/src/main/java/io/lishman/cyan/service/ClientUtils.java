@@ -6,7 +6,7 @@ import org.springframework.hateoas.Resources;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class ClientUtils {
+public final class ClientUtils {
 
     private ClientUtils() { }
 
@@ -17,5 +17,4 @@ public class ClientUtils {
                 .map(Resource::getContent)
                 .collect(Collectors.toList());
     }
-
 }
