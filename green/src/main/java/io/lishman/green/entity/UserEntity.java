@@ -19,10 +19,10 @@ public class UserEntity {
     @Column(name = "usr_id", columnDefinition = "serial")
     private Long id;
 
-    @Column(name = "user_first_name")
+    @Column(name = "usr_first_name")
     private String firstName;
 
-    @Column(name = "user_last_name")
+    @Column(name = "usr_last_name")
     private String lastName;
 
     @Column(name = "usr_user_name")

@@ -1,31 +1,29 @@
 
 # -----------------------------------------------------------------------------
-# countries collection
+# users
 
-GET http://localhost:8021/green/countries
+GET http://localhost:8021/green/users
 Accept: application/json
 
+
 ###
-
-
-GET http://localhost:8021/green/countries
-Accept: application/hal+json
+GET http://localhost:8021/green/users/6
+Accept: application/json
 
 ###
 
 
 
 # -----------------------------------------------------------------------------
-# country item
+# user, HAL
 
-GET http://localhost:8021/green/countries/20
-Accept: application/json
+GET http://localhost:8021/green/users
+Accept: application/hal+json
 
 ###
 
 
-
-GET http://localhost:8021/green/countries/20
+GET http://localhost:8021/green/users/5
 Accept: application/hal+json
 
 ###
@@ -35,12 +33,17 @@ Accept: application/hal+json
 # -----------------------------------------------------------------------------
 # POST
 
-POST http://localhost:8021/green/countries
+POST http://localhost:8021/green/users
 Content-Type: application/json
 
 {
-  "code": "OB",
-  "name": "Some Obscure Country"
+  "firstName": "Mick",
+  "lastName": "Wishman",
+  "userName": "mickywise",
+  "email": "micky.wiseman@email.com",
+  "phoneNumber": "024---618-1244",
+  "age": 20,
+  "website": "wiseman.com"
 }
 
 ###
@@ -50,12 +53,17 @@ Content-Type: application/json
 # -----------------------------------------------------------------------------
 # PUT
 
-PUT http://localhost:8021/green/countries/10
+PUT http://localhost:8021/green/users/{id}
 Content-Type: application/json
 
 {
-  "code": "AG",
-  "name": "Antigua & Barbuda"
+  "firstName": "Micky",
+  "lastName": "Wiseman",
+  "userName": "Micky.Wise",
+  "email": "micky.wiseman@email.com",
+  "phoneNumber": "024-618-1244",
+  "age": 23,
+  "website": "wiseman.net"
 }
 
 ###
@@ -65,6 +73,6 @@ Content-Type: application/json
 # -----------------------------------------------------------------------------
 # DELETE
 
-DELETE http://localhost:8021/green/countries/260
+DELETE http://localhost:8021/green/users/{id}
 
 ###

@@ -8,6 +8,6 @@ import java.util.List;
 
 public interface UserRepository extends JpaRepository<UserEntity, Long> {
 
-    List<UserEntity> findByNameContainingIgnoreCase(final String nameContains);
+    List<UserEntity> findByLastNameContainingIgnoreCase(final String nameContains);
 
 }
