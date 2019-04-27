@@ -25,9 +25,9 @@ public class RestConfig {
     // ~~~~ RestTemplate
 
     @Bean
-    public RestTemplate greenRestTemplate() {
+    public RestTemplate purpleRestTemplate() {
         return new RestTemplateBuilder()
-                .rootUri("http://localhost:8021/green")
+                .rootUri("http://localhost:8061/purple")
                 .build();
     }
 

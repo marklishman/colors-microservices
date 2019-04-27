@@ -169,14 +169,14 @@ public Statistics getStats() {
             .bodyToFlux(Country.class)
             .count();
 
-    final Mono<Long> userCountMono = whiteWebClient
+    final Mono<Long> employeeCountMono = whiteWebClient
             .get()
-            .uri("controller/users")
+            .uri("controller/employees")
             .retrieve()
-            .bodyToFlux(User.class)
+            .bodyToFlux(Employee.class)
             .count();
 
-    return Flux.mergeSequential(peopleCountMono, countryCountMono, userCountMono)
+    return Flux.mergeSequential(peopleCountMono, countryCountMono, employeeCountMono)
             .collectList()
             .map(list -> Statistics.newInstance(list.get(0), list.get(1), list.get(2)))
             .block();
@@ -236,24 +236,24 @@ We can of course use `WebClient` with WebFlux.
 For example, a get
 
 ~~~java
-final Flux<User> users = whiteWebClient
+final Flux<Employee> employees = whiteWebClient
         .get()
-        .uri("/controller/users")
+        .uri("/controller/employees")
         .accept(MediaType.APPLICATION_JSON)
         .retrieve()
-        .bodyToFlux(User.class);
+        .bodyToFlux(Employee.class);
 ~~~
 
 or a post.
 
 ~~~java
-private Mono<ResponseEntity<User>> postNewUser() {
+private Mono<ResponseEntity<Employee>> postNewEmployee() {
     return whiteWebClient
             .post()
-            .uri("/controller/users")
-            .body(Mono.just(new User("four", "user_four", "four@email.com", "067856469", "www.four.com")), User.class)
+            .uri("/controller/employees")
+            .body(Mono.just(new Employee("four", "employee_four", "four@email.com", "067856469", "www.four.com")), Employee.class)
             .exchange()
-            .flatMap(response -> response.toEntity(User.class))
+            .flatMap(response -> response.toEntity(Employee.class))
             .doOnSuccess(o -> System.out.println("**********POST " + o));
 }
 ~~~
@@ -264,10 +264,10 @@ Suppose this stream of events is produced on the server.
 
 ~~~java
 @GetMapping(value = "/events", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
-public Flux<UserEvent> getUserEvents() {
+public Flux<EmployeeEvent> getEmployeeEvents() {
     return Flux.interval(Duration.ofSeconds(2))
             .map(val ->
-                    new UserEvent(val, "User Event " + val)
+                    new EmployeeEvent(val, "Employee Event " + val)
             );
 }
 ~~~
@@ -276,18 +276,18 @@ We can subscribe to the stream like this
 
 ~~~java
 private Disposable disposable;
-private UserEvent latestUserEvent;
+private EmployeeEvent latestEmployeeEvent;
 ~~~
 
 ~~~java
 disposable = whiteWebClient
         .get()
-        .uri("/controller/users/events")
+        .uri("/controller/employees/events")
         .accept(MediaType.TEXT_EVENT_STREAM)
         .retrieve()
-        .bodyToFlux(UserEvent.class)
+        .bodyToFlux(EmployeeEvent.class)
         .log()
-        .subscribe(userEvent -> latestUserEvent = userEvent);
+        .subscribe(employeeEvent -> latestEmployeeEvent = employeeEvent);
 ~~~
 
 and cancel the subscription when we are done.
@@ -368,14 +368,14 @@ public class CyanApplication {
 and create the client interface.
 
 ~~~java
-@FeignClient(name = "people", url = "http://localhost:8021/green/people")
-public interface FeignPeopleClient {
+@FeignClient(name = "users", url = "http://localhost:8021/green/users")
+public interface FeignUsersClient {
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    List<Person> getPeople();
+    List<User> getUsers();
 
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    Person getPerson(@PathVariable("id") final Long id);
+    User getUser(@PathVariable("id") final Long id);
 }
 ~~~
 
@@ -383,20 +383,24 @@ To use the Feign client simply call the methods on the interface.
 
 ~~~java
 @Service
-public final class FeignPeopleService {
+public final class FeignUsersService {
 
-    private final FeignPeopleClient feignPeopleClient;
+    private static final Logger LOGGER = LoggerFactory.getLogger(FeignUsersService.class);
 
-    public FeignPeopleService(final FeignPeopleClient feignPeopleClient) {
-        this.feignPeopleClient = feignPeopleClient;
+    private final FeignUsersClient feignUsersClient;
+
+    public FeignUsersService(final FeignUsersClient feignUsersClient) {
+        this.feignUsersClient = feignUsersClient;
     }
 
-    public List<Person> getPeople() {
-        return feignPeopleClient.getPeople();
+    public List<User> getUsers() {
+        LOGGER.info("Get Users with Feign");
+        return feignUsersClient.getUsers();
     }
 
-    public Person getPerson(final Long id) {
-        return feignPeopleClient.getPerson(id);
+    public User getUser(final Long id) {
+        LOGGER.info("Get User {} with Feign", id);
+        return feignUsersClient.getUser(id);
     }
 }
 ~~~ 

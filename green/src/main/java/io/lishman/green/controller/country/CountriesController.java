@@ -53,14 +53,6 @@ class CountriesController {
                 .getInstance()
                 .toResources(countries);
 
-        // TODO move to readme
-        /**
-         * NOTE that the collection link is being added manually here.
-         * In other words we are not using a ResourceAssembler.
-         *
-         * There are some significant changes regarding this in the
-         * next version of Spring.
-         */
         final Resources<CountryResource> countryResources = new Resources<>(countryResourceList);
         countryResources.add(linkTo(methodOn(getClass()).getCountriesWithHal()).withSelfRel());
         return ResponseEntity.ok(countryResources);

@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
-@FeignClient(name = "people", url = "http://localhost:8021/green/users")
+@FeignClient(name = "users", url = "http://localhost:8021/green/users")
 public interface FeignUsersClient {
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
