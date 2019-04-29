@@ -1,3 +1,31 @@
+GET http://localhost:8021/green/users/5
+Accept: application/hal+json
+
+<> 2019-04-29T114923.200.json
+
+###
+
+GET http://localhost:8021/green/users
+Accept: application/hal+json
+
+<> 2019-04-29T114910.200.json
+
+###
+
+GET http://localhost:8021/green/users/6
+Accept: application/json
+
+<> 2019-04-29T114906.200.json
+
+###
+
+GET http://localhost:8021/green/users
+Accept: application/json
+
+<> 2019-04-29T114858.200.json
+
+###
+
 POST http://localhost:8021/green/users
 Content-Type: application/json
 
@@ -325,34 +353,6 @@ GET http://localhost:8081/cyan/users/5
 Accept: application/json
 
 <> 2019-04-27T030233.200.json
-
-###
-
-GET http://localhost:8081/cyan/users
-Accept: application/json
-
-<> 2019-04-27T030229.200.json
-
-###
-
-POST http://localhost:8081/cyan/employees/events/toggle
-Content-Type: application/json
-
-<> 2019-04-27T030225.200.txt
-
-###
-
-GET http://localhost:8081/cyan/employees/events/latest
-Content-Type: application/json
-
-<> 2019-04-27T030222.200.json
-
-###
-
-POST http://localhost:8081/cyan/employees/events/toggle
-Content-Type: application/json
-
-<> 2019-04-27T030218.200.txt
 
 ###
 
