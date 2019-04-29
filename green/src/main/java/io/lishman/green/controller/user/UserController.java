@@ -68,14 +68,12 @@ class UserController {
         return ResponseEntity.ok(userResource);
     }
 
-    // TODO use Resource???
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public User createUser(@RequestBody final User user) {
         return userService.createUser(user);
     }
 
-    // TODO use Resource???
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public User updateUser(
