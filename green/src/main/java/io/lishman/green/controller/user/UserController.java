@@ -70,16 +70,20 @@ class UserController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public User createUser(@RequestBody final User user) {
-        return userService.createUser(user);
+    public UserResource createUser(@RequestBody final UserResource userResource) {
+        final User user = User.fromUserResource(userResource);
+        final User createdUser = userService.createUser(user);
+        return UserResource.fromUser(createdUser);
     }
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public User updateUser(
+    public UserResource updateUser(
             @PathVariable("id") final Long id,
-            @RequestBody final User user) {
-        return userService.updateUser(id, user);
+            @RequestBody final UserResource userResource) {
+        final User user = User.fromUserResource(userResource);
+        final User updatedUser = userService.updateUser(id, user);
+        return UserResource.fromUser(updatedUser);
     }
 
     @DeleteMapping("/{id}")

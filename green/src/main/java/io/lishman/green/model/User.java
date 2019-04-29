@@ -1,5 +1,6 @@
 package io.lishman.green.model;
 
+import io.lishman.green.controller.user.UserResource;
 import io.lishman.green.entity.UserEntity;
 
 import java.util.Objects;
@@ -44,7 +45,7 @@ public final class User {
         return new User(id, firstName, lastName, userName, email, phoneNumber, age, website);
     }
 
-    public static User fromUserEntity(UserEntity userEntity) {
+    public static User fromUserEntity(final UserEntity userEntity) {
         return newInstance(
                 userEntity.getId(),
                 userEntity.getFirstName(),
@@ -54,6 +55,19 @@ public final class User {
                 userEntity.getPhoneNumber(),
                 userEntity.getAge(),
                 userEntity.getWebsite()
+        );
+    }
+
+    public static User fromUserResource(final UserResource userResource) {
+        return newInstance(
+                userResource.getUserId(),
+                userResource.getFirstName(),
+                userResource.getLastName(),
+                userResource.getUserName(),
+                userResource.getEmail(),
+                userResource.getPhoneNumber(),
+                userResource.getAge(),
+                userResource.getWebsite()
         );
     }
 

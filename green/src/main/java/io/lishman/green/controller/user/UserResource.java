@@ -1,5 +1,6 @@
 package io.lishman.green.controller.user;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.lishman.green.model.User;
 import org.springframework.hateoas.ResourceSupport;
@@ -8,7 +9,7 @@ import org.springframework.hateoas.core.Relation;
 import java.util.Objects;
 
 @Relation(value = "user", collectionRelation = "users")
-final class UserResource extends ResourceSupport {
+final public class UserResource extends ResourceSupport {
 
     private final Long id;
     private final String firstName;
@@ -37,6 +38,26 @@ final class UserResource extends ResourceSupport {
         this.website = website;
     }
 
+    @JsonCreator
+    public static UserResource jsonCreator(@JsonProperty("firstName") final String firstName,
+                                           @JsonProperty("lastName") final String lastName,
+                                           @JsonProperty("userName") final String userName,
+                                           @JsonProperty("email") final String email,
+                                           @JsonProperty("phoneNumber") final String phoneNumber,
+                                           @JsonProperty("age") final Integer age,
+                                           @JsonProperty("website") final String website) {
+        return new UserResource(
+                null,
+                firstName,
+                lastName,
+                userName,
+                email,
+                phoneNumber,
+                age,
+                website
+        );
+    }
+
     public static UserResource fromUser(final User user) {
         return new UserResource(
                 user.getId(),
@@ -51,7 +72,7 @@ final class UserResource extends ResourceSupport {
     }
 
     @JsonProperty("id")
-    public Long getPersonId() {
+    public Long getUserId() {
         return id;
     }
 
