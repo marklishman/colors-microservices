@@ -1,3 +1,34 @@
+POST http://localhost:8021/green/users
+Content-Type: application/json
+
+{
+  "firstName": "Mick",
+  "lastName": "Wishman",
+  "userName": "mickywise",
+  "email": "micky.wiseman@email.com",
+  "phoneNumber": "024---618-1244",
+  "age": 20,
+  "website": "wiseman.com"
+}
+
+<> 2019-04-27T043403.201.json
+
+###
+
+GET http://localhost:8021/green/users/6
+Accept: application/json
+
+<> 2019-04-27T043051.200.json
+
+###
+
+GET http://localhost:8021/green/users
+Accept: application/json
+
+<> 2019-04-27T043046.200.json
+
+###
+
 GET http://localhost:8021/green/users/6
 Accept: application/json
 
@@ -322,22 +353,6 @@ POST http://localhost:8081/cyan/employees/events/toggle
 Content-Type: application/json
 
 <> 2019-04-27T030218.200.txt
-
-###
-
-GET http://localhost:8081/cyan/employees/events/latest
-Content-Type: application/json
-
-###
-
-GET http://localhost:8081/cyan/employees/{id}
-Content-Type: application/json
-
-###
-
-GET http://localhost:8081/cyan/employees/webflux
-
-<> 2019-04-27T030206.200.txt
 
 ###
 

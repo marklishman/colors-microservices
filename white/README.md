@@ -3,6 +3,8 @@
 # Project Features
 
 * Webflux
+* WebClient
+* Event Streams
 
 # Set Up
 
