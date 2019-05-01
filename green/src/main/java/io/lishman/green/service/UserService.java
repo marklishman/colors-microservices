@@ -1,6 +1,7 @@
 package io.lishman.green.service;
 
 import io.lishman.green.entity.UserEntity;
+import io.lishman.green.exception.ResourceNotFoundException;
 import io.lishman.green.model.User;
 import io.lishman.green.repository.UserRepository;
 import org.slf4j.Logger;
@@ -35,7 +36,7 @@ public class UserService {
         LOGGER.info("Get User {}", id);
         return userRepository.findById(id)
                 .map(User::fromUserEntity)
-                .orElseThrow();
+                .orElseThrow(ResourceNotFoundException::new);
     }
 
     public User createUser(final User user) {

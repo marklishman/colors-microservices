@@ -1,3 +1,58 @@
+GET http://localhost:8021/green/users
+Accept: application/json
+
+<> 2019-05-01T072442.200.json
+
+###
+
+GET http://127.0.0.1:8021/green/users/699
+Accept: application/json
+
+<> 2019-05-01T012128.500.json
+
+###
+
+GET http://127.0.0.1:8021/green/users/699
+Accept: application/json
+
+<> 2019-05-01T012047.500.json
+
+###
+
+GET http://127.0.0.1:8021/green/users/6
+Accept: application/json
+
+<> 2019-05-01T011942.200.json
+
+###
+
+GET http://127.0.0.1:8021/green/users/6
+Accept: application/json
+
+###
+
+GET http://127.0.0.1:8021/green/users/6
+Accept: application/json
+
+###
+
+GET http://127.0.0.1:8021/green/users/6
+Accept: application/json
+
+###
+
+GET http://127.0.0.1:8021/green/users/6
+Accept: application/json
+
+<> 2019-05-01T011855.500.json
+
+###
+
+GET http://127.0.0.1:8021/green/users/{id}
+Accept: application/json
+
+###
+
 POST http://localhost:8021/green/users
 Content-Type: application/json
 
@@ -383,69 +438,6 @@ GET http://localhost:8061/purple/api/items/search/findByGroupName?groupNameConta
 Content-Type: application/json
 
 <> 2019-04-27T033229.200.json
-
-###
-
-GET http://localhost:8061/purple/api/items/search
-Content-Type: application/json
-
-<> 2019-04-27T033224.200.json
-
-###
-
-GET http://localhost:8061/purple/api/groups/2/items/4
-Content-Type: application/json
-
-<> 2019-04-27T033215.200.json
-
-###
-
-GET http://localhost:8071/handler/employees
-Content-Type: application/json
-
-<> 2019-04-27T032530.200.json
-
-###
-
-GET http://localhost:8071/handler/employees/5cc464504633e1298acd51b8
-Content-Type: application/json
-
-<> 2019-04-27T032522.200.json
-
-###
-
-GET http://localhost:8071/controller/employees/5cc464504633e1298acd51b8
-Content-Type: application/json
-
-<> 2019-04-27T032512.200.json
-
-###
-
-GET http://localhost:8071/controller/employees
-Content-Type: application/json
-
-<> 2019-04-27T032459.200.json
-
-###
-
-GET http://localhost:8081/cyan/people?client=resttemplate
-Content-Type: application/json
-
-<> 2019-04-27T031521.200.json
-
-###
-
-GET http://localhost:8081/cyan/people?client=resttemplate
-Content-Type: application/json
-
-<> 2019-04-27T031454.200.json
-
-###
-
-GET http://localhost:8081/cyan/people?client=resttemplate
-Content-Type: application/json
-
-<> 2019-04-27T031451.200.json
 
 ###
 
