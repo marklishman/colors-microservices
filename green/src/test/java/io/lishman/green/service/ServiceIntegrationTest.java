@@ -9,5 +9,8 @@ import java.lang.annotation.Target;
 
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
-@SpringJUnitConfig(classes = TestConfig.class)
-public @interface IntegrationTest { }
+@SpringJUnitConfig(classes = {
+        UserService.class,
+        RepositoryMocks.class
+})
+public @interface ServiceIntegrationTest { }

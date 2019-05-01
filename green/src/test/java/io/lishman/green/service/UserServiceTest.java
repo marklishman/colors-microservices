@@ -23,7 +23,7 @@ class UserServiceTest {
     private static final long USER_ID = 10L;
 
     @Nested
-    @IntegrationTest
+    @ServiceIntegrationTest
     @DisplayName("getAllUsers() method")
     class GetAllUsers {
 
@@ -48,7 +48,7 @@ class UserServiceTest {
     }
 
     @Nested
-    @IntegrationTest
+    @ServiceIntegrationTest
     @DisplayName("getAllUserById(Long) method")
     class GetUserBy {
 
