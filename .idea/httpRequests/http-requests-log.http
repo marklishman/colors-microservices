@@ -1,3 +1,208 @@
+POST http://localhost:8021/green/users
+Content-Type: application/json
+
+{
+  "firstName": "Mick",
+  "lastName": "Wishman",
+  "userName": "mickywise",
+  "email": "micky.wiseman@email.com",
+  "phoneNumber": "024---618-1244",
+  "age": 20,
+  "website": "wiseman.com"
+}
+
+<> 2019-04-29T125925.201.json
+
+###
+
+POST http://localhost:8021/green/users
+Content-Type: application/json
+
+{
+  "firstName": "Mick",
+  "lastName": "Wishman",
+  "userName": "mickywise",
+  "email": "micky.wiseman@email.com",
+  "phoneNumber": "024---618-1244",
+  "age": 20,
+  "website": "wiseman.com"
+}
+
+###
+
+DELETE http://localhost:8021/green/users/14
+
+###
+
+PUT http://localhost:8021/green/users/14
+Content-Type: application/json
+
+{
+  "firstName": "Micky",
+  "lastName": "Wiseman",
+  "userName": "Micky.Wise",
+  "email": "micky.wiseman@email.com",
+  "phoneNumber": "024-618-1244",
+  "age": 23,
+  "website": "wiseman.net"
+}
+
+<> 2019-04-29T125719.200.json
+
+###
+
+PUT http://localhost:8021/green/users/{id}
+Content-Type: application/json
+
+{
+  "firstName": "Micky",
+  "lastName": "Wiseman",
+  "userName": "Micky.Wise",
+  "email": "micky.wiseman@email.com",
+  "phoneNumber": "024-618-1244",
+  "age": 23,
+  "website": "wiseman.net"
+}
+
+###
+
+POST http://localhost:8021/green/users
+Content-Type: application/json
+
+{
+  "firstName": "Mick",
+  "lastName": "Wishman",
+  "userName": "mickywise",
+  "email": "micky.wiseman@email.com",
+  "phoneNumber": "024---618-1244",
+  "age": 20,
+  "website": "wiseman.com"
+}
+
+<> 2019-04-29T125638.201.json
+
+###
+
+DELETE http://localhost:8021/green/users/13
+
+###
+
+DELETE http://localhost:8021/green/users/{id}
+
+###
+
+PUT http://localhost:8021/green/users/13
+Content-Type: application/json
+
+{
+  "firstName": "Micky",
+  "lastName": "Wiseman",
+  "userName": "Micky.Wise",
+  "email": "micky.wiseman@email.com",
+  "phoneNumber": "024-618-1244",
+  "age": 23,
+  "website": "wiseman.net"
+}
+
+<> 2019-04-29T125031.200.json
+
+###
+
+PUT http://localhost:8021/green/users/13
+Content-Type: application/json
+
+{
+  "firstName": "Micky",
+  "lastName": "Wiseman",
+  "userName": "Micky.Wise",
+  "email": "micky.wiseman@email.com",
+  "phoneNumber": "024-618-1244",
+  "age": 23,
+  "website": "wiseman.net"
+}
+
+<> 2019-04-29T124435.200.json
+
+###
+
+PUT http://localhost:8021/green/users/{id}
+Content-Type: application/json
+
+{
+  "firstName": "Micky",
+  "lastName": "Wiseman",
+  "userName": "Micky.Wise",
+  "email": "micky.wiseman@email.com",
+  "phoneNumber": "024-618-1244",
+  "age": 23,
+  "website": "wiseman.net"
+}
+
+###
+
+PUT http://localhost:8021/green/users/{id}
+Content-Type: application/json
+
+{
+  "firstName": "Micky",
+  "lastName": "Wiseman",
+  "userName": "Micky.Wise",
+  "email": "micky.wiseman@email.com",
+  "phoneNumber": "024-618-1244",
+  "age": 23,
+  "website": "wiseman.net"
+}
+
+###
+
+POST http://localhost:8021/green/users
+Content-Type: application/json
+
+{
+  "firstName": "Mick",
+  "lastName": "Wishman",
+  "userName": "mickywise",
+  "email": "micky.wiseman@email.com",
+  "phoneNumber": "024---618-1244",
+  "age": 20,
+  "website": "wiseman.com"
+}
+
+<> 2019-04-29T124242.201.json
+
+###
+
+POST http://localhost:8021/green/users
+Content-Type: application/json
+
+{
+  "firstName": "Mick",
+  "lastName": "Wishman",
+  "userName": "mickywise",
+  "email": "micky.wiseman@email.com",
+  "phoneNumber": "024---618-1244",
+  "age": 20,
+  "website": "wiseman.com"
+}
+
+<> 2019-04-29T124200.500.json
+
+###
+
+GET http://localhost:8021/green/users
+Accept: application/hal+json
+
+<> 2019-04-29T124155.200.json
+
+###
+
+GET http://localhost:8021/green/users
+Accept: application/json
+
+<> 2019-04-29T124151.200.json
+
+###
+
 GET http://localhost:8021/green/users/5
 Accept: application/hal+json
 
@@ -241,118 +446,6 @@ GET http://localhost:8081/cyan/people?client=resttemplate
 Content-Type: application/json
 
 <> 2019-04-27T031451.200.json
-
-###
-
-GET http://localhost:8081/cyan/people?client=resttemplate
-Content-Type: application/json
-
-<> 2019-04-27T031350.200.json
-
-###
-
-GET http://localhost:8081/cyan/people/2?client=resttemplate
-Content-Type: application/json
-
-<> 2019-04-27T031248.200.json
-
-###
-
-GET http://localhost:8081/cyan/people?client=resttemplate
-Content-Type: application/json
-
-<> 2019-04-27T031239.200.json
-
-###
-
-GET http://localhost:8061/purple/api/people?projection=full
-Content-Type: application/json
-
-<> 2019-04-27T031231.200.json
-
-###
-
-GET http://localhost:8061/purple/api/people?projection=full
-Content-Type: application/json
-
-<> 2019-04-27T030704.200.json
-
-###
-
-GET http://localhost:8081/cyan/people?client=resttemplate
-Content-Type: application/json
-
-<> 2019-04-27T030600.200.json
-
-###
-
-GET http://localhost:8061/purple/api/people
-Content-Type: application/json
-
-<> 2019-04-27T030533.200.json
-
-###
-
-GET http://localhost:8081/cyan/people?client=resttemplate
-Content-Type: application/json
-
-<> 2019-04-27T030316.200.json
-
-###
-
-GET http://localhost:8081/cyan/people/2?client=resttemplate
-Content-Type: application/json
-
-<> 2019-04-27T030309.200.json
-
-###
-
-GET http://localhost:8081/cyan/users/2?client=feign
-Content-Type: application/json
-
-<> 2019-04-27T030300.200.json
-
-###
-
-GET http://localhost:8081/cyan/users?client=feign
-Content-Type: application/json
-
-<> 2019-04-27T030257.200.json
-
-###
-
-GET http://localhost:8081/cyan/people?client=resttemplate
-Content-Type: application/json
-
-<> 2019-04-27T030250.200.json
-
-###
-
-GET http://localhost:8081/cyan/groups/0
-Content-Type: application/json
-
-<> 2019-04-27T030245.200.json
-
-###
-
-GET http://localhost:8081/cyan/groups
-Content-Type: application/json
-
-<> 2019-04-27T030240.200.json
-
-###
-
-GET http://localhost:8081/cyan/users?format=hal
-Accept: application/json
-
-<> 2019-04-27T030237.200.json
-
-###
-
-GET http://localhost:8081/cyan/users/5
-Accept: application/json
-
-<> 2019-04-27T030233.200.json
 
 ###
 
