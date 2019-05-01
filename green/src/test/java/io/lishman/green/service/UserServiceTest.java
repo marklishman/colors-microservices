@@ -58,7 +58,7 @@ class UserServiceTest {
         @Test
         @DisplayName("Given there is a user with the id, the correct user is returned")
         void givenThereAreUsersThenListWithOneUserIsReturned(@Autowired final UserRepository userRepository) {
-            given(userRepository.findById(10L)).willReturn(Optional.of(userEntity()));
+            given(userRepository.findById(USER_ID)).willReturn(Optional.of(userEntity()));
             final User actual = userService.getUserById(USER_ID);
             assertThat(actual.getUserName(), is(equalTo("user.me")));
         }
