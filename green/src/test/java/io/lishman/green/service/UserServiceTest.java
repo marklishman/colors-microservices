@@ -64,7 +64,6 @@ class UserServiceTest {
         }
     }
 
-    // TODO Use Fixtures
     private UserEntity userEntity() {
         return UserEntity.fromUser(user());
     }

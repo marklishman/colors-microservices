@@ -7,8 +7,8 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
 import java.util.List;
@@ -22,8 +22,9 @@ import static org.hamcrest.Matchers.hasSize;
 })
 class UserServiceSpringJUnitTest {
 
-    @Configuration
+    @TestConfiguration
     static class Config {
+
         @Bean
         public UserRepository userRepository() {
             return Mockito.mock(UserRepository.class);

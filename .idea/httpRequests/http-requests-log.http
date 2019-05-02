@@ -1,6 +1,13 @@
 GET http://localhost:8021/green/users
 Accept: application/json
 
+<> 2019-05-02T105815.200.json
+
+###
+
+GET http://localhost:8021/green/users
+Accept: application/json
+
 <> 2019-05-01T072442.200.json
 
 ###
@@ -431,13 +438,6 @@ GET http://localhost:8061/purple/api/groups
 Content-Type: application/json
 
 <> 2019-04-27T033234.200.json
-
-###
-
-GET http://localhost:8061/purple/api/items/search/findByGroupName?groupNameContains=three
-Content-Type: application/json
-
-<> 2019-04-27T033229.200.json
 
 ###
 
