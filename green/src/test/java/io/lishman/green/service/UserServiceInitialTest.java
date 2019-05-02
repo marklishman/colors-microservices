@@ -6,8 +6,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.test.context.ContextConfiguration;
@@ -27,13 +27,11 @@ class UserServiceInitialTest {
 
         @Bean
         public UserService userService() {
-            return new UserService(userRepository());
+            return new UserService(userRepository);
         }
 
-        @Bean
-        public UserRepository userRepository() {
-            return Mockito.mock(UserRepository.class);
-        }
+        @MockBean
+        private UserRepository userRepository;
     }
 
     @Autowired
