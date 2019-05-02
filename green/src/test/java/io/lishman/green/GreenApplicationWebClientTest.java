@@ -1,6 +1,5 @@
 package io.lishman.green;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -16,11 +15,10 @@ class GreenApplicationWebClientTest {
     private WebTestClient webTestClient;
 
     @Test
-    @Disabled("WebTestClient returns 404")
     public void testExample() {
         this.webTestClient
                 .get()
-                .uri("/users")
+                .uri("/green/users")
                 .accept(MediaType.APPLICATION_JSON)
                 .exchange()
                 .expectStatus().isOk();

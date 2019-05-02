@@ -1,3 +1,15 @@
+GET http://localhost:52578/green/users
+Accept: application/json
+
+<> 2019-05-02T015530.200.json
+
+###
+
+GET http://localhost:8021/green/users
+Accept: application/json
+
+###
+
 GET http://localhost:8021/green/users
 Accept: application/json
 
@@ -424,20 +436,6 @@ GET http://localhost:8061/purple/api/items/1?projection=name
 Content-Type: application/json
 
 <> 2019-04-27T033303.200.json
-
-###
-
-GET http://localhost:8061/purple/api/groups/3
-Content-Type: application/json
-
-<> 2019-04-27T033245.200.json
-
-###
-
-GET http://localhost:8061/purple/api/groups
-Content-Type: application/json
-
-<> 2019-04-27T033234.200.json
 
 ###
 
