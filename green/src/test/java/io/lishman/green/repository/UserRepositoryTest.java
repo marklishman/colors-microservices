@@ -2,7 +2,6 @@ package io.lishman.green.repository;
 
 import io.lishman.green.entity.UserEntity;
 import io.lishman.green.model.User;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -27,7 +26,7 @@ class UserRepositoryTest {
     @Test
     public void testExample() {
         List<UserEntity> userEntities = this.repository.findAll();
-        assertThat(userEntities, hasSize(10));
+        assertThat(userEntities, hasSize(5));
     }
 
     @Test
@@ -35,7 +34,7 @@ class UserRepositoryTest {
         entityManager.persist(userEntity());
         entityManager.flush();
         List<UserEntity> userEntities = this.repository.findAll();
-        assertThat(userEntities, hasSize(11));
+        assertThat(userEntities, hasSize(6));
     }
 
     private UserEntity userEntity() {

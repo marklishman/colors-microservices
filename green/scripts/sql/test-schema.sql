@@ -1,9 +1,9 @@
-CREATE SCHEMA IF NOT EXISTS green;
+CREATE SCHEMA IF NOT EXISTS green_test;
 
 
-DROP TABLE IF EXISTS green.user;
+DROP TABLE IF EXISTS green_test.user;
 
-CREATE TABLE green.user
+CREATE TABLE green_test.user
 (
     usr_id           SERIAL PRIMARY KEY,
     usr_first_name   VARCHAR(200) NOT NULL,
