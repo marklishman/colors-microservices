@@ -10,4 +10,4 @@ import java.lang.annotation.Target;
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
 @ActiveProfiles("test")
-public @interface TestProfileActive { }
+public @interface TestProfile { }

@@ -1,7 +1,8 @@
 package io.lishman.green;
 
-import io.lishman.green.annotations.TestProfileActive;
+import io.lishman.green.annotations.TestProfile;
 import io.lishman.green.model.User;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -9,9 +10,14 @@ import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.test.context.TestPropertySource;
 
+/**
+ * Full stack test which connects to a test database.
+ * The test database password is specified here.
+ */
+
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@TestPropertySource(properties = {"spring.datasource.password = test-database-password"})
-@TestProfileActive
+@TestProfile
+@TestPropertySource(properties = {"spring.datasource.password = etSKasftUR74hNQgwdhxbXH7m8LGG"})
 class GreenApplicationRestTemplateTest {
 
     @Autowired
@@ -21,7 +27,8 @@ class GreenApplicationRestTemplateTest {
     private int port;
 
     @Test
-    public void exampleTest() {
+    @DisplayName("Given the full application is running, when a get request on the users endpoint, then all users are retrieved")
+    void givenTheFullApplicationIsRunningWhenAGetRequestOnTheUsersEndpointThenAllUsersAreRetrieved() throws Exception {
         System.out.println("Running on port " + port);
         String body = this.restTemplate.getForObject("/users", String.class);
 

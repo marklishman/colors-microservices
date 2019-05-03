@@ -1,6 +1,7 @@
 package io.lishman.green;
 
-import io.lishman.green.annotations.TestProfileActive;
+import io.lishman.green.annotations.TestProfile;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -10,24 +11,34 @@ import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.hamcrest.Matchers.containsString;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.is;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+/**
+ * Full stack test which connects to a test database.
+ * The test database password is specified here.
+ */
+
 @SpringBootTest
+@TestProfile
 @AutoConfigureMockMvc
-@TestPropertySource(properties = {"spring.datasource.password = test-database-password"})
-@TestProfileActive
+@TestPropertySource(properties = {"spring.datasource.password = etSKasftUR74hNQgwdhxbXH7m8LGG"})
 class GreenApplicationMockMvcTest {
 
     @Autowired
     private MockMvc mvc;
 
     @Test
-    public void testExample() throws Exception {
+    @DisplayName("Given the full application is running, when a get request on the users endpoint, then all users are retrieved")
+    void givenTheFullApplicationIsRunningWhenAGetRequestOnTheUsersEndpointThenAllUsersAreRetrieved() throws Exception {
         this.mvc.perform(get("/users").accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(content().string(containsString("Clementina")));
+                .andExpect(jsonPath("$.length()").value(is(equalTo(8))))
+                .andExpect(content().string(containsString("\"fullName\":\"Leanne Graham\"")))
+                .andExpect(content().string(containsString("\"fullName\":\"Nicholas Runolfsdottir V\"")));
     }
-
 }
