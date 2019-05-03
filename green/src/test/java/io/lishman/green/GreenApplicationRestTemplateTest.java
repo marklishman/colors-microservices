@@ -8,7 +8,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.TestPropertySource;
+
+import java.util.List;
+
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.hasSize;
+import static org.hamcrest.Matchers.is;
 
 /**
  * Full stack test which connects to a test database.
@@ -28,23 +38,47 @@ class GreenApplicationRestTemplateTest {
 
     @Test
     @DisplayName("Given the full application is running, when a get request on the users endpoint, then all users are retrieved")
-    void givenTheFullApplicationIsRunningWhenAGetRequestOnTheUsersEndpointThenAllUsersAreRetrieved() throws Exception {
-        System.out.println("Running on port " + port);
-        String body = this.restTemplate.getForObject("/users", String.class);
+    void givenTheFullApplicationIsRunningWhenAGetRequestOnTheUsersEndpointThenAllUsersAreRetrieved() {
 
-        System.out.println(body);
+        System.out.println("Running on port " + port);
+
+        final ResponseEntity<List<User>> response = this.restTemplate.exchange(
+                "/users",
+                HttpMethod.GET,
+                null,
+                new ParameterizedTypeReference<List<User>>(){}
+        );
+
+        assertThat(response.getStatusCode().is2xxSuccessful(), is(true));
+        final List<User> actualUsers = response.getBody();
+        assertThat(actualUsers, hasSize(8));
+        assertThat(actualUsers.get(0), is(equalTo(firstUser())));
+        assertThat(actualUsers.get(7), is(equalTo(lastUser())));
     }
 
-    private User user() {
+    private User firstUser() {
         return User.newInstance(
-                123L,
-                "Bob",
-                "Smith",
-                "user.me",
-                "abc@email.com",
-                "01772 776453",
-                25,
-                "www.example.com"
+                16L,
+                "Leanne",
+                "Graham",
+                "Bret",
+                "Sincere@april.biz",
+                "1-770-736-8031 x56442",
+                17,
+                "hildegard.org"
+        );
+    }
+
+    private User lastUser() {
+        return User.newInstance(
+                23L,
+                "Nicholas",
+                "Runolfsdottir V",
+                "Maxime_Nienow",
+                "Sherwood@rosamond.me",
+                "586.493.6943 x140",
+                43,
+                "jacynthe.com"
         );
     }
 
