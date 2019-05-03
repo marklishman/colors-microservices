@@ -1,4 +1,3 @@
-DELETE FROM green.user;
 
 insert into green.user (usr_first_name, usr_last_name, usr_user_name, usr_email, usr_phone_number, usr_age, usr_website)
 values ('Leanne', 'Graham', 'Bret', 'Sincere@april.biz', '1-770-736-8031 x56442', 17, 'hildegard.org');
