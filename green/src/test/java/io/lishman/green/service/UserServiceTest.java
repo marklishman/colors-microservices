@@ -1,5 +1,6 @@
 package io.lishman.green.service;
 
+import io.lishman.green.annotations.ServiceIntegrationTest;
 import io.lishman.green.entity.UserEntity;
 import io.lishman.green.model.User;
 import io.lishman.green.repository.UserRepository;

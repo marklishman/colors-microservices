@@ -1,5 +1,7 @@
-package io.lishman.green.service;
+package io.lishman.green.annotations;
 
+import io.lishman.green.service.RepositoryMocks;
+import io.lishman.green.service.UserService;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
 import java.lang.annotation.ElementType;

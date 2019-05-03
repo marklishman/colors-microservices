@@ -1,5 +1,6 @@
 package io.lishman.green;
 
+import io.lishman.green.annotations.TestProfileActive;
 import io.lishman.green.model.User;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +10,8 @@ import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.test.context.TestPropertySource;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@TestPropertySource(properties = {"spring.datasource.password = etSKasftUR74hNQgwdhxbXH7m8LGG"})
+@TestPropertySource(properties = {"spring.datasource.password = test-database-password"})
+@TestProfileActive
 class GreenApplicationRestTemplateTest {
 
     @Autowired
