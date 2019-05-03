@@ -2,6 +2,7 @@ package io.lishman.green.service;
 
 import io.lishman.green.annotations.ServiceIntegrationTest;
 import io.lishman.green.entity.UserEntity;
+import io.lishman.green.fixtures.UserFixture;
 import io.lishman.green.model.User;
 import io.lishman.green.repository.UserRepository;
 import org.junit.jupiter.api.DisplayName;
@@ -61,24 +62,12 @@ class UserServiceTest {
         void givenThereAreUsersThenListWithOneUserIsReturned(@Autowired final UserRepository userRepository) {
             given(userRepository.findById(USER_ID)).willReturn(Optional.of(userEntity()));
             final User actual = userService.getUserById(USER_ID);
-            assertThat(actual.getUserName(), is(equalTo("user.me")));
+            assertThat(actual.getUserName(), is(equalTo("Bret")));
         }
     }
 
     private UserEntity userEntity() {
-        return UserEntity.fromUser(user());
+        return UserEntity.fromUser(UserFixture.leanneGraham());
     }
 
-    private User user() {
-        return User.newInstance(
-                123L,
-                "Bob",
-                "Smith",
-                "user.me",
-                "abc@email.com",
-                "01772 776453",
-                25,
-                "www.example.com"
-        );
-    }
 }

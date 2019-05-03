@@ -1,6 +1,7 @@
 package io.lishman.green;
 
 import io.lishman.green.annotations.TestProfile;
+import io.lishman.green.fixtures.UserFixture;
 import io.lishman.green.model.User;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -32,34 +33,7 @@ class GreenApplicationWebClientTest {
                 .accept(MediaType.APPLICATION_JSON)
                 .exchange()
                 .expectStatus().isOk()
-                .expectBodyList(User.class).hasSize(8).contains(firstUser(), lastUser());
-    }
-
-    private User firstUser() {
-        return User.newInstance(
-                16L,
-                "Leanne",
-                "Graham",
-                "Bret",
-                "Sincere@april.biz",
-                "1-770-736-8031 x56442",
-                17,
-                "hildegard.org"
-        );
-    }
-
-
-    private User lastUser() {
-        return User.newInstance(
-                23L,
-                "Nicholas",
-                "Runolfsdottir V",
-                "Maxime_Nienow",
-                "Sherwood@rosamond.me",
-                "586.493.6943 x140",
-                43,
-                "jacynthe.com"
-        );
+                .expectBodyList(User.class).hasSize(8).contains(UserFixture.leanneGraham(), UserFixture.nicholasRunolfsdottir());
     }
 
 }
