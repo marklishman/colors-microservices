@@ -52,7 +52,7 @@ class UserServiceTest {
             final List<User> actualUsers = userService.getAllUsers();
 
             assertThat(actualUsers, hasSize(1));
-            assertThat(actualUsers.get(0), matchesUser(UserFixture.leanneGraham()));
+            assertThat(actualUsers, Matchers.contains(matchesUser(UserFixture.leanneGraham())));
         }
 
         @Test
@@ -68,7 +68,6 @@ class UserServiceTest {
                     matchesUser(UserFixture.leanneGraham()),
                     matchesUser(UserFixture.nicholasRunolfsdottir()))
             );
-
         }
     }
 
