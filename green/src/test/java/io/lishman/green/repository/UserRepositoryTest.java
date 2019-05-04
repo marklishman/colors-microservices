@@ -1,7 +1,7 @@
 package io.lishman.green.repository;
 
 import io.lishman.green.entity.UserEntity;
-import io.lishman.green.model.User;
+import io.lishman.green.testing.fixtures.UserFixture;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -38,20 +38,7 @@ class UserRepositoryTest {
     }
 
     private UserEntity userEntity() {
-        return UserEntity.fromUser(bobSmith());
-    }
-
-    private User bobSmith() {
-        return User.newInstance(
-                null,
-                "Bob",
-                "Smith",
-                "user.me",
-                "abc@email.com",
-                "01772 776453",
-                25,
-                "www.example.com"
-        );
+        return UserEntity.fromUser(UserFixture.bobSmith());
     }
 
 }

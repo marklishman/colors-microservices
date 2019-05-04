@@ -49,7 +49,7 @@ class UserControllerTest {
         @DisplayName("Given no users exist, " +
                 "when get request on the /users endpoint, " +
                 "then empty list is returned")
-        void noUsers() throws Exception {
+        void noUsersInList() throws Exception {
 
             given(userService.getAllUsers()).willReturn(Collections.emptyList());
 
@@ -62,7 +62,7 @@ class UserControllerTest {
         @DisplayName("Given some users exist, " +
                 "when get request on the /users endpoint, " +
                 "then all users are retrieved")
-        void getAllUsers() throws Exception {
+        void userInList() throws Exception {
 
             given(userService.getAllUsers()).willReturn(UserFixture.users());
 
@@ -82,7 +82,7 @@ class UserControllerTest {
         @DisplayName("Given user does not exist, " +
                 "when get request on the /users/{id} endpoint, " +
                 "then 404 status is returned")
-        void getUserByIdNotFound() throws Exception {
+        void userNotFoundById() throws Exception {
 
             given(userService.getUserById(USER_ID)).willThrow(new UserResourceNotFoundException(USER_ID));
 
@@ -94,7 +94,7 @@ class UserControllerTest {
         @DisplayName("Given a user exists, " +
                 "when get request on the /users/{id} endpoint, " +
                 "then the correct user is retrieved")
-        void getUserById() throws Exception {
+        void userIsFoundById() throws Exception {
 
             given(userService.getUserById(USER_ID)).willReturn(UserFixture.leanneGraham());
 

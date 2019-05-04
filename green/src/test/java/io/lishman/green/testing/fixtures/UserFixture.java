@@ -1,5 +1,6 @@
 package io.lishman.green.testing.fixtures;
 
+import io.lishman.green.entity.UserEntity;
 import io.lishman.green.model.User;
 
 import java.util.List;
@@ -40,5 +41,22 @@ public class UserFixture {
                 43,
                 "jacynthe.com"
         );
+    }
+
+    public static User bobSmith() {
+        return User.newInstance(
+                null,
+                "Bob",
+                "Smith",
+                "user.me",
+                "abc@email.com",
+                "01772 776453",
+                25,
+                "www.example.com"
+        );
+    }
+
+    public static UserEntity leanneGrahamEntity() {
+        return UserEntity.fromUser(UserFixture.leanneGraham());
     }
 }
