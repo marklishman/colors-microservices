@@ -2,6 +2,8 @@ server:
   port: 8021
   servlet:
     context-path: /green
+  error:
+    include-stacktrace: never
 
 spring:
   sleuth:

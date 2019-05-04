@@ -1,6 +1,6 @@
 package io.lishman.green.controller.user;
 
-import io.lishman.green.exception.ResourceNotFoundException;
+import io.lishman.green.exception.UserResourceNotFoundException;
 import io.lishman.green.service.UserService;
 import io.lishman.green.testing.config.ServiceMocks;
 import io.lishman.green.testing.fixtures.UserFixture;
@@ -19,10 +19,8 @@ import java.util.Collections;
 
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.isEmptyString;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -86,11 +84,10 @@ class UserControllerTest {
                 "then 404 status is returned")
         void getUserByIdNotFound() throws Exception {
 
-            given(userService.getUserById(USER_ID)).willThrow(ResourceNotFoundException.class);
+            given(userService.getUserById(USER_ID)).willThrow(new UserResourceNotFoundException(USER_ID));
 
             mvc.perform(get("/users/{id}", USER_ID).accept(MediaType.APPLICATION_JSON))
-                    .andExpect(status().is(404))
-                    .andExpect(content().string(isEmptyString()));
+                    .andExpect(status().is(404));
         }
 
         @Test
