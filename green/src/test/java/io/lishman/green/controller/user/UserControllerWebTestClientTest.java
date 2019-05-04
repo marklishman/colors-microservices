@@ -1,7 +1,7 @@
 package io.lishman.green.controller.user;
 
-import io.lishman.green.controller.ServiceMocks;
-import io.lishman.green.fixtures.UserFixture;
+import io.lishman.green.testing.config.ServiceMocks;
+import io.lishman.green.testing.fixtures.UserFixture;
 import io.lishman.green.model.User;
 import io.lishman.green.service.UserService;
 import org.junit.jupiter.api.Test;

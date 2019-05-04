@@ -1,4 +1,4 @@
-package io.lishman.green.annotations;
+package io.lishman.green.testing.annotations;
 
 import org.springframework.test.context.ActiveProfiles;
 

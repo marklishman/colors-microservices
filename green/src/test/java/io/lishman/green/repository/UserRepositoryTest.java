@@ -38,10 +38,10 @@ class UserRepositoryTest {
     }
 
     private UserEntity userEntity() {
-        return UserEntity.fromUser(user());
+        return UserEntity.fromUser(bobSmith());
     }
 
-    private User user() {
+    private User bobSmith() {
         return User.newInstance(
                 null,
                 "Bob",
@@ -53,4 +53,5 @@ class UserRepositoryTest {
                 "www.example.com"
         );
     }
+
 }

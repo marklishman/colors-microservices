@@ -1,6 +1,6 @@
-package io.lishman.green.annotations;
+package io.lishman.green.testing.annotations;
 
-import io.lishman.green.service.RepositoryMocks;
+import io.lishman.green.testing.config.RepositoryMocks;
 import io.lishman.green.service.UserService;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 

@@ -1,4 +1,4 @@
-package io.lishman.green.controller;
+package io.lishman.green.testing.config;
 
 import io.lishman.green.service.UserService;
 import org.springframework.boot.test.context.TestConfiguration;

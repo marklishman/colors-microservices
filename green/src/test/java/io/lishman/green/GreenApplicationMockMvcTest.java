@@ -1,6 +1,6 @@
 package io.lishman.green;
 
-import io.lishman.green.annotations.TestProfile;
+import io.lishman.green.testing.annotations.TestProfile;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +19,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
- * Full stack test which connects to a test database.
- * The test database password is specified here.
+ * Full stack with a test postgres database.
+ * It is a test database so it is ok to include the password here.
+ *
+ * Mock MVC
  */
 
 @SpringBootTest
@@ -33,8 +35,9 @@ class GreenApplicationMockMvcTest {
     private MockMvc mvc;
 
     @Test
-    @DisplayName("Given the full application is running, when a get request on the users endpoint, then all users are retrieved")
+    @DisplayName("Given the full application is running, when a get request on the /users endpoint, then all users are retrieved")
     void givenTheFullApplicationIsRunningWhenAGetRequestOnTheUsersEndpointThenAllUsersAreRetrieved() throws Exception {
+
         this.mvc.perform(get("/users").accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.length()").value(is(equalTo(8))))

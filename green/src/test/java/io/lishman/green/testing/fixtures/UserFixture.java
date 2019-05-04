@@ -1,4 +1,4 @@
-package io.lishman.green.fixtures;
+package io.lishman.green.testing.fixtures;
 
 import io.lishman.green.model.User;
 

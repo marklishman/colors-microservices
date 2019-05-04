@@ -1,7 +1,7 @@
 package io.lishman.green;
 
-import io.lishman.green.annotations.TestProfile;
-import io.lishman.green.fixtures.UserFixture;
+import io.lishman.green.testing.annotations.TestProfile;
+import io.lishman.green.testing.fixtures.UserFixture;
 import io.lishman.green.model.User;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -22,8 +22,10 @@ import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 
 /**
- * Full stack test which connects to a test database.
- * The test database password is specified here.
+ * Full stack with a test postgres database.
+ * It is a test database so it is ok to include the password here.
+ *
+ * TestRestTemplate
  */
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -32,18 +34,18 @@ import static org.hamcrest.Matchers.is;
 class GreenApplicationRestTemplateTest {
 
     @Autowired
-    private TestRestTemplate restTemplate;
+    private TestRestTemplate testRestTemplate;
 
     @LocalServerPort
     private int port;
 
     @Test
-    @DisplayName("Given the full application is running, when a get request on the users endpoint, then all users are retrieved")
+    @DisplayName("Given the full application is running, when a get request on the /users endpoint, then all users are retrieved")
     void givenTheFullApplicationIsRunningWhenAGetRequestOnTheUsersEndpointThenAllUsersAreRetrieved() {
 
         System.out.println("Running on port " + port);
 
-        final ResponseEntity<List<User>> response = this.restTemplate.exchange(
+        final ResponseEntity<List<User>> response = this.testRestTemplate.exchange(
                 "/users",
                 HttpMethod.GET,
                 null,

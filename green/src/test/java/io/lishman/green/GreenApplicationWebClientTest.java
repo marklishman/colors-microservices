@@ -1,7 +1,7 @@
 package io.lishman.green;
 
-import io.lishman.green.annotations.TestProfile;
-import io.lishman.green.fixtures.UserFixture;
+import io.lishman.green.testing.annotations.TestProfile;
+import io.lishman.green.testing.fixtures.UserFixture;
 import io.lishman.green.model.User;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -12,8 +12,10 @@ import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.web.reactive.server.WebTestClient;
 
 /**
- * Full stack test which connects to a test database.
- * The test database password is specified here.
+ * Full stack with a test postgres database.
+ * It is a test database so it is ok to include the password here.
+ *
+ * WebTestClient
  */
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -25,8 +27,9 @@ class GreenApplicationWebClientTest {
     private WebTestClient webTestClient;
 
     @Test
-    @DisplayName("Given the full application is running, when a get request on the users endpoint, then all users are retrieved")
-    void givenTheFullApplicationIsRunningWhenAGetRequestOnTheUsersEndpointThenAllUsersAreRetrieved() throws Exception {
+    @DisplayName("Given the full application is running, when a get request on the /users endpoint, then all users are retrieved")
+    void givenTheFullApplicationIsRunningWhenAGetRequestOnTheUsersEndpointThenAllUsersAreRetrieved() {
+
         this.webTestClient
                 .get()
                 .uri("/green/users")
