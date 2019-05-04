@@ -59,4 +59,8 @@ public class UserFixture {
     public static UserEntity leanneGrahamEntity() {
         return UserEntity.fromUser(UserFixture.leanneGraham());
     }
+
+    public static UserEntity nicholasRunolfsdottirEntity() {
+        return UserEntity.fromUser(UserFixture.nicholasRunolfsdottir());
+    }
 }
