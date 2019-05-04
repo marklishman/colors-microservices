@@ -2,9 +2,18 @@ package io.lishman.green.testing.fixtures;
 
 import io.lishman.green.model.User;
 
+import java.util.List;
+
 public class UserFixture {
 
     private UserFixture() {
+    }
+
+    public static List<User> users() {
+        return List.of(
+                leanneGraham(),
+                nicholasRunolfsdottir()
+        );
     }
 
     public static User leanneGraham() {

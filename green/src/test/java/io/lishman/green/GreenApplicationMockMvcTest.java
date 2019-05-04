@@ -10,11 +10,9 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.web.servlet.MockMvc;
 
-import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -41,7 +39,7 @@ class GreenApplicationMockMvcTest {
         this.mvc.perform(get("/users").accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.length()").value(is(equalTo(8))))
-                .andExpect(content().string(containsString("\"fullName\":\"Leanne Graham\"")))
-                .andExpect(content().string(containsString("\"fullName\":\"Nicholas Runolfsdottir V\"")));
+                .andExpect(jsonPath("$[0].fullName").value(is(equalTo("Leanne Graham"))))
+                .andExpect(jsonPath("$[7].fullName").value(is(equalTo("Nicholas Runolfsdottir V"))));
     }
 }

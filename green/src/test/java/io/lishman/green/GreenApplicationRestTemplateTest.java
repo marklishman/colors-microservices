@@ -1,8 +1,8 @@
 package io.lishman.green;
 
+import io.lishman.green.model.User;
 import io.lishman.green.testing.annotations.TestProfile;
 import io.lishman.green.testing.fixtures.UserFixture;
-import io.lishman.green.model.User;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
