@@ -61,8 +61,12 @@ class UserRepositoryTest {
         private UserRepository repository;
 
         @Test
-        @DisplayName("Given users exist in the database, then all these users are returned")
-        void existingData() {
+        @DisplayName("Given users exist in the database, " +
+                "when a search is performed on the surname, " +
+                "then only the matching users are returned " +
+                "and the search is case insensitive " +
+                "and the results are ordered by descending surname")
+        void userSearch() {
 
             final List<UserEntity> userEntities = repository.findByLastNameContainingIgnoreCaseOrderByLastNameDesc("CH");
 
