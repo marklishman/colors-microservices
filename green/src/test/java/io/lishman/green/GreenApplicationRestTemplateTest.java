@@ -40,8 +40,10 @@ class GreenApplicationRestTemplateTest {
     private int port;
 
     @Test
-    @DisplayName("Given the full application is running, when a get request on the /users endpoint, then all users are retrieved")
-    void givenTheFullApplicationIsRunningWhenAGetRequestOnTheUsersEndpointThenAllUsersAreRetrieved() {
+    @DisplayName("Given the full application is running, " +
+            "when a get request on the /users endpoint, " +
+            "then all users are retrieved")
+    void getUsers() {
 
         System.out.println("Running on port " + port);
 

@@ -33,8 +33,10 @@ class GreenApplicationMockMvcTest {
     private MockMvc mvc;
 
     @Test
-    @DisplayName("Given the full application is running, when a get request on the /users endpoint, then all users are retrieved")
-    void givenTheFullApplicationIsRunningWhenAGetRequestOnTheUsersEndpointThenAllUsersAreRetrieved() throws Exception {
+    @DisplayName("Given the full application is running, " +
+            "when a get request on the /users endpoint, " +
+            "then all users are retrieved")
+    void getUsers() throws Exception {
 
         this.mvc.perform(get("/users").accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())

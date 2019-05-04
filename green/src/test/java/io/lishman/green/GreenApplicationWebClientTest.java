@@ -14,6 +14,10 @@ import org.springframework.test.web.reactive.server.WebTestClient;
 
 import static org.mockito.BDDMockito.given;
 
+/**
+ * WebTestClient with mock services.
+ */
+
 @SpringBootTest(
         webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT,
         classes = ServiceMocks.class
@@ -28,8 +32,10 @@ class GreenApplicationWebClientTest {
     private UserService userService;
 
     @Test
-    @DisplayName("Given the full application is running, when a get request on the /users endpoint, then all users are retrieved")
-    void givenTheFullApplicationIsRunningWhenAGetRequestOnTheUsersEndpointThenAllUsersAreRetrieved() {
+    @DisplayName("Given the full application is running, " +
+            "when a get request on the /users endpoint, " +
+            "then all users are retrieved")
+    void getUsers() {
 
         given(userService.getAllUsers()).willReturn(UserFixture.users());
 
