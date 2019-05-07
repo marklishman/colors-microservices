@@ -28,7 +28,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @Import(ServiceMocks.class)
 class UserControllerTest {
 
-    private static final Long USER_ID = 16L;
+    private static final Long USER_ID = 1L;
 
     @Autowired
     private MockMvc mvc;

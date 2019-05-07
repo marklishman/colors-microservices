@@ -19,7 +19,7 @@ public class UserFixture {
 
     public static User leanneGraham() {
         return User.newInstance(
-                16L,
+                1L,
                 "Leanne",
                 "Graham",
                 "Bret",
@@ -30,9 +30,22 @@ public class UserFixture {
         );
     }
 
+    public static User chelseyDietrich() {
+        return User.newInstance(
+                5L,
+                "Chelsey",
+                "Dietrich",
+                "Kamren",
+                "Lucio_Hettinger@annie.ca",
+                "(254)954-1289",
+                36,
+                "demarco.info"
+        );
+    }
+
     public static User nicholasRunolfsdottir() {
         return User.newInstance(
-                23L,
+                8L,
                 "Nicholas",
                 "Runolfsdottir V",
                 "Maxime_Nienow",
@@ -43,9 +56,22 @@ public class UserFixture {
         );
     }
 
-    public static User bobSmith() {
+    public static User bobSmithWithNullId() {
         return User.newInstance(
                 null,
+                "Bob",
+                "Smith",
+                "user.me",
+                "abc@email.com",
+                "01772 776453",
+                25,
+                "www.example.com"
+        );
+    }
+
+    public static User bobSmith() {
+        return User.newInstance(
+                6L,
                 "Bob",
                 "Smith",
                 "user.me",
@@ -60,11 +86,20 @@ public class UserFixture {
         return UserEntity.fromUser(UserFixture.leanneGraham());
     }
 
+    public static UserEntity chelseyDietrichEntity() {
+        return UserEntity.fromUser(UserFixture.chelseyDietrich());
+    }
+
+
     public static UserEntity nicholasRunolfsdottirEntity() {
         return UserEntity.fromUser(UserFixture.nicholasRunolfsdottir());
     }
 
-    public static UserEntity bobSnithEntity() {
+    public static UserEntity bobSmithWithNullIdEntity() {
+        return UserEntity.fromUser(UserFixture.bobSmithWithNullId());
+    }
+
+    public static UserEntity bobSmithEntity() {
         return UserEntity.fromUser(UserFixture.bobSmith());
     }
 }

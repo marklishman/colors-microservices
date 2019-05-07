@@ -26,7 +26,7 @@ import static org.mockito.BDDMockito.given;
 @DisableJpa
 class GreenApplicationWebClientTest {
 
-    private static final Long USER_ID = 16L;
+    private static final Long USER_ID = 1L;
 
     @Autowired
     private WebTestClient webTestClient;

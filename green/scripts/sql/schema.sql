@@ -2,6 +2,7 @@ CREATE SCHEMA IF NOT EXISTS green;
 
 
 DROP TABLE IF EXISTS green.user;
+DROP SEQUENCE IF EXISTS green.user_usr_id_seq;
 
 CREATE TABLE green.user
 (

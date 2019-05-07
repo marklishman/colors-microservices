@@ -1,4 +1,5 @@
 DELETE FROM green_test.user;
+ALTER SEQUENCE green_test.user_usr_id_seq RESTART;
 
 INSERT INTO green_test.user (usr_first_name, usr_last_name, usr_user_name, usr_email, usr_phone_number, usr_age, usr_website)
 VALUES ('Leanne', 'Graham', 'Bret', 'Sincere@april.biz', '1-770-736-8031 x56442', 17, 'hildegard.org');
