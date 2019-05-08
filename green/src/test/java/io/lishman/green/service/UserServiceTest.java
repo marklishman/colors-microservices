@@ -24,27 +24,32 @@ import static org.hamcrest.Matchers.is;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.BDDMockito.given;
 
+@DisplayName("User Service Integration Tests")
 class UserServiceTest {
 
     private static final long USER_ID = 10L;
 
     @Nested
-    @ServiceIntegrationTest
     @DisplayName("getAllUsers() method")
+    @ServiceIntegrationTest
     class GetAllUsers {
 
         @Autowired
         private UserService userService;
 
         @Test
-        @DisplayName("Given there are no users, then an empty list is returned")
+        @DisplayName("Given there are no users, " +
+                "when an attempt is made to retrieve the users, " +
+                "then an empty list is returned")
         void noUsersInList() {
             final List<User> actual = userService.getAllUsers();
             assertThat(actual, hasSize(0));
         }
 
         @Test
-        @DisplayName("Given there is one user, then a list with one is returned")
+        @DisplayName("Given there is one user, " +
+                "when the list of users is retrieved, " +
+                "then a list with only one user is returned")
         void singleUserInList(@Autowired final UserRepository userRepository) {
             final List<UserEntity> userEntities = Collections.singletonList(UserFixture.leanneGrahamEntity());
             given(userRepository.findAll()).willReturn(userEntities);
@@ -56,7 +61,9 @@ class UserServiceTest {
         }
 
         @Test
-        @DisplayName("Given there are several users, then a list with all of them is returned")
+        @DisplayName("Given there are several users, " +
+                "when the list of users is retrieved, " +
+                "then a list with all of them is returned")
         void usersInList(@Autowired final UserRepository userRepository) {
             final List<UserEntity> userEntities = List.of(UserFixture.leanneGrahamEntity(), UserFixture.nicholasRunolfsdottirEntity());
             given(userRepository.findAll()).willReturn(userEntities);
@@ -72,15 +79,17 @@ class UserServiceTest {
     }
 
     @Nested
+    @DisplayName("getUserById(Long) method")
     @ServiceIntegrationTest
-    @DisplayName("getAllUserById(Long) method")
-    class GetUserBy {
+    class GetUserById {
 
         @Autowired
         private UserService userService;
 
         @Test
-        @DisplayName("Given there is no user with the id, then an exception is thrown")
+        @DisplayName("Given there are some users, " +
+                "when an attempt is made to retrieve a user that does not exist, " +
+                "then an exception is thrown")
         void userNotFoundById(@Autowired final UserRepository userRepository) {
             given(userRepository.findById(USER_ID)).willReturn(Optional.empty());
 
@@ -93,7 +102,9 @@ class UserServiceTest {
         }
 
         @Test
-        @DisplayName("Given there is a user with the id, then this user is returned")
+        @DisplayName("Given there are some users, " +
+                "when a user is retrieved using an existing id, " +
+                "then this user is returned")
         void userFoundById(@Autowired final UserRepository userRepository) {
             given(userRepository.findById(USER_ID)).willReturn(Optional.of(UserFixture.nicholasRunolfsdottirEntity()));
 

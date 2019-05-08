@@ -25,6 +25,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(UserController.class)
+@DisplayName("User Controller Integration Tests")
 @Import(ServiceMocks.class)
 class UserControllerTest {
 
@@ -47,7 +48,7 @@ class UserControllerTest {
 
         @Test
         @DisplayName("Given no users exist, " +
-                "when get request on the /users endpoint, " +
+                "when there is a get request on the /users endpoint, " +
                 "then empty list is returned")
         void noUsersInList() throws Exception {
 
@@ -60,7 +61,7 @@ class UserControllerTest {
 
         @Test
         @DisplayName("Given some users exist, " +
-                "when get request on the /users endpoint, " +
+                "when there is a get request on the /users endpoint, " +
                 "then all users are retrieved")
         void userInList() throws Exception {
 
@@ -80,7 +81,7 @@ class UserControllerTest {
 
         @Test
         @DisplayName("Given user does not exist, " +
-                "when get request on the /users/{id} endpoint, " +
+                "when there is a get request on the /users/{id} endpoint, " +
                 "then 404 status is returned")
         void userNotFoundById() throws Exception {
 

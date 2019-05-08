@@ -1,8 +1,8 @@
 CREATE SCHEMA IF NOT EXISTS green;
 
 
+DROP TABLE IF EXISTS green.notes;
 DROP TABLE IF EXISTS green.user;
-DROP SEQUENCE IF EXISTS green.user_usr_id_seq;
 
 CREATE TABLE green.user
 (
@@ -15,3 +15,10 @@ CREATE TABLE green.user
     usr_age          INTEGER NOT NULL,
     usr_website      VARCHAR(500)
 );
+
+CREATE TABLE green.notes
+(
+    nte_id SERIAL PRIMARY KEY,
+    usr_id INTEGER NOT NULL REFERENCES green.user,
+    nte_text VARCHAR(4000) NOT NULL
+)

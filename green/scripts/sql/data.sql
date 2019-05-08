@@ -1,5 +1,5 @@
+DELETE FROM green.notes;
 DELETE FROM green.user;
-ALTER SEQUENCE green.user_usr_id_seq RESTART;
 
 INSERT INTO green.user (usr_first_name, usr_last_name, usr_user_name, usr_email, usr_phone_number, usr_age, usr_website)
 VALUES ('Leanne', 'Graham', 'Bret', 'Sincere@april.biz', '1-770-736-8031 x56442', 17, 'hildegard.org');
@@ -21,3 +21,5 @@ INSERT INTO green.user (usr_first_name, usr_last_name, usr_user_name, usr_email,
 VALUES ('Glenna', 'Reichert', 'Delphine', 'Chaim_McDermott@dana.io', '(775)976-6794 x41206', 15, 'conrad.com');
 INSERT INTO green.user (usr_first_name, usr_last_name, usr_user_name, usr_email, usr_phone_number, usr_age, usr_website)
 VALUES ('Clementina', 'DuBuque', 'Moriah.Stanton', 'Rey.Padberg@karina.biz', '024-648-3804', 13, 'ambrose.net');
+
+INSERT INTO green.notes(usr_id, nte_text) VALUES (1, 'Leannes first note');

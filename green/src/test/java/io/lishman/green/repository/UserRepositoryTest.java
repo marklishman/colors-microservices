@@ -26,14 +26,17 @@ import static org.hamcrest.Matchers.is;
 
 @DataJpaTest
 @Sql("/user-data.sql")
+@DisplayName("User Repository Integration Tests")
 class UserRepositoryTest {
+
+    @Autowired
+    private UserRepository repository;
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
     @AfterEach
     public void afterEach() {
-
         final String seq = jdbcTemplate.queryForObject(
                 "SELECT sequence_name FROM information_schema.sequences LIMIT 1",
                 String.class
@@ -42,106 +45,44 @@ class UserRepositoryTest {
         jdbcTemplate.update("ALTER SEQUENCE green." + seq + " RESTART WITH 1");
     }
 
-    @DataJpaTest
-    @Sql("/user-data.sql")
-    @Nested
-    @DisplayName("findAll() method")
-    class FindAll {
-
-        @Autowired
-        private UserRepository repository;
-
-        @Test
-        @DisplayName("Given users exist in the database, then all these users are returned")
-        void listOfUser() {
-
-            final List<UserEntity> actualUserEntities = repository.findAll();
-
-            assertThat(actualUserEntities, hasSize(5));
-            assertThat(actualUserEntities, Matchers.hasItems(
-                    matchesUserEntity(UserFixture.leanneGrahamEntity()),
-                    matchesUserEntity(UserFixture.chelseyDietrichEntity()))
-            );
-        }
+    @Test
+    @DisplayName("Given a user row on the database, " +
+            "when this row is selected , " +
+            "then the table is identified by the entity mappings " +
+            "and the properties are populated by the column mappings")
+    void entityMapping() {
+        final Long ID = UserFixture.chelseyDietrich().getId();
+        final UserEntity actualUserEntity = repository.findById(ID).get();
+        assertThat(actualUserEntity, is(equalTo(UserFixture.chelseyDietrichEntity())));
     }
 
-    @DataJpaTest
-    @Sql("/user-data.sql")
-    @Nested
-    @DisplayName("findById(Long) method")
-    class FindById {
+    @Test
+    @DisplayName("Given users already exists in the database, " +
+            "when a new user is added, " +
+            "then a row is inserted to the table, " +
+            "and the id is the next in the sequence")
+    void nextIdInSequence(@Autowired TestEntityManager entityManager) {
 
-        @Autowired
-        private UserRepository repository;
+        final UserEntity insertedBobSmithEntity = repository.saveAndFlush(UserFixture.bobSmithEntity());
 
-        @Test
-        @DisplayName("Given a user does not exist in the database, " +
-                "when a search is made on a missing id, " +
-                "then an empty optional is returned")
-        void userDoesNotExist() {
-            final Long MISSING_ID = 99L;
-            final Optional<UserEntity> actualUserEntity = repository.findById(MISSING_ID);
-            assertThat(actualUserEntity.isEmpty(), is(equalTo(true)));
-        }
-
-        @Test
-        @DisplayName("Given a user exists in the database, " +
-                "when a search is made on this users id, " +
-                "then the user is returned")
-        void userExists() {
-            final Long ID = UserFixture.chelseyDietrich().getId();
-            final UserEntity actualUserEntity = repository.findById(ID).get();
-            assertThat(actualUserEntity, is(equalTo(UserFixture.chelseyDietrichEntity())));
-        }
+        assertThat(insertedBobSmithEntity, is(equalTo(UserFixture.bobSmithEntity())));
+        final Long ID = UserFixture.bobSmith().getId();
+        final UserEntity actualUserEntity = entityManager.find(UserEntity.class, ID);
+        assertThat(actualUserEntity, is(equalTo(UserFixture.bobSmithEntity())));
     }
 
-    @DataJpaTest
-    @Sql("/user-data.sql")
-    @Nested
-    @DisplayName("findByLastNameContainingIgnoreCaseOrderByLastNameDesc() method")
-    class FindByLastNameContainingIgnoreCaseOrderByLastNameDesc {
+    @Test
+    @DisplayName("Given a query method which finds users by surname, " +
+            "when a search is performed, " +
+            "then only the matching users are returned " +
+            "and the search is case insensitive " +
+            "and the results are ordered by descending surname")
+    void findByLastName() {
 
-        @Autowired
-        private UserRepository repository;
+        final List<UserEntity> userEntities = repository.findByLastNameContainingIgnoreCaseOrderByLastNameDesc("CH");
 
-        @Test
-        @DisplayName("Given users exist in the database, " +
-                "when a search is performed on the surname, " +
-                "then only the matching users are returned " +
-                "and the search is case insensitive " +
-                "and the results are ordered by descending surname")
-        void userSearch() {
-
-            final List<UserEntity> userEntities = repository.findByLastNameContainingIgnoreCaseOrderByLastNameDesc("CH");
-
-            assertThat(userEntities, hasSize(2));
-            assertThat(userEntities.get(0).getLastName(), is(equalTo("Dietrich")));
-            assertThat(userEntities.get(1).getLastName(), is(equalTo("Bauch")));
-        }
-    }
-
-    @DataJpaTest
-    @Sql("/user-data.sql")
-    @Nested
-    @DisplayName("findById(Long) method")
-    class createUser {
-
-        @Autowired
-        private UserRepository repository;
-
-        @Test
-        @DisplayName("Given users exists in the database, " +
-                "when a new user is created, " +
-                "then a row is added to the database, " +
-                "and the id is the next in the sequence")
-        void newUserAdded(@Autowired TestEntityManager entityManager) {
-            final UserEntity insertedBobSmithEntity = repository.saveAndFlush(UserFixture.bobSmithEntity());
-
-            assertThat(insertedBobSmithEntity, is(equalTo(UserFixture.bobSmithEntity())));
-
-            final Long ID = UserFixture.bobSmith().getId();
-            final UserEntity actualUserEntity = entityManager.find(UserEntity.class, ID);
-            assertThat(actualUserEntity, is(equalTo(UserFixture.bobSmithEntity())));
-        }
+        assertThat(userEntities, hasSize(2));
+        assertThat(userEntities.get(0).getLastName(), is(equalTo("Dietrich")));
+        assertThat(userEntities.get(1).getLastName(), is(equalTo("Bauch")));
     }
 }
