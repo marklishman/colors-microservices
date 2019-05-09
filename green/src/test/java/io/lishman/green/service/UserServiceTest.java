@@ -7,6 +7,7 @@ import io.lishman.green.repository.UserRepository;
 import io.lishman.green.testing.annotations.ServiceIntegrationTest;
 import io.lishman.green.testing.fixtures.UserFixture;
 import org.hamcrest.Matchers;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -22,11 +23,16 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.verify;
 
 @DisplayName("User Service Integration Tests")
 class UserServiceTest {
 
+    private static final long MISSING_USER_ID = 99L;
     private static final long USER_ID = 10L;
 
     @Nested
@@ -94,12 +100,12 @@ class UserServiceTest {
                 "when an attempt is made to retrieve a user that does not exist, " +
                 "then an exception is thrown")
         void userNotFoundById() {
-            given(userRepository.findById(USER_ID)).willReturn(Optional.empty());
+            given(userRepository.findById(MISSING_USER_ID)).willReturn(Optional.empty());
 
             UserResourceNotFoundException thrown =
                     assertThrows(UserResourceNotFoundException.class,
                             () -> userService.getUserById(USER_ID),
-                            "Expected getUserById() to throw, but it didn't");
+                            "Expected exception but none thrown");
 
             assertThat(thrown.getMessage(), is(equalTo(String.format("User %s not found", USER_ID))));
         }
@@ -157,6 +163,11 @@ class UserServiceTest {
         @Autowired
         private UserRepository userRepository;
 
+        @BeforeEach
+        void beforeEach() {
+            given(userRepository.existsById(anyLong())).willReturn(true);
+        }
+
         @Test
         @DisplayName("Given a user exists, " +
                 "when this user is updated, " +
@@ -186,13 +197,28 @@ class UserServiceTest {
 
             final User savedUser = userService.updateUser(
                     UserFixture.leanneGraham().getId(),
-                    UserFixture.leanneGraham().cloneWithNewId(99L)
+                    UserFixture.leanneGraham().cloneWithNewId(MISSING_USER_ID)
             );
 
             assertThat(savedUser, matchesUser(UserFixture.leanneGraham()));
         }
 
-        // TODO user does not exist exception
+        @Test
+        @DisplayName("Given a user does not exist on the database, " +
+                "when an attempt is made to update this user, " +
+                "then an exception is thrown " +
+                "and the row is not updated")
+        void userDoesNotExist() {
+            given(userRepository.existsById(MISSING_USER_ID)).willReturn(false);
+
+            UserResourceNotFoundException thrown =
+                    assertThrows(UserResourceNotFoundException.class,
+                            () -> userService.updateUser(MISSING_USER_ID, UserFixture.leanneGraham()),
+                            "Expected exception but none thrown");
+
+            assertThat(thrown.getMessage(), is(equalTo(String.format("User %s not found", MISSING_USER_ID))));
+            verify(userRepository, never()).save(any(UserEntity.class));
+        }
     }
 
 }

@@ -48,6 +48,11 @@ public class UserService {
 
     public User updateUser(final Long id, final User user) {
         LOGGER.info("Update User {}", id);
+
+        if (!userRepository.existsById(id)) {
+            throw new UserResourceNotFoundException(id);
+        }
+
         final var userWithId = user.cloneWithNewId(id);
         return this.createUser(userWithId);
     }
