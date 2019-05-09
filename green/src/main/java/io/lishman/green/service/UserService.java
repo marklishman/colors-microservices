@@ -40,7 +40,7 @@ public class UserService {
     }
 
     public User createUser(final User user) {
-        LOGGER.info("Get User {}", user.getUserName());
+        LOGGER.info("Create User {}", user.getUserName());
         final var userEntity = UserEntity.fromUser(user);
         final var savedUserEntity = this.userRepository.save(userEntity);
         return User.fromUserEntity(savedUserEntity);

@@ -30,8 +30,8 @@ class UserServiceTest {
     private static final long USER_ID = 10L;
 
     @Nested
-    @DisplayName("getAllUsers() method")
     @ServiceIntegrationTest
+    @DisplayName("getAllUsers() method")
     class GetAllUsers {
 
         @Autowired
@@ -79,18 +79,21 @@ class UserServiceTest {
     }
 
     @Nested
-    @DisplayName("getUserById(Long) method")
     @ServiceIntegrationTest
+    @DisplayName("getUserById(Long) method")
     class GetUserById {
 
         @Autowired
         private UserService userService;
 
+        @Autowired
+        private UserRepository userRepository;
+
         @Test
         @DisplayName("Given there are some users, " +
                 "when an attempt is made to retrieve a user that does not exist, " +
                 "then an exception is thrown")
-        void userNotFoundById(@Autowired final UserRepository userRepository) {
+        void userNotFoundById() {
             given(userRepository.findById(USER_ID)).willReturn(Optional.empty());
 
             UserResourceNotFoundException thrown =
@@ -105,7 +108,7 @@ class UserServiceTest {
         @DisplayName("Given there are some users, " +
                 "when a user is retrieved using an existing id, " +
                 "then this user is returned")
-        void userFoundById(@Autowired final UserRepository userRepository) {
+        void userFoundById() {
             given(userRepository.findById(USER_ID)).willReturn(Optional.of(UserFixture.nicholasRunolfsdottirEntity()));
 
             final User actualUser = userService.getUserById(USER_ID);
@@ -113,4 +116,83 @@ class UserServiceTest {
             assertThat(actualUser, matchesUser(UserFixture.nicholasRunolfsdottir()));
         }
     }
+
+    @Nested
+    @ServiceIntegrationTest
+    @DisplayName("createUser(User) method")
+    class createUser {
+
+        @Autowired
+        private UserService userService;
+
+        @Autowired
+        private UserRepository userRepository;
+
+        @Test
+        @DisplayName("Given a user does not exist, " +
+                "when this new user is created, " +
+                "then the user is saved to the database " +
+                "and the a user is returned with a new id")
+        void userCreated() {
+            final UserEntity userToBeSavedEntity = UserFixture.bobSmithWithNullIdEntity();
+            final UserEntity savedUserEntity = UserFixture.bobSmithEntity();
+            given(userRepository.save(userToBeSavedEntity)).willReturn(savedUserEntity);
+
+            final User savedUser = userService.createUser(UserFixture.bobSmithWithNullId());
+
+            assertThat(savedUser, matchesUser(UserFixture.bobSmith()));
+        }
+
+        // TODO user already exists exception
+    }
+
+    @Nested
+    @ServiceIntegrationTest
+    @DisplayName("updateUser(User) method")
+    class updateUser {
+
+        @Autowired
+        private UserService userService;
+
+        @Autowired
+        private UserRepository userRepository;
+
+        @Test
+        @DisplayName("Given a user exists, " +
+                "when this user is updated, " +
+                "then the new details are saved to the database " +
+                "and the a user is returned with the new details")
+        void userUpdated() {
+            final UserEntity updatedUserEntity = UserFixture.leanneGrahamEntity();
+            final UserEntity savedUserEntity = UserFixture.leanneGrahamEntity();
+            given(userRepository.save(updatedUserEntity)).willReturn(savedUserEntity);
+
+            final User savedUser = userService.updateUser(
+                    UserFixture.leanneGraham().getId(),
+                    UserFixture.leanneGraham()
+            );
+
+            assertThat(savedUser, matchesUser(UserFixture.leanneGraham()));
+        }
+
+        @Test
+        @DisplayName("Given a user exists, " +
+                "when an attempt is made to update a user with the wrong id in the object, " +
+                "then the new details are saved to the database using the id argument " +
+                "and the a user is returned with correct id in the details")
+        void userUpdatedWithCorrectId() {
+            final UserEntity userEntity = UserFixture.leanneGrahamEntity();
+            given(userRepository.save(userEntity)).willReturn(userEntity);
+
+            final User savedUser = userService.updateUser(
+                    UserFixture.leanneGraham().getId(),
+                    UserFixture.leanneGraham().cloneWithNewId(99L)
+            );
+
+            assertThat(savedUser, matchesUser(UserFixture.leanneGraham()));
+        }
+
+        // TODO user does not exist exception
+    }
+
 }
