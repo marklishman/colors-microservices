@@ -41,8 +41,11 @@ public class UserService {
 
     public User createUser(final User user) {
         LOGGER.info("Create User {}", user.getUserName());
+
         final var userEntity = UserEntity.fromUser(user);
+
         final var savedUserEntity = this.userRepository.save(userEntity);
+
         return User.fromUserEntity(savedUserEntity);
     }
 
@@ -54,11 +57,20 @@ public class UserService {
         }
 
         final var userWithId = user.cloneWithNewId(id);
-        return this.createUser(userWithId);
+        final var userEntity = UserEntity.fromUser(userWithId);
+
+        final var savedUserEntity = this.userRepository.save(userEntity);
+
+        return User.fromUserEntity(savedUserEntity);
     }
 
     public void deleteUser(final Long id) {
         LOGGER.info("Delete User {}", id);
+
+        if (!userRepository.existsById(id)) {
+            throw new UserResourceNotFoundException(id);
+        }
+
         userRepository.deleteById(id);
     }
 }

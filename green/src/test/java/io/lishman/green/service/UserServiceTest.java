@@ -96,6 +96,18 @@ class UserServiceTest {
         private UserRepository userRepository;
 
         @Test
+        @DisplayName("Given a user exists, " +
+                "when this user is retrieved using the id, " +
+                "then the correct user details are returned")
+        void userFoundById() {
+            given(userRepository.findById(USER_ID)).willReturn(Optional.of(UserFixture.nicholasRunolfsdottirEntity()));
+
+            final User actualUser = userService.getUserById(USER_ID);
+
+            assertThat(actualUser, matchesUser(UserFixture.nicholasRunolfsdottir()));
+        }
+
+        @Test
         @DisplayName("Given there are some users, " +
                 "when an attempt is made to retrieve a user that does not exist, " +
                 "then an exception is thrown")
@@ -108,18 +120,6 @@ class UserServiceTest {
                             "Expected exception but none thrown");
 
             assertThat(thrown.getMessage(), is(equalTo(String.format("User %s not found", USER_ID))));
-        }
-
-        @Test
-        @DisplayName("Given there are some users, " +
-                "when a user is retrieved using an existing id, " +
-                "then this user is returned")
-        void userFoundById() {
-            given(userRepository.findById(USER_ID)).willReturn(Optional.of(UserFixture.nicholasRunolfsdottirEntity()));
-
-            final User actualUser = userService.getUserById(USER_ID);
-
-            assertThat(actualUser, matchesUser(UserFixture.nicholasRunolfsdottir()));
         }
     }
 
@@ -135,10 +135,10 @@ class UserServiceTest {
         private UserRepository userRepository;
 
         @Test
-        @DisplayName("Given a user does not exist, " +
-                "when this new user is created, " +
-                "then the user is saved to the database " +
-                "and the a user is returned with a new id")
+        @DisplayName("Given there are some users, " +
+                "when a new user is created, " +
+                "then the new user is saved to the database " +
+                "and the a user details are returned with a new id")
         void userCreated() {
             final UserEntity userToBeSavedEntity = UserFixture.bobSmithWithNullIdEntity();
             final UserEntity savedUserEntity = UserFixture.bobSmithEntity();
@@ -150,6 +150,7 @@ class UserServiceTest {
         }
 
         // TODO user already exists exception
+        // TODO unique key already exists
     }
 
     @Nested
@@ -204,10 +205,10 @@ class UserServiceTest {
         }
 
         @Test
-        @DisplayName("Given a user does not exist on the database, " +
-                "when an attempt is made to update this user, " +
+        @DisplayName("Given there are some users, " +
+                "when an attempt is made to update a user that does not exist, " +
                 "then an exception is thrown " +
-                "and the row is not updated")
+                "and no rows are updated")
         void userDoesNotExist() {
             given(userRepository.existsById(MISSING_USER_ID)).willReturn(false);
 
@@ -219,6 +220,47 @@ class UserServiceTest {
             assertThat(thrown.getMessage(), is(equalTo(String.format("User %s not found", MISSING_USER_ID))));
             verify(userRepository, never()).save(any(UserEntity.class));
         }
+
+        // TODO unique key already exists
+
     }
 
+    @Nested
+    @ServiceIntegrationTest
+    @DisplayName("deleteUser(Long) method")
+    class DeleteUser {
+
+        @Autowired
+        private UserService userService;
+
+        @Autowired
+        private UserRepository userRepository;
+
+        @Test
+        @DisplayName("Given a user exists, " +
+                "when this user is deleted using the id, " +
+                "then the correct user row is removed from the database")
+        void userRemovedById() {
+            given(userRepository.existsById(anyLong())).willReturn(true);
+
+            userService.deleteUser(USER_ID);
+
+            verify(userRepository).deleteById(USER_ID);
+        }
+
+        @Test
+        @DisplayName("Given there is a user, " +
+                "when an attempt is made to retrieve a user that does not exist, " +
+                "then an exception is thrown")
+        void userNotRemovedById() {
+            given(userRepository.existsById(MISSING_USER_ID)).willReturn(false);
+
+            UserResourceNotFoundException thrown =
+                    assertThrows(UserResourceNotFoundException.class,
+                            () -> userService.deleteUser(USER_ID),
+                            "Expected exception but none thrown");
+
+            assertThat(thrown.getMessage(), is(equalTo(String.format("User %s not found", USER_ID))));
+        }
+    }
 }
