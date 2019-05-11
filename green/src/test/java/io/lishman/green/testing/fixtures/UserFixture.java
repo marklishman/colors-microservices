@@ -102,4 +102,16 @@ public class UserFixture {
     public static UserEntity bobSmithEntity() {
         return UserEntity.fromUser(UserFixture.bobSmith());
     }
+
+    public static String bobSmithJson() {
+        return  "{\n" +
+                "  \"firstName\": \"Bob\",\n" +
+                "  \"lastName\": \"Smith\",\n" +
+                "  \"userName\": \"user.me\",\n" +
+                "  \"email\": \"abc@email.com\",\n" +
+                "  \"phoneNumber\": \"01772 776453\",\n" +
+                "  \"age\": 25,\n" +
+                "  \"website\": \"www.example.com\"\n" +
+                "}";
+    }
 }

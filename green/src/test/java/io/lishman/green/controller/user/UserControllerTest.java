@@ -20,7 +20,11 @@ import java.util.Collections;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.verify;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -42,14 +46,16 @@ class UserControllerTest {
         Mockito.reset(userService);
     }
 
+    // TODO HAL format
+
     @Nested
-    @DisplayName("/users endpoint")
-    class UsersEndpoint {
+    @DisplayName("GET /users")
+    class GetUsers {
 
         @Test
         @DisplayName("Given no users exist, " +
-                "when there is a get request on the /users endpoint, " +
-                "then empty list is returned")
+                "when there is a GET request on the /users endpoint, " +
+                "then an empty list is returned")
         void noUsersInList() throws Exception {
 
             given(userService.getAllUsers()).willReturn(Collections.emptyList());
@@ -61,7 +67,7 @@ class UserControllerTest {
 
         @Test
         @DisplayName("Given some users exist, " +
-                "when there is a get request on the /users endpoint, " +
+                "when there is a GET request on the /users endpoint, " +
                 "then all users are retrieved")
         void userInList() throws Exception {
 
@@ -76,13 +82,13 @@ class UserControllerTest {
     }
 
     @Nested
-    @DisplayName("/users/{id} endpoint")
-    class UsersIdEndpoint {
+    @DisplayName("GET /users/{id}")
+    class GetUsersWithId {
 
         @Test
-        @DisplayName("Given user does not exist, " +
-                "when there is a get request on the /users/{id} endpoint, " +
-                "then 404 status is returned")
+        @DisplayName("Given a user does not exist, " +
+                "when there is a GET request on the /users/{id} endpoint, " +
+                "then a 404 status is returned")
         void userNotFoundById() throws Exception {
 
             given(userService.getUserById(USER_ID)).willThrow(new UserResourceNotFoundException(USER_ID));
@@ -93,7 +99,7 @@ class UserControllerTest {
 
         @Test
         @DisplayName("Given a user exists, " +
-                "when get request on the /users/{id} endpoint, " +
+                "when there is a GET request on the /users/{id} endpoint, " +
                 "then the correct user is retrieved")
         void userIsFoundById() throws Exception {
 
@@ -105,5 +111,49 @@ class UserControllerTest {
         }
     }
 
+    @Nested
+    @DisplayName("POST /users")
+    class PostUsers {
+
+        @Test
+        @DisplayName("Given a new user is to be added," +
+                "when a POST is made to the /users endpoint, " +
+                "then the new user is created " +
+                "and the user details are returned with the new id")
+        void createUser() throws Exception {
+
+            given(userService.createUser(UserFixture.bobSmithWithNullId()))
+                    .willReturn(UserFixture.bobSmith());
+
+            mvc.perform(
+                    post("/users")
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .content(UserFixture.bobSmithJson()))
+                    .andExpect(status().isCreated())
+                    .andExpect(jsonPath("$.id").value(is(equalTo(6))))
+                    .andExpect(jsonPath("$.fullName").value(is(equalTo("Bob Smith"))));
+        }
+    }
+
+    @Nested
+    @DisplayName("PUT /users")
+    class PutUsers {
+
+        @Test
+        @DisplayName("Given a user already exists," +
+                "when a PUT is made to the /users endpoint, " +
+                "then the user is updated")
+        void updateUser() throws Exception {
+
+            mvc.perform(
+                    put("/users/{id}", USER_ID)
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .content(UserFixture.bobSmithJson()))
+                    .andExpect(status().isNoContent())
+                    .andExpect(content().string(""));
+
+            verify(userService).updateUser(USER_ID, UserFixture.bobSmithWithNullId());
+        }
+    }
 }
 

@@ -27,15 +27,7 @@ Content-Type:application/json
     "description": "Item nine description",
     "correlationId": "128a7512-0b92-4f49-8f61-15dabbd757b8",
     "status": 3,
-    "data": [
-        {
-            "value": 11.49
-        },
-        {
-            "category": "http://localhost:8061/purple/categories/1",
-            "value": 45.76
-        }
-    ]
+    "data": []
 }
 
 ###
