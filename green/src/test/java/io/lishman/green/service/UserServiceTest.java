@@ -148,9 +148,6 @@ class UserServiceTest {
 
             assertThat(savedUser, matchesUser(UserFixture.bobSmith()));
         }
-
-        // TODO user already exists exception
-        // TODO unique key already exists
     }
 
     @Nested
@@ -220,9 +217,6 @@ class UserServiceTest {
             assertThat(thrown.getMessage(), is(equalTo(String.format("User %s not found", MISSING_USER_ID))));
             verify(userRepository, never()).save(any(UserEntity.class));
         }
-
-        // TODO unique key already exists
-
     }
 
     @Nested
