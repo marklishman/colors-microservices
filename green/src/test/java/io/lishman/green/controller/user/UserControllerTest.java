@@ -20,7 +20,9 @@ import java.util.Collections;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.verify;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
@@ -45,8 +47,6 @@ class UserControllerTest {
     void beforeEach() {
         Mockito.reset(userService);
     }
-
-    // TODO HAL format
 
     @Nested
     @DisplayName("GET /users")
@@ -86,18 +86,6 @@ class UserControllerTest {
     class GetUsersWithId {
 
         @Test
-        @DisplayName("Given a user does not exist, " +
-                "when there is a GET request on the /users/{id} endpoint, " +
-                "then a 404 status is returned")
-        void userNotFoundById() throws Exception {
-
-            given(userService.getUserById(USER_ID)).willThrow(new UserResourceNotFoundException(USER_ID));
-
-            mvc.perform(get("/users/{id}", USER_ID).accept(MediaType.APPLICATION_JSON))
-                    .andExpect(status().is(404));
-        }
-
-        @Test
         @DisplayName("Given a user exists, " +
                 "when there is a GET request on the /users/{id} endpoint, " +
                 "then the correct user is retrieved")
@@ -109,6 +97,18 @@ class UserControllerTest {
                     .andExpect(status().isOk())
                     .andExpect(jsonPath("$.fullName").value(is(equalTo("Leanne Graham"))));
         }
+
+        @Test
+        @DisplayName("Given a user does not exist, " +
+                "when there is a GET request on the /users/{id} endpoint, " +
+                "then a 404 status is returned")
+        void userNotFoundById() throws Exception {
+
+            given(userService.getUserById(USER_ID)).willThrow(new UserResourceNotFoundException(USER_ID));
+
+            mvc.perform(get("/users/{id}", USER_ID).accept(MediaType.APPLICATION_JSON))
+                    .andExpect(status().is(404));
+        }
     }
 
     @Nested
@@ -116,9 +116,10 @@ class UserControllerTest {
     class PostUsers {
 
         @Test
-        @DisplayName("Given a new user is to be added," +
+        @DisplayName("Given a new user is to be added, " +
                 "when a POST is made to the /users endpoint, " +
                 "then the new user is created " +
+                "and the HTTP status is 201 " +
                 "and the user details are returned with the new id")
         void createUser() throws Exception {
 
@@ -136,13 +137,15 @@ class UserControllerTest {
     }
 
     @Nested
-    @DisplayName("PUT /users")
+    @DisplayName("PUT /users/{id}")
     class PutUsers {
 
         @Test
-        @DisplayName("Given a user already exists," +
-                "when a PUT is made to the /users endpoint, " +
-                "then the user is updated")
+        @DisplayName("Given a user exists, " +
+                "when a PUT is made to the /users/{id} endpoint with a that users id, " +
+                "then the user is updated with the values in the request body " +
+                "and an empty response body is returned " +
+                "and the HTTP status is 204")
         void updateUser() throws Exception {
 
             mvc.perform(
@@ -153,6 +156,62 @@ class UserControllerTest {
                     .andExpect(content().string(""));
 
             verify(userService).updateUser(USER_ID, UserFixture.bobSmithWithNullId());
+        }
+
+        @Test
+        @DisplayName("Given a user does not exist, " +
+                "when a PUT is made to the /users/{id} endpoint with a bad id, " +
+                "then an empty response body is returned (this is handled by the servlet container) " +
+                "and the HTTP status is 404")
+        void updateUserNotFound() throws Exception {
+
+            given(userService.updateUser(USER_ID, UserFixture.bobSmithWithNullId()))
+                    .willThrow(new UserResourceNotFoundException(USER_ID));
+
+            mvc.perform(
+                    put("/users/{id}", USER_ID)
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .content(UserFixture.bobSmithJson()))
+                    .andExpect(status().isNotFound())
+                    .andExpect(content().string(""));
+        }
+    }
+
+    @Nested
+    @DisplayName("DELETE /users/{id}")
+    class DeleteUsers {
+
+        @Test
+        @DisplayName("Given a user exists, " +
+                "when a DELETE is made to the /users{id} endpoint with a that users id, " +
+                "then the user is deleted " +
+                "and an empty response body is returned " +
+                "and the HTTP status is 204")
+        void updateUser() throws Exception {
+
+            mvc.perform(
+                    delete("/users/{id}", USER_ID)
+                            .contentType(MediaType.APPLICATION_JSON))
+                    .andExpect(status().isNoContent())
+                    .andExpect(content().string(""));
+
+            verify(userService).deleteUser(USER_ID);
+        }
+
+        @Test
+        @DisplayName("Given a user does not exist, " +
+                "when a DELETE is made to the /users/{id} endpoint with a bad id, " +
+                "then an empty response body is returned (this is handled by the servlet container) " +
+                "and the HTTP status is 404")
+        void updateUserNotFound() throws Exception {
+
+            doThrow(UserResourceNotFoundException.class).when(userService).deleteUser(USER_ID);
+
+            mvc.perform(
+                    delete("/users/{id}", USER_ID)
+                            .contentType(MediaType.APPLICATION_JSON))
+                    .andExpect(status().isNotFound())
+                    .andExpect(content().string(""));
         }
     }
 }
