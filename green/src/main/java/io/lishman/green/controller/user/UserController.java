@@ -3,6 +3,7 @@ package io.lishman.green.controller.user;
 import io.lishman.green.model.User;
 import io.lishman.green.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.MediaTypes;
 import org.springframework.hateoas.Resources;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -39,7 +40,7 @@ class UserController {
         return ResponseEntity.ok(users);
     }
 
-    @GetMapping(produces = "application/hal+json")
+    @GetMapping(produces = MediaTypes.HAL_JSON_VALUE)
     public ResponseEntity<Resources<UserResource>> getUsersWithHal() {
         final List<User> users = userService.getAllUsers();
 
@@ -59,7 +60,7 @@ class UserController {
 
     }
 
-    @GetMapping(value = "/{id}", produces = "application/hal+json")
+    @GetMapping(value = "/{id}", produces = MediaTypes.HAL_JSON_VALUE)
     public ResponseEntity<UserResource> getUserWithHal(@PathVariable("id") final Long id) {
         final var user = userService.getUserById(id);
         var userResource = UserResourceAssembler

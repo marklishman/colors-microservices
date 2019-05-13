@@ -12,6 +12,7 @@ import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.context.annotation.Import;
+import org.springframework.hateoas.MediaTypes;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -26,6 +27,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -56,12 +58,13 @@ class UserControllerTest {
         @DisplayName("Given no users exist, " +
                 "when there is a GET request on the /users endpoint, " +
                 "then an empty list is returned")
-        void noUsersInList() throws Exception {
+        void emptyListOfUsers() throws Exception {
 
             given(userService.getAllUsers()).willReturn(Collections.emptyList());
 
             mvc.perform(get("/users").accept(MediaType.APPLICATION_JSON))
                     .andExpect(status().isOk())
+                    .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
                     .andExpect(jsonPath("$.length()").value(is(equalTo(0))));
         }
 
@@ -69,15 +72,34 @@ class UserControllerTest {
         @DisplayName("Given some users exist, " +
                 "when there is a GET request on the /users endpoint, " +
                 "then all users are retrieved")
-        void userInList() throws Exception {
+        void listOfUsers() throws Exception {
 
             given(userService.getAllUsers()).willReturn(UserFixture.users());
 
             mvc.perform(get("/users").accept(MediaType.APPLICATION_JSON))
                     .andExpect(status().isOk())
+                    .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
                     .andExpect(jsonPath("$.length()").value(is(equalTo(2))))
                     .andExpect(jsonPath("$[0].fullName").value(is(equalTo("Leanne Graham"))))
                     .andExpect(jsonPath("$[1].fullName").value(is(equalTo("Nicholas Runolfsdottir V"))));
+        }
+
+        @Test
+        @DisplayName("Given some users exist, " +
+                "when there is a GET request on the /users endpoint " +
+                "and the HAL media type is specified in the Accept header, " +
+                "then all users are retrieved " +
+                "and the contents are in HAL format")
+        void listOfUsersInHal() throws Exception {
+
+            given(userService.getAllUsers()).willReturn(UserFixture.users());
+
+            mvc.perform(get("/users").accept(MediaTypes.HAL_JSON_VALUE))
+                    .andExpect(status().isOk())
+                    .andExpect(content().contentType(MediaTypes.HAL_JSON_UTF8_VALUE))
+                    .andExpect(jsonPath("$._embedded.users.length()").value(is(equalTo(2))))
+                    .andExpect(jsonPath("$._embedded.users[0].lastName").value(is(equalTo("Graham"))))
+                    .andExpect(jsonPath("$._embedded.users[1].lastName").value(is(equalTo("Runolfsdottir V"))));
         }
     }
 
@@ -95,7 +117,26 @@ class UserControllerTest {
 
             mvc.perform(get("/users/{id}", USER_ID).accept(MediaType.APPLICATION_JSON))
                     .andExpect(status().isOk())
+                    .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
                     .andExpect(jsonPath("$.fullName").value(is(equalTo("Leanne Graham"))));
+        }
+
+        @Test
+        @DisplayName("Given a user exists, " +
+                "when there is a GET request on the /users/{id} endpoint, " +
+                "and the HAL media type is specified in the Accept header, " +
+                "then the correct user is retrieved " +
+                "and the contents are in HAL format")
+        void userIsFoundByIdAsHal() throws Exception {
+
+            given(userService.getUserById(USER_ID)).willReturn(UserFixture.leanneGraham());
+
+            mvc.perform(get("/users/{id}", USER_ID).accept(MediaTypes.HAL_JSON_VALUE))
+                    .andExpect(status().isOk())
+                    .andExpect(content().contentType(MediaTypes.HAL_JSON_UTF8_VALUE))
+                    .andDo(print())
+                    .andExpect(jsonPath("$.lastName").value(is(equalTo("Graham"))))
+                    .andExpect(jsonPath("$._links.self.href").value(is(equalTo("http://localhost/users/1"))));
         }
 
         @Test
@@ -215,4 +256,3 @@ class UserControllerTest {
         }
     }
 }
-
