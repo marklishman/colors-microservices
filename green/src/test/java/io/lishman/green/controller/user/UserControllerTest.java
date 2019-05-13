@@ -141,7 +141,7 @@ class UserControllerTest {
 
         @Test
         @DisplayName("Given a user does not exist, " +
-                "when there is a GET request on the /users/{id} endpoint, " +
+                "when there is a GET request on the /users/{id} endpoint with a missing id, " +
                 "then a 404 status is returned")
         void userNotFoundById() throws Exception {
 

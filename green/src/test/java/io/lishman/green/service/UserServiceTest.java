@@ -45,7 +45,7 @@ class UserServiceTest {
 
         @Test
         @DisplayName("Given there are no users, " +
-                "when an attempt is made to retrieve the users, " +
+                "when an attempt is made to retrieve all users, " +
                 "then an empty list is returned")
         void noUsersInList() {
             final List<User> actual = userService.getAllUsers();
@@ -152,7 +152,7 @@ class UserServiceTest {
 
     @Nested
     @ServiceIntegrationTest
-    @DisplayName("updateUser(User) method")
+    @DisplayName("updateUser(Long, User) method")
     class updateUser {
 
         @Autowired
@@ -170,7 +170,7 @@ class UserServiceTest {
         @DisplayName("Given a user exists, " +
                 "when this user is updated, " +
                 "then the new details are saved to the database " +
-                "and the a user is returned with the new details")
+                "and the user is returned with the new details")
         void userUpdated() {
             final UserEntity updatedUserEntity = UserFixture.leanneGrahamEntity();
             final UserEntity savedUserEntity = UserFixture.leanneGrahamEntity();

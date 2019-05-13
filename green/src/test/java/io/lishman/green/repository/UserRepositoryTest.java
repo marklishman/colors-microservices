@@ -49,10 +49,10 @@ class UserRepositoryTest {
     @DisplayName("Given a user row on the database, " +
             "when this row is selected , " +
             "then the table is identified by the entity mappings " +
-            "and the properties are populated by the column mappings")
+            "and the object properties are populated by the column mappings")
     void entityMapping() {
         final Long ID = UserFixture.chelseyDietrich().getId();
-        final UserEntity actualUserEntity = repository.findById(ID).get();
+        final UserEntity actualUserEntity = repository.findById(ID).orElse(null);
         assertThat(actualUserEntity, is(equalTo(UserFixture.chelseyDietrichEntity())));
     }
 
