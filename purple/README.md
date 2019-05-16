@@ -1370,6 +1370,7 @@ public class RestApiConfiguration implements RepositoryRestConfigurer {
     @Override
     public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config) {
         config.setRepositoryDetectionStrategy(RepositoryDetectionStrategy.RepositoryDetectionStrategies.ANNOTATED);
+        config.setReturnBodyOnCreate(true);
     }
 
 }
