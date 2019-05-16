@@ -126,7 +126,7 @@ Use the API root to see which resource URLs are available.
 
 # Collection Resources
 
-We can retrieve a list of resources
+We can retrieve a collections of resources
 
     http://localhost:8061/purple/api/groups
 
