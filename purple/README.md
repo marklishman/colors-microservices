@@ -90,7 +90,7 @@ public interface ItemRepository extends JpaRepository<ItemEntity, Long> {
 
 # Resource Discoverability
 
-Use the API root to see which resource UILs are available.
+Use the API root to see which resource URLs are available.
 
     http://localhost:8061/purple/api
 
@@ -125,6 +125,8 @@ Use the API root to see which resource UILs are available.
 ~~~
 
 # Collection Resources
+
+We can retrieve a list of resources
 
     http://localhost:8061/purple/api/groups
 
@@ -188,6 +190,8 @@ Use the API root to see which resource UILs are available.
 ~~~
 
 # Item Resources
+
+or a single item.
 
     http://localhost:8061/purple/api/groups/3
 
