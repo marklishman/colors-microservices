@@ -63,7 +63,7 @@ Content-Type:application/json
 
 # PUT item with data
 
-PUT http://localhost:8061/purple/api/items/4
+PUT http://localhost:8061/purple/api/items/{id}
 Content-Type:application/json
 
 {
@@ -102,6 +102,6 @@ Content-Type:application/json
 #      "message": "could not execute statement; SQL [n/a]; constraint [itm_id]; nested exception is org.hibernate.exception.ConstraintViolationException: could not execute statement"
 #    }
 
-DELETE http://localhost:8061/purple/api/items/21
+DELETE http://localhost:8061/purple/api/items/{id}
 
 ###
