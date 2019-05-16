@@ -47,6 +47,8 @@ From the Spring Data REST page.
 
 # Repositories
 
+We use standard Spring Data JPA repositories with a couple of extra annotations for Spring Data REST.
+
 ## Group
 
 ~~~java
@@ -87,6 +89,8 @@ public interface ItemRepository extends JpaRepository<ItemEntity, Long> {
 ~~~
 
 # Resource Discoverability
+
+Use the API root to see which resource UILs are available.
 
     http://localhost:8061/purple/api
 
@@ -209,7 +213,7 @@ public interface ItemRepository extends JpaRepository<ItemEntity, Long> {
 # Object Graph
 
 Note that the result above is limited to the `groups` resource only.<br/>
-However, the `items` resource includes `data` resource as well.
+However, the `items` resource includes `data` resources, and a link to `category` where relevant
 
     http://localhost:8061/purple/api/items/4
 
@@ -955,6 +959,9 @@ or
     }
     
 Note the resource URL in the JSON to specify the `group` and `category` parent entities.
+
+Note that `config.setReturnBodyOnCreate(true);` is used to specify that a JSON representation
+of the object (including the new `id`) is returned in the response body.
 
 # Update (PUT)
 
