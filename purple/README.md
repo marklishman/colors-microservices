@@ -16,11 +16,12 @@
 * Object graph
 * Search
 * CRUD, associations
-* Events
+* Application Events
 * Custom controllers
 * Security
 * Metadata - ALPS, JSON Schema
 * Traverson
+* HAL Browser
 
 From the Spring Data REST page. 
 
@@ -84,80 +85,6 @@ public interface ItemRepository extends JpaRepository<ItemEntity, Long> {
 
 }
 ~~~
-
-## Category
-
-~~~java
-@RepositoryRestResource (
-        path = "categories",
-        collectionResourceRel = "categories",
-        collectionResourceDescription = @Description("A collection of categories"),
-        itemResourceRel = "category",
-        itemResourceDescription = @Description("A single category")
-)
-public interface CategoryRepository extends Repository<CategoryEntity, Long> {
-
-    Optional<CategoryEntity> findById(final Long id);
-
-    List<CategoryEntity> findAll();
-
-    Optional<CategoryEntity> findByName(final String name);
-
-}
-~~~
-
-## Country
-
-~~~java
-@RepositoryRestResource (
-        path = "countries",
-        collectionResourceRel = "countries",
-        collectionResourceDescription = @Description("A collection of countries"),
-        itemResourceRel = "country",
-        itemResourceDescription = @Description("A single country")
-)
-public interface CountryRepository extends JpaRepository<CountryEntity, Long> {
-
-    @RestResource(path = "findByName")
-    List<CountryEntity> findByNameContainingIgnoreCase(final String nameContains);
-
-    @RestResource(exported = false)
-    Optional<CountryEntity> findByCode(final String code);
-
-    @RestResource(exported = false)
-    @Override
-    void deleteById(Long id);
-
-    @RestResource(exported = false)
-    @Override
-    void delete(CountryEntity countryEntity);
-
-    @RestResource(exported = false)
-    @Override
-    void deleteAll(Iterable<? extends CountryEntity> var1);
-
-}
-~~~
-
-## Person
-
-~~~java
-@RepositoryRestResource (
-        path = "people",
-        collectionResourceRel = "people",
-        collectionResourceDescription = @Description("A collection of people"),
-        itemResourceRel = "person",
-        itemResourceDescription = @Description("A single person"),
-        excerptProjection = PersonNameProjection.class
-)
-public interface PersonRepository extends JpaRepository<PersonEntity, Long> {
-
-    @RestResource(path = "findByLastName")
-    List<PersonEntity> findByLastNameContainingIgnoreCase(final String nameContains);
-
-}
-~~~
-
 
 # Resource Discoverability
 
