@@ -1,0 +1,107 @@
+
+# -----------------------------------------------------------------------------
+# POST group
+
+POST http://localhost:8061/purple/api/groups
+Content-Type: application/json
+
+{
+    "name": "Group Six",
+    "description": "Group six description"
+}
+
+###
+
+
+# PUT group
+
+PUT http://localhost:8061/purple/api/groups/4
+Content-Type: application/json
+
+{
+  "name": "Group Four updated",
+  "description": "New group four description"
+}
+
+###
+
+
+# DELETE group
+
+DELETE http://localhost:8061/purple/api/groups/5
+
+###
+
+
+
+# -----------------------------------------------------------------------------
+# POST item with data
+
+POST http://localhost:8061/purple/api/items
+Content-Type:application/json
+
+{
+    "group": "http://localhost:8061/purple/api/groups/4",
+    "uuid": "9f84fa9a-4b9c-46f8-9098-4603efe7ccbc",
+    "name": "Item Nine",
+    "description": "Item nine description",
+    "correlationId": "128a7512-0b92-4f49-8f61-15dabbd757b8",
+    "status": 3,
+    "data": [
+        {
+          "value": 11.49
+        },
+        {
+          "category": "http://localhost:8061/purple/categories/1",
+          "value": 45.76
+        }
+      ]
+}
+
+###
+
+
+# PUT item with data
+
+PUT http://localhost:8061/purple/api/items/4
+Content-Type:application/json
+
+{
+  "group": "http://localhost:8061/purple/groups/4",
+  "uuid": "8574a479-b583-4db4-9c03-bfd0ddc7a069",
+  "name": "Item four name",
+  "description": "New Item four description",
+  "correlationId": "128a7512-0b92-4f49-8f61-15dabbd757b8",
+  "status": 3,
+  "data": [
+    {
+      "category": "http://localhost:8061/purple/categories/3",
+      "value": 11.49
+    },
+    {
+      "value": 45.76
+    }
+  ]
+}
+
+###
+
+
+# DELETE item (fails)
+
+#  Fails with this error
+#
+#    {
+#      "cause": {
+#        "cause": {
+#          "cause": null,
+#          "message": "ERROR: null value in column \"itm_id\" violates not-null constraint\n  Detail: Failing row contains (15, null, 3, 11.49, 2019-03-30 11:05:19.76041)."
+#        },
+#        "message": "could not execute statement"
+#      },
+#      "message": "could not execute statement; SQL [n/a]; constraint [itm_id]; nested exception is org.hibernate.exception.ConstraintViolationException: could not execute statement"
+#    }
+
+DELETE http://localhost:8061/purple/api/items/21
+
+###
