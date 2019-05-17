@@ -453,9 +453,11 @@ public interface CategoryNameProjection {
 }
 ~~~
 
-produces
+with this URL
 
     http://localhost:8061/purple/api/items/4?projection=full
+    
+produces
 
 ~~~json
 {
