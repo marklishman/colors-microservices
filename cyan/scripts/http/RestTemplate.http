@@ -1,4 +1,13 @@
 
+# -----------------------------------------------------------------------------
+# users, RestTemplate, JSON
+
+GET http://localhost:8081/cyan/users/3?client=resttemplate
+Content-Type: application/json
+
+###
+
+
 
 # -----------------------------------------------------------------------------
 # people, RestTemplate, HAL

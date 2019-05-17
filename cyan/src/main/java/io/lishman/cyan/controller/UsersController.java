@@ -2,6 +2,7 @@ package io.lishman.cyan.controller;
 
 import io.lishman.cyan.model.User;
 import io.lishman.cyan.service.FeignUsersService;
+import io.lishman.cyan.service.RestTemplateUsersService;
 import io.lishman.cyan.service.WebClientUsersService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,12 +22,16 @@ import java.util.List;
 @RequestMapping("/users")
 class UsersController {
 
-    final WebClientUsersService webClientUsersService;
+    private final WebClientUsersService webClientUsersService;
     private final FeignUsersService feignUsersService;
+    private final RestTemplateUsersService restTemplateUsersService;
 
-    UsersController(final WebClientUsersService webClientUsersService, final FeignUsersService feignUsersService) {
+    UsersController(final WebClientUsersService webClientUsersService,
+                    final FeignUsersService feignUsersService,
+                    final RestTemplateUsersService restTemplateUsersService) {
         this.webClientUsersService = webClientUsersService;
         this.feignUsersService = feignUsersService;
+        this.restTemplateUsersService = restTemplateUsersService;
     }
 
     // ~~~~ JSON
@@ -81,6 +86,14 @@ class UsersController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void updateDetails(@PathVariable("id") final Long id) {
         webClientUsersService.deleteUser(id);
+    }
+
+    // ~~~~ RestTemplate
+
+    @GetMapping(value = "{id}", params = "client=resttemplate")
+    ResponseEntity<User> getUserWithRestTemplate(@PathVariable("id") final Long id) {
+        final User user = restTemplateUsersService.getUser(id);
+        return ResponseEntity.ok(user);
     }
 
     // ~~~~ Feign

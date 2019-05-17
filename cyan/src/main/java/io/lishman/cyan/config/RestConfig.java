@@ -31,6 +31,13 @@ public class RestConfig {
                 .build();
     }
 
+    @Bean
+    public RestTemplate greenRestTemplate() {
+        return new RestTemplateBuilder()
+                .rootUri("http://localhost:8021")
+                .build();
+    }
+
     // ~~~~ WebClient
 
     @Bean
