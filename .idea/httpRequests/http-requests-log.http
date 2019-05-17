@@ -1,3 +1,158 @@
+GET http://localhost:8061/purple/api/items/search/findByUuid?id=afe9c3e1-415b-43e8-a27c-2b5249670bef
+
+<> 2019-05-17T022733.500.json
+
+###
+
+GET http://localhost:8061/purple/api/items/search/findByUuid?id=afe9c3e1-415b-43e8-a27c-2b5249670bef
+
+<> 2019-05-17T022543.500.json
+
+###
+
+GET http://localhost:8061/purple/api/items/search/findByUuid?id=afe9c3e1-415b-43e8-a27c-2b5249670bef
+
+<> 2019-05-17T021621.500.json
+
+###
+
+GET http://localhost:8061/purple/api/items/search/findByUuid?id=afe9c3e1-415b-43e8-a27c-2b5249670bef
+
+<> 2019-05-17T021403.500.json
+
+###
+
+GET http://localhost:8061/purple/api/items/search/findByUuid?id=afe9c3e1-415b-43e8-a27c-2b5249670bef
+
+<> 2019-05-17T021024.500.json
+
+###
+
+GET http://localhost:8061/purple/api/items/search/findByUuid?id=afe9c3e1-415b-43e8-a27c-2b5249670bef
+
+<> 2019-05-17T020859.500.json
+
+###
+
+GET http://localhost:8061/purple/api/items/search/findByUuid?id=afe9c3e1-415b-43e8-a27c-2b5249670bef
+
+GET http://localhost:8061/purple/api/items/search/findByCorrelationId?correlationId=e4b4a967-3758-4479-9a26-7ed5608f978a
+
+<> 2019-05-17T020851.500.json
+
+###
+
+GET http://localhost:8061/purple/api/items/search/findByUuid?id=afe9c3e1-415b-43e8-a27c-2b5249670bef
+
+GET http://localhost:8061/purple/api/items/search/findByCorrelationId?correlationId=e4b4a967-3758-4479-9a26-7ed5608f978a
+
+<> 2019-05-17T020805.500.json
+
+###
+
+GET http://localhost:8061/purple/api/items/search/findByUuid?id=afe9c3e1-415b-43e8-a27c-2b5249670bef
+
+GET http://localhost:8061/purple/api/items/search/findByCorrelationId?correlationId=e4b4a967-3758-4479-9a26-7ed5608f978a
+
+<> 2019-05-17T020714.500.json
+
+###
+
+GET http://localhost:8061/purple/api/items/search/findByUuid?id=afe9c3e1-415b-43e8-a27c-2b5249670bef
+
+GET http://localhost:8061/purple/api/items/search/findByCorrelationId?correlationId=e4b4a967-3758-4479-9a26-7ed5608f978a
+
+<> 2019-05-17T020209.500.json
+
+###
+
+GET http://localhost:8061/purple/api/items/search/findByUuid?uuid=afe9c3e1-415b-43e8-a27c-2b5249670bef
+
+GET http://localhost:8061/purple/api/items/search/findByCorrelationId?correlationId=e4b4a967-3758-4479-9a26-7ed5608f978a
+
+###
+
+GET http://localhost:8061/purple/api/items/search/findByUuid=afe9c3e1-415b-43e8-a27c-2b5249670bef
+
+GET http://localhost:8061/purple/api/items/search/findByCorrelationId?correlationId=e4b4a967-3758-4479-9a26-7ed5608f978a
+
+###
+
+GET http://localhost:8061/purple/api/items/search/findByUuid=afe9c3e1-415b-43e8-a27c-2b5249670bef
+
+GET http://localhost:8061/purple/api/items/search/findByCorrelationId?correlationId=e4b4a967-3758-4479-9a26-7ed5608f978a
+
+###
+
+GET http://localhost:8061/purple/api/items/search/findByCorrelationId?correlationId=e4b4a967-3758-4479-9a26-7ed5608f978a
+
+<> 2019-05-17T015758.500.json
+
+###
+
+GET http://localhost:8061/purple/api/items/search/findByCorrelationId?correlationId=e4b4a967-3758-4479-9a26-7ed5608f978a
+
+<> 2019-05-17T015721.500.json
+
+###
+
+GET http://localhost:8061/purple/api/items/search/findByCorrelationId?correlationId=e4b4a967-3758-4479-9a26-7ed5608f978a&page=2&size=2
+
+<> 2019-05-17T015707.500.json
+
+###
+
+GET http://localhost:8061/purple/api/items/search/findByCorrelationId/e4b4a967-3758-4479-9a26-7ed5608f978a
+
+###
+
+GET http://localhost:8061/purple/api/items/search/findByCorrelationId/e4b4a967-3758-4479-9a26-7ed5608f978a?page=2&size=2
+
+###
+
+GET http://localhost:8061/purple/api/items/search
+
+<> 2019-05-17T015543.200.json
+
+###
+
+GET http://localhost:8061/purple/api/items/search/findByCorrelationId/e4b4a967-3758-4479-9a26-7ed5608f978a?page=2&size=2
+
+###
+
+GET http://localhost:8061/purple/api/items/search/findByUuid?page=2&size=2
+
+###
+
+GET http://localhost:8061/purple/api/items/search/findByUuid?page=2&size=2&sort=code,desc
+
+###
+
+GET http://localhost:8061/purple/api/items/search/findByUuid?page=5&size=3&sort=code,desc
+
+###
+
+GET http://localhost:8061/purple/api/items/search
+
+<> 2019-05-17T015155.200.json
+
+###
+
+GET http://localhost:8061/purple/api/items?page=5&size=3&sort=code,desc
+
+<> 2019-05-17T015137.200.json
+
+###
+
+GET http://localhost:8061/purple/api/countries?page=5&size=3&sort=code,desc
+
+GET http://localhost:8061/purple/api/items/search/findByGroupName?groupNameContains=gro&page=1&size=3&sort=name,desc&projection=totals
+Content-Type: application/json
+
+<> 2019-05-17T015101.200.json
+
+###
+
 DELETE http://localhost:8061/purple/api/items/21
 
 ###
@@ -277,426 +432,6 @@ GET http://localhost:8021/green/users/5
 Accept: application/hal+json
 
 <> 2019-05-11T115426.200.json
-
-###
-
-GET http://localhost:8021/green/users/6
-Accept: application/json
-
-<> 2019-05-11T115420.200.json
-
-###
-
-POST http://localhost:8081/cyan/users
-Content-Type: application/json
-
-{
-  "firstName": "Mick",
-  "lastName": "Wishman",
-  "userName": "mickywise",
-  "email": "micky.wiseman@email.com",
-  "phoneNumber": "024---618-1244",
-  "age": 20,
-  "website": "wiseman.com"
-}
-
-<> 2019-05-11T115048.201.json
-
-###
-
-POST http://localhost:8061/purple/api/items
-Content-Type: application/json
-
-{
-  "id": 300,
-    "group": "http://localhost:8061/purple/api/groups/4",
-    "uuid": "9f84fa9a-4b9c-46f8-9098-4603efe7ccbc",
-    "name": "Item Ninexxxxxx",
-    "description": "Item nine description",
-    "correlationId": "128a7512-0b92-4f49-8f61-15dabbd757b8",
-    "status": 3,
-    "data": [
-        {
-            "value": 11.49
-        },
-        {
-            "category": "http://localhost:8061/purple/categories/1",
-            "value": 45.76
-        }
-    ]
-}
-
-###
-
-POST http://localhost:8061/purple/api/items
-Content-Type: application/json
-
-{
-  "id": 3,
-    "group": "http://localhost:8061/purple/api/groups/4",
-    "uuid": "9f84fa9a-4b9c-46f8-9098-4603efe7ccbc",
-    "name": "Item Ninexxxxxx",
-    "description": "Item nine description",
-    "correlationId": "128a7512-0b92-4f49-8f61-15dabbd757b8",
-    "status": 3,
-    "data": [
-        {
-            "value": 11.49
-        },
-        {
-            "category": "http://localhost:8061/purple/categories/1",
-            "value": 45.76
-        }
-    ]
-}
-
-<> 2019-05-09T061002.409.json
-
-###
-
-POST http://localhost:8061/purple/api/items
-Content-Type: application/json
-
-{
-  "id": 3,
-    "group": "http://localhost:8061/purple/api/groups/4",
-    "uuid": "9f84fa9a-4b9c-46f8-9098-4603efe7ccbc",
-    "name": "Item Ninexxxxxx",
-    "description": "Item nine description",
-    "correlationId": "128a7512-0b92-4f49-8f61-15dabbd757b8",
-    "status": 3
-}
-
-<> 2019-05-09T060932.500.json
-
-###
-
-POST http://localhost:8061/purple/api/items
-Content-Type: application/json
-
-{
-  "id": 3,
-    "group": "http://localhost:8061/purple/api/groups/4",
-    "uuid": "9f84fa9a-4b9c-46f8-9098-4603efe7ccbc",
-    "name": "Item Ninexxxxxx",
-    "description": "Item nine description",
-    "correlationId": "128a7512-0b92-4f49-8f61-15dabbd757b8",
-    "status": 3
-}
-
-<> 2019-05-09T060559.500.json
-
-###
-
-POST http://localhost:8061/purple/api/items
-Content-Type: application/json
-
-{
-  "ggggg": 123,
-  "id": 100,
-    "group": "http://localhost:8061/purple/api/groups/4",
-    "uuid": "9f84fa9a-4b9c-46f8-9098-4603efe7ccbc",
-    "name": "Item Ninexxxxxx",
-    "description": "Item nine description",
-    "correlationId": "128a7512-0b92-4f49-8f61-15dabbd757b8",
-    "status": 3
-}
-
-###
-
-POST http://localhost:8061/purple/api/items
-Content-Type: application/json
-
-{
-  "ggggg": 123,
-  "id": 100,
-    "group": "http://localhost:8061/purple/api/groups/4",
-    "uuid": "9f84fa9a-4b9c-46f8-9098-4603efe7ccbc",
-    "name": "Item Ninexxxxxx",
-    "description": "Item nine description",
-    "correlationId": "128a7512-0b92-4f49-8f61-15dabbd757b8",
-    "status": 3
-}
-
-<> 2019-05-09T060506.409.json
-
-###
-
-POST http://localhost:8061/purple/api/items
-Content-Type: application/json
-
-{
-  "id": 100,
-    "group": "http://localhost:8061/purple/api/groups/4",
-    "uuid": "9f84fa9a-4b9c-46f8-9098-4603efe7ccbc",
-    "name": "Item Ninexxxxxx",
-    "description": "Item nine description",
-    "correlationId": "128a7512-0b92-4f49-8f61-15dabbd757b8",
-    "status": 3
-}
-
-###
-
-POST http://localhost:8061/purple/api/items
-Content-Type: application/json
-
-{
-  "itemId": 100,
-    "group": "http://localhost:8061/purple/api/groups/4",
-    "uuid": "9f84fa9a-4b9c-46f8-9098-4603efe7ccbc",
-    "name": "Item Ninexxxxxx",
-    "description": "Item nine description",
-    "correlationId": "128a7512-0b92-4f49-8f61-15dabbd757b8",
-    "status": 3,
-    "data": [
-        {
-            "value": 11.49
-        },
-        {
-            "category": "http://localhost:8061/purple/categories/1",
-            "value": 45.76
-        }
-    ]
-}
-
-<> 2019-05-09T060150.409.json
-
-###
-
-POST http://localhost:8061/purple/api/items
-Content-Type: application/json
-
-{
-  "itemId": 100,
-    "group": "http://localhost:8061/purple/api/groups/4",
-    "uuid": "9f84fa9a-4b9c-46f8-9098-4603efe7ccbc",
-    "name": "Item Ninexxxxxx",
-    "description": "Item nine description",
-    "correlationId": "128a7512-0b92-4f49-8f61-15dabbd757b8",
-    "status": 3,
-    "data": [
-        {
-            "value": 11.49
-        },
-        {
-            "category": "http://localhost:8061/purple/categories/1",
-            "value": 45.76
-        }
-    ]
-}
-
-<> 2019-05-09T060147.409.json
-
-###
-
-POST http://localhost:8061/purple/api/items
-Content-Type: application/json
-
-{
-  "item_idx": 100,
-    "group": "http://localhost:8061/purple/api/groups/4",
-    "uuid": "9f84fa9a-4b9c-46f8-9098-4603efe7ccbc",
-    "name": "Item Ninexxxxxx",
-    "description": "Item nine description",
-    "correlationId": "128a7512-0b92-4f49-8f61-15dabbd757b8",
-    "status": 3,
-    "data": [
-        {
-            "value": 11.49
-        },
-        {
-            "category": "http://localhost:8061/purple/categories/1",
-            "value": 45.76
-        }
-    ]
-}
-
-<> 2019-05-09T060132.409.json
-
-###
-
-POST http://localhost:8061/purple/api/items
-Content-Type: application/json
-
-{
-  "item_id": 100,
-    "group": "http://localhost:8061/purple/api/groups/4",
-    "uuid": "9f84fa9a-4b9c-46f8-9098-4603efe7ccbc",
-    "name": "Item Nine",
-    "description": "Item nine description",
-    "correlationId": "128a7512-0b92-4f49-8f61-15dabbd757b8",
-    "status": 3,
-    "data": [
-        {
-            "value": 11.49
-        },
-        {
-            "category": "http://localhost:8061/purple/categories/1",
-            "value": 45.76
-        }
-    ]
-}
-
-###
-
-PUT http://localhost:8021/green/users/15
-Content-Type: application/json
-
-{
-  "firstName": "yyyyyyyyyyyyyyyyyy",
-  "lastName": "Wiseman",
-  "userName": "Micky.Wisexxxxxx",
-  "email": "micky.wiseman@email.comxxx",
-  "phoneNumber": "024-618-1244",
-  "age": 23,
-  "website": "wiseman.net"
-}
-
-<> 2019-05-09T091026.200.json
-
-###
-
-PUT http://localhost:8021/green/users/99
-Content-Type: application/json
-
-{
-  "firstName": "Mickyxxxxxx",
-  "lastName": "Wiseman",
-  "userName": "Micky.Wisexxxxxx",
-  "email": "micky.wiseman@email.comxxx",
-  "phoneNumber": "024-618-1244",
-  "age": 23,
-  "website": "wiseman.net"
-}
-
-<> 2019-05-09T090953.200.json
-
-###
-
-PUT http://localhost:8021/green/users/99
-Content-Type: application/json
-
-{
-  "firstName": "Mickyxxxxxx",
-  "lastName": "Wiseman",
-  "userName": "Micky.Wisexxxxxx",
-  "email": "micky.wiseman@email.com",
-  "phoneNumber": "024-618-1244",
-  "age": 23,
-  "website": "wiseman.net"
-}
-
-<> 2019-05-09T090944.500.json
-
-###
-
-PUT http://localhost:8021/green/users/99
-Content-Type: application/json
-
-{
-  "firstName": "Mickyxxxxxx",
-  "lastName": "Wiseman",
-  "userName": "Micky.Wise",
-  "email": "micky.wiseman@email.com",
-  "phoneNumber": "024-618-1244",
-  "age": 23,
-  "website": "wiseman.net"
-}
-
-<> 2019-05-09T090911.500.json
-
-###
-
-PUT http://localhost:8021/green/users/99
-Content-Type: application/json
-
-{
-  "firstName": "Micky",
-  "lastName": "Wiseman",
-  "userName": "Micky.Wise",
-  "email": "micky.wiseman@email.com",
-  "phoneNumber": "024-618-1244",
-  "age": 23,
-  "website": "wiseman.net"
-}
-
-<> 2019-05-09T090847.200.json
-
-###
-
-PUT http://localhost:8021/green/users/{id}
-Content-Type: application/json
-
-{
-  "firstName": "Micky",
-  "lastName": "Wiseman",
-  "userName": "Micky.Wise",
-  "email": "micky.wiseman@email.com",
-  "phoneNumber": "024-618-1244",
-  "age": 23,
-  "website": "wiseman.net"
-}
-
-###
-
-PUT http://localhost:8021/green/users/99
-Content-Type: application/json
-
-{
-  "firstName": "Micky",
-  "lastName": "Wiseman",
-  "userName": "Micky.Wise",
-  "email": "micky.wiseman@email.com",
-  "phoneNumber": "024-618-1244",
-  "age": 23,
-  "website": "wiseman.net"
-}
-
-<> 2019-05-09T090441.200.json
-
-###
-
-PUT http://localhost:8021/green/users/99
-Content-Type: application/json
-
-{
-  "firstName": "Micky",
-  "lastName": "Wiseman",
-  "userName": "Micky.Wise",
-  "email": "micky.wiseman@email.com",
-  "phoneNumber": "024-618-1244",
-  "age": 23,
-  "website": "wiseman.net"
-}
-
-<> 2019-05-09T090257.500.json
-
-###
-
-GET http://localhost:8021/green/users/688
-Accept: application/json
-
-<> 2019-05-04T111847.404.json
-
-###
-
-GET http://localhost:8021/green/users/688
-Accept: application/json
-
-###
-
-GET http://localhost:8021/green/users/688
-Accept: application/json
-
-###
-
-GET http://localhost:8021/green/users/688
-Accept: application/json
-
-###
-
-GET http://localhost:8021/green/users/688
-Accept: application/json
 
 ###
 

@@ -838,7 +838,7 @@ returns this data.
 Note the next and previous page links.
 
 
-Paging can be included on some query methods and not others.
+Paging may be included on some query methods and not others.
 
 ~~~java
 @RepositoryRestResource (
@@ -859,6 +859,8 @@ public interface ItemRepository extends JpaRepository<ItemEntity, Long> {
 
 }
 ~~~
+
+<span color='red'>Note that UUID searched are currently not working</span>
 
 
 And putting it all together.
