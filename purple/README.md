@@ -542,7 +542,7 @@ public interface PersonRepository extends JpaRepository<PersonEntity, Long> {
 }
 ~~~
 
-Projection is automatically applied
+The projection is automatically applied when we fetch a collection.
 
     http://localhost:8061/purple/api/categories    
 
