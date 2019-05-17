@@ -22,7 +22,7 @@
 
 > Non-blocking, reactive client to perform HTTP requests, exposing a fluent, reactive API over underlying HTTP client libraries such as Reactor Netty.
 
-However, to start with se will use `WebClient` to perform a synchronous request.
+To start with se will use `WebClient` to perform a synchronous request.
 
 Create the `WebClient` bean
 
