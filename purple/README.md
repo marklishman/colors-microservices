@@ -126,7 +126,7 @@ Use the API root to see which resource URLs are available.
 
 # Collection Resources
 
-We can retrieve a collection of resources
+We can retrieve a collection of resources by making a GET request to this URL.
 
     http://localhost:8061/purple/api/groups
 
@@ -191,7 +191,7 @@ We can retrieve a collection of resources
 
 # Item Resources
 
-or a single item.
+Make a GET request to this URL to fetch a single item.
 
     http://localhost:8061/purple/api/groups/3
 
@@ -351,9 +351,11 @@ public interface ItemNameProjection {
 }
 ~~~
 
+So this URL
+
     http://localhost:8061/purple/api/items/1?projection=name
     
-returns a subset of the `item` resource
+returns a subset of the `item` resource.
 
 ~~~json
 {
