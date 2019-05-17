@@ -860,7 +860,7 @@ public interface ItemRepository extends JpaRepository<ItemEntity, Long> {
 }
 ~~~
 
-:warning: _Note that UUID searches are currently not working_ 
+:warning: __Note that the UUID searches above are currently not working__ 
 
 
 And putting it all together.
