@@ -1083,7 +1083,7 @@ We can link countries to people like this
 
 Note this works with other association types too (eg one to one, one to many etc)
 
-# Events
+# Application Events
 
 The following events are available
 
