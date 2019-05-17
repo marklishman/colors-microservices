@@ -1,3 +1,31 @@
+GET http://localhost:8081/cyan/users/3?client=resttemplate
+Content-Type: application/json
+
+<> 2019-05-17T033759.200.json
+
+###
+
+GET http://localhost:8081/cyan/users/6?client=resttemplate
+Content-Type: application/json
+
+<> 2019-05-17T033742.200.json
+
+###
+
+GET http://localhost:8081/cyan/users/6?client=resttemplate
+Content-Type: application/json
+
+<> 2019-05-17T033541.500.json
+
+###
+
+GET http://localhost:8081/cyan/users/3?client=resttemplate
+Content-Type: application/json
+
+<> 2019-05-17T033500.500.json
+
+###
+
 GET http://localhost:8081/cyan/users/2?client=feign
 Content-Type: application/json
 
@@ -320,26 +348,6 @@ GET http://localhost:8061/purple/api/items/search/findByCorrelationId?correlatio
 GET http://localhost:8061/purple/api/items/search/findByCorrelationId?correlationId=e4b4a967-3758-4479-9a26-7ed5608f978a
 
 <> 2019-05-17T015721.500.json
-
-###
-
-GET http://localhost:8061/purple/api/items/search/findByCorrelationId?correlationId=e4b4a967-3758-4479-9a26-7ed5608f978a&page=2&size=2
-
-<> 2019-05-17T015707.500.json
-
-###
-
-GET http://localhost:8061/purple/api/items/search/findByCorrelationId/e4b4a967-3758-4479-9a26-7ed5608f978a
-
-###
-
-GET http://localhost:8061/purple/api/items/search/findByCorrelationId/e4b4a967-3758-4479-9a26-7ed5608f978a?page=2&size=2
-
-###
-
-GET http://localhost:8061/purple/api/items/search
-
-<> 2019-05-17T015543.200.json
 
 ###
 

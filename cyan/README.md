@@ -310,6 +310,27 @@ disposable.dispose();
 
 # RestTemplate
 
+Create a `RestTemplate` bean.
+
+~~~java
+@Bean
+public RestTemplate greenRestTemplate() {
+    return new RestTemplateBuilder()
+            .rootUri("http://localhost:8021")
+            .build();
+}
+~~~
+
+and use the `getForObject` method to get the resource.
+
+~~~java
+public User getUser(final Long id) {
+    return greenRestTemplate
+        .getForObject("/green/users/{id}", User.class, id);
+}
+~~~
+
+
 To use `RestTemplate` to retrieve a HAL resource include the `@EnableHypermediaSupport` annotation.
 This will register the Jackson module to marshal the resource model classes into the appropriate representation.
 
