@@ -710,6 +710,8 @@ we get a list of the query methods on the resource repository.
 
 # Paging and Sorting
 
+`JpaRepository` extends `PagingAndSortingRepository`.
+
 ~~~java
 @RepositoryRestResource (
         path = "countries",
@@ -741,10 +743,12 @@ public interface CountryRepository extends JpaRepository<CountryEntity, Long> {
 }
 ~~~
 
-Note that `JpaRepository` extends `PagingAndSortingRepository`
+So this URL
 
     http://localhost:8061/purple/api/countries?page=5&size=3&sort=code,desc
     
+returns this data.
+
 ~~~json
 {
   "_embedded": {
