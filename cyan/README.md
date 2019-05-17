@@ -321,7 +321,7 @@ public RestTemplate greenRestTemplate() {
 }
 ~~~
 
-and use the `getForObject` method to get the resource.
+and use the `getForObject` method to retrieve the resource.
 
 ~~~java
 public User getUser(final Long id) {
