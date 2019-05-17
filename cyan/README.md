@@ -310,7 +310,7 @@ disposable.dispose();
 
 # RestTemplate
 
-Create a `RestTemplate` bean.
+Create a `RestTemplate` bean
 
 ~~~java
 @Bean
