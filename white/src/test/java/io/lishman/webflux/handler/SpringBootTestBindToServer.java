@@ -8,11 +8,11 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.reactive.server.FluxExchangeResult;
 import org.springframework.test.web.reactive.server.WebTestClient;
-import org.springframework.web.reactive.function.server.RouterFunction;
 import reactor.test.StepVerifier;
 
 import java.util.List;
@@ -22,8 +22,8 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 
 @ExtendWith(SpringExtension.class)
-@SpringBootTest
-public class TestJUnit5RouterFunction {
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+public class SpringBootTestBindToServer {
 
     private WebTestClient client;
 
@@ -32,16 +32,15 @@ public class TestJUnit5RouterFunction {
     @Autowired
     private EmployeeRepository repository;
 
-    @Autowired
-    private RouterFunction routes;
+    @LocalServerPort
+    private int port;
 
     @BeforeEach
     public void beforeEach() {
         this.client =
                 WebTestClient
-                        .bindToRouterFunction(routes)
-                        .configureClient()
-                        .baseUrl("/handler/employees")
+                        .bindToServer()
+                        .baseUrl("http://localhost:" + port + "/handler/employees")
                         .build();
 
         this.expectedList =

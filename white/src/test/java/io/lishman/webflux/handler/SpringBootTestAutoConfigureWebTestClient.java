@@ -7,8 +7,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.reactive.AutoConfigureWebTestClient;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.reactive.server.FluxExchangeResult;
@@ -22,9 +22,10 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 
 @ExtendWith(SpringExtension.class)
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class TestJUnit5BindToServer {
-
+@SpringBootTest
+@AutoConfigureWebTestClient
+public class SpringBootTestAutoConfigureWebTestClient {
+    @Autowired
     private WebTestClient client;
 
     private List<Employee> expectedList;
@@ -32,23 +33,15 @@ public class TestJUnit5BindToServer {
     @Autowired
     private EmployeeRepository repository;
 
-    @LocalServerPort
-    private int port;
-
     @BeforeEach
-    public void beforeEach() {
-        this.client =
-                WebTestClient
-                        .bindToServer()
-                        .baseUrl("http://localhost:" + port + "/handler/employees")
-                        .build();
-
+    void beforeEach() {
         this.expectedList =
                 repository.findAll().collectList().block();
+        this.client = this.client.mutate().baseUrl("/handler/employees").build();
     }
 
     @Test
-    public void testGetAllEmployees() {
+    void testGetAllEmployees() {
         client
                 .get()
                 .uri("/")
@@ -60,7 +53,7 @@ public class TestJUnit5BindToServer {
     }
 
     @Test
-    public void testEmployeeInvalidIdNotFound() {
+    void testEmployeeInvalidIdNotFound() {
         client
                 .get()
                 .uri("/aaa")
@@ -70,7 +63,7 @@ public class TestJUnit5BindToServer {
     }
 
     @Test
-    public void testEmployeeIdFound() {
+    void testEmployeeIdFound() {
         Employee expectedEmployee = expectedList.get(0);
         client
                 .get()
@@ -83,7 +76,7 @@ public class TestJUnit5BindToServer {
     }
 
     @Test
-    public void testEmployeeEvents() {
+    void testEmployeeEvents() {
         FluxExchangeResult<EmployeeEvent> result =
                 client.get().uri("/events")
                         .accept(MediaType.TEXT_EVENT_STREAM)

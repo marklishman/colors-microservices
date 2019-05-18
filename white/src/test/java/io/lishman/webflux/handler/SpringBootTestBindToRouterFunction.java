@@ -7,12 +7,12 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.reactive.AutoConfigureWebTestClient;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.reactive.server.FluxExchangeResult;
 import org.springframework.test.web.reactive.server.WebTestClient;
+import org.springframework.web.reactive.function.server.RouterFunction;
 import reactor.test.StepVerifier;
 
 import java.util.List;
@@ -23,9 +23,8 @@ import static org.hamcrest.Matchers.is;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
-@AutoConfigureWebTestClient
-public class TestJUnit5AutoConfigureWebTestClient {
-    @Autowired
+public class SpringBootTestBindToRouterFunction {
+
     private WebTestClient client;
 
     private List<Employee> expectedList;
@@ -33,15 +32,24 @@ public class TestJUnit5AutoConfigureWebTestClient {
     @Autowired
     private EmployeeRepository repository;
 
+    @Autowired
+    private RouterFunction routes;
+
     @BeforeEach
-    void beforeEach() {
+    public void beforeEach() {
+        this.client =
+                WebTestClient
+                        .bindToRouterFunction(routes)
+                        .configureClient()
+                        .baseUrl("/handler/employees")
+                        .build();
+
         this.expectedList =
                 repository.findAll().collectList().block();
-        this.client = this.client.mutate().baseUrl("/handler/employees").build();
     }
 
     @Test
-    void testGetAllEmployees() {
+    public void testGetAllEmployees() {
         client
                 .get()
                 .uri("/")
@@ -53,7 +61,7 @@ public class TestJUnit5AutoConfigureWebTestClient {
     }
 
     @Test
-    void testEmployeeInvalidIdNotFound() {
+    public void testEmployeeInvalidIdNotFound() {
         client
                 .get()
                 .uri("/aaa")
@@ -63,7 +71,7 @@ public class TestJUnit5AutoConfigureWebTestClient {
     }
 
     @Test
-    void testEmployeeIdFound() {
+    public void testEmployeeIdFound() {
         Employee expectedEmployee = expectedList.get(0);
         client
                 .get()
@@ -76,7 +84,7 @@ public class TestJUnit5AutoConfigureWebTestClient {
     }
 
     @Test
-    void testEmployeeEvents() {
+    public void testEmployeeEvents() {
         FluxExchangeResult<EmployeeEvent> result =
                 client.get().uri("/events")
                         .accept(MediaType.TEXT_EVENT_STREAM)
