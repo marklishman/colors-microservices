@@ -174,7 +174,7 @@ void testGetAllEmployees() {
 }
 ~~~
 
-Or just configure `WebTestClient` to bind to the controller.
+Or configure `WebTestClient` to bind to the controller.
 
 ~~~java
 private WebTestClient client;
