@@ -142,6 +142,104 @@ application code within that pipeline is never invoked concurrently.
 
 ---
 
+# Testing
+
+We can test our controller using `@WebFluxTest` and `WebTestClient`.
+
+~~~java
+@ExtendWith(SpringExtension.class)
+@WebFluxTest(EmployeeController.class)
+public class WebFluxTestAnnotationTest {
+    
+        @Autowired
+        private WebTestClient client;
+        
+        @MockBean
+        private EmployeeRepository repository;
+~~~
+
+~~~java
+@Test
+void testGetAllEmployees() {
+    when(repository.findAll()).thenReturn(Flux.fromIterable(this.expectedList));
+
+    client
+            .get()
+            .uri("/controller/employees")
+            .exchange()
+            .expectStatus()
+            .isOk()
+            .expectBodyList(Employee.class)
+            .isEqualTo(expectedList);
+}
+~~~
+
+Or just configure `WebTestClient` to bind to the controller.
+
+~~~java
+private WebTestClient client;
+~~~
+
+~~~java
+@BeforeEach
+void beforeEach() {
+    this.client =
+            WebTestClient
+                    .bindToController(new EmployeeController(repository))
+                    .configureClient()
+                    .baseUrl("/controller/employees")
+                    .build();
+
+    this.expectedList = Arrays.asList(
+            new Employee(EMPLOYEE_ID, "one", "employee_one", "one@email.com", "01234567")
+    );
+}
+~~~
+
+We can also use `@SpringBootTest` to bind `WebTestClient` to the controller or the entire application context.
+
+~~~java
+@ExtendWith(SpringExtension.class)
+@SpringBootTest
+public class SpringBootTestBindToAppContextTest {
+    private WebTestClient client;
+
+    private List<Employee> expectedList;
+
+    @Autowired
+    private EmployeeRepository repository;
+
+    @Autowired
+    private ApplicationContext context;
+
+    @BeforeEach
+    void beforeEach() {
+        this.client =
+                WebTestClient
+                        .bindToApplicationContext(context)
+                        .configureClient()
+                        .baseUrl("/controller/employees")
+                        .build();
+
+        this.expectedList =
+                repository.findAll().collectList().block();
+    }
+
+    @Test
+    void testGetAllEmployees() {
+        client
+                .get()
+                .uri("/")
+                .exchange()
+                .expectStatus()
+                .isOk()
+                .expectBodyList(Employee.class)
+                .isEqualTo(expectedList);
+    }
+~~~
+
+---
+
 # Reference
 
 Spring Webflux: Getting Started by Esteban Herrera on PluralSight
