@@ -192,7 +192,7 @@ void beforeEach() {
 }
 ~~~
 
-We can also use `@SpringBootTest` to bind `WebTestClient` to the controller or the entire application context.
+We can also use `@SpringBootTest` and bind `WebTestClient` to the controller or the entire application context.
 
 ~~~java
 @ExtendWith(SpringExtension.class)
