@@ -189,10 +189,6 @@ void beforeEach() {
                     .configureClient()
                     .baseUrl("/controller/employees")
                     .build();
-
-    this.expectedList = Arrays.asList(
-            new Employee(EMPLOYEE_ID, "one", "employee_one", "one@email.com", "01234567")
-    );
 }
 ~~~
 
