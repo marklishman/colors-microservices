@@ -1,52 +1,60 @@
 package io.lishman.webflux.controller;
 
+import io.lishman.webflux.contoller.EmployeeController;
 import io.lishman.webflux.model.Employee;
 import io.lishman.webflux.model.EmployeeEvent;
 import io.lishman.webflux.repository.EmployeeRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.ApplicationContext;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.reactive.server.FluxExchangeResult;
 import org.springframework.test.web.reactive.server.WebTestClient;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.UUID;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.is;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(SpringExtension.class)
-@SpringBootTest
-public class JUnit5ApplicationContextTest {
+class WebTestClientWithMockTest {
+
+    private static final String EMPLOYEE_ID = UUID.randomUUID().toString();
+
     private WebTestClient client;
 
     private List<Employee> expectedList;
 
-    @Autowired
+    @MockBean
     private EmployeeRepository repository;
-
-    @Autowired
-    private ApplicationContext context;
 
     @BeforeEach
     void beforeEach() {
         this.client =
                 WebTestClient
-                        .bindToApplicationContext(context)
+                        .bindToController(new EmployeeController(repository))
                         .configureClient()
                         .baseUrl("/controller/employees")
                         .build();
 
-        this.expectedList =
-                repository.findAll().collectList().block();
+        this.expectedList = Arrays.asList(
+                new Employee(EMPLOYEE_ID, "one", "employee_one", "one@email.com", "01234567")
+        );
     }
 
     @Test
     void testGetAllEmployees() {
+        when(repository.findAll()).thenReturn(Flux.fromIterable(this.expectedList));
+
         client
                 .get()
                 .uri("/")
@@ -59,9 +67,12 @@ public class JUnit5ApplicationContextTest {
 
     @Test
     void testEmployeeInvalidIdNotFound() {
+        String id = "aaa";
+        when(repository.findById(id)).thenReturn(Mono.empty());
+
         client
                 .get()
-                .uri("/aaa")
+                .uri("/{id}", id)
                 .exchange()
                 .expectStatus()
                 .isNotFound();
@@ -69,10 +80,12 @@ public class JUnit5ApplicationContextTest {
 
     @Test
     void testEmployeeIdFound() {
-        Employee expectedEmployee = expectedList.get(0);
+        Employee expectedEmployee = this.expectedList.get(0);
+        when(repository.findById(expectedEmployee.getEmployeeId())).thenReturn(Mono.just(expectedEmployee));
+
         client
                 .get()
-                .uri("/{id}", expectedEmployee.getEmployeeId())
+                .uri("/{id}", EMPLOYEE_ID)
                 .exchange()
                 .expectStatus()
                 .isOk()
@@ -96,7 +109,7 @@ public class JUnit5ApplicationContextTest {
                 .expectNext(expectedEvent)
                 .expectNextCount(2)
                 .consumeNextWith(event ->
-                        assertEquals(Long.valueOf(3), event.getEventId()))
+                        assertThat(Long.valueOf(3), is(equalTo(event.getEventId()))))
                 .thenCancel()
                 .verify();
     }

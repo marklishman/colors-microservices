@@ -32,7 +32,7 @@ import static org.mockito.Mockito.when;
 @ExtendWith(SpringExtension.class)
 @WebFluxTest(EmployeeController.class)
 @ActiveProfiles("ControllerTest")
-public class JUnit5WebFluxTestAnnotationTest {
+public class WebFluxTestAnnotationTest {
 
     private static final String EMPLOYEE_ID = UUID.randomUUID().toString();
 

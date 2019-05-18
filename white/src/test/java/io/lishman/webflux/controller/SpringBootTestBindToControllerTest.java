@@ -23,7 +23,7 @@ import static org.hamcrest.Matchers.equalTo;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
-public class JUnit5ControllerTest {
+public class SpringBootTestBindToControllerTest {
     private WebTestClient client;
 
     private List<Employee> expectedList;
