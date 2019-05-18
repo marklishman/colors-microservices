@@ -3,15 +3,15 @@
 # Project Features
 
 * Webflux
-* WebClient
 * Event Streams
+* WebTestClient
 
 # Set Up
 
 ### Database
 
 There is no need to install a database. This microservice uses an embedded MongoDB
-database which is started and populated each time the application is executed.
+database which is created and populated each time the application is started.
 
 Why MongoDB? Because it supports reactive repositories, JDBC / JPA does not.
 
