@@ -202,7 +202,7 @@ final class UserResourceAssembler extends ResourceAssemblerSupport<User, UserRes
 }
 ~~~
 
-So when we make a GET request with the `Accept` request header set to `application/hal+json`.
+So when we issue a GET request with the `Accept` request header set to `application/hal+json`.
 
     GET http://localhost:8021/green/users
     Accept: application/hal+json
@@ -245,7 +245,53 @@ public ResponseEntity<Resources<UserResource>> getUsersWithHal() {
 ~~~
 
 NOTE that the _collection_ link is being added manually here. In other words we are not using a `ResourceAssembler`.
-There are some significant changes regarding this in the next version of Spring.
+There are some significant changes regarding this in the next version of Spring which will improve this.
+
+The response body looks like this.
+
+~~~json
+{
+  "_embedded": {
+    "users": [
+      {
+        "firstName": "Leanne",
+        "lastName": "Graham",
+        "userName": "Bret",
+        "email": "Sincere@april.biz",
+        "phoneNumber": "1-770-736-8031 x56442",
+        "age": 17,
+        "website": "hildegard.org",
+        "_links": {
+          "self": {
+            "href": "http://localhost:8021/green/users/1"
+          }
+        },
+        "id": 1
+      },
+      {
+        "firstName": "Ervin",
+        "lastName": "Howell",
+        "userName": "Antonette",
+        "email": "Shanna@melissa.tv",
+        "phoneNumber": "010-692-6593 x09125",
+        "age": 25,
+        "website": "anastasia.net",
+        "_links": {
+          "self": {
+            "href": "http://localhost:8021/green/users/2"
+          }
+        },
+        "id": 2
+      }
+    ]
+  },
+  "_links": {
+    "self": {
+      "href": "http://localhost:8021/green/users"
+    }
+  }
+}
+~~~
 
 ======================================================================================
 

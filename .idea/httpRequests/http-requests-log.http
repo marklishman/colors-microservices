@@ -1,3 +1,24 @@
+GET http://localhost:8021/green/users
+Accept: application/hal+json
+
+<> 2019-06-01T123449.200.json
+
+###
+
+GET http://localhost:8021/green/users/5
+Accept: application/hal+json
+
+<> 2019-06-01T122638.200.json
+
+###
+
+GET http://localhost:8021/green/users
+Accept: application/hal+json
+
+<> 2019-06-01T122632.200.json
+
+###
+
 DELETE http://localhost:8081/cyan/users/20
 
 ###
@@ -344,23 +365,6 @@ Accept: application/json
 
 GET http://localhost:8021/green/users/677777
 Accept: application/json
-
-###
-
-GET http://localhost:8021/green/users/677777
-Accept: application/json
-
-###
-
-GET http://localhost:8021/green/users/677777
-Accept: application/json
-
-###
-
-GET http://localhost:8021/green/users/677777
-Accept: application/json
-
-<> 2019-06-01T072018.418.json
 
 ###
 
