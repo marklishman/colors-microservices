@@ -86,7 +86,7 @@ We can also return resources in the HAL format using Spring HATEOAS.
         <artifactId>spring-boot-starter-hateoas</artifactId>
     </dependency>
 
-For this we create a separate resource class which extends `Reso;urceSupport`.
+For this we create a separate resource class which extends `ResourceSupport`.
 
 ~~~java
 @Relation(value = "user", collectionRelation = "users")
@@ -166,12 +166,7 @@ final public class UserResource extends ResourceSupport {
 }
 ~~~
 
-
-We can also return resources in the HAL format if the `Accept` request header is set to `application/hal+json`.
-
-    GET http://localhost:8021/green/users
-    Accept: application/hal+json
-    
+and use a resource assembler to convert a `User` to a `UserResource`.   
 
 ~~~java
 @GetMapping(value = "/{id}", produces = MediaTypes.HAL_JSON_VALUE)
@@ -184,6 +179,55 @@ public ResponseEntity<UserResource> getUserWithHal(@PathVariable("id") final Lon
 }
 ~~~    
 
+~~~java
+final class UserResourceAssembler extends ResourceAssemblerSupport<User, UserResource> {
+
+    private UserResourceAssembler() {
+        super(UserController.class, UserResource.class);
+    }
+
+    public static UserResourceAssembler getInstance() {
+        return new UserResourceAssembler();
+    }
+
+    @Override
+    protected UserResource instantiateResource(final User user) {
+        return UserResource.fromUser(user);
+    }
+
+    @Override
+    public UserResource toResource(final User user) {
+        return createResourceWithId(user.getId(), user);
+    }
+}
+~~~
+
+So when we make a GET request with the `Accept` request header set to `application/hal+json`.
+
+    GET http://localhost:8021/green/users
+    Accept: application/hal+json
+
+the response body will look like this.
+
+~~~json
+{
+  "firstName": "Chelsey",
+  "lastName": "Dietrich",
+  "userName": "Kamren",
+  "email": "Lucio_Hettinger@annie.ca",
+  "phoneNumber": "(254)954-1289",
+  "age": 36,
+  "website": "demarco.info",
+  "_links": {
+    "self": {
+      "href": "http://localhost:8021/green/users/5"
+    }
+  },
+  "id": 5
+}
+~~~
+
+We use the `UserResource` to return a collection also.
 
 ~~~java
 @GetMapping(produces = MediaTypes.HAL_JSON_VALUE)
@@ -200,33 +244,8 @@ public ResponseEntity<Resources<UserResource>> getUsersWithHal() {
 }
 ~~~
 
-NOTE that the collection link is being added manually here. In other words we are not using a `ResourceAssembler`.
+NOTE that the _collection_ link is being added manually here. In other words we are not using a `ResourceAssembler`.
 There are some significant changes regarding this in the next version of Spring.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 ======================================================================================
 
