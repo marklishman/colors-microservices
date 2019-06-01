@@ -20,17 +20,10 @@
 
 # To Do
 
-* Resource
-* ResourceAssembler
-
 * Exception Handling
 * Custom Exceptions
 * @ControllerAdvice
 * `server.error.include-stacktrace`
-
-* Entity
-* Model
-* Resource
 
 * `show_sql`
 
@@ -293,8 +286,6 @@ The response body looks like this.
 }
 ~~~
 
-======================================================================================
-
 # Resource
 
 From [Stack Overflow](https://stackoverflow.com/questions/21346387/how-to-correctly-use-pagedresourcesassembler-from-spring-data/21362291#21362291)
@@ -393,3 +384,27 @@ void getUserByIdNotFound() throws Exception {
             .expectBody().jsonPath("$.message").isEqualTo(String.format("User %s not found", USER_ID));
     }
 ~~~
+
+---
+
+# Domain Objects
+
+In this application we have chosen to separate the user into three separate classes.
+
+* `User` - the business object.
+* `UserEntity` - an entity object used for database persistence.
+* `UserResource` - represents the resource used in the API.
+
+---
+
+# SQL Output
+
+When running in dev mode (ie with the `dev` profile) we have chosen to output formatted SQL of all the database queries.
+
+    spring:
+      jpa:
+        properties:
+          hibernate:
+            show_sql: true
+            use_sql_comments: true
+            format_sql: true
