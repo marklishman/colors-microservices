@@ -20,10 +20,6 @@
 
 # To Do
 
-* CRUD
-
-* Spring HATEOAS
-* HAL
 * Resource
 * ResourceAssembler
 
@@ -45,6 +41,21 @@
 `UserContoller` includes typical CRUD methods.
 
 ~~~java
+@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+public ResponseEntity<List<User>> getUsers() {
+    final List<User> users = userService.getAllUsers();
+    return ResponseEntity.ok(users);
+}
+~~~
+
+~~~java
+@GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+public ResponseEntity<User> getUser(@PathVariable("id") final Long id) {
+    final var user = userService.getUserById(id);
+    return ResponseEntity.ok(user);
+
+}
+
 @PostMapping
 @ResponseStatus(HttpStatus.CREATED)
 public User createUser(@RequestBody final User user) {
@@ -66,31 +77,113 @@ public void deleteUser(@PathVariable("id") final Long id) {
 }
 ~~~
 
-# Representations
+# HAL
 
-`UserController` also allows resources to be returned as plain JSON
+We can also return resources in the HAL format using Spring HATEOAS.
+
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-hateoas</artifactId>
+    </dependency>
+
+For this we create a separate resource class which extends `Reso;urceSupport`.
 
 ~~~java
-@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-public ResponseEntity<List<User>> getUsers() {
-    final List<User> users = userService.getAllUsers();
-    return ResponseEntity.ok(users);
+@Relation(value = "user", collectionRelation = "users")
+final public class UserResource extends ResourceSupport {
+
+    private final Long id;
+    private final String firstName;
+    private final String lastName;
+    private final String userName;
+    private final String email;
+    private final String phoneNumber;
+    private final Integer age;
+    private final String website;
+
+    private UserResource(final Long id,
+                         final String firstName,
+                         final String lastName,
+                         final String userName,
+                         final String email,
+                         final String phoneNumber,
+                         final Integer age,
+                         final String website) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.userName = userName;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.age = age;
+        this.website = website;
+    }
+
+    @JsonCreator
+    public static UserResource jsonCreator(@JsonProperty("firstName") final String firstName,
+                                           @JsonProperty("lastName") final String lastName,
+                                           @JsonProperty("userName") final String userName,
+                                           @JsonProperty("email") final String email,
+                                           @JsonProperty("phoneNumber") final String phoneNumber,
+                                           @JsonProperty("age") final Integer age,
+                                           @JsonProperty("website") final String website) {
+        return new UserResource(
+                null,
+                firstName,
+                lastName,
+                userName,
+                email,
+                phoneNumber,
+                age,
+                website
+        );
+    }
+
+    public static UserResource fromUser(final User user) {
+        return new UserResource(
+                user.getId(),
+                user.getFirstName(),
+                user.getLastName(),
+                user.getUserName(),
+                user.getEmail(),
+                user.getPhoneNumber(),
+                user.getAge(),
+                user.getWebsite()
+        );
+    }
+
+    @JsonProperty("id")
+    public Long getUserId() {
+        return id;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+    
+    ...
+    
 }
 ~~~
 
-~~~java
-@GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-public ResponseEntity<User> getUser(@PathVariable("id") final Long id) {
-    final var user = userService.getUserById(id);
-    return ResponseEntity.ok(user);
 
-}
-~~~
-
-or as HAL format if the `Accept` request header is set to application/hal+json
+We can also return resources in the HAL format if the `Accept` request header is set to `application/hal+json`.
 
     GET http://localhost:8021/green/users
     Accept: application/hal+json
+    
+
+~~~java
+@GetMapping(value = "/{id}", produces = MediaTypes.HAL_JSON_VALUE)
+public ResponseEntity<UserResource> getUserWithHal(@PathVariable("id") final Long id) {
+    final var user = userService.getUserById(id);
+    var userResource = UserResourceAssembler
+            .getInstance()
+            .toResource(user);
+    return ResponseEntity.ok(userResource);
+}
+~~~    
+
 
 ~~~java
 @GetMapping(produces = MediaTypes.HAL_JSON_VALUE)
@@ -107,20 +200,8 @@ public ResponseEntity<Resources<UserResource>> getUsersWithHal() {
 }
 ~~~
 
-and
-
-~~~java
-@GetMapping(value = "/{id}", produces = MediaTypes.HAL_JSON_VALUE)
-public ResponseEntity<UserResource> getUserWithHal(@PathVariable("id") final Long id) {
-    final var user = userService.getUserById(id);
-    var userResource = UserResourceAssembler
-            .getInstance()
-            .toResource(user);
-    return ResponseEntity.ok(userResource);
-}
-~~~
-
-
+NOTE that the collection link is being added manually here. In other words we are not using a `ResourceAssembler`.
+There are some significant changes regarding this in the next version of Spring.
 
 
 
@@ -148,27 +229,6 @@ public ResponseEntity<UserResource> getUserWithHal(@PathVariable("id") final Lon
 
 
 ======================================================================================
-
-# HAL
-     
-~~~java
-@GetMapping(produces = "application/hal+json")
-public ResponseEntity<Resources<UserResource>> getUsersWithHal() {
-    final List<User> users = userService.getAllUsers();
-
-    final List<UserResource> userResourceList = UserResourceAssembler
-            .getInstance()
-            .toResources(users);
-    final Resources<UserResource> userResources = new Resources<>(userResourceList);
-    userResources.add(linkTo(methodOn(getClass()).getUsersWithHal()).withSelfRel());
-    return ResponseEntity.ok(userResources);
-}
-~~~
-
-NOTE that the collection link is being added manually here. In other words we are not using a `ResourceAssembler`.
-There are some significant changes regarding this in the next version of Spring.
-
-
 
 # Resource
 
