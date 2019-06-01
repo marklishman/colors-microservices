@@ -20,12 +20,7 @@
 
 # To Do
 
-* Exception Handling
-* Custom Exceptions
 * @ControllerAdvice
-* `server.error.include-stacktrace`
-
-* `show_sql`
 
 ---
 
@@ -300,22 +295,43 @@ All of these classes derive from `ResourceSupport`, which is a basic container f
 
 # Exception Handling
 
-Never show stack trace
+We use this base class for missing resources
+
+~~~java
+@ResponseStatus(value = HttpStatus.NOT_FOUND)
+public class ResourceNotFoundException extends RuntimeException {
+
+    public ResourceNotFoundException(final String message) {
+        super(message);
+    }
+}
+~~~
+
+and extend it with specific missing resource exceptions.
+
+~~~java
+public class UserResourceNotFoundException extends ResourceNotFoundException {
+
+    public UserResourceNotFoundException(final Long id) {
+        super(String.format("User %s not found", id));
+    }
+}
+~~~
+
+This makes it very readable in the code.
+
+~~~java
+if (!userRepository.existsById(id)) {
+    throw new UserResourceNotFoundException(id);
+}
+~~~
+
+In production we make sure that the response body does not include a stack trace by including this in `application.yml`
 
 ~~~yml
 server:
   error:
     include-stacktrace: never
-~~~
-
-We throw this exception when a resource is not found.
-
-~~~java
-public class UserResourceNotFoundException extends ResourceNotFoundException {
-    public UserResourceNotFoundException(final Long id) {
-        super(String.format("User %s not found", id));
-    }
-}
 ~~~
 
 which returns this JSON in the response body.
@@ -329,6 +345,41 @@ which returns this JSON in the response body.
   "path": "/green/users/6888"
 }
 ~~~
+
+However, in development we do want to include the stack trace in the JSON so we do so by adding this to `application-dev.yml`. 
+
+~~~yml
+spring:
+  jpa:
+    properties:
+      hibernate:
+        show_sql: true
+        use_sql_comments: true
+        format_sql: true
+~~~
+
+# @ControllerAdvice
+
+To intercept exceptions and customize the output we use a `@ControllerAdvice` with `@ExceptionHandler`.
+
+~~~java
+@ControllerAdvice
+public class ExceptionHandlerControllerAdvice extends ResponseEntityExceptionHandler {
+
+    @ExceptionHandler(value = SomeSpecialException.class)
+    protected ResponseEntity<CustomExceptionBody> handleSpecialCase(final SomeSpecialException ex, final WebRequest request) {
+
+        final CustomExceptionBody body = new CustomExceptionBody(ex.getCode(), ex.getDescription());
+
+        return new ResponseEntity<>(body, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+}
+~~~
+
+---
+
+# Testing
 
 However, when we do a mock MVC test this body is not returned.
 
