@@ -1,353 +1,276 @@
-GET http://localhost:8081/cyan/users/3?client=resttemplate
-Content-Type: application/json
-
-<> 2019-05-17T033759.200.json
-
-###
-
-GET http://localhost:8081/cyan/users/6?client=resttemplate
-Content-Type: application/json
-
-<> 2019-05-17T033742.200.json
-
-###
-
-GET http://localhost:8081/cyan/users/6?client=resttemplate
-Content-Type: application/json
-
-<> 2019-05-17T033541.500.json
-
-###
-
-GET http://localhost:8081/cyan/users/3?client=resttemplate
-Content-Type: application/json
-
-<> 2019-05-17T033500.500.json
-
-###
-
-GET http://localhost:8081/cyan/users/2?client=feign
-Content-Type: application/json
-
-<> 2019-05-17T030235.200.json
-
-###
-
-GET http://localhost:8081/cyan/users?client=feign
-Content-Type: application/json
-
-<> 2019-05-17T030231.200.json
-
-###
-
-GET http://localhost:8081/cyan/people/2?client=resttemplate
-Content-Type: application/json
-
-<> 2019-05-17T030225.200.json
-
-###
-
-GET http://localhost:8081/cyan/people?client=resttemplate
-Content-Type: application/json
-
-<> 2019-05-17T030221.200.json
-
-###
-
-GET http://localhost:8081/cyan/groups/0
-Content-Type: application/json
-
-<> 2019-05-17T030216.200.json
-
-###
-
-GET http://localhost:8081/cyan/groups
-Content-Type: application/json
-
-<> 2019-05-17T030212.200.json
-
-###
-
-DELETE http://localhost:8081/cyan/users/17
-
-###
-
-PUT http://localhost:8081/cyan/users/17
-Content-Type: application/json
-
-{
-  "firstName": "Micky",
-  "lastName": "Wiseman",
-  "userName": "Micky.Wise",
-  "email": "micky.wiseman@email.com",
-  "phoneNumber": "024-618-1244",
-  "age": 23,
-  "website": "wiseman.net"
-}
-
-###
-
-POST http://localhost:8081/cyan/users
-Content-Type: application/json
-
-{
-  "firstName": "Mick",
-  "lastName": "Wishman",
-  "userName": "mickywise",
-  "email": "micky.wiseman@email.com",
-  "phoneNumber": "024---618-1244",
-  "age": 20,
-  "website": "wiseman.com"
-}
-
-<> 2019-05-17T030137.201.json
-
-###
-
-GET http://localhost:8081/cyan/stats
-Content-Type: application/json
-
-<> 2019-05-17T030133.200.json
-
-###
-
-GET http://localhost:8081/cyan/users/6?format=hal
+GET http://localhost:8021/green/users/677777
 Accept: application/json
 
-<> 2019-05-17T030126.200.json
+<> 2019-06-01T073108.500.json
 
 ###
 
-GET http://localhost:8081/cyan/users?format=hal
+GET http://localhost:8021/green/users/677777
 Accept: application/json
 
-<> 2019-05-17T030122.200.json
-
 ###
 
-GET http://localhost:8081/cyan/users/5
+GET http://localhost:8021/green/users/677777
 Accept: application/json
 
-<> 2019-05-17T030116.200.json
-
 ###
 
-GET http://localhost:8081/cyan/users
+GET http://localhost:8021/green/users/677777
 Accept: application/json
 
-<> 2019-05-17T030113.200.json
-
 ###
 
-GET http://localhost:8081/cyan/users
+GET http://localhost:8021/green/users/677777
 Accept: application/json
 
-<> 2019-05-17T030052.200.json
+###
+
+GET http://localhost:8021/green/users/677777
+Accept: application/json
 
 ###
 
-GET http://localhost:8081/cyan/employees/events/latest
-Content-Type: application/json
-
-<> 2019-05-17T030046.200.json
+GET http://localhost:8021/green/users/677777
+Accept: application/json
 
 ###
 
-GET http://localhost:8081/cyan/employees/events/latest
-Content-Type: application/json
-
-<> 2019-05-17T030045.200.json
+GET http://localhost:8021/green/users/677777
+Accept: application/json
 
 ###
 
-GET http://localhost:8081/cyan/employees/events/latest
-Content-Type: application/json
-
-<> 2019-05-17T030042.200.json
+GET http://localhost:8021/green/users/677777
+Accept: application/json
 
 ###
 
-POST http://localhost:8081/cyan/employees/events/toggle
-Content-Type: application/json
-
-<> 2019-05-17T030028.200.txt
+GET http://localhost:8021/green/users/677777
+Accept: application/json
 
 ###
 
-GET http://localhost:8081/cyan/employees/events/latest
-Content-Type: application/json
-
-<> 2019-05-17T030026.200.json
+GET http://localhost:8021/green/users/677777
+Accept: application/json
 
 ###
 
-GET http://localhost:8081/cyan/employees/events/latest
-Content-Type: application/json
-
-<> 2019-05-17T030025.200.json
+GET http://localhost:8021/green/users/677777
+Accept: application/json
 
 ###
 
-GET http://localhost:8081/cyan/employees/events/latest
-Content-Type: application/json
-
-<> 2019-05-17T030023.200.json
+GET http://localhost:8021/green/users/677777
+Accept: application/json
 
 ###
 
-GET http://localhost:8081/cyan/employees/events/latest
-Content-Type: application/json
-
-<> 2019-05-17T025952.200.json
+GET http://localhost:8021/green/users/677777
+Accept: application/json
 
 ###
 
-POST http://localhost:8081/cyan/employees/events/toggle
-Content-Type: application/json
-
-<> 2019-05-17T025936.200.txt
+GET http://localhost:8021/green/users/677777
+Accept: application/json
 
 ###
 
-GET http://localhost:8081/cyan/employees/webflux
-
-<> 2019-05-17T025758.200.txt
-
-###
-
-GET http://localhost:8081/cyan/employees/5cdebccd35e96651aeba9626
-Content-Type: application/json
-
-<> 2019-05-17T025731.200.json
+GET http://localhost:8021/green/users/677777
+Accept: application/json
 
 ###
 
-GET http://localhost:8081/cyan/employees
-Content-Type: application/json
+GET http://localhost:8021/green/users/677777
+Accept: application/json
 
-<> 2019-05-17T025720.200.json
-
-###
-
-GET http://localhost:8081/cyan/employees/2
-Content-Type: application/json
-
-<> 2019-05-17T025705.500.json
+<> 2019-06-01T072018.418.json
 
 ###
 
-GET http://localhost:8081/cyan/employees/{id}
-Content-Type: application/json
+GET http://localhost:8021/green/users/677777
+Accept: application/json
 
 ###
 
-GET http://localhost:8081/cyan/employees
-Content-Type: application/json
-
-<> 2019-05-17T025651.200.json
+GET http://localhost:8021/green/users/677777
+Accept: application/json
 
 ###
 
-GET http://localhost:8081/cyan/employees
-Content-Type: application/json
+GET http://localhost:8021/green/users/677777
+Accept: application/json
 
 ###
 
-GET http://localhost:8061/purple/api/items/search/findByUuid?id=afe9c3e1-415b-43e8-a27c-2b5249670bef
-
-<> 2019-05-17T022733.500.json
-
-###
-
-GET http://localhost:8061/purple/api/items/search/findByUuid?id=afe9c3e1-415b-43e8-a27c-2b5249670bef
-
-<> 2019-05-17T022543.500.json
+GET http://localhost:8021/green/users/677777
+Accept: application/json
 
 ###
 
-GET http://localhost:8061/purple/api/items/search/findByUuid?id=afe9c3e1-415b-43e8-a27c-2b5249670bef
-
-<> 2019-05-17T021621.500.json
-
-###
-
-GET http://localhost:8061/purple/api/items/search/findByUuid?id=afe9c3e1-415b-43e8-a27c-2b5249670bef
-
-<> 2019-05-17T021403.500.json
+GET http://localhost:8021/green/users/677777
+Accept: application/json
 
 ###
 
-GET http://localhost:8061/purple/api/items/search/findByUuid?id=afe9c3e1-415b-43e8-a27c-2b5249670bef
-
-<> 2019-05-17T021024.500.json
-
-###
-
-GET http://localhost:8061/purple/api/items/search/findByUuid?id=afe9c3e1-415b-43e8-a27c-2b5249670bef
-
-<> 2019-05-17T020859.500.json
+GET http://localhost:8021/green/users/677777
+Accept: application/json
 
 ###
 
-GET http://localhost:8061/purple/api/items/search/findByUuid?id=afe9c3e1-415b-43e8-a27c-2b5249670bef
-
-GET http://localhost:8061/purple/api/items/search/findByCorrelationId?correlationId=e4b4a967-3758-4479-9a26-7ed5608f978a
-
-<> 2019-05-17T020851.500.json
+GET http://localhost:8021/green/users/677777
+Accept: application/json
 
 ###
 
-GET http://localhost:8061/purple/api/items/search/findByUuid?id=afe9c3e1-415b-43e8-a27c-2b5249670bef
+GET http://localhost:8021/green/users/677777
+Accept: application/json
 
-GET http://localhost:8061/purple/api/items/search/findByCorrelationId?correlationId=e4b4a967-3758-4479-9a26-7ed5608f978a
-
-<> 2019-05-17T020805.500.json
-
-###
-
-GET http://localhost:8061/purple/api/items/search/findByUuid?id=afe9c3e1-415b-43e8-a27c-2b5249670bef
-
-GET http://localhost:8061/purple/api/items/search/findByCorrelationId?correlationId=e4b4a967-3758-4479-9a26-7ed5608f978a
-
-<> 2019-05-17T020714.500.json
+<> 2019-06-01T071617.418.json
 
 ###
 
-GET http://localhost:8061/purple/api/items/search/findByUuid?id=afe9c3e1-415b-43e8-a27c-2b5249670bef
-
-GET http://localhost:8061/purple/api/items/search/findByCorrelationId?correlationId=e4b4a967-3758-4479-9a26-7ed5608f978a
-
-<> 2019-05-17T020209.500.json
+GET http://localhost:8021/green/users/677777
+Accept: application/json
 
 ###
 
-GET http://localhost:8061/purple/api/items/search/findByUuid?uuid=afe9c3e1-415b-43e8-a27c-2b5249670bef
-
-GET http://localhost:8061/purple/api/items/search/findByCorrelationId?correlationId=e4b4a967-3758-4479-9a26-7ed5608f978a
-
-###
-
-GET http://localhost:8061/purple/api/items/search/findByUuid=afe9c3e1-415b-43e8-a27c-2b5249670bef
-
-GET http://localhost:8061/purple/api/items/search/findByCorrelationId?correlationId=e4b4a967-3758-4479-9a26-7ed5608f978a
+GET http://localhost:8021/green/users/677777
+Accept: application/json
 
 ###
 
-GET http://localhost:8061/purple/api/items/search/findByUuid=afe9c3e1-415b-43e8-a27c-2b5249670bef
-
-GET http://localhost:8061/purple/api/items/search/findByCorrelationId?correlationId=e4b4a967-3758-4479-9a26-7ed5608f978a
-
-###
-
-GET http://localhost:8061/purple/api/items/search/findByCorrelationId?correlationId=e4b4a967-3758-4479-9a26-7ed5608f978a
-
-<> 2019-05-17T015758.500.json
+GET http://localhost:8021/green/users/677777
+Accept: application/json
 
 ###
 
-GET http://localhost:8061/purple/api/items/search/findByCorrelationId?correlationId=e4b4a967-3758-4479-9a26-7ed5608f978a
+GET http://localhost:8021/green/users/677777
+Accept: application/json
 
-<> 2019-05-17T015721.500.json
+###
+
+GET http://localhost:8021/green/users/677777
+Accept: application/json
+
+<> 2019-06-01T071209.500.json
+
+###
+
+GET http://localhost:8021/green/users/677777
+Accept: application/json
+
+<> 2019-06-01T071158.500.json
+
+###
+
+GET http://localhost:8021/green/users/677777
+Accept: application/json
+
+<> 2019-06-01T071152.500.json
+
+###
+
+GET http://localhost:8021/green/users/677777
+Accept: application/json
+
+<> 2019-06-01T070912.500.json
+
+###
+
+GET http://localhost:8021/green/users/677777
+Accept: application/json
+
+###
+
+GET http://localhost:8021/green/users/677777
+Accept: application/json
+
+###
+
+GET http://localhost:8021/green/users/677777
+Accept: application/json
+
+<> 2019-06-01T065127.500.json
+
+###
+
+GET http://localhost:8021/green/users/677777
+Accept: application/json
+
+<> 2019-06-01T065027.500.json
+
+###
+
+GET http://localhost:8021/green/users/677777
+Accept: application/json
+
+<> 2019-05-31T072103.500.json
+
+###
+
+GET http://localhost:8021/green/users/677777
+Accept: application/json
+
+###
+
+GET http://localhost:8021/green/users/677777
+Accept: application/json
+
+###
+
+GET http://localhost:8021/green/users/677777
+Accept: application/json
+
+###
+
+GET http://localhost:8021/green/users/677777
+Accept: application/json
+
+###
+
+GET http://localhost:8021/green/users/677777
+Accept: application/json
+
+###
+
+GET http://localhost:8021/green/users/677777
+Accept: application/json
+
+###
+
+GET http://localhost:8021/green/users/677777
+Accept: application/json
+
+###
+
+GET http://localhost:8021/green/users/677777
+Accept: application/json
+
+###
+
+GET http://localhost:8021/green/users/677777
+Accept: application/json
+
+###
+
+GET http://localhost:8021/green/users/677777
+Accept: application/json
+
+<> 2019-05-31T071909.500.json
+
+###
+
+GET http://localhost:8021/green/users/677777
+Accept: application/json
+
+<> 2019-05-31T071822.500.json
+
+###
+
+GET http://localhost:8021/green/users/677777
+Accept: application/json
+
+<> 2019-05-31T071651.404.json
 
 ###
 
