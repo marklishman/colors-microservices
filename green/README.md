@@ -2,10 +2,152 @@
 
 ## Features
 
+* REST API
 * Spring Boot
 * Spring Data JPA
 * Spring HATEOAS
 * Testing
+
+---
+
+# Getting Started
+
+* Start the `ref-db` database
+* Start this service (`green`)
+* Run the HTTP scripts in the `/scripts/http` directory
+
+---
+
+# To Do
+
+* CRUD
+
+* Spring HATEOAS
+* HAL
+* Resource
+* ResourceAssembler
+
+* Exception Handling
+* Custom Exceptions
+* @ControllerAdvice
+* `server.error.include-stacktrace`
+
+* Entity
+* Model
+* Resource
+
+* `show_sql`
+
+---
+
+# CRUD
+
+`UserContoller` includes typical CRUD methods.
+
+~~~java
+@PostMapping
+@ResponseStatus(HttpStatus.CREATED)
+public User createUser(@RequestBody final User user) {
+    return userService.createUser(user);
+}
+
+@PutMapping("/{id}")
+@ResponseStatus(HttpStatus.NO_CONTENT)
+public void updateUser(
+        @PathVariable("id") final Long id,
+        @RequestBody final User user) {
+    userService.updateUser(id, user);
+}
+
+@DeleteMapping("/{id}")
+@ResponseStatus(HttpStatus.NO_CONTENT)
+public void deleteUser(@PathVariable("id") final Long id) {
+    userService.deleteUser(id);
+}
+~~~
+
+# Representations
+
+`UserController` also allows resources to be returned as plain JSON
+
+~~~java
+@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+public ResponseEntity<List<User>> getUsers() {
+    final List<User> users = userService.getAllUsers();
+    return ResponseEntity.ok(users);
+}
+~~~
+
+~~~java
+@GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+public ResponseEntity<User> getUser(@PathVariable("id") final Long id) {
+    final var user = userService.getUserById(id);
+    return ResponseEntity.ok(user);
+
+}
+~~~
+
+or as HAL format if the `Accept` request header is set to application/hal+json
+
+    GET http://localhost:8021/green/users
+    Accept: application/hal+json
+
+~~~java
+@GetMapping(produces = MediaTypes.HAL_JSON_VALUE)
+public ResponseEntity<Resources<UserResource>> getUsersWithHal() {
+    final List<User> users = userService.getAllUsers();
+
+    final List<UserResource> userResourceList = UserResourceAssembler
+            .getInstance()
+            .toResources(users);
+
+    final Resources<UserResource> userResources = new Resources<>(userResourceList);
+    userResources.add(linkTo(methodOn(getClass()).getUsersWithHal()).withSelfRel());
+    return ResponseEntity.ok(userResources);
+}
+~~~
+
+and
+
+~~~java
+@GetMapping(value = "/{id}", produces = MediaTypes.HAL_JSON_VALUE)
+public ResponseEntity<UserResource> getUserWithHal(@PathVariable("id") final Long id) {
+    final var user = userService.getUserById(id);
+    var userResource = UserResourceAssembler
+            .getInstance()
+            .toResource(user);
+    return ResponseEntity.ok(userResource);
+}
+~~~
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+======================================================================================
 
 # HAL
      
