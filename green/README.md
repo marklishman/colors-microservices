@@ -358,7 +358,7 @@ spring:
         format_sql: true
 ~~~
 
-# @ControllerAdvice
+# Handling Exceptions
 
 To intercept exceptions and customize the output we use a `@ControllerAdvice` with `@ExceptionHandler`.
 
@@ -380,6 +380,20 @@ public class ExceptionHandlerControllerAdvice extends ResponseEntityExceptionHan
 ---
 
 # Testing
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 However, when we do a mock MVC test this body is not returned.
 
